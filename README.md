@@ -1,9 +1,16 @@
 # ChartsGouv : L'outil de visualisation de données de l'État
 
+# :construction: Page en construction :construction:
+
 ![Superset | Ecosystème | Sources de donnees](images/banner.jpg)
 
+### Accès rapides 
 
-# :construction: Page en construction :construction:
+- [Découvrir le projet du programme 10%](https://www.10pourcent.etalab.gouv.fr/projets/chartgouv/)
+- [Documentation utilisateur final](https://docs.chartsgouv.fr)
+- [Comment contribuer](CONTRIBUTING.md)
+- [Documentation technique pour développeurs](https://project.charts.gouv.fr)
+- ...
 
 - [ ] Ajouter les liens (plateformes, réutilisations, ...)
 - [ ] Ajouter le dépôt Docusaurus de la documentation utilisateur
@@ -12,13 +19,6 @@
 - [ ] Rédiger le CONTRIBUTING.md
 - [ ] ...
 
-### Accès rapides 
-
-- [Découvrir le projet du programme 10](https://www.10pourcent.etalab.gouv.fr/projets/chartgouv/)
-- [Documentation utilisateur final](https://docs.chartsgouv.fr)
-- [Comment contribuer](CONTRIBUTING.md)
-- [Documentation technique pour développeurs](https://project/charts.gouv.fr)
-- ...
 
 ### Cas d'usages
 

@@ -9,7 +9,7 @@
 - [Découvrir le projet du programme 10%](https://www.10pourcent.etalab.gouv.fr/projets/chartgouv/)
 - [Documentation utilisateur final](https://docs.chartsgouv.fr)
 - [Comment contribuer](CONTRIBUTING.md)
-- [Documentation technique pour développeurs](https://project.charts.gouv.fr)
+- [Documentation technique pour développeurs](https://project.chartsgouv.fr)
 - ...
 
 - [ ] Ajouter les liens (plateformes, réutilisations, ...)

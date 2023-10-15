@@ -8,6 +8,7 @@
 
 - [Découvrir le projet du programme 10%](https://www.10pourcent.etalab.gouv.fr/projets/chartgouv/)
 - [Documentation](https://etalab-ia.github.io/chartsgouv/)
+- [Thème ChartsGouv](./superset/)
 - ...
 
 - [ ] Ajouter les liens (plateformes, réutilisations, ...)

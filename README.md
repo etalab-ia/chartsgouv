@@ -1,6 +1,6 @@
 # ChartsGouv : L'outil de visualisation de données de l'État
 
-![Superset | Ecosystème | Sources de donnees](images/logo.png)
+![ChartsGouv logo](images/logo.png | width=100)
 
 ### Accès rapides 
 

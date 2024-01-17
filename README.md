@@ -1,6 +1,6 @@
 # ChartsGouv : L'outil de visualisation de données de l'État
 
-![ChartsGouv logo](images/logo.png | width=100)
+![ChartsGouv logo](images/logo.png)
 
 ### Accès rapides 
 

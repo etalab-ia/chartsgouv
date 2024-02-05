@@ -1,0 +1,28 @@
+<%
+const toggles = locals.toggles || {};
+const toggle = locals.toggle || {};
+
+let data = {
+  label: 'Label de l\'interrupteur',
+  ...toggle || {},
+  hint: toggle.hint === true ? 'Texte de description additionnel' : toggle.hint,
+}
+
+const elements = [];
+elements.push({
+  type: 'toggle',
+  data: {
+    ...data
+  }
+});
+
+const fieldset = {
+  elements: elements,
+  valid: toggles.valid === true ? validData(toggles.valid) : toggles.valid,
+  error: toggles.error === true ? errorData(toggles.error) : toggles.error,
+  id: uniqueId('toggle-group'),
+}
+
+%>
+
+<%- include('../../../form/example/sample/fieldset', {fieldset: fieldset}) %>

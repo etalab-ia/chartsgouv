@@ -1,0 +1,11 @@
+id: name
+title: Bloc fonctionnel de nationalité
+description: La demande de nationalité permet d’aider un utilisateur à saisir sa nationalité.
+doc:
+
+label:
+  nationality: Nationalité
+legend:
+  nationality: Nationalité
+sample:
+  default: Demande de nationalité

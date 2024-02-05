@@ -1,0 +1,17 @@
+subdir:
+  title: Pages d'exemples
+  artwork: Pictogramme
+  collapse: Panneau dépliant
+  display: Affichage
+  favicon: Icône de favori
+  grid: Grille
+  icon: Icônes
+  media: Médias
+  reset: Réinitialisation
+  spacing: Espacements
+  typography: Typographie
+  utility: Utilitaires
+  print: Impression
+  link: Liens natifs
+  link-raw: Liens bruts
+  link-reset: Liens réinitialisés

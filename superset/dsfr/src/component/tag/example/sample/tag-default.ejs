@@ -1,0 +1,10 @@
+<%
+let tag = locals.tag || {};
+let data = {
+  label: 'Label tag',
+  ...tag
+}
+
+%>
+
+<%- include('../../template/ejs/tag', {tag:data}); %>

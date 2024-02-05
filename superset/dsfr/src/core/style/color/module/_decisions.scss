@@ -1,0 +1,10 @@
+////
+/// Core Module : decisions
+/// @group core
+////
+
+@use 'module/color';
+
+:root {
+  @include color.define();
+}

@@ -1,0 +1,49 @@
+<%
+    const col = locals.col || {};
+    const classes = col.classes || [];
+
+    switch(typeof col.col) {
+        case 'object':
+          for (let bp in col.col) classes.push(`${prefix}-col-${bp !== 'first' ? bp + '-': ''}${col.col[bp]}`)
+          break;
+
+        case 'string':
+        case 'number':
+            classes.push(`${prefix}-col-${col.col}`)
+          break;
+
+        default:
+            classes.push(`${prefix}-col`);
+    }
+
+    if (col.offset) classes.push(`${prefix}-col-offset-${col.offset}`);
+%>
+<div <%- includeClasses(classes); %>>
+    <% if (col.content === true) { %>
+        <div class="col-demo"><%- lorem() %></div>
+    <% } else if (col.content !== undefined) { %>
+        <% if (col.content.indexOf('<') === -1) { %>
+            <div class="col-demo"><%- col.content %></div>
+        <% } else { %>
+            <%- col.content %>
+        <% } %>
+    <% } else if (col.col) {
+        let content = '';
+        switch(typeof col.col) {
+            case 'object':
+                let s = '';
+                for (let bp in col.col) {
+                  content += s + (bp !== 'first' ? `${bp}-` : '' ) + `${col.col[bp]}`;
+                  s = ' / ';
+                }
+                break;
+
+            case 'string':
+            case 'number':
+              content = `${col.col}/12`;
+              break;
+        }
+    %>
+        <div class="col-demo"><%= content %></div>
+    <% } %>
+</div>

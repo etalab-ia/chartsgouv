@@ -1,0 +1,24 @@
+title: Champ de saisie
+description: Les champ permettent à un utilisateur d'entrer du contenu et données.
+doc: https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/champ-de-saisie
+
+sample:
+  text: Champ de type "text"
+  number: Champ de type "number"
+  search: Champ de type "search"
+  date: Champ de type "date"
+  textarea: Champ de type "textarea"
+  password: Champ de type "password"
+  button: Combo champ + bouton d'envoi
+  action: Combo champ + bouton d'action
+  placeholder: Champ avec placeholder
+  value: Champ avec valeur initiale
+  disabled: Champ désactivé
+  hint: Champ avec texte additionnel
+  icon: Champ avec icône personalisée
+  valid: Champ valide avec texte de succès
+  error: Champ en erreur avec texte d'erreur
+remove-field: Supprimer le champ
+subdir:
+  title: Autres versions
+  deprecated: version dépréciée

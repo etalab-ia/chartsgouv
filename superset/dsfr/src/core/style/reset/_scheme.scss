@@ -1,0 +1,10 @@
+////
+/// Core Scheme : Reset
+/// @group core
+////
+
+@import 'scheme/body';
+
+@mixin _core-reset-scheme($legacy: false) {
+  @include _core-reset-body-scheme($legacy);
+}

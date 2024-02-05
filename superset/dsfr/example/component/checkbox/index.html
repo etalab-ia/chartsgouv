@@ -1,0 +1,1370 @@
+<!doctype html>
+<html lang="fr" data-fr-theme>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+    <title>Case à cocher - Système de design</title>
+    <meta name="theme-color" content="#000091"><!-- Défini la couleur de thème du navigateur (Safari/Android) -->
+    <link rel="apple-touch-icon" href="../../../dist/favicon/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="icon" href="../../../dist/favicon/favicon.svg" type="image/svg+xml">
+    <!-- si favicon.ico peut etre placé à la racine du serveur, retirer la ligne ci-dessous -->
+    <link rel="shortcut icon" href="../../../dist/favicon/favicon.ico" type="image/x-icon"><!-- 32×32 -->
+    <link rel="manifest" href="../../../dist/favicon/manifest.webmanifest" crossorigin="use-credentials">
+    <!-- Modifier les chemins relatifs des favicons en fonction de la structure du projet -->
+    <!-- Dans le fichier manifest.webmanifest aussi, modifier les chemins vers les images -->
+    <link href="../../../dist/core/core.main.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.main.css" rel="stylesheet">
+    <link href="../../../dist/scheme/scheme.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.main.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.main.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.main.css" rel="stylesheet">
+    <link href="../../../dist/component/checkbox/checkbox.main.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.main.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.main.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.main.css" rel="stylesheet">
+    <link href="../../../dist/core/core.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/checkbox/checkbox.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.legacy.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.legacy.css" rel="stylesheet">
+    <link href="../../../dist/core/core.print.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.print.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.print.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.print.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.print.css" rel="stylesheet">
+    <link href="../../../dist/component/checkbox/checkbox.print.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.print.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.print.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.print.css" rel="stylesheet">
+    <style>
+        code[class*="language-"],
+        pre[class*="language-"] {
+            white-space: pre-wrap;
+        }
+
+        .example-controls {
+            z-index: 100000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 8px 16px -16px rgba(0, 0, 0, 0.32);
+        }
+
+        .example-controls>button {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .example-controls__content {
+            padding: 16px;
+            background-color: var(--background-elevated-white);
+        }
+
+        .example-controls .fr-collapse--expanded~[aria-expanded] {
+            display: none;
+        }
+
+        .example-controls .fr-collapse:not(.fr-collapse--expanded)~button:not([aria-expanded]) {
+            display: none;
+        }
+
+        .example-controls [class*="-form-group"] {
+            margin-bottom: 0;
+        }
+
+        .fr-display-button {
+            position: fixed;
+            bottom: 3.5rem;
+            right: 2rem;
+        }
+
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+
+            /* IE10+ specific styles go here */
+            .example-controls {
+                display: none;
+            }
+        }
+
+    </style>
+    <script>
+    window['dsfr'] = {
+      // verbose: true,
+      // production: true,
+      // mode: 'manual',
+    };
+    
+  </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+</head>
+
+<body id="top" class="fr-mb-12w">
+    <script type="module">
+    const e="system",t="dark",c="dark",o="data-fr-theme",a="data-fr-scheme",r=`:root[${o}], :root[${a}]`,m=()=>{document.documentElement.setAttribute(o,c),document.documentElement.style.colorScheme="dark"},n=()=>{window.matchMedia("(prefers-color-scheme: dark)").matches&&m()};(()=>{if(document.documentElement.matches(r)){const c=(()=>{try{return"localStorage"in window&&null!==window.localStorage}catch(e){return!1}})()?localStorage.getItem("scheme"):"",o=document.documentElement.getAttribute(a);switch(!0){case c===t:m();break;case c===e:n();break;case o===t:m();break;case o===e:n()}}})();
+
+  </script>
+    <span id="[url - à modifier]"></span>
+    <div class="fr-container fr-mt-2v fr-mb-8w">
+        <p>
+            <a class="fr-icon-arrow-left-line fr-link--icon-left fr-link" href="../">Retour</a>
+        </p>
+        <h1>Case à cocher (checkbox)</h1>
+        <p>La case à cocher permet à l’utilisateur de sélectionner une ou plusieurs options dans une liste. Elle est utilisée pour effectuer des sélections multiples (de 0 à N éléments), ou bien pour permettre un choix binaire, lorsque l’utilisateur peut sélectionner ou désélectionner une seule option.</p>
+        <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/case-a-cocher" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">Documentation</a>
+    </div>
+    <div class="fr-mb-12w">
+        <div class="fr-container">
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-md-8 fr-col-12">
+                    <h3>Case à cocher seule</h3>
+                    <div class="fr-mb-6v">
+                        <div class="fr-checkbox-group">
+                            <input id="checkbox" type="checkbox" aria-describedby="checkbox-messages">
+                            <label class="fr-label" for="checkbox">
+                                Label checkbox
+                            </label>
+                            <div class="fr-messages-group" id="checkbox-messages" aria-live="polite">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-1995">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-1995">
+                                <pre class=" language-html"><code>&lt;div class="fr-checkbox-group"&gt;
+    &lt;input id="checkbox" type="checkbox" aria-describedby="checkbox-messages"&gt;
+    &lt;label class="fr-label" for="checkbox"&gt;
+        Label checkbox
+    &lt;/label&gt;
+    &lt;div class="fr-messages-group" id="checkbox-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Case à cocher seule, exemple avec indice et exposant</h3>
+                    <div class="fr-mb-6v">
+                        <div class="fr-checkbox-group">
+                            <input id="checkbox-sup-sub" type="checkbox" aria-describedby="checkbox-sup-sub-messages">
+                            <label class="fr-label" for="checkbox-sup-sub">
+                                <span>Label checkbox <sub>sub</sub> et <sup>sup</sup>
+                                </span>
+                            </label>
+                            <div class="fr-messages-group" id="checkbox-sup-sub-messages" aria-live="polite">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-1996">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-1996">
+                                <pre class=" language-html"><code>&lt;div class="fr-checkbox-group"&gt;
+    &lt;input id="checkbox-sup-sub" type="checkbox" aria-describedby="checkbox-sup-sub-messages"&gt;
+    &lt;label class="fr-label" for="checkbox-sup-sub"&gt;
+        &lt;span&gt;Label checkbox &lt;sub&gt;sub&lt;/sub&gt; et &lt;sup&gt;sup&lt;/sup&gt;
+        &lt;/span&gt;
+    &lt;/label&gt;
+    &lt;div class="fr-messages-group" id="checkbox-sup-sub-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Case à cocher avec texte d‘aide</h3>
+                    <div class="fr-mb-6v">
+                        <div class="fr-checkbox-group">
+                            <input id="checkbox-hint" type="checkbox" aria-describedby="checkbox-hint-messages">
+                            <label class="fr-label" for="checkbox-hint">
+                                Label checkbox
+                                <span class="fr-hint-text">Texte de description additionnel</span>
+                            </label>
+                            <div class="fr-messages-group" id="checkbox-hint-messages" aria-live="polite">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-1997">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-1997">
+                                <pre class=" language-html"><code>&lt;div class="fr-checkbox-group"&gt;
+    &lt;input id="checkbox-hint" type="checkbox" aria-describedby="checkbox-hint-messages"&gt;
+    &lt;label class="fr-label" for="checkbox-hint"&gt;
+        Label checkbox
+        &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;div class="fr-messages-group" id="checkbox-hint-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Case à cocher seule, validée</h3>
+                    <div class="fr-mb-6v">
+                        <div class="fr-checkbox-group fr-checkbox-group--valid">
+                            <input aria-describedby="checkbox-valid-messages" id="checkbox-valid" type="checkbox">
+                            <label class="fr-label" for="checkbox-valid">
+                                Label checkbox
+                            </label>
+                            <div class="fr-messages-group" id="checkbox-valid-messages" aria-live="polite">
+                                <p class="fr-message fr-message--valid" id="checkbox-valid-message-valid">Texte de validation</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-1998">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-1998">
+                                <pre class=" language-html"><code>&lt;div class="fr-checkbox-group fr-checkbox-group--valid"&gt;
+    &lt;input aria-describedby="checkbox-valid-messages" id="checkbox-valid" type="checkbox"&gt;
+    &lt;label class="fr-label" for="checkbox-valid"&gt;
+        Label checkbox
+    &lt;/label&gt;
+    &lt;div class="fr-messages-group" id="checkbox-valid-messages" aria-live="polite"&gt;
+        &lt;p class="fr-message fr-message--valid" id="checkbox-valid-message-valid"&gt;Texte de validation&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Case à cocher seule avec erreur</h3>
+                    <div class="fr-mb-6v">
+                        <div class="fr-checkbox-group fr-checkbox-group--error">
+                            <input aria-describedby="checkbox-error-messages" id="checkbox-error" type="checkbox">
+                            <label class="fr-label" for="checkbox-error">
+                                Label checkbox
+                            </label>
+                            <div class="fr-messages-group" id="checkbox-error-messages" aria-live="polite">
+                                <p class="fr-message fr-message--error" id="checkbox-error-message-error">Texte d’erreur obligatoire</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-1999">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-1999">
+                                <pre class=" language-html"><code>&lt;div class="fr-checkbox-group fr-checkbox-group--error"&gt;
+    &lt;input aria-describedby="checkbox-error-messages" id="checkbox-error" type="checkbox"&gt;
+    &lt;label class="fr-label" for="checkbox-error"&gt;
+        Label checkbox
+    &lt;/label&gt;
+    &lt;div class="fr-messages-group" id="checkbox-error-messages" aria-live="polite"&gt;
+        &lt;p class="fr-message fr-message--error" id="checkbox-error-message-error"&gt;Texte d’erreur obligatoire&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset" id="checkboxes" aria-labelledby="checkboxes-legend checkboxes-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-1" id="checkboxes-1" type="checkbox" aria-describedby="checkboxes-1-messages">
+                                    <label class="fr-label" for="checkboxes-1">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input checked name="checkboxes-2" id="checkboxes-2" type="checkbox" aria-describedby="checkboxes-2-messages">
+                                    <label class="fr-label" for="checkboxes-2">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-3" id="checkboxes-3" type="checkbox" aria-describedby="checkboxes-3-messages">
+                                    <label class="fr-label" for="checkboxes-3">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-messages" aria-live="polite">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2000">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2000">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="checkboxes" aria-labelledby="checkboxes-legend checkboxes-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-1" id="checkboxes-1" type="checkbox" aria-describedby="checkboxes-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-1"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input checked name="checkboxes-2" id="checkboxes-2" type="checkbox" aria-describedby="checkboxes-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-2"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-3" id="checkboxes-3" type="checkbox" aria-describedby="checkboxes-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-3"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher, petite taille</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset" id="checkboxes-small" aria-labelledby="checkboxes-small-legend checkboxes-small-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-small-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group fr-checkbox-group--sm">
+                                    <input name="checkboxes-small-1" id="checkboxes-small-1" type="checkbox" aria-describedby="checkboxes-small-1-messages">
+                                    <label class="fr-label" for="checkboxes-small-1">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-small-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group fr-checkbox-group--sm">
+                                    <input checked name="checkboxes-small-2" id="checkboxes-small-2" type="checkbox" aria-describedby="checkboxes-small-2-messages">
+                                    <label class="fr-label" for="checkboxes-small-2">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-small-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group fr-checkbox-group--sm">
+                                    <input name="checkboxes-small-3" id="checkboxes-small-3" type="checkbox" aria-describedby="checkboxes-small-3-messages">
+                                    <label class="fr-label" for="checkboxes-small-3">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-small-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-small-messages" aria-live="polite">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2001">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2001">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="checkboxes-small" aria-labelledby="checkboxes-small-legend checkboxes-small-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-small-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group fr-checkbox-group--sm"&gt;
+            &lt;input name="checkboxes-small-1" id="checkboxes-small-1" type="checkbox" aria-describedby="checkboxes-small-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-small-1"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-small-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group fr-checkbox-group--sm"&gt;
+            &lt;input checked name="checkboxes-small-2" id="checkboxes-small-2" type="checkbox" aria-describedby="checkboxes-small-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-small-2"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-small-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group fr-checkbox-group--sm"&gt;
+            &lt;input name="checkboxes-small-3" id="checkboxes-small-3" type="checkbox" aria-describedby="checkboxes-small-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-small-3"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-small-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-small-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher désactivées</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset" id="checkboxes-disabled" aria-labelledby="checkboxes-disabled-legend checkboxes-disabled-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-disabled-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input disabled name="checkboxes-disabled-1" id="checkboxes-disabled-1" type="checkbox" aria-describedby="checkboxes-disabled-1-messages">
+                                    <label class="fr-label" for="checkboxes-disabled-1">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-disabled-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input checked disabled name="checkboxes-disabled-2" id="checkboxes-disabled-2" type="checkbox" aria-describedby="checkboxes-disabled-2-messages">
+                                    <label class="fr-label" for="checkboxes-disabled-2">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-disabled-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input disabled name="checkboxes-disabled-3" id="checkboxes-disabled-3" type="checkbox" aria-describedby="checkboxes-disabled-3-messages">
+                                    <label class="fr-label" for="checkboxes-disabled-3">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-disabled-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-disabled-messages" aria-live="polite">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2002">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2002">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="checkboxes-disabled" aria-labelledby="checkboxes-disabled-legend checkboxes-disabled-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-disabled-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input disabled name="checkboxes-disabled-1" id="checkboxes-disabled-1" type="checkbox" aria-describedby="checkboxes-disabled-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-disabled-1"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-disabled-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input checked disabled name="checkboxes-disabled-2" id="checkboxes-disabled-2" type="checkbox" aria-describedby="checkboxes-disabled-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-disabled-2"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-disabled-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input disabled name="checkboxes-disabled-3" id="checkboxes-disabled-3" type="checkbox" aria-describedby="checkboxes-disabled-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-disabled-3"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-disabled-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-disabled-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher en ligne</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset" id="checkboxes-inline" aria-labelledby="checkboxes-inline-legend checkboxes-inline-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-inline-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-inline-1" id="checkboxes-inline-1" type="checkbox" aria-describedby="checkboxes-inline-1-messages">
+                                    <label class="fr-label" for="checkboxes-inline-1">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-inline-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-inline-2" id="checkboxes-inline-2" type="checkbox" aria-describedby="checkboxes-inline-2-messages">
+                                    <label class="fr-label" for="checkboxes-inline-2">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-inline-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-inline-3" id="checkboxes-inline-3" type="checkbox" aria-describedby="checkboxes-inline-3-messages">
+                                    <label class="fr-label" for="checkboxes-inline-3">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-inline-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-inline-messages" aria-live="polite">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2003">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2003">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="checkboxes-inline" aria-labelledby="checkboxes-inline-legend checkboxes-inline-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-inline-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-inline-1" id="checkboxes-inline-1" type="checkbox" aria-describedby="checkboxes-inline-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-inline-1"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-inline-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-inline-2" id="checkboxes-inline-2" type="checkbox" aria-describedby="checkboxes-inline-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-inline-2"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-inline-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-inline-3" id="checkboxes-inline-3" type="checkbox" aria-describedby="checkboxes-inline-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-inline-3"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-inline-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-inline-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher avec texte d‘aide</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset" id="checkboxes-hint" aria-labelledby="checkboxes-hint-legend checkboxes-hint-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-hint-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-hint-1" id="checkboxes-hint-1" type="checkbox" aria-describedby="checkboxes-hint-1-messages">
+                                    <label class="fr-label" for="checkboxes-hint-1">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-hint-2" id="checkboxes-hint-2" type="checkbox" aria-describedby="checkboxes-hint-2-messages">
+                                    <label class="fr-label" for="checkboxes-hint-2">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-hint-3" id="checkboxes-hint-3" type="checkbox" aria-describedby="checkboxes-hint-3-messages">
+                                    <label class="fr-label" for="checkboxes-hint-3">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-hint-messages" aria-live="polite">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2004">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2004">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="checkboxes-hint" aria-labelledby="checkboxes-hint-legend checkboxes-hint-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-hint-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-hint-1" id="checkboxes-hint-1" type="checkbox" aria-describedby="checkboxes-hint-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-1"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-hint-2" id="checkboxes-hint-2" type="checkbox" aria-describedby="checkboxes-hint-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-2"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-hint-3" id="checkboxes-hint-3" type="checkbox" aria-describedby="checkboxes-hint-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-3"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-hint-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher avec erreur</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset fr-fieldset--error" id="checkboxes-error" role="group" aria-labelledby="checkboxes-error-legend checkboxes-error-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-error-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-error-1" id="checkboxes-error-1" type="checkbox" aria-describedby="checkboxes-error-1-messages">
+                                    <label class="fr-label" for="checkboxes-error-1">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-error-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-error-2" id="checkboxes-error-2" type="checkbox" aria-describedby="checkboxes-error-2-messages">
+                                    <label class="fr-label" for="checkboxes-error-2">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-error-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-error-3" id="checkboxes-error-3" type="checkbox" aria-describedby="checkboxes-error-3-messages">
+                                    <label class="fr-label" for="checkboxes-error-3">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-error-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-error-messages" aria-live="polite">
+                                <p class="fr-message fr-message--error" id="checkboxes-error-message-error">Texte d’erreur obligatoire</p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2005">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2005">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset fr-fieldset--error" id="checkboxes-error" role="group" aria-labelledby="checkboxes-error-legend checkboxes-error-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-error-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-error-1" id="checkboxes-error-1" type="checkbox" aria-describedby="checkboxes-error-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-error-1"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-error-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-error-2" id="checkboxes-error-2" type="checkbox" aria-describedby="checkboxes-error-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-error-2"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-error-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-error-3" id="checkboxes-error-3" type="checkbox" aria-describedby="checkboxes-error-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-error-3"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-error-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-error-messages" aria-live="polite"&gt;
+        &lt;p class="fr-message fr-message--error" id="checkboxes-error-message-error"&gt;Texte d’erreur obligatoire&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher validées</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset fr-fieldset--valid" id="checkboxes-valid" role="group" aria-labelledby="checkboxes-valid-legend checkboxes-valid-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-valid-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-valid-1" id="checkboxes-valid-1" type="checkbox" aria-describedby="checkboxes-valid-1-messages">
+                                    <label class="fr-label" for="checkboxes-valid-1">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-valid-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-valid-2" id="checkboxes-valid-2" type="checkbox" aria-describedby="checkboxes-valid-2-messages">
+                                    <label class="fr-label" for="checkboxes-valid-2">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-valid-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-valid-3" id="checkboxes-valid-3" type="checkbox" aria-describedby="checkboxes-valid-3-messages">
+                                    <label class="fr-label" for="checkboxes-valid-3">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-valid-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-valid-messages" aria-live="polite">
+                                <p class="fr-message fr-message--valid" id="checkboxes-valid-message-valid">Texte de validation</p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2006">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2006">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset fr-fieldset--valid" id="checkboxes-valid" role="group" aria-labelledby="checkboxes-valid-legend checkboxes-valid-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-valid-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-valid-1" id="checkboxes-valid-1" type="checkbox" aria-describedby="checkboxes-valid-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-valid-1"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-valid-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-valid-2" id="checkboxes-valid-2" type="checkbox" aria-describedby="checkboxes-valid-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-valid-2"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-valid-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-valid-3" id="checkboxes-valid-3" type="checkbox" aria-describedby="checkboxes-valid-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-valid-3"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-valid-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-valid-messages" aria-live="polite"&gt;
+        &lt;p class="fr-message fr-message--valid" id="checkboxes-valid-message-valid"&gt;Texte de validation&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher avec erreur, en ligne</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset fr-fieldset--error" id="checkboxes-error-inline" role="group" aria-labelledby="checkboxes-error-inline-legend checkboxes-error-inline-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-error-inline-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-error-inline-1" id="checkboxes-error-inline-1" type="checkbox" aria-describedby="checkboxes-error-inline-1-messages">
+                                    <label class="fr-label" for="checkboxes-error-inline-1">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-error-inline-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-error-inline-2" id="checkboxes-error-inline-2" type="checkbox" aria-describedby="checkboxes-error-inline-2-messages">
+                                    <label class="fr-label" for="checkboxes-error-inline-2">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-error-inline-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-error-inline-3" id="checkboxes-error-inline-3" type="checkbox" aria-describedby="checkboxes-error-inline-3-messages">
+                                    <label class="fr-label" for="checkboxes-error-inline-3">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-error-inline-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-error-inline-messages" aria-live="polite">
+                                <p class="fr-message fr-message--error" id="checkboxes-error-inline-message-error">Texte d’erreur obligatoire</p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2007">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2007">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset fr-fieldset--error" id="checkboxes-error-inline" role="group" aria-labelledby="checkboxes-error-inline-legend checkboxes-error-inline-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-error-inline-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-error-inline-1" id="checkboxes-error-inline-1" type="checkbox" aria-describedby="checkboxes-error-inline-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-error-inline-1"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-error-inline-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-error-inline-2" id="checkboxes-error-inline-2" type="checkbox" aria-describedby="checkboxes-error-inline-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-error-inline-2"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-error-inline-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-error-inline-3" id="checkboxes-error-inline-3" type="checkbox" aria-describedby="checkboxes-error-inline-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-error-inline-3"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-error-inline-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-error-inline-messages" aria-live="polite"&gt;
+        &lt;p class="fr-message fr-message--error" id="checkboxes-error-inline-message-error"&gt;Texte d’erreur obligatoire&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher validées, en ligne</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset fr-fieldset--valid" id="checkboxes-valid-inline" role="group" aria-labelledby="checkboxes-valid-inline-legend checkboxes-valid-inline-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-valid-inline-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-valid-inline-1" id="checkboxes-valid-inline-1" type="checkbox" aria-describedby="checkboxes-valid-inline-1-messages">
+                                    <label class="fr-label" for="checkboxes-valid-inline-1">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-valid-inline-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-valid-inline-2" id="checkboxes-valid-inline-2" type="checkbox" aria-describedby="checkboxes-valid-inline-2-messages">
+                                    <label class="fr-label" for="checkboxes-valid-inline-2">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-valid-inline-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element fr-fieldset__element--inline">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-valid-inline-3" id="checkboxes-valid-inline-3" type="checkbox" aria-describedby="checkboxes-valid-inline-3-messages">
+                                    <label class="fr-label" for="checkboxes-valid-inline-3">
+                                        Libellé case à cocher
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-valid-inline-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-valid-inline-messages" aria-live="polite">
+                                <p class="fr-message fr-message--valid" id="checkboxes-valid-inline-message-valid">Texte de validation</p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2008">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2008">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset fr-fieldset--valid" id="checkboxes-valid-inline" role="group" aria-labelledby="checkboxes-valid-inline-legend checkboxes-valid-inline-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-valid-inline-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-valid-inline-1" id="checkboxes-valid-inline-1" type="checkbox" aria-describedby="checkboxes-valid-inline-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-valid-inline-1"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-valid-inline-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-valid-inline-2" id="checkboxes-valid-inline-2" type="checkbox" aria-describedby="checkboxes-valid-inline-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-valid-inline-2"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-valid-inline-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-valid-inline-3" id="checkboxes-valid-inline-3" type="checkbox" aria-describedby="checkboxes-valid-inline-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-valid-inline-3"&gt;
+                Libellé case à cocher
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-valid-inline-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-valid-inline-messages" aria-live="polite"&gt;
+        &lt;p class="fr-message fr-message--valid" id="checkboxes-valid-inline-message-valid"&gt;Texte de validation&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher avec texte d‘aide spécifique</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset" id="checkboxes-hint-element" aria-labelledby="checkboxes-hint-element-legend checkboxes-hint-element-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-hint-element-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-hint-element-1" id="checkboxes-hint-element-1" type="checkbox" aria-describedby="checkboxes-hint-element-1-messages">
+                                    <label class="fr-label" for="checkboxes-hint-element-1">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-element-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-hint-element-2" id="checkboxes-hint-element-2" type="checkbox" aria-describedby="checkboxes-hint-element-2-messages">
+                                    <label class="fr-label" for="checkboxes-hint-element-2">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-element-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group">
+                                    <input name="checkboxes-hint-element-3" id="checkboxes-hint-element-3" type="checkbox" aria-describedby="checkboxes-hint-element-3-messages">
+                                    <label class="fr-label" for="checkboxes-hint-element-3">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-element-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-hint-element-messages" aria-live="polite">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2009">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2009">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="checkboxes-hint-element" aria-labelledby="checkboxes-hint-element-legend checkboxes-hint-element-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-hint-element-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-hint-element-1" id="checkboxes-hint-element-1" type="checkbox" aria-describedby="checkboxes-hint-element-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-element-1"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-element-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-hint-element-2" id="checkboxes-hint-element-2" type="checkbox" aria-describedby="checkboxes-hint-element-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-element-2"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-element-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group"&gt;
+            &lt;input name="checkboxes-hint-element-3" id="checkboxes-hint-element-3" type="checkbox" aria-describedby="checkboxes-hint-element-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-element-3"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-element-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-hint-element-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                    <h3>Ensemble de cases à cocher avec texte d‘aide spécifique, petite taille</h3>
+                    <div class="fr-mb-6v">
+                        <fieldset class="fr-fieldset" id="checkboxes-hint-el-sm" aria-labelledby="checkboxes-hint-el-sm-legend checkboxes-hint-el-sm-messages">
+                            <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-hint-el-sm-legend">
+                                Légende pour l’ensemble des éléments
+                            </legend>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group fr-checkbox-group--sm">
+                                    <input name="checkboxes-hint-el-sm-1" id="checkboxes-hint-el-sm-1" type="checkbox" aria-describedby="checkboxes-hint-el-sm-1-messages">
+                                    <label class="fr-label" for="checkboxes-hint-el-sm-1">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-el-sm-1-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group fr-checkbox-group--sm">
+                                    <input name="checkboxes-hint-el-sm-2" id="checkboxes-hint-el-sm-2" type="checkbox" aria-describedby="checkboxes-hint-el-sm-2-messages">
+                                    <label class="fr-label" for="checkboxes-hint-el-sm-2">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-el-sm-2-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-fieldset__element">
+                                <div class="fr-checkbox-group fr-checkbox-group--sm">
+                                    <input name="checkboxes-hint-el-sm-3" id="checkboxes-hint-el-sm-3" type="checkbox" aria-describedby="checkboxes-hint-el-sm-3-messages">
+                                    <label class="fr-label" for="checkboxes-hint-el-sm-3">
+                                        Libellé case à cocher
+                                        <span class="fr-hint-text">Texte de description additionnel</span>
+                                    </label>
+                                    <div class="fr-messages-group" id="checkboxes-hint-el-sm-3-messages" aria-live="polite">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fr-messages-group" id="checkboxes-hint-el-sm-messages" aria-live="polite">
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-2010">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-2010">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="checkboxes-hint-el-sm" aria-labelledby="checkboxes-hint-el-sm-legend checkboxes-hint-el-sm-messages"&gt;
+    &lt;legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="checkboxes-hint-el-sm-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group fr-checkbox-group--sm"&gt;
+            &lt;input name="checkboxes-hint-el-sm-1" id="checkboxes-hint-el-sm-1" type="checkbox" aria-describedby="checkboxes-hint-el-sm-1-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-el-sm-1"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-el-sm-1-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group fr-checkbox-group--sm"&gt;
+            &lt;input name="checkboxes-hint-el-sm-2" id="checkboxes-hint-el-sm-2" type="checkbox" aria-describedby="checkboxes-hint-el-sm-2-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-el-sm-2"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-el-sm-2-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-checkbox-group fr-checkbox-group--sm"&gt;
+            &lt;input name="checkboxes-hint-el-sm-3" id="checkboxes-hint-el-sm-3" type="checkbox" aria-describedby="checkboxes-hint-el-sm-3-messages"&gt;
+            &lt;label class="fr-label" for="checkboxes-hint-el-sm-3"&gt;
+                Libellé case à cocher
+                &lt;span class="fr-hint-text"&gt;Texte de description additionnel&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;div class="fr-messages-group" id="checkboxes-hint-el-sm-3-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="checkboxes-hint-el-sm-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fr-container fr-mt-2v fr-mb-8w">
+        <h3>Autres versions</h3>
+        <ul>
+            <li>
+                <a href="deprecated">version dépréciée</a>
+            </li>
+        </ul>
+    </div>
+    <button class="fr-display-button fr-background-default--grey fr-btn fr-btn--lg fr-icon-theme-fill fr-btn--secondary" aria-controls="fr-theme-modal" data-fr-opened="false" style="z-index: 1600" id="button-2011">
+        Label bouton
+    </button>
+    <dialog id="fr-theme-modal" class="fr-modal" aria-labelledby="fr-theme-modal-title">
+        <div class="fr-container fr-container--fluid fr-container-md">
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                    <div class="fr-modal__body">
+                        <div class="fr-modal__header">
+                            <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" id="button-2012" title="Fermer">
+                                Fermer
+                            </button>
+                        </div>
+                        <div class="fr-modal__content">
+                            <h1 id="fr-theme-modal-title" class="fr-modal__title">
+                                Paramètres d’affichage
+                            </h1>
+                            <div id="fr-display" class="fr-display">
+                                <fieldset class="fr-fieldset" id="display-fieldset">
+                                    <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="display-fieldset-legend">
+                                        Choisissez un thème pour personnaliser l’apparence du site.
+                                    </legend>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-light">
+                                                Thème clair
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-dark">
+                                                Thème sombre
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-system">
+                                                Système
+                                                <span class="fr-hint-text">Utilise les paramètres système</span>
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/system/system.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/system/system.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/system/system.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <script type="module" src="../../../dist/core/core.module.js"></script>
+    <script type="module" src="../../../dist/scheme/scheme.module.js"></script>
+    <script type="module" src="../../../dist/component/accordion/accordion.module.js"></script>
+    <script type="module" src="../../../dist/component/modal/modal.module.js"></script>
+    <script type="module" src="../../../dist/component/display/display.module.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/legacy/legacy.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/core/core.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/accordion/accordion.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/modal/modal.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/display/display.nomodule.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+</body>
+
+</html>

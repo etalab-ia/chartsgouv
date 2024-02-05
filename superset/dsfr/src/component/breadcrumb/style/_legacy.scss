@@ -1,0 +1,22 @@
+////
+/// Breadcrumb legacy
+/// @group breadcrumb
+////
+
+@use 'module/legacy';
+@use 'module/selector';
+
+@include legacy.is(ie11) {
+  /**
+  * reset liste à puce
+  */
+  #{ns(breadcrumb)} {
+    @include disable-list-style-legacy;
+
+    &__link {
+      @include selector.not-current {
+        @include icon-legacy(arrow-right-s-line, sm, after);
+      }
+    }
+  }
+}

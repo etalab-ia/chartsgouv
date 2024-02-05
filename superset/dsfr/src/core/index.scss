@@ -1,0 +1,12 @@
+////
+/// Core
+/// @group core
+////
+
+@import 'config';
+@import 'style/function';
+@import 'style/setting';
+@import 'style/tool';
+
+// deprecated
+@import 'deprecated/style/tool';

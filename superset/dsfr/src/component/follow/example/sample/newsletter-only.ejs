@@ -1,0 +1,8 @@
+
+<%
+let data = {};
+data = JSON.parse(include('../data/newsletter-button.json.ejs'));
+
+%>
+
+<%- include('../../template/ejs/follow.ejs', {follow: data}); %>

@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="fr" data-fr-theme>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+    <title>Bloc fonctionnel de société - Système de design</title>
+    <meta name="theme-color" content="#000091"><!-- Défini la couleur de thème du navigateur (Safari/Android) -->
+    <link rel="apple-touch-icon" href="../../../dist/favicon/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="icon" href="../../../dist/favicon/favicon.svg" type="image/svg+xml">
+    <!-- si favicon.ico peut etre placé à la racine du serveur, retirer la ligne ci-dessous -->
+    <link rel="shortcut icon" href="../../../dist/favicon/favicon.ico" type="image/x-icon"><!-- 32×32 -->
+    <link rel="manifest" href="../../../dist/favicon/manifest.webmanifest" crossorigin="use-credentials">
+    <!-- Modifier les chemins relatifs des favicons en fonction de la structure du projet -->
+    <!-- Dans le fichier manifest.webmanifest aussi, modifier les chemins vers les images -->
+    <link href="../../../dist/core/core.main.css" rel="stylesheet">
+    <link href="../../../dist/scheme/scheme.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.main.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.main.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.main.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.main.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.main.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.main.css" rel="stylesheet">
+    <link href="../../../dist/component/input/input-base/input-base.main.css" rel="stylesheet">
+    <link href="../../../dist/component/select/select.main.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.main.css" rel="stylesheet">
+    <link href="../../../dist/core/core.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/input/input-base/input-base.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/select/select.legacy.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.legacy.css" rel="stylesheet">
+    <link href="../../../dist/core/core.print.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.print.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.print.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.print.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.print.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.print.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.print.css" rel="stylesheet">
+    <link href="../../../dist/component/input/input-base/input-base.print.css" rel="stylesheet">
+    <link href="../../../dist/component/select/select.print.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.print.css" rel="stylesheet">
+    <style>
+        code[class*="language-"],
+        pre[class*="language-"] {
+            white-space: pre-wrap;
+        }
+
+        .example-controls {
+            z-index: 100000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 8px 16px -16px rgba(0, 0, 0, 0.32);
+        }
+
+        .example-controls>button {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .example-controls__content {
+            padding: 16px;
+            background-color: var(--background-elevated-white);
+        }
+
+        .example-controls .fr-collapse--expanded~[aria-expanded] {
+            display: none;
+        }
+
+        .example-controls .fr-collapse:not(.fr-collapse--expanded)~button:not([aria-expanded]) {
+            display: none;
+        }
+
+        .example-controls [class*="-form-group"] {
+            margin-bottom: 0;
+        }
+
+        .fr-display-button {
+            position: fixed;
+            bottom: 3.5rem;
+            right: 2rem;
+        }
+
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+
+            /* IE10+ specific styles go here */
+            .example-controls {
+                display: none;
+            }
+        }
+
+    </style>
+    <script>
+    window['dsfr'] = {
+      // verbose: true,
+      // production: true,
+      // mode: 'manual',
+    };
+    
+  </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+</head>
+
+<body id="top" class="fr-mb-12w">
+    <script type="module">
+    const e="system",t="dark",c="dark",o="data-fr-theme",a="data-fr-scheme",r=`:root[${o}], :root[${a}]`,m=()=>{document.documentElement.setAttribute(o,c),document.documentElement.style.colorScheme="dark"},n=()=>{window.matchMedia("(prefers-color-scheme: dark)").matches&&m()};(()=>{if(document.documentElement.matches(r)){const c=(()=>{try{return"localStorage"in window&&null!==window.localStorage}catch(e){return!1}})()?localStorage.getItem("scheme"):"",o=document.documentElement.getAttribute(a);switch(!0){case c===t:m();break;case c===e:n();break;case o===t:m();break;case o===e:n()}}})();
+
+  </script>
+    <span id="[url - à modifier]"></span>
+    <div class="fr-container fr-mt-2v fr-mb-8w">
+        <p>
+            <a class="fr-icon-arrow-left-line fr-link--icon-left fr-link" href="../">Retour</a>
+        </p>
+        <h1>Bloc fonctionnel de société (company)</h1>
+        <p>La demande de renseignement sur la société permet d’aider un utilisateur à saisir les renseignements concernant sa société.</p>
+        <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/blocs-fonctionnels/societe" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">Documentation</a>
+    </div>
+    <div class="fr-mb-12w">
+        <div class="fr-container">
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col-12">
+                    <h4>Demande d&#39;un numéro de SIRET</h4>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center fr-mb-6v">
+                <div class="fr-col-md-8 fr-col-xl-6 fr-col-12">
+                    <fieldset class="fr-fieldset" id="siret-959" aria-labelledby="siret-959-legend siret-959-messages">
+                        <legend class="fr-sr-only" id="siret-959-legend">
+                            SIRET de l'entreprise
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-961">
+                                <label class="fr-label" for="siret-960">
+                                    Numéro de SIRET
+                                </label>
+                                <input class="fr-input" aria-describedby="siret-960-messages" name="siret" id="siret-960" type="text">
+                                <div class="fr-messages-group" id="siret-960-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-mt-n1v fr-fieldset__element">
+                            <a class="fr-link" title="Annuaire des entreprises - nouvelle fenêtre" target="_blank" rel="noopener" id="link-962" href="https://annuaire-entreprises.data.gouv.fr/">Annuaire des entreprises</a>
+                        </div>
+                        <div class="fr-messages-group" id="siret-959-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col-12">
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-967">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-967">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="siret-963" aria-labelledby="siret-963-legend siret-963-messages"&gt;
+    &lt;legend class="fr-sr-only" id="siret-963-legend"&gt;
+        SIRET de l'entreprise
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-965"&gt;
+            &lt;label class="fr-label" for="siret-964"&gt;
+                Numéro de SIRET
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="siret-964-messages" name="siret" id="siret-964" type="text"&gt;
+            &lt;div class="fr-messages-group" id="siret-964-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-mt-n1v fr-fieldset__element"&gt;
+        &lt;a class="fr-link" title="Annuaire des entreprises - nouvelle fenêtre" target="_blank" rel="noopener" id="link-966" href="https://annuaire-entreprises.data.gouv.fr/"&gt;Annuaire des entreprises&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="siret-963-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col-12">
+                    <h4>Demande d’une adresse de siège social</h4>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center fr-mb-6v">
+                <div class="fr-col-md-8 fr-col-xl-6 fr-col-12">
+                    <fieldset class="fr-fieldset" id="address-976" aria-labelledby="address-976-legend address-976-messages">
+                        <legend class="fr-sr-only" id="address-976-legend">
+                            Adresse postale
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-977">
+                                <label class="fr-label" for="name-968">
+                                    Dénomination
+                                </label>
+                                <input class="fr-input" aria-describedby="name-968-messages" name="organization-name" autocomplete="organization" id="name-968" type="text">
+                                <div class="fr-messages-group" id="name-968-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-978">
+                                <label class="fr-label" for="address-969">
+                                    Adresse
+                                    <span class="fr-hint-text">Indication : numéro et voie</span>
+                                </label>
+                                <input class="fr-input" aria-describedby="address-969-messages" name="address-line1" autocomplete="address-line1" id="address-969" type="text">
+                                <div class="fr-messages-group" id="address-969-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-979">
+                                <label class="fr-label" for="complement-970">
+                                    Complément d’adresse (optionnel)
+                                    <span class="fr-hint-text">Indication : bâtiment, immeuble, escalier et numéro d’appartement</span>
+                                </label>
+                                <input class="fr-input" aria-describedby="complement-970-messages" name="address-line2" autocomplete="address-line2" id="complement-970" type="text">
+                                <div class="fr-messages-group" id="complement-970-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-980">
+                                <label class="fr-label" for="locality-971">
+                                    Lieu-dit, commune déléguée ou boîte postale
+                                </label>
+                                <input class="fr-input" aria-describedby="locality-971-messages" name="address-level3" autocomplete="address-line3" id="locality-971" type="text">
+                                <div class="fr-messages-group" id="locality-971-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element fr-fieldset__element--inline fr-fieldset__element--postal">
+                            <div class="fr-input-group" id="input-group-981">
+                                <label class="fr-label" for="postal-972">
+                                    Code postal
+                                    <span class="fr-hint-text">Format attendu : 5 chiffres</span>
+                                </label>
+                                <input class="fr-input" aria-describedby="postal-972-messages" name="postal-code" autocomplete="postal-code" id="postal-972" type="text">
+                                <div class="fr-messages-group" id="postal-972-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element fr-fieldset__element--inline@md fr-fieldset__element--inline-grow">
+                            <div class="fr-input-group" id="input-group-982">
+                                <label class="fr-label" for="city-973">
+                                    Ville ou commune
+                                    <span class="fr-hint-text">Exemple : Montpellier</span>
+                                </label>
+                                <input class="fr-input" aria-describedby="city-973-messages" name="address-level2" autocomplete="address-level2" id="city-973" type="text">
+                                <div class="fr-messages-group" id="city-973-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-983">
+                                <label class="fr-label" for="cedex-974">
+                                    Cedex
+                                </label>
+                                <input class="fr-input" aria-describedby="cedex-974-messages" name="business-postal-code" autocomplete="cedex" id="cedex-974" type="text">
+                                <div class="fr-messages-group" id="cedex-974-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-select-group">
+                                <label class="fr-label" for="country-975">
+                                    Pays
+                                </label>
+                                <select class="fr-select" autocomplete="country" aria-describedby="country-975-messages" id="country-975" name="country">
+                                    <option value="" selected disabled hidden>Sélectionner une option</option>
+                                    <option value="FR">France</option>
+                                    <option value="DE">Allemagne</option>
+                                    <option value="IT">Italie</option>
+                                    <option value="ES">Espagne</option>
+                                    <option value="GB">Royaume-Uni</option>
+                                </select>
+                                <div class="fr-messages-group" id="country-975-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-messages-group" id="address-976-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col-12">
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-1000">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-1000">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="address-992" aria-labelledby="address-992-legend address-992-messages"&gt;
+    &lt;legend class="fr-sr-only" id="address-992-legend"&gt;
+        Adresse postale
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-993"&gt;
+            &lt;label class="fr-label" for="name-984"&gt;
+                Dénomination
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="name-984-messages" name="organization-name" autocomplete="organization" id="name-984" type="text"&gt;
+            &lt;div class="fr-messages-group" id="name-984-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-994"&gt;
+            &lt;label class="fr-label" for="address-985"&gt;
+                Adresse
+                &lt;span class="fr-hint-text"&gt;Indication : numéro et voie&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="address-985-messages" name="address-line1" autocomplete="address-line1" id="address-985" type="text"&gt;
+            &lt;div class="fr-messages-group" id="address-985-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-995"&gt;
+            &lt;label class="fr-label" for="complement-986"&gt;
+                Complément d’adresse (optionnel)
+                &lt;span class="fr-hint-text"&gt;Indication : bâtiment, immeuble, escalier et numéro d’appartement&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="complement-986-messages" name="address-line2" autocomplete="address-line2" id="complement-986" type="text"&gt;
+            &lt;div class="fr-messages-group" id="complement-986-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-996"&gt;
+            &lt;label class="fr-label" for="locality-987"&gt;
+                Lieu-dit, commune déléguée ou boîte postale
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="locality-987-messages" name="address-level3" autocomplete="address-line3" id="locality-987" type="text"&gt;
+            &lt;div class="fr-messages-group" id="locality-987-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline fr-fieldset__element--postal"&gt;
+        &lt;div class="fr-input-group" id="input-group-997"&gt;
+            &lt;label class="fr-label" for="postal-988"&gt;
+                Code postal
+                &lt;span class="fr-hint-text"&gt;Format attendu : 5 chiffres&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="postal-988-messages" name="postal-code" autocomplete="postal-code" id="postal-988" type="text"&gt;
+            &lt;div class="fr-messages-group" id="postal-988-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element fr-fieldset__element--inline@md fr-fieldset__element--inline-grow"&gt;
+        &lt;div class="fr-input-group" id="input-group-998"&gt;
+            &lt;label class="fr-label" for="city-989"&gt;
+                Ville ou commune
+                &lt;span class="fr-hint-text"&gt;Exemple : Montpellier&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="city-989-messages" name="address-level2" autocomplete="address-level2" id="city-989" type="text"&gt;
+            &lt;div class="fr-messages-group" id="city-989-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-999"&gt;
+            &lt;label class="fr-label" for="cedex-990"&gt;
+                Cedex
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="cedex-990-messages" name="business-postal-code" autocomplete="cedex" id="cedex-990" type="text"&gt;
+            &lt;div class="fr-messages-group" id="cedex-990-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-select-group"&gt;
+            &lt;label class="fr-label" for="country-991"&gt;
+                Pays
+            &lt;/label&gt;
+            &lt;select class="fr-select" autocomplete="country" aria-describedby="country-991-messages" id="country-991" name="country"&gt;
+                &lt;option value="" selected disabled hidden&gt;Sélectionner une option&lt;/option&gt;
+                &lt;option value="FR"&gt;France&lt;/option&gt;
+                &lt;option value="DE"&gt;Allemagne&lt;/option&gt;
+                &lt;option value="IT"&gt;Italie&lt;/option&gt;
+                &lt;option value="ES"&gt;Espagne&lt;/option&gt;
+                &lt;option value="GB"&gt;Royaume-Uni&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;div class="fr-messages-group" id="country-991-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="address-992-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col-12">
+                    <h4>Demande d’un type de société</h4>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center fr-mb-6v">
+                <div class="fr-col-md-8 fr-col-xl-6 fr-col-12">
+                    <fieldset class="fr-fieldset" id="structure-1001" aria-labelledby="structure-1001-legend structure-1001-messages">
+                        <legend class="fr-sr-only" id="structure-1001-legend">
+                            Type de société
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-select-group">
+                                <label class="fr-label" for="structure-1002">
+                                    Type de société
+                                </label>
+                                <select class="fr-select" aria-describedby="structure-1002-messages" id="structure-1002" name="structure">
+                                    <option value="" selected disabled hidden>Sélectionner une option</option>
+                                    <option value="EI">Entrepreneur individuel (EI)</option>
+                                    <option value="EURL">Entreprise unipersonnelle à responsabilité limitée (EURL)</option>
+                                    <option value="SARL">Société à responsabilité limitée (SARL)</option>
+                                    <option value="SASU">Société par actions simplifiée unipersonnelle (SASU)</option>
+                                    <option value="SAS">Société par actions simplifiée (SAS)</option>
+                                    <option value="SA">Société anonyme (SA)</option>
+                                    <option value="SNC">Société en nom collectif (SNC)</option>
+                                    <option value="SCS">Société en commandite simple (SCS)</option>
+                                    <option value="SCA">Société en commandite par actions (SCA)</option>
+                                </select>
+                                <div class="fr-messages-group" id="structure-1002-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-messages-group" id="structure-1001-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col-12">
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-1005">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-1005">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="structure-1003" aria-labelledby="structure-1003-legend structure-1003-messages"&gt;
+    &lt;legend class="fr-sr-only" id="structure-1003-legend"&gt;
+        Type de société
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-select-group"&gt;
+            &lt;label class="fr-label" for="structure-1004"&gt;
+                Type de société
+            &lt;/label&gt;
+            &lt;select class="fr-select" aria-describedby="structure-1004-messages" id="structure-1004" name="structure"&gt;
+                &lt;option value="" selected disabled hidden&gt;Sélectionner une option&lt;/option&gt;
+                &lt;option value="EI"&gt;Entrepreneur individuel (EI)&lt;/option&gt;
+                &lt;option value="EURL"&gt;Entreprise unipersonnelle à responsabilité limitée (EURL)&lt;/option&gt;
+                &lt;option value="SARL"&gt;Société à responsabilité limitée (SARL)&lt;/option&gt;
+                &lt;option value="SASU"&gt;Société par actions simplifiée unipersonnelle (SASU)&lt;/option&gt;
+                &lt;option value="SAS"&gt;Société par actions simplifiée (SAS)&lt;/option&gt;
+                &lt;option value="SA"&gt;Société anonyme (SA)&lt;/option&gt;
+                &lt;option value="SNC"&gt;Société en nom collectif (SNC)&lt;/option&gt;
+                &lt;option value="SCS"&gt;Société en commandite simple (SCS)&lt;/option&gt;
+                &lt;option value="SCA"&gt;Société en commandite par actions (SCA)&lt;/option&gt;
+            &lt;/select&gt;
+            &lt;div class="fr-messages-group" id="structure-1004-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="structure-1003-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col-12">
+                    <h4>Demande d’un représentant moral</h4>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--center fr-mb-6v">
+                <div class="fr-col-md-8 fr-col-xl-6 fr-col-12">
+                    <fieldset class="fr-fieldset" id="representative-1006" aria-labelledby="representative-1006-legend representative-1006-messages">
+                        <legend class="fr-sr-only" id="representative-1006-legend">
+                            Représentant moral de l'entreprise
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-1015">
+                                <label class="fr-label" for="usual-1009">
+                                    Nom d'usage
+                                </label>
+                                <input class="fr-input" aria-describedby="usual-1009-messages" name="usual-name" autocomplete="family-name" id="usual-1009" spellcheck="false" type="text">
+                                <div class="fr-messages-group" id="usual-1009-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-1016">
+                                <label class="fr-label" for="birth-1010">
+                                    Nom de naissance
+                                    <span class="fr-hint-text">Indication : nom de famille non rectifié après décision du tribunal.</span>
+                                </label>
+                                <input class="fr-input" aria-describedby="birth-1010-messages" name="birth-name" autocomplete="family-name" id="birth-1010" spellcheck="false" type="text">
+                                <div class="fr-messages-group" id="birth-1010-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-1017">
+                                <label class="fr-label" for="givens-1012">
+                                    Prénom
+                                </label>
+                                <input class="fr-input" aria-describedby="givens-1012-messages" name="given-names" autocomplete="given-name" id="givens-1012" spellcheck="false" type="text">
+                                <div class="fr-messages-group" id="givens-1012-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-fieldset__element">
+                            <div class="fr-input-group" id="input-group-1018">
+                                <label class="fr-label" for="representative-1014">
+                                    Fonction dans la société
+                                </label>
+                                <input class="fr-input" aria-describedby="representative-1014-messages" name="position" autocomplete="organization-title" id="representative-1014" type="text">
+                                <div class="fr-messages-group" id="representative-1014-messages" aria-live="polite">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fr-messages-group" id="representative-1006-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-grid-row fr-mb-6v">
+                <div class="fr-col-12">
+                    <div class="fr-mb-12v">
+                        <section class="fr-accordion">
+                            <h3 class="fr-accordion__title">
+                                <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-1032">Extrait de code</button>
+                            </h3>
+                            <div class="fr-collapse" id="snippet-1032">
+                                <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="representative-1019" aria-labelledby="representative-1019-legend representative-1019-messages"&gt;
+    &lt;legend class="fr-sr-only" id="representative-1019-legend"&gt;
+        Représentant moral de l'entreprise
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-1028"&gt;
+            &lt;label class="fr-label" for="usual-1022"&gt;
+                Nom d'usage
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="usual-1022-messages" name="usual-name" autocomplete="family-name" id="usual-1022" spellcheck="false" type="text"&gt;
+            &lt;div class="fr-messages-group" id="usual-1022-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-1029"&gt;
+            &lt;label class="fr-label" for="birth-1023"&gt;
+                Nom de naissance
+                &lt;span class="fr-hint-text"&gt;Indication : nom de famille non rectifié après décision du tribunal.&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="birth-1023-messages" name="birth-name" autocomplete="family-name" id="birth-1023" spellcheck="false" type="text"&gt;
+            &lt;div class="fr-messages-group" id="birth-1023-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-1030"&gt;
+            &lt;label class="fr-label" for="givens-1025"&gt;
+                Prénom
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="givens-1025-messages" name="given-names" autocomplete="given-name" id="givens-1025" spellcheck="false" type="text"&gt;
+            &lt;div class="fr-messages-group" id="givens-1025-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;div class="fr-input-group" id="input-group-1031"&gt;
+            &lt;label class="fr-label" for="representative-1027"&gt;
+                Fonction dans la société
+            &lt;/label&gt;
+            &lt;input class="fr-input" aria-describedby="representative-1027-messages" name="position" autocomplete="organization-title" id="representative-1027" type="text"&gt;
+            &lt;div class="fr-messages-group" id="representative-1027-messages" aria-live="polite"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="representative-1019-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="fr-display-button fr-background-default--grey fr-btn fr-btn--lg fr-icon-theme-fill fr-btn--secondary" aria-controls="fr-theme-modal" data-fr-opened="false" style="z-index: 1600" id="button-1033">
+        Label bouton
+    </button>
+    <dialog id="fr-theme-modal" class="fr-modal" aria-labelledby="fr-theme-modal-title">
+        <div class="fr-container fr-container--fluid fr-container-md">
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                    <div class="fr-modal__body">
+                        <div class="fr-modal__header">
+                            <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" id="button-1034" title="Fermer">
+                                Fermer
+                            </button>
+                        </div>
+                        <div class="fr-modal__content">
+                            <h1 id="fr-theme-modal-title" class="fr-modal__title">
+                                Paramètres d’affichage
+                            </h1>
+                            <div id="fr-display" class="fr-display">
+                                <fieldset class="fr-fieldset" id="display-fieldset">
+                                    <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="display-fieldset-legend">
+                                        Choisissez un thème pour personnaliser l’apparence du site.
+                                    </legend>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-light">
+                                                Thème clair
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-dark">
+                                                Thème sombre
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-system">
+                                                Système
+                                                <span class="fr-hint-text">Utilise les paramètres système</span>
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/system/system.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/system/system.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/system/system.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <script type="module" src="../../../dist/core/core.module.js"></script>
+    <script type="module" src="../../../dist/scheme/scheme.module.js"></script>
+    <script type="module" src="../../../dist/component/accordion/accordion.module.js"></script>
+    <script type="module" src="../../../dist/component/modal/modal.module.js"></script>
+    <script type="module" src="../../../dist/component/display/display.module.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/legacy/legacy.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/core/core.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/accordion/accordion.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/modal/modal.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/display/display.nomodule.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+</body>
+
+</html>

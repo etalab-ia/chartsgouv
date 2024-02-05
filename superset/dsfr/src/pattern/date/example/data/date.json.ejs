@@ -1,0 +1,60 @@
+<%
+const date = locals.date || {};
+const id = date.id || uniqueId('date');
+const prepend = date.birthday ? 'bday-' : '';
+
+const data = {
+  id: id,
+  legend: date.legend || getText('legend.birthdate', 'date'),
+  hint: date.hint || getText('hint.birthdate', 'date'),
+  error: date.error,
+  choice: true,
+  elements:[
+    {
+      type: 'input',
+      inline: true,
+      modifier: 'number',
+      data: {
+        id: `${id}-bday-day`,
+        name: `${prepend}day`,
+        includeEmptyMessagesGroup: false,
+        label: getText('option.day', 'date'),
+        hint: getText('hint.day', 'date'),
+        autocomplete: 'bday-day',
+        value: date.bdayDay || ''
+      }
+    },
+    {
+      type: 'input',
+      inline: true,
+      modifier: 'number',
+      data: {
+        id: `${id}-bday-month`,
+        name: `${prepend}month`,
+        includeEmptyMessagesGroup: false,
+        label: getText('option.month', 'date'),
+        hint: getText('hint.month', 'date'),
+        autocomplete: 'bday-month',
+        value: date.bdayMonth || ''
+      }
+    },
+    {
+      type: 'input',
+      inline: true,
+      grow: true,
+      modifier: 'year',
+      data: {
+        id: `${id}-bday-year`,
+        name: `${prepend}year`,
+        includeEmptyMessagesGroup: false,
+        label: getText('option.year', 'date'),
+        hint: getText('hint.year', 'date'),
+        autocomplete: 'bday-year',
+        value: date.bdayYear || ''
+      }
+    }
+  ]
+};
+%>
+
+<%- JSON.stringify(data); %>

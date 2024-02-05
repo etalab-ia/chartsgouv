@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="fr" data-fr-theme>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+    <title>Fondamentaux - Système de design</title>
+    <meta name="theme-color" content="#000091"><!-- Défini la couleur de thème du navigateur (Safari/Android) -->
+    <link rel="apple-touch-icon" href="../../../dist/favicon/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="icon" href="../../../dist/favicon/favicon.svg" type="image/svg+xml">
+    <!-- si favicon.ico peut etre placé à la racine du serveur, retirer la ligne ci-dessous -->
+    <link rel="shortcut icon" href="../../../dist/favicon/favicon.ico" type="image/x-icon"><!-- 32×32 -->
+    <link rel="manifest" href="../../../dist/favicon/manifest.webmanifest" crossorigin="use-credentials">
+    <!-- Modifier les chemins relatifs des favicons en fonction de la structure du projet -->
+    <!-- Dans le fichier manifest.webmanifest aussi, modifier les chemins vers les images -->
+    <link href="../../../dist/core/core.main.css" rel="stylesheet">
+    <link href="../../../dist/scheme/scheme.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.main.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.main.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.main.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.main.css" rel="stylesheet">
+    <link href="../../../dist/component/table/table.main.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.main.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.main.css" rel="stylesheet">
+    <link href="../../../dist/component/toggle/toggle.main.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.main.css" rel="stylesheet">
+    <link href="../../../dist/core/core.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/table/table.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/toggle/toggle.legacy.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.legacy.css" rel="stylesheet">
+    <link href="../../../dist/core/core.print.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.print.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.print.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.print.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.print.css" rel="stylesheet">
+    <link href="../../../dist/component/table/table.print.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.print.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.print.css" rel="stylesheet">
+    <link href="../../../dist/component/toggle/toggle.print.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.print.css" rel="stylesheet">
+    <style>
+        code[class*="language-"],
+        pre[class*="language-"] {
+            white-space: pre-wrap;
+        }
+
+        .example-controls {
+            z-index: 100000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 8px 16px -16px rgba(0, 0, 0, 0.32);
+        }
+
+        .example-controls>button {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .example-controls__content {
+            padding: 16px;
+            background-color: var(--background-elevated-white);
+        }
+
+        .example-controls .fr-collapse--expanded~[aria-expanded] {
+            display: none;
+        }
+
+        .example-controls .fr-collapse:not(.fr-collapse--expanded)~button:not([aria-expanded]) {
+            display: none;
+        }
+
+        .example-controls [class*="-form-group"] {
+            margin-bottom: 0;
+        }
+
+        .fr-display-button {
+            position: fixed;
+            bottom: 3.5rem;
+            right: 2rem;
+        }
+
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+
+            /* IE10+ specific styles go here */
+            .example-controls {
+                display: none;
+            }
+        }
+
+    </style>
+    <script>
+    window['dsfr'] = {
+      // verbose: true,
+      // production: true,
+      // mode: 'manual',
+    };
+    
+  </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+</head>
+
+<body id="top" class="fr-mb-12w">
+    <script type="module">
+    const e="system",t="dark",c="dark",o="data-fr-theme",a="data-fr-scheme",r=`:root[${o}], :root[${a}]`,m=()=>{document.documentElement.setAttribute(o,c),document.documentElement.style.colorScheme="dark"},n=()=>{window.matchMedia("(prefers-color-scheme: dark)").matches&&m()};(()=>{if(document.documentElement.matches(r)){const c=(()=>{try{return"localStorage"in window&&null!==window.localStorage}catch(e){return!1}})()?localStorage.getItem("scheme"):"",o=document.documentElement.getAttribute(a);switch(!0){case c===t:m();break;case c===e:n();break;case o===t:m();break;case o===e:n()}}})();
+
+  </script>
+    <span id="[url - à modifier]"></span>
+    <div class="fr-container fr-mt-2v fr-mb-8w">
+        <p>
+            <a class="fr-icon-arrow-left-line fr-link--icon-left fr-link" href="../">Retour</a>
+        </p>
+        <h1>Fondamentaux (core)</h1>
+        <p>Le package core est utilisé comme fondation du Design System, il contient plusieurs éléments fondamentaux.
+            <br />
+            <br />### Typographie
+            <br />
+            <br />Les typographies Marianne® et Spectral sont les typographies officielles de la charte de l'État. Leur usage crée une cohérence entre les interfaces et offre une expérience positive à l’utilisateur. Leur respect renforce également la reconnaissance de la parole de l’État.
+            <br />
+            <br />### Icônes
+            <br />
+            <br />Les icônes fonctionnelles sont des symboles visuels qui accompagnent l’utilisateur dans ses actions et qui aident à sa compréhension de l’interface.
+            <br />
+            <br />### Icônes de favoris - Favicon
+            <br />
+            <br />L’icône de favoris est un petit icône associé à un site web. Il permet à l’utilisateur de repérer qu’il se trouve sur un site de l'état.
+            <br />
+            <br />### Medias
+            <br />
+            <br />Les médias désignent vos contenus photos et vidéos. Lorsqu’ils sont intégré à une page de contenu, il est recommandé de suivre les règles décrites ci-dessous.
+            <br />
+            <br />### Grille
+            <br />
+            <br />La grille proposée par le design system vous permet de structurer vos pages et vos contenus simplement.
+            <br />
+        </p>
+        <h5>Documentation</h5>
+        <ul>
+            <li>
+                <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/typographie/" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"> Typographie</a>
+            </li>
+            <li>
+                <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icones" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"> Icônes</a>
+            </li>
+            <li>
+                <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icone-de-favoris" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"> Icônes de favoris - Favicon</a>
+            </li>
+            <li>
+                <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/medias" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"> Médias fondamentaux</a>
+            </li>
+            <li>
+                <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/grille-et-points-de-rupture" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"> Grille</a>
+            </li>
+        </ul>
+    </div>
+    <div class="fr-mb-12w">
+        <div class="fr-container">
+            <div class="fr-mt-0">
+                <h2>Pictogramme - artwork</h2>
+                <p>Les pictogrammes svg, ou "artwork", sont disponibles dans le dossier <b>dist/artwork/pictograms</b>.
+                    <br> Contrairement aux icônes, les pictogrammes sont composés de 3 couleurs : "decorative", "minor", "major".
+                    <br>La couleur mineure peut être modifiée par un modificateur d'accentuation (ex: fr-artwork--green-emeraude)
+                </p>
+            </div>
+            <h3>Ajout d&#39;un pictogramme</h3>
+            <div class="fr-mb-6v">
+                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"></use>
+                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"></use>
+                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"></use>
+                </svg>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-5">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-5">
+                        <pre class=" language-html"><code>&lt;svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px"&gt;
+    &lt;use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"&gt;&lt;/use&gt;
+    &lt;use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"&gt;&lt;/use&gt;
+    &lt;use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"&gt;&lt;/use&gt;
+&lt;/svg&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h3>Pictogramme accentué en green-emeraude</h3>
+            <div class="fr-mb-6v">
+                <svg aria-hidden="true" class="fr-artwork fr-artwork--green-emeraude" viewBox="0 0 80 80" width="80px" height="80px">
+                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"></use>
+                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"></use>
+                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"></use>
+                </svg>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-6">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-6">
+                        <pre class=" language-html"><code>&lt;svg aria-hidden="true" class="fr-artwork fr-artwork--green-emeraude" viewBox="0 0 80 80" width="80px" height="80px"&gt;
+    &lt;use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"&gt;&lt;/use&gt;
+    &lt;use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"&gt;&lt;/use&gt;
+    &lt;use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"&gt;&lt;/use&gt;
+&lt;/svg&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <div class="fr-mt-0">
+                <h2>Formatage du SVG</h2>
+                <p>Pour fonctionner en accord avec les couleurs du design system, les fichiers SVG doivent être formatés de cette façon :</p>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-7">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-7">
+                        <pre class=" language-html"><code>&lt;svg width="80px" height="80px" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"&gt;
+    &lt;style&gt;
+        .fr-artwork-decorative {
+            fill: #ECECFF;
+        }
+
+        .fr-artwork-minor {
+            fill: #E1000F;
+        }
+
+        .fr-artwork-major {
+            fill: #000091;
+        }
+
+    &lt;/style&gt;
+    &lt;g class="fr-artwork-decorative" id="artwork-decorative"&gt;
+        &lt;path d="M67,16c-0.5514,0-1-0.4486-1-1s0.4486-1,1-1s1,0.4486,1,1S67.5514,16,67,16z M19,72c-0.5514,0-1-0.4486-1-1
+	s0.4486-1,1-1s1,0.4486,1,1S19.5514,72,19,72z M31,10c-0.5514,0-1-0.4486-1-1c0-0.55145,0.4486-1,1-1s1,0.44855,1,1
+	C32,9.5514,31.5514,10,31,10z M69,60c-0.5514,0-1-0.4486-1-1s0.4486-1,1-1s1,0.4486,1,1S69.5514,60,69,60z M45,70
+	c-0.5514,0-1-0.4486-1-1s0.4486-1,1-1s1,0.4486,1,1S45.5514,70,45,70z M9,32c-0.5514,0-1-0.4486-1-1s0.4486-1,1-1s1,0.4486,1,1
+	S9.5514,32,9,32z" /&gt;
+    &lt;/g&gt;
+    &lt;g class="fr-artwork-minor" id="artwork-minor"&gt;
+        &lt;path d="M41,30c-0.5523,0-1,0.4477-1,1s0.4477,1,1,1s1-0.4477,1-1S41.5523,30,41,30z M59,38c-0.5523,0-1,0.4477-1,1
+	s0.4477,1,1,1s1-0.4477,1-1S59.5523,38,59,38z M55,38c0.5523,0,1,0.4477,1,1c0,0.5128-0.386,0.9355-0.8834,0.9933L55,40h-2
+	c-0.5523,0-1-0.4477-1-1c0-0.5128,0.386-0.9355,0.8834-0.9933L53,38H55z M48,31c0-0.5523-0.4477-1-1-1h-2l-0.1166,0.0067
+	C44.386,30.0645,44,30.4872,44,31c0,0.5523,0.4477,1,1,1h2l0.1166-0.0067C47.614,31.9355,48,31.5128,48,31z" /&gt;
+    &lt;/g&gt;
+    &lt;g class="fr-artwork-major" id="artwork-major"&gt;
+        &lt;path d="M59.90668,47.08899c-2.4024,7.6662-9.49188,12.91333-17.52948,12.91333
+	c-10.14819,0-18.37512-8.26733-18.37512-18.46643c0-7.85461,4.93793-14.82916,12.2738-17.42346
+	c1.87921-0.66461,3.32355,1.68457,1.9613,3.1073c-2.30841,2.41095-3.5921,5.59399-3.5921,8.95575
+	c0,6.76794,5.2041,12.37939,11.8927,12.89435c0.5506,0.04236,0.96271,0.52319,0.92035,1.07379
+	c-0.04242,0.55066-0.52325,0.96271-1.07385,0.92029c-7.72986-0.59503-13.7392-7.07483-13.7392-14.88843
+	c0-3.61078,1.28583-7.04816,3.61322-9.75067l0.22668-0.25684L36.2854,26.2464c-6.06519,2.4425-10.13849,8.30981-10.2796,14.9339
+	l-0.00372,0.35559c0,9.09668,7.33374,16.46643,16.37512,16.46643c6.92578,0,13.0639-4.375,15.39703-10.84619l0.06879-0.19916
+	l-0.19684,0.18811c-1.96747,1.82373-4.37738,3.07861-6.99451,3.63629l-0.39404,0.07843
+	c-0.54303,0.1004-1.0647-0.25842-1.1651-0.80151c-0.10052-0.54309,0.25836-1.0647,0.80145-1.16516
+	c2.62329-0.48511,5.02313-1.77515,6.89282-3.70404C58.17792,43.75378,60.4975,45.2038,59.90668,47.08899z M15,58
+	c-0.55231,0-1,0.44769-1,1s0.44769,1,1,1s1-0.44769,1-1S15.55231,58,15,58z M55,28h2l0.11658-0.00671
+	C57.61401,27.93549,58,27.51282,58,27c0-0.55231-0.44769-1-1-1h-2l-0.11658,0.00671C54.38599,26.06451,54,26.48718,54,27
+	C54,27.55231,54.44769,28,55,28z M23,58h-4l-0.11658,0.00671C18.38599,58.06451,18,58.48718,18,59c0,0.55231,0.44769,1,1,1h4
+	l0.11658-0.00671C23.61401,59.93549,24,59.51282,24,59C24,58.44769,23.55231,58,23,58z" /&gt;
+    &lt;/g&gt;
+&lt;/svg&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <div class="fr-mt-32v">
+                <h2>Liste des pictogrammes disponibles dans les utilitaires.</h2>
+            </div>
+        </div>
+    </div>
+    <button class="fr-display-button fr-background-default--grey fr-btn fr-btn--lg fr-icon-theme-fill fr-btn--secondary" aria-controls="fr-theme-modal" data-fr-opened="false" style="z-index: 1600" id="button-8">
+        Label bouton
+    </button>
+    <dialog id="fr-theme-modal" class="fr-modal" aria-labelledby="fr-theme-modal-title">
+        <div class="fr-container fr-container--fluid fr-container-md">
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                    <div class="fr-modal__body">
+                        <div class="fr-modal__header">
+                            <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" id="button-9" title="Fermer">
+                                Fermer
+                            </button>
+                        </div>
+                        <div class="fr-modal__content">
+                            <h1 id="fr-theme-modal-title" class="fr-modal__title">
+                                Paramètres d’affichage
+                            </h1>
+                            <div id="fr-display" class="fr-display">
+                                <fieldset class="fr-fieldset" id="display-fieldset">
+                                    <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="display-fieldset-legend">
+                                        Choisissez un thème pour personnaliser l’apparence du site.
+                                    </legend>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-light">
+                                                Thème clair
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-dark">
+                                                Thème sombre
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-system">
+                                                Système
+                                                <span class="fr-hint-text">Utilise les paramètres système</span>
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/system/system.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/system/system.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/system/system.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <script type="module" src="../../../dist/core/core.module.js"></script>
+    <script type="module" src="../../../dist/scheme/scheme.module.js"></script>
+    <script type="module" src="../../../dist/component/accordion/accordion.module.js"></script>
+    <script type="module" src="../../../dist/component/modal/modal.module.js"></script>
+    <script type="module" src="../../../dist/component/table/table.module.js"></script>
+    <script type="module" src="../../../dist/component/toggle/toggle.module.js"></script>
+    <script type="module" src="../../../dist/component/display/display.module.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/legacy/legacy.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/core/core.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/accordion/accordion.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/modal/modal.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/table/table.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/toggle/toggle.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/display/display.nomodule.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+</body>
+
+</html>

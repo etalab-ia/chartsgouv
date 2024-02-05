@@ -1,0 +1,1858 @@
+<!doctype html>
+<html lang="fr" data-fr-theme>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+    <title>Interrupteur - Système de design</title>
+    <meta name="theme-color" content="#000091"><!-- Défini la couleur de thème du navigateur (Safari/Android) -->
+    <link rel="apple-touch-icon" href="../../../dist/favicon/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="icon" href="../../../dist/favicon/favicon.svg" type="image/svg+xml">
+    <!-- si favicon.ico peut etre placé à la racine du serveur, retirer la ligne ci-dessous -->
+    <link rel="shortcut icon" href="../../../dist/favicon/favicon.ico" type="image/x-icon"><!-- 32×32 -->
+    <link rel="manifest" href="../../../dist/favicon/manifest.webmanifest" crossorigin="use-credentials">
+    <!-- Modifier les chemins relatifs des favicons en fonction de la structure du projet -->
+    <!-- Dans le fichier manifest.webmanifest aussi, modifier les chemins vers les images -->
+    <link href="../../../dist/core/core.main.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.main.css" rel="stylesheet">
+    <link href="../../../dist/scheme/scheme.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.main.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.main.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.main.css" rel="stylesheet">
+    <link href="../../../dist/component/toggle/toggle.main.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.main.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.main.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.main.css" rel="stylesheet">
+    <link href="../../../dist/core/core.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/toggle/toggle.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.legacy.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.legacy.css" rel="stylesheet">
+    <link href="../../../dist/core/core.print.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.print.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.print.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.print.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.print.css" rel="stylesheet">
+    <link href="../../../dist/component/toggle/toggle.print.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.print.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.print.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.print.css" rel="stylesheet">
+    <style>
+        code[class*="language-"],
+        pre[class*="language-"] {
+            white-space: pre-wrap;
+        }
+
+        .example-controls {
+            z-index: 100000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 8px 16px -16px rgba(0, 0, 0, 0.32);
+        }
+
+        .example-controls>button {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .example-controls__content {
+            padding: 16px;
+            background-color: var(--background-elevated-white);
+        }
+
+        .example-controls .fr-collapse--expanded~[aria-expanded] {
+            display: none;
+        }
+
+        .example-controls .fr-collapse:not(.fr-collapse--expanded)~button:not([aria-expanded]) {
+            display: none;
+        }
+
+        .example-controls [class*="-form-group"] {
+            margin-bottom: 0;
+        }
+
+        .fr-display-button {
+            position: fixed;
+            bottom: 3.5rem;
+            right: 2rem;
+        }
+
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+
+            /* IE10+ specific styles go here */
+            .example-controls {
+                display: none;
+            }
+        }
+
+    </style>
+    <script>
+    window['dsfr'] = {
+      // verbose: true,
+      // production: true,
+      // mode: 'manual',
+    };
+    
+  </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+</head>
+
+<body id="top" class="fr-mb-12w">
+    <script type="module">
+    const e="system",t="dark",c="dark",o="data-fr-theme",a="data-fr-scheme",r=`:root[${o}], :root[${a}]`,m=()=>{document.documentElement.setAttribute(o,c),document.documentElement.style.colorScheme="dark"},n=()=>{window.matchMedia("(prefers-color-scheme: dark)").matches&&m()};(()=>{if(document.documentElement.matches(r)){const c=(()=>{try{return"localStorage"in window&&null!==window.localStorage}catch(e){return!1}})()?localStorage.getItem("scheme"):"",o=document.documentElement.getAttribute(a);switch(!0){case c===t:m();break;case c===e:n();break;case o===t:m();break;case o===e:n()}}})();
+
+  </script>
+    <span id="[url - à modifier]"></span>
+    <div class="fr-container fr-mt-2v fr-mb-8w">
+        <p>
+            <a class="fr-icon-arrow-left-line fr-link--icon-left fr-link" href="../">Retour</a>
+        </p>
+        <h1>Interrupteur (toggle)</h1>
+        <p>Le composant “Interrupteur” permet à l’utilisateur de faire un choix entre deux états opposés (activé / désactivé).</p>
+        <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/interrupteur" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">Documentation</a>
+    </div>
+    <div class="fr-mb-12w">
+        <div class="fr-container">
+            <h4 class="fr-h4">Toggle simple avec bouton + label à droite</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4401">
+                        <label class="fr-toggle__label" for="toggle-4401">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4403">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4403">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4402"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4402"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à droite + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle">
+                        <input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4404-hint-text" id="toggle-4404">
+                        <label class="fr-toggle__label" for="toggle-4404">Label de l'interrupteur</label>
+                        <p class="fr-hint-text" id="toggle-4404-hint-text">Texte de description additionnel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4406">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4406">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4405-hint-text" id="toggle-4405"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4405"&gt;Label de l'interrupteur&lt;/label&gt;
+    &lt;p class="fr-hint-text" id="toggle-4405-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à droite + état</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4407">
+                        <label class="fr-toggle__label" for="toggle-4407" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4409">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4409">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4408"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4408" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à droite + état + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle">
+                        <input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4410-hint-text" id="toggle-4410">
+                        <label class="fr-toggle__label" for="toggle-4410" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                        <p class="fr-hint-text" id="toggle-4410-hint-text">Texte de description additionnel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4412">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4412">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4411-hint-text" id="toggle-4411"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4411" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+    &lt;p class="fr-hint-text" id="toggle-4411-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à droite + état + séparateur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--border-bottom">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4413">
+                        <label class="fr-toggle__label" for="toggle-4413" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4415">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4415">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4414"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4414" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à droite + état + séparateur + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--border-bottom">
+                        <input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4416-hint-text" id="toggle-4416">
+                        <label class="fr-toggle__label" for="toggle-4416" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                        <p class="fr-hint-text" id="toggle-4416-hint-text">Texte de description additionnel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4418">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4418">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4417-hint-text" id="toggle-4417"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4417" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+    &lt;p class="fr-hint-text" id="toggle-4417-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple disabled avec bouton + label à droite</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle">
+                        <input type="checkbox" class="fr-toggle__input" disabled id="toggle-4419">
+                        <label class="fr-toggle__label" for="toggle-4419">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4421">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4421">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" disabled id="toggle-4420"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4420"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple disabled avec bouton + label à droite + état</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle">
+                        <input type="checkbox" class="fr-toggle__input" disabled id="toggle-4422">
+                        <label class="fr-toggle__label" for="toggle-4422" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4424">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4424">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" disabled id="toggle-4423"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4423" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple disabled et pré-coché avec bouton + label à droite + état</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle">
+                        <input type="checkbox" class="fr-toggle__input" disabled checked id="toggle-4425">
+                        <label class="fr-toggle__label" for="toggle-4425" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4427">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4427">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" disabled checked id="toggle-4426"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4426" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple en erreur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--error">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4428">
+                        <label class="fr-toggle__label" for="toggle-4428">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4430">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4430">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--error"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4429"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4429"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle avec état - en erreur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--error">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4431">
+                        <label class="fr-toggle__label" for="toggle-4431" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4433">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4433">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--error"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4432"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4432" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple valide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--valid">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4434">
+                        <label class="fr-toggle__label" for="toggle-4434">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4436">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4436">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--valid"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4435"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4435"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle avec état - valide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--valid">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4437">
+                        <label class="fr-toggle__label" for="toggle-4437" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4439">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4439">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--valid"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4438"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4438" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à droite</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4440" aria-labelledby="toggle-group-4440-legend toggle-group-4440-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4440-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-1-toggle-0">
+                                        <label class="fr-toggle__label" for="group-1-toggle-0">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-1-toggle-1">
+                                        <label class="fr-toggle__label" for="group-1-toggle-1">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-1-toggle-2">
+                                        <label class="fr-toggle__label" for="group-1-toggle-2">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-1-toggle-3">
+                                        <label class="fr-toggle__label" for="group-1-toggle-3">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-1-toggle-4">
+                                        <label class="fr-toggle__label" for="group-1-toggle-4">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4440-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4442">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4442">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4441" aria-labelledby="toggle-group-4441-legend toggle-group-4441-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4441-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-1-toggle-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-1-toggle-0"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-1-toggle-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-1-toggle-1"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-1-toggle-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-1-toggle-2"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-1-toggle-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-1-toggle-3"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-1-toggle-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-1-toggle-4"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4441-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à droite + séparateur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4443" aria-labelledby="toggle-group-4443-legend toggle-group-4443-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4443-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-2-toggle-0">
+                                        <label class="fr-toggle__label" for="group-2-toggle-0">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-2-toggle-1">
+                                        <label class="fr-toggle__label" for="group-2-toggle-1">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-2-toggle-2">
+                                        <label class="fr-toggle__label" for="group-2-toggle-2">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-2-toggle-3">
+                                        <label class="fr-toggle__label" for="group-2-toggle-3">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-2-toggle-4">
+                                        <label class="fr-toggle__label" for="group-2-toggle-4">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4443-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4445">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4445">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4444" aria-labelledby="toggle-group-4444-legend toggle-group-4444-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4444-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-2-toggle-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-2-toggle-0"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-2-toggle-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-2-toggle-1"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-2-toggle-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-2-toggle-2"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-2-toggle-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-2-toggle-3"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-2-toggle-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-2-toggle-4"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4444-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à droite + séparateur + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4446" aria-labelledby="toggle-group-4446-legend toggle-group-4446-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4446-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-0-hint-text" id="group-3-toggle-hint-0">
+                                        <label class="fr-toggle__label" for="group-3-toggle-hint-0">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-3-toggle-hint-0-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-1-hint-text" id="group-3-toggle-hint-1">
+                                        <label class="fr-toggle__label" for="group-3-toggle-hint-1">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-3-toggle-hint-1-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-2-hint-text" id="group-3-toggle-hint-2">
+                                        <label class="fr-toggle__label" for="group-3-toggle-hint-2">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-3-toggle-hint-2-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-3-hint-text" id="group-3-toggle-hint-3">
+                                        <label class="fr-toggle__label" for="group-3-toggle-hint-3">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-3-toggle-hint-3-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-4-hint-text" id="group-3-toggle-hint-4">
+                                        <label class="fr-toggle__label" for="group-3-toggle-hint-4">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-3-toggle-hint-4-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4446-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4448">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4448">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4447" aria-labelledby="toggle-group-4447-legend toggle-group-4447-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4447-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-0-hint-text" id="group-3-toggle-hint-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-3-toggle-hint-0"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-3-toggle-hint-0-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-1-hint-text" id="group-3-toggle-hint-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-3-toggle-hint-1"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-3-toggle-hint-1-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-2-hint-text" id="group-3-toggle-hint-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-3-toggle-hint-2"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-3-toggle-hint-2-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-3-hint-text" id="group-3-toggle-hint-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-3-toggle-hint-3"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-3-toggle-hint-3-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-3-toggle-hint-4-hint-text" id="group-3-toggle-hint-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-3-toggle-hint-4"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-3-toggle-hint-4-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4447-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à droite + état + séparateur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4449" aria-labelledby="toggle-group-4449-legend toggle-group-4449-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4449-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-4-toggle-0">
+                                        <label class="fr-toggle__label" for="group-4-toggle-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-4-toggle-1">
+                                        <label class="fr-toggle__label" for="group-4-toggle-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-4-toggle-2">
+                                        <label class="fr-toggle__label" for="group-4-toggle-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-4-toggle-3">
+                                        <label class="fr-toggle__label" for="group-4-toggle-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-4-toggle-4">
+                                        <label class="fr-toggle__label" for="group-4-toggle-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4449-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4451">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4451">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4450" aria-labelledby="toggle-group-4450-legend toggle-group-4450-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4450-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-4-toggle-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-4-toggle-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-4-toggle-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-4-toggle-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-4-toggle-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-4-toggle-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-4-toggle-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-4-toggle-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-4-toggle-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-4-toggle-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4450-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à droite + état + séparateur + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4452" aria-labelledby="toggle-group-4452-legend toggle-group-4452-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4452-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-0-hint-text" id="group-5-toggle-hint-0">
+                                        <label class="fr-toggle__label" for="group-5-toggle-hint-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-5-toggle-hint-0-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-1-hint-text" id="group-5-toggle-hint-1">
+                                        <label class="fr-toggle__label" for="group-5-toggle-hint-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-5-toggle-hint-1-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-2-hint-text" id="group-5-toggle-hint-2">
+                                        <label class="fr-toggle__label" for="group-5-toggle-hint-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-5-toggle-hint-2-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-3-hint-text" id="group-5-toggle-hint-3">
+                                        <label class="fr-toggle__label" for="group-5-toggle-hint-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-5-toggle-hint-3-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-4-hint-text" id="group-5-toggle-hint-4">
+                                        <label class="fr-toggle__label" for="group-5-toggle-hint-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-5-toggle-hint-4-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4452-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4454">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4454">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4453" aria-labelledby="toggle-group-4453-legend toggle-group-4453-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4453-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-0-hint-text" id="group-5-toggle-hint-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-5-toggle-hint-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-5-toggle-hint-0-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-1-hint-text" id="group-5-toggle-hint-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-5-toggle-hint-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-5-toggle-hint-1-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-2-hint-text" id="group-5-toggle-hint-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-5-toggle-hint-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-5-toggle-hint-2-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-3-hint-text" id="group-5-toggle-hint-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-5-toggle-hint-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-5-toggle-hint-3-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-5-toggle-hint-4-hint-text" id="group-5-toggle-hint-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-5-toggle-hint-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-5-toggle-hint-4-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4453-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à droite + état + séparateur + texte d’aide + erreur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset fr-fieldset--error" id="toggle-group-4455" role="group" aria-labelledby="toggle-group-4455-legend toggle-group-4455-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4455-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-0-hint-text" id="group-6-toggle-hint-0">
+                                        <label class="fr-toggle__label" for="group-6-toggle-hint-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-6-toggle-hint-0-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-1-hint-text" id="group-6-toggle-hint-1">
+                                        <label class="fr-toggle__label" for="group-6-toggle-hint-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-6-toggle-hint-1-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-2-hint-text" id="group-6-toggle-hint-2">
+                                        <label class="fr-toggle__label" for="group-6-toggle-hint-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-6-toggle-hint-2-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-3-hint-text" id="group-6-toggle-hint-3">
+                                        <label class="fr-toggle__label" for="group-6-toggle-hint-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-6-toggle-hint-3-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-4-hint-text" id="group-6-toggle-hint-4">
+                                        <label class="fr-toggle__label" for="group-6-toggle-hint-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-6-toggle-hint-4-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4455-messages" aria-live="polite">
+                            <p class="fr-message fr-message--error" id="toggle-group-4455-message-error">Texte d’erreur obligatoire</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4457">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4457">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset fr-fieldset--error" id="toggle-group-4456" role="group" aria-labelledby="toggle-group-4456-legend toggle-group-4456-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4456-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-0-hint-text" id="group-6-toggle-hint-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-6-toggle-hint-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-6-toggle-hint-0-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-1-hint-text" id="group-6-toggle-hint-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-6-toggle-hint-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-6-toggle-hint-1-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-2-hint-text" id="group-6-toggle-hint-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-6-toggle-hint-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-6-toggle-hint-2-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-3-hint-text" id="group-6-toggle-hint-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-6-toggle-hint-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-6-toggle-hint-3-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-6-toggle-hint-4-hint-text" id="group-6-toggle-hint-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-6-toggle-hint-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-6-toggle-hint-4-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4456-messages" aria-live="polite"&gt;
+        &lt;p class="fr-message fr-message--error" id="toggle-group-4456-message-error"&gt;Texte d’erreur obligatoire&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à droite + état + séparateur + texte d’aide + valide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset fr-fieldset--valid" id="toggle-group-4458" role="group" aria-labelledby="toggle-group-4458-legend toggle-group-4458-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4458-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-0-hint-text" id="group-7-toggle-hint-0">
+                                        <label class="fr-toggle__label" for="group-7-toggle-hint-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-7-toggle-hint-0-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-1-hint-text" id="group-7-toggle-hint-1">
+                                        <label class="fr-toggle__label" for="group-7-toggle-hint-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-7-toggle-hint-1-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-2-hint-text" id="group-7-toggle-hint-2">
+                                        <label class="fr-toggle__label" for="group-7-toggle-hint-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-7-toggle-hint-2-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-3-hint-text" id="group-7-toggle-hint-3">
+                                        <label class="fr-toggle__label" for="group-7-toggle-hint-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-7-toggle-hint-3-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-4-hint-text" id="group-7-toggle-hint-4">
+                                        <label class="fr-toggle__label" for="group-7-toggle-hint-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-7-toggle-hint-4-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4458-messages" aria-live="polite">
+                            <p class="fr-message fr-message--valid" id="toggle-group-4458-message-valid">Texte de validation</p>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4460">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4460">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset fr-fieldset--valid" id="toggle-group-4459" role="group" aria-labelledby="toggle-group-4459-legend toggle-group-4459-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4459-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-0-hint-text" id="group-7-toggle-hint-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-7-toggle-hint-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-7-toggle-hint-0-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-1-hint-text" id="group-7-toggle-hint-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-7-toggle-hint-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-7-toggle-hint-1-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-2-hint-text" id="group-7-toggle-hint-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-7-toggle-hint-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-7-toggle-hint-2-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-3-hint-text" id="group-7-toggle-hint-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-7-toggle-hint-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-7-toggle-hint-3-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-7-toggle-hint-4-hint-text" id="group-7-toggle-hint-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-7-toggle-hint-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-7-toggle-hint-4-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4459-messages" aria-live="polite"&gt;
+        &lt;p class="fr-message fr-message--valid" id="toggle-group-4459-message-valid"&gt;Texte de validation&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à gauche</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--label-left">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4461">
+                        <label class="fr-toggle__label" for="toggle-4461">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4463">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4463">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--label-left"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4462"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4462"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à gauche + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--label-left">
+                        <input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4464-hint-text" id="toggle-4464">
+                        <label class="fr-toggle__label" for="toggle-4464">Label de l'interrupteur</label>
+                        <p class="fr-hint-text" id="toggle-4464-hint-text">Texte de description additionnel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4466">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4466">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--label-left"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4465-hint-text" id="toggle-4465"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4465"&gt;Label de l'interrupteur&lt;/label&gt;
+    &lt;p class="fr-hint-text" id="toggle-4465-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à gauche + état</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--label-left">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4467">
+                        <label class="fr-toggle__label" for="toggle-4467" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4469">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4469">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--label-left"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4468"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4468" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à gauche + état + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--label-left">
+                        <input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4470-hint-text" id="toggle-4470">
+                        <label class="fr-toggle__label" for="toggle-4470" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                        <p class="fr-hint-text" id="toggle-4470-hint-text">Texte de description additionnel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4472">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4472">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--label-left"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4471-hint-text" id="toggle-4471"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4471" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+    &lt;p class="fr-hint-text" id="toggle-4471-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à gauche + état + séparateur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                        <input type="checkbox" class="fr-toggle__input" id="toggle-4473">
+                        <label class="fr-toggle__label" for="toggle-4473" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4475">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4475">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" id="toggle-4474"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4474" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple avec bouton + label à gauche + état + séparateur + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                        <input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4476-hint-text" id="toggle-4476">
+                        <label class="fr-toggle__label" for="toggle-4476" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                        <p class="fr-hint-text" id="toggle-4476-hint-text">Texte de description additionnel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4478">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4478">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="toggle-4477-hint-text" id="toggle-4477"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4477" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+    &lt;p class="fr-hint-text" id="toggle-4477-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple disabled avec bouton + label à gauche</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--label-left">
+                        <input type="checkbox" class="fr-toggle__input" disabled id="toggle-4479">
+                        <label class="fr-toggle__label" for="toggle-4479">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4481">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4481">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--label-left"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" disabled id="toggle-4480"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4480"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Toggle simple disabled avec bouton + label à gauche + état</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <div class="fr-toggle fr-toggle--label-left">
+                        <input type="checkbox" class="fr-toggle__input" disabled id="toggle-4482">
+                        <label class="fr-toggle__label" for="toggle-4482" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                    </div>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4484">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4484">
+                        <pre class=" language-html"><code>&lt;div class="fr-toggle fr-toggle--label-left"&gt;
+    &lt;input type="checkbox" class="fr-toggle__input" disabled id="toggle-4483"&gt;
+    &lt;label class="fr-toggle__label" for="toggle-4483" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à gauche + séparateur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4485" aria-labelledby="toggle-group-4485-legend toggle-group-4485-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4485-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-8-toggle-0">
+                                        <label class="fr-toggle__label" for="group-8-toggle-0">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-8-toggle-1">
+                                        <label class="fr-toggle__label" for="group-8-toggle-1">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-8-toggle-2">
+                                        <label class="fr-toggle__label" for="group-8-toggle-2">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-8-toggle-3">
+                                        <label class="fr-toggle__label" for="group-8-toggle-3">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-8-toggle-4">
+                                        <label class="fr-toggle__label" for="group-8-toggle-4">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4485-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4487">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4487">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4486" aria-labelledby="toggle-group-4486-legend toggle-group-4486-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4486-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-8-toggle-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-8-toggle-0"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-8-toggle-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-8-toggle-1"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-8-toggle-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-8-toggle-2"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-8-toggle-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-8-toggle-3"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-8-toggle-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-8-toggle-4"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4486-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à gauche + séparateur + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4488" aria-labelledby="toggle-group-4488-legend toggle-group-4488-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4488-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-0-hint-text" id="group-9-toggle-hint-0">
+                                        <label class="fr-toggle__label" for="group-9-toggle-hint-0">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-9-toggle-hint-0-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-1-hint-text" id="group-9-toggle-hint-1">
+                                        <label class="fr-toggle__label" for="group-9-toggle-hint-1">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-9-toggle-hint-1-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-2-hint-text" id="group-9-toggle-hint-2">
+                                        <label class="fr-toggle__label" for="group-9-toggle-hint-2">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-9-toggle-hint-2-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-3-hint-text" id="group-9-toggle-hint-3">
+                                        <label class="fr-toggle__label" for="group-9-toggle-hint-3">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-9-toggle-hint-3-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-4-hint-text" id="group-9-toggle-hint-4">
+                                        <label class="fr-toggle__label" for="group-9-toggle-hint-4">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-9-toggle-hint-4-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4488-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4490">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4490">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4489" aria-labelledby="toggle-group-4489-legend toggle-group-4489-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4489-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-0-hint-text" id="group-9-toggle-hint-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-9-toggle-hint-0"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-9-toggle-hint-0-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-1-hint-text" id="group-9-toggle-hint-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-9-toggle-hint-1"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-9-toggle-hint-1-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-2-hint-text" id="group-9-toggle-hint-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-9-toggle-hint-2"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-9-toggle-hint-2-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-3-hint-text" id="group-9-toggle-hint-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-9-toggle-hint-3"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-9-toggle-hint-3-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-9-toggle-hint-4-hint-text" id="group-9-toggle-hint-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-9-toggle-hint-4"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-9-toggle-hint-4-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4489-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à gauche + état + séparateur</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4491" aria-labelledby="toggle-group-4491-legend toggle-group-4491-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4491-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-10-toggle-0">
+                                        <label class="fr-toggle__label" for="group-10-toggle-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-10-toggle-1">
+                                        <label class="fr-toggle__label" for="group-10-toggle-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-10-toggle-2">
+                                        <label class="fr-toggle__label" for="group-10-toggle-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-10-toggle-3">
+                                        <label class="fr-toggle__label" for="group-10-toggle-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" id="group-10-toggle-4">
+                                        <label class="fr-toggle__label" for="group-10-toggle-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4491-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4493">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4493">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4492" aria-labelledby="toggle-group-4492-legend toggle-group-4492-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4492-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-10-toggle-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-10-toggle-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-10-toggle-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-10-toggle-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-10-toggle-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-10-toggle-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-10-toggle-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-10-toggle-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" id="group-10-toggle-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-10-toggle-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4492-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+            <h4 class="fr-h4">Groupe de toggles simple avec bouton + label à gauche + état + séparateur + texte d’aide</h4>
+            <div class="fr-mb-6v">
+                <div class="fr-col-12 fr-col-sm-6 fr-col-md-4 fr-col-lg-3">
+                    <fieldset class="fr-fieldset" id="toggle-group-4494" aria-labelledby="toggle-group-4494-legend toggle-group-4494-messages">
+                        <legend class="fr-fieldset__legend" id="toggle-group-4494-legend">
+                            Légende pour l’ensemble des éléments
+                        </legend>
+                        <div class="fr-fieldset__element">
+                            <ul class="fr-toggle__list">
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-0-hint-text" id="group-11-toggle-hint-0">
+                                        <label class="fr-toggle__label" for="group-11-toggle-hint-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-11-toggle-hint-0-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-1-hint-text" id="group-11-toggle-hint-1">
+                                        <label class="fr-toggle__label" for="group-11-toggle-hint-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-11-toggle-hint-1-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-2-hint-text" id="group-11-toggle-hint-2">
+                                        <label class="fr-toggle__label" for="group-11-toggle-hint-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-11-toggle-hint-2-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-3-hint-text" id="group-11-toggle-hint-3">
+                                        <label class="fr-toggle__label" for="group-11-toggle-hint-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-11-toggle-hint-3-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left">
+                                        <input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-4-hint-text" id="group-11-toggle-hint-4">
+                                        <label class="fr-toggle__label" for="group-11-toggle-hint-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé">Label de l'interrupteur</label>
+                                        <p class="fr-hint-text" id="group-11-toggle-hint-4-hint-text">Texte de description additionnel</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="fr-messages-group" id="toggle-group-4494-messages" aria-live="polite">
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="fr-mb-12v">
+                <section class="fr-accordion">
+                    <h3 class="fr-accordion__title">
+                        <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-4496">Extrait de code</button>
+                    </h3>
+                    <div class="fr-collapse" id="snippet-4496">
+                        <pre class=" language-html"><code>&lt;fieldset class="fr-fieldset" id="toggle-group-4495" aria-labelledby="toggle-group-4495-legend toggle-group-4495-messages"&gt;
+    &lt;legend class="fr-fieldset__legend" id="toggle-group-4495-legend"&gt;
+        Légende pour l’ensemble des éléments
+    &lt;/legend&gt;
+    &lt;div class="fr-fieldset__element"&gt;
+        &lt;ul class="fr-toggle__list"&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-0-hint-text" id="group-11-toggle-hint-0"&gt;
+                    &lt;label class="fr-toggle__label" for="group-11-toggle-hint-0" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-11-toggle-hint-0-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-1-hint-text" id="group-11-toggle-hint-1"&gt;
+                    &lt;label class="fr-toggle__label" for="group-11-toggle-hint-1" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-11-toggle-hint-1-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-2-hint-text" id="group-11-toggle-hint-2"&gt;
+                    &lt;label class="fr-toggle__label" for="group-11-toggle-hint-2" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-11-toggle-hint-2-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-3-hint-text" id="group-11-toggle-hint-3"&gt;
+                    &lt;label class="fr-toggle__label" for="group-11-toggle-hint-3" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-11-toggle-hint-3-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;div class="fr-toggle fr-toggle--border-bottom fr-toggle--label-left"&gt;
+                    &lt;input type="checkbox" class="fr-toggle__input" aria-describedby="group-11-toggle-hint-4-hint-text" id="group-11-toggle-hint-4"&gt;
+                    &lt;label class="fr-toggle__label" for="group-11-toggle-hint-4" data-fr-checked-label="Activé" data-fr-unchecked-label="Désactivé"&gt;Label de l'interrupteur&lt;/label&gt;
+                    &lt;p class="fr-hint-text" id="group-11-toggle-hint-4-hint-text"&gt;Texte de description additionnel&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-messages-group" id="toggle-group-4495-messages" aria-live="polite"&gt;
+    &lt;/div&gt;
+&lt;/fieldset&gt;
+</code></pre>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="fr-container fr-mt-2v fr-mb-8w">
+        <h3>Autres versions</h3>
+        <ul>
+            <li>
+                <a href="deprecated">version dépréciée</a>
+            </li>
+        </ul>
+    </div>
+    <button class="fr-display-button fr-background-default--grey fr-btn fr-btn--lg fr-icon-theme-fill fr-btn--secondary" aria-controls="fr-theme-modal" data-fr-opened="false" style="z-index: 1600" id="button-4497">
+        Label bouton
+    </button>
+    <dialog id="fr-theme-modal" class="fr-modal" aria-labelledby="fr-theme-modal-title">
+        <div class="fr-container fr-container--fluid fr-container-md">
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                    <div class="fr-modal__body">
+                        <div class="fr-modal__header">
+                            <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" id="button-4498" title="Fermer">
+                                Fermer
+                            </button>
+                        </div>
+                        <div class="fr-modal__content">
+                            <h1 id="fr-theme-modal-title" class="fr-modal__title">
+                                Paramètres d’affichage
+                            </h1>
+                            <div id="fr-display" class="fr-display">
+                                <fieldset class="fr-fieldset" id="display-fieldset">
+                                    <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="display-fieldset-legend">
+                                        Choisissez un thème pour personnaliser l’apparence du site.
+                                    </legend>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-light">
+                                                Thème clair
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-dark">
+                                                Thème sombre
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-system">
+                                                Système
+                                                <span class="fr-hint-text">Utilise les paramètres système</span>
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/system/system.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/system/system.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/system/system.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <script type="module" src="../../../dist/core/core.module.js"></script>
+    <script type="module" src="../../../dist/component/toggle/toggle.module.js"></script>
+    <script type="module" src="../../../dist/scheme/scheme.module.js"></script>
+    <script type="module" src="../../../dist/component/accordion/accordion.module.js"></script>
+    <script type="module" src="../../../dist/component/modal/modal.module.js"></script>
+    <script type="module" src="../../../dist/component/display/display.module.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/legacy/legacy.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/core/core.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/toggle/toggle.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/accordion/accordion.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/modal/modal.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/display/display.nomodule.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+</body>
+
+</html>

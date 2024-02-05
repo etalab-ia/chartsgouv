@@ -1,0 +1,84 @@
+////
+/// Toggle Module : toggle
+/// @group toggle
+////
+
+@use 'module/spacing';
+
+#{ns(toggle)} {
+  display: flex;
+  flex-wrap: wrap;
+  @include relative;
+  @include padding(4v 0);
+  @include set-text-margin(0);
+  @include set-title-margin(0);
+
+  input[type="checkbox"] {
+    @include size(10v, 6v);
+    @include absolute;
+    opacity: 0;
+
+    &:checked {
+      ~ #{ns(toggle__label)} {
+        &#{ns-attr(unchecked-label)}#{ns-attr(checked-label)} {
+          @include before(attr(#{ns-attr(checked-label, null, true)}));
+        }
+
+        @include after {
+          transform: translateX(space(4v));
+          @include z-index(higher);
+        }
+      }
+    }
+  }
+
+  label {
+    --toggle-status-width: auto;
+    display: inline-flex;
+    width: spacing.space(calc(100% - 8v));
+    min-height: spacing.space(6v);
+    @include text-style(md);
+
+    &#{ns-attr(unchecked-label)}#{ns-attr(checked-label)} {
+      @include padding-left(0);
+
+      @include before(attr(#{ns-attr(unchecked-label, null, true)})) {
+        @include margin-right(calc(var(--toggle-status-width) - #{spacing.space(2v)}));
+        @include margin-bottom(4v);
+      };
+
+      + #{ns(hint-text)} {
+        @include margin-top(2v);
+      }
+    }
+
+    @include before('', block) {
+      flex-shrink: 0;
+      height: spacing.space(calc(5v + 1px));
+      @include padding-top(7v);
+      @include text-style(xs);
+      border-radius: spacing.space(3v);
+      @include margin-right(8v);
+      min-width: spacing.space(10v);
+      max-width: spacing.space(10v);
+      background-repeat: no-repeat;
+    }
+
+    @include after('') {
+      @include display-flex(null,center,center);
+      @include absolute(4v, null, null, 0, 6v, 6v);
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-size: spacing.space(4v);
+      background-position: center;
+    }
+  }
+
+  #{ns(hint-text)} {
+    display: block;
+    @include margin-top(4v);
+    @include margin-bottom(0);
+    @include text-style(xs);
+    flex-basis: 100%;
+  }
+}

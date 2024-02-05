@@ -1,0 +1,8 @@
+<%
+let alert = locals.alert || {};
+alert.id ??= uniqueId('alert');
+alert.title ??= 'Titre';
+alert.text ??= 'Description';
+ %>
+
+<%- include('../../template/ejs/alert.ejs', { alert: alert }); %>

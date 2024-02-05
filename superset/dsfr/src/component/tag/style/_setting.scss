@@ -1,0 +1,28 @@
+////
+/// Tag Setting
+/// @group tag
+////
+
+$tags-settings:(
+  selector: tag,
+  sizes: (
+    sm: (
+      font-size: 3v,
+      min-height: 6v,
+      padding-x: 2v,
+      icon: xs,
+      icon-margin-x: 1v
+    ),
+    md: (
+      font-size: 3.5v,
+      min-height: 8v,
+      padding-x: 3v,
+      icon: sm,
+      icon-margin-x: 1v
+    )
+  ),
+  places: left,
+  border-radius: true,
+  display: flex,
+  blank: true
+);

@@ -1,0 +1,10 @@
+<%
+
+let data = {
+  ...locals.highlight || {},
+  size: 'lg'
+}
+
+%>
+
+<%- include('./highlight-default', {highlight: data}); %>

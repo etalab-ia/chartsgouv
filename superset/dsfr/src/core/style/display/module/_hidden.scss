@@ -1,0 +1,12 @@
+////
+/// Core Module : Display hidden
+/// @group core
+////
+
+@include build-utility (display, hidden) {
+  display: none !important;
+}
+
+@include build-utility (display, unhidden) {
+  display: inherit !important;
+}

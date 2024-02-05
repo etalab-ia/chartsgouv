@@ -1,0 +1,12 @@
+
+<%
+let data = {};
+const follow = locals.follow || {newsletter: {}, socials: {}};
+data = JSON.parse(include('../data/newsletter-form.json.ejs', {error: follow.newsletter.error}));
+const attributes = {};
+
+data.newsletter.form.input.attributes = {...data.newsletter.form.input.attributes, attributes};
+
+%>
+<%- include('../../template/ejs/follow.ejs', {follow: data}); %>
+

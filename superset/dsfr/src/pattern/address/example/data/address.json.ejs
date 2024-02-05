@@ -1,0 +1,115 @@
+<%
+const address = locals.address || {};
+const elements = [];
+
+if (address.professional) {
+  elements.push({
+    type: 'input',
+    data: {
+      id: uniqueId('name'),
+      label: getText('label.name', 'address'),
+      name: 'organization-name',
+      autocomplete: 'organization'
+    }
+  });
+}
+
+elements.push({
+  type: 'input',
+  data: {
+    id: uniqueId('address'),
+    label: getText('label.address', 'address'),
+    hint: getText('hint.address', 'address'),
+    name: 'address-line1',
+    autocomplete: 'address-line1',
+  }
+});
+
+elements.push({
+  type: 'input',
+  data: {
+    id: uniqueId('complement'),
+    label: getText('label.complement', 'address') + ' ' + getText('label.optional', 'address'),
+    hint: getText('hint.complement', 'address'),
+    name: 'address-line2',
+    autocomplete: 'address-line2',
+  }
+});
+
+if (address.locality) {
+  elements.push({
+    type: 'input',
+    data: {
+      id: uniqueId('locality'),
+      label: getText('label.locality', 'address'),
+      name: 'address-level3',
+      autocomplete: 'address-line3',
+    }
+  });
+}
+
+elements.push({
+  type: 'input',
+  inline: true,
+  modifier: 'postal',
+  data: {
+    id: uniqueId('postal'),
+    label: getText('label.postal', 'address'),
+    hint: getText('hint.postal', 'address'),
+    name: 'postal-code',
+    autocomplete: 'postal-code',
+  }
+});
+
+elements.push({
+  type: 'input',
+  inline: 'md',
+  grow: true,
+  data: {
+    id: uniqueId('city'),
+    label: getText('label.city', 'address'),
+    hint: getText('hint.city', 'address'),
+    name: 'address-level2',
+    autocomplete: 'address-level2',
+  }
+});
+
+if (address.professional) {
+  elements.push({
+    type: 'input',
+    data: {
+      id: uniqueId('cedex'),
+      label: getText('label.cedex', 'address'),
+      name: 'business-postal-code',
+      autocomplete: 'cedex', // n'existe pas mais permet au prochain autocomplete de fonctionner
+    }
+  });
+}
+
+if (address.international) {
+  const options = JSON.parse(include('../../../address/example/data/countries-select-options.json.ejs', { countries: { minimal: true }}));
+  const country = {
+    type: 'select',
+    data: {
+      name: 'country',
+      id: uniqueId('country'),
+      label: getText('label.country', 'address'),
+      placeholder: getText('option.placeholder', 'select'),
+      autocomplete: 'country',
+      options: options
+    }
+  };
+  elements.push(country);
+}
+
+const data = {
+  id: address.id || uniqueId('address'),
+  legend: {
+    label: getText('legend.address', 'address'),
+    sr: true
+  },
+  elements: elements
+}
+%>
+
+<%- JSON.stringify(data); %>

@@ -1,0 +1,28 @@
+<%
+ let list = locals.list || {lis:[]};
+ let markup = list.ordered === true ? 'ol' : 'ul';
+ %>
+
+
+
+<<%= markup %> <%- includeClasses(list.classes); %>>
+    <% for (let i = 0; i < list.lis.length; i++) {
+        let li = list.lis[i];
+    %>
+        <li><%
+            if (li.text === true) {
+                %><%= lorem() %><%
+            }
+            else if (li.text !== undefined) {
+                %><%= li.text %><%
+            }
+            else {
+                %>Item list<%
+            }
+
+            if (li.lis !== undefined) {
+                %><%- include('./list', {list: {...list, lis: li.lis}}); %><%
+            }
+        %></li>
+    <% } %>
+</<%= markup %>>

@@ -1,0 +1,1862 @@
+<!doctype html>
+<html lang="fr" data-fr-theme>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
+    <title>Pied de page - Système de design</title>
+    <meta name="theme-color" content="#000091"><!-- Défini la couleur de thème du navigateur (Safari/Android) -->
+    <link rel="apple-touch-icon" href="../../../dist/favicon/apple-touch-icon.png"><!-- 180×180 -->
+    <link rel="icon" href="../../../dist/favicon/favicon.svg" type="image/svg+xml">
+    <!-- si favicon.ico peut etre placé à la racine du serveur, retirer la ligne ci-dessous -->
+    <link rel="shortcut icon" href="../../../dist/favicon/favicon.ico" type="image/x-icon"><!-- 32×32 -->
+    <link rel="manifest" href="../../../dist/favicon/manifest.webmanifest" crossorigin="use-credentials">
+    <!-- Modifier les chemins relatifs des favicons en fonction de la structure du projet -->
+    <!-- Dans le fichier manifest.webmanifest aussi, modifier les chemins vers les images -->
+    <link href="../../../dist/core/core.main.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.main.css" rel="stylesheet">
+    <link href="../../../dist/component/logo/logo.main.css" rel="stylesheet">
+    <link href="../../../dist/scheme/scheme.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.main.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.main.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.main.css" rel="stylesheet">
+    <link href="../../../dist/component/footer/footer.main.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.main.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.main.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.main.css" rel="stylesheet">
+    <link href="../../../dist/core/core.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/logo/logo.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/footer/footer.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.legacy.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.legacy.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.legacy.css" rel="stylesheet">
+    <link href="../../../dist/core/core.print.css" rel="stylesheet">
+    <link href="../../../dist/component/link/link.print.css" rel="stylesheet">
+    <link href="../../../dist/component/logo/logo.print.css" rel="stylesheet">
+    <link href="../../../dist/component/accordion/accordion.print.css" rel="stylesheet">
+    <link href="../../../dist/component/form/form.print.css" rel="stylesheet">
+    <link href="../../../dist/component/button/button.print.css" rel="stylesheet">
+    <link href="../../../dist/component/footer/footer.print.css" rel="stylesheet">
+    <link href="../../../dist/component/radio/radio.print.css" rel="stylesheet">
+    <link href="../../../dist/component/modal/modal.print.css" rel="stylesheet">
+    <link href="../../../dist/utility/utility.print.css" rel="stylesheet">
+    <style>
+        code[class*="language-"],
+        pre[class*="language-"] {
+            white-space: pre-wrap;
+        }
+
+        .example-controls {
+            z-index: 100000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1), 0 8px 16px -16px rgba(0, 0, 0, 0.32);
+        }
+
+        .example-controls>button {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .example-controls__content {
+            padding: 16px;
+            background-color: var(--background-elevated-white);
+        }
+
+        .example-controls .fr-collapse--expanded~[aria-expanded] {
+            display: none;
+        }
+
+        .example-controls .fr-collapse:not(.fr-collapse--expanded)~button:not([aria-expanded]) {
+            display: none;
+        }
+
+        .example-controls [class*="-form-group"] {
+            margin-bottom: 0;
+        }
+
+        .fr-display-button {
+            position: fixed;
+            bottom: 3.5rem;
+            right: 2rem;
+        }
+
+        @media screen and (-ms-high-contrast: active),
+        (-ms-high-contrast: none) {
+
+            /* IE10+ specific styles go here */
+            .example-controls {
+                display: none;
+            }
+        }
+
+    </style>
+    <script>
+    window['dsfr'] = {
+      // verbose: true,
+      // production: true,
+      // mode: 'manual',
+    };
+    
+  </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
+</head>
+
+<body id="top" class="fr-mb-12w">
+    <script type="module">
+    const e="system",t="dark",c="dark",o="data-fr-theme",a="data-fr-scheme",r=`:root[${o}], :root[${a}]`,m=()=>{document.documentElement.setAttribute(o,c),document.documentElement.style.colorScheme="dark"},n=()=>{window.matchMedia("(prefers-color-scheme: dark)").matches&&m()};(()=>{if(document.documentElement.matches(r)){const c=(()=>{try{return"localStorage"in window&&null!==window.localStorage}catch(e){return!1}})()?localStorage.getItem("scheme"):"",o=document.documentElement.getAttribute(a);switch(!0){case c===t:m();break;case c===e:n();break;case o===t:m();break;case o===e:n()}}})();
+
+  </script>
+    <span id="[url - à modifier]"></span>
+    <div class="fr-container fr-mt-2v fr-mb-8w">
+        <p>
+            <a class="fr-icon-arrow-left-line fr-link--icon-left fr-link" href="../">Retour</a>
+        </p>
+        <h1>Pied de page (footer)</h1>
+        <p>Le pied de page propose des éléments d’information sur le site et une navigation secondaire pour l’utilisateur afin qu’il poursuive son parcours. Il est modulable selon les besoins et les exigences du site.</p>
+        <a href="https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/pied-de-page" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">Documentation</a>
+    </div>
+    <div class="fr-mb-12w">
+        <h3>Pied de page minimal</h3>
+        <div class="fr-mb-6v">
+            <footer class="fr-footer" role="contentinfo" id="footer-7117">
+                <div class="fr-container">
+                    <div class="fr-footer__body">
+                        <div class="fr-footer__brand fr-enlarge-link">
+                            <a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)">
+                                <p class="fr-logo">
+                                    Intitulé
+                                    <br>officiel
+                                </p>
+                            </a>
+                        </div>
+                        <div class="fr-footer__content">
+                            <p class="fr-footer__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliqu</p>
+                            <ul class="fr-footer__content-list">
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7118" class="fr-footer__content-link" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7119" class="fr-footer__content-link" href="https://gouvernement.fr">gouvernement.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7120" class="fr-footer__content-link" href="https://service-public.fr">service-public.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7121" class="fr-footer__content-link" href="https://data.gouv.fr">data.gouv.fr</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fr-footer__bottom">
+                        <ul class="fr-footer__bottom-list">
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7122" href="#">Plan du site</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7123" href="#">Accessibilité : non/partiellement/totalement conforme</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7124" href="#">Mentions légales</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7125" href="#">Données personnelles</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7126" href="#">Gestion des cookies</a>
+                            </li>
+                        </ul>
+                        <div class="fr-footer__bottom-copy">
+                            <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">licence etalab-2.0</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="fr-mb-12v">
+            <section class="fr-accordion">
+                <h3 class="fr-accordion__title">
+                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-7137">Extrait de code</button>
+                </h3>
+                <div class="fr-collapse" id="snippet-7137">
+                    <pre class=" language-html"><code>&lt;footer class="fr-footer" role="contentinfo" id="footer-7127"&gt;
+    &lt;div class="fr-container"&gt;
+        &lt;div class="fr-footer__body"&gt;
+            &lt;div class="fr-footer__brand fr-enlarge-link"&gt;
+                &lt;a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)"&gt;
+                    &lt;p class="fr-logo"&gt;
+                        Intitulé
+                        &lt;br&gt;officiel
+                    &lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="fr-footer__content"&gt;
+                &lt;p class="fr-footer__content-desc"&gt;Lorem [...] elit ut.&lt;/p&gt;
+                &lt;ul class="fr-footer__content-list"&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7128" class="fr-footer__content-link" href="https://legifrance.gouv.fr"&gt;legifrance.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7129" class="fr-footer__content-link" href="https://gouvernement.fr"&gt;gouvernement.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7130" class="fr-footer__content-link" href="https://service-public.fr"&gt;service-public.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7131" class="fr-footer__content-link" href="https://data.gouv.fr"&gt;data.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__bottom"&gt;
+            &lt;ul class="fr-footer__bottom-list"&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7132" href="#"&gt;Plan du site&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7133" href="#"&gt;Accessibilité : non/partiellement/totalement conforme&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7134" href="#"&gt;Mentions légales&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7135" href="#"&gt;Données personnelles&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7136" href="#"&gt;Gestion des cookies&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div class="fr-footer__bottom-copy"&gt;
+                &lt;p&gt;Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous &lt;a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"&gt;licence etalab-2.0&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+                </div>
+            </section>
+        </div>
+        <h3>Pied de page avec navigation</h3>
+        <div class="fr-mb-6v">
+            <footer class="fr-footer" role="contentinfo" id="footer-7138">
+                <div class="fr-footer__top">
+                    <div class="fr-container">
+                        <div class="fr-grid-row fr-grid-row--start fr-grid-row--gutters">
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7139" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7140" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7141" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7142" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7143" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7144" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7145" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7146" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7147" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7148" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7149" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7150" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7151" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7152" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7153" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7154" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7155" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7156" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7157" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7158" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7159" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7160" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7161" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7162" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7163" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7164" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7165" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7166" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7167" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7168" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7169" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7170" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7171" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7172" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7173" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7174" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fr-container">
+                    <div class="fr-footer__body">
+                        <div class="fr-footer__brand fr-enlarge-link">
+                            <a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)">
+                                <p class="fr-logo">
+                                    Intitulé
+                                    <br>officiel
+                                </p>
+                            </a>
+                        </div>
+                        <div class="fr-footer__content">
+                            <p class="fr-footer__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliqu</p>
+                            <ul class="fr-footer__content-list">
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7175" class="fr-footer__content-link" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7176" class="fr-footer__content-link" href="https://gouvernement.fr">gouvernement.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7177" class="fr-footer__content-link" href="https://service-public.fr">service-public.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7178" class="fr-footer__content-link" href="https://data.gouv.fr">data.gouv.fr</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fr-footer__bottom">
+                        <ul class="fr-footer__bottom-list">
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7179" href="#">Plan du site</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7180" href="#">Accessibilité : non/partiellement/totalement conforme</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7181" href="#">Mentions légales</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7182" href="#">Données personnelles</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7183" href="#">Gestion des cookies</a>
+                            </li>
+                        </ul>
+                        <div class="fr-footer__bottom-copy">
+                            <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">licence etalab-2.0</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="fr-mb-12v">
+            <section class="fr-accordion">
+                <h3 class="fr-accordion__title">
+                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-7230">Extrait de code</button>
+                </h3>
+                <div class="fr-collapse" id="snippet-7230">
+                    <pre class=" language-html"><code>&lt;footer class="fr-footer" role="contentinfo" id="footer-7184"&gt;
+    &lt;div class="fr-footer__top"&gt;
+        &lt;div class="fr-container"&gt;
+            &lt;div class="fr-grid-row fr-grid-row--start fr-grid-row--gutters"&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7185" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7186" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7187" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7188" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7189" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7190" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7191" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7192" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7193" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7194" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7195" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7196" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7197" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7198" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7199" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7200" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7201" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7202" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7203" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7204" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7205" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7206" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7207" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7208" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7209" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7210" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7211" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7212" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7213" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7214" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7215" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7216" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7217" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7218" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7219" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7220" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-container"&gt;
+        &lt;div class="fr-footer__body"&gt;
+            &lt;div class="fr-footer__brand fr-enlarge-link"&gt;
+                &lt;a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)"&gt;
+                    &lt;p class="fr-logo"&gt;
+                        Intitulé
+                        &lt;br&gt;officiel
+                    &lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="fr-footer__content"&gt;
+                &lt;p class="fr-footer__content-desc"&gt;Lorem [...] elit ut.&lt;/p&gt;
+                &lt;ul class="fr-footer__content-list"&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7221" class="fr-footer__content-link" href="https://legifrance.gouv.fr"&gt;legifrance.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7222" class="fr-footer__content-link" href="https://gouvernement.fr"&gt;gouvernement.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7223" class="fr-footer__content-link" href="https://service-public.fr"&gt;service-public.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7224" class="fr-footer__content-link" href="https://data.gouv.fr"&gt;data.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__bottom"&gt;
+            &lt;ul class="fr-footer__bottom-list"&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7225" href="#"&gt;Plan du site&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7226" href="#"&gt;Accessibilité : non/partiellement/totalement conforme&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7227" href="#"&gt;Mentions légales&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7228" href="#"&gt;Données personnelles&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7229" href="#"&gt;Gestion des cookies&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div class="fr-footer__bottom-copy"&gt;
+                &lt;p&gt;Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous &lt;a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"&gt;licence etalab-2.0&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+                </div>
+            </section>
+        </div>
+        <h3>Pied de page avec logo opérateur</h3>
+        <div class="fr-mb-6v">
+            <footer class="fr-footer" role="contentinfo" id="footer-7231">
+                <div class="fr-container">
+                    <div class="fr-footer__body">
+                        <div class="fr-footer__brand fr-enlarge-link">
+                            <p class="fr-logo">
+                                République
+                                <br>Française
+                            </p>
+                            <a id="footer-brand" class="fr-footer__brand-link" href="/" title="Retour à l’accueil du site - [À MODIFIER - texte alternatif de l’image : nom de l&#39;opérateur ou du site serviciel] - République Française">
+                                <img class="fr-footer__logo" style="max-width:10rem;" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                            </a>
+                        </div>
+                        <div class="fr-footer__content">
+                            <p class="fr-footer__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliqu</p>
+                            <ul class="fr-footer__content-list">
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7232" class="fr-footer__content-link" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7233" class="fr-footer__content-link" href="https://gouvernement.fr">gouvernement.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7234" class="fr-footer__content-link" href="https://service-public.fr">service-public.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7235" class="fr-footer__content-link" href="https://data.gouv.fr">data.gouv.fr</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fr-footer__bottom">
+                        <ul class="fr-footer__bottom-list">
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7236" href="#">Plan du site</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7237" href="#">Accessibilité : non/partiellement/totalement conforme</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7238" href="#">Mentions légales</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7239" href="#">Données personnelles</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7240" href="#">Gestion des cookies</a>
+                            </li>
+                        </ul>
+                        <div class="fr-footer__bottom-copy">
+                            <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">licence etalab-2.0</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="fr-mb-12v">
+            <section class="fr-accordion">
+                <h3 class="fr-accordion__title">
+                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-7251">Extrait de code</button>
+                </h3>
+                <div class="fr-collapse" id="snippet-7251">
+                    <pre class=" language-html"><code>&lt;footer class="fr-footer" role="contentinfo" id="footer-7241"&gt;
+    &lt;div class="fr-container"&gt;
+        &lt;div class="fr-footer__body"&gt;
+            &lt;div class="fr-footer__brand fr-enlarge-link"&gt;
+                &lt;p class="fr-logo"&gt;
+                    République
+                    &lt;br&gt;Française
+                &lt;/p&gt;
+                &lt;a id="footer-brand" class="fr-footer__brand-link" href="/" title="Retour à l’accueil du site - [À MODIFIER - texte alternatif de l’image : nom de l&amp;#39;opérateur ou du site serviciel] - République Française"&gt;
+                    &lt;img class="fr-footer__logo" style="max-width:10rem;" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                    &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="fr-footer__content"&gt;
+                &lt;p class="fr-footer__content-desc"&gt;Lorem [...] elit ut.&lt;/p&gt;
+                &lt;ul class="fr-footer__content-list"&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7242" class="fr-footer__content-link" href="https://legifrance.gouv.fr"&gt;legifrance.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7243" class="fr-footer__content-link" href="https://gouvernement.fr"&gt;gouvernement.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7244" class="fr-footer__content-link" href="https://service-public.fr"&gt;service-public.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7245" class="fr-footer__content-link" href="https://data.gouv.fr"&gt;data.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__bottom"&gt;
+            &lt;ul class="fr-footer__bottom-list"&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7246" href="#"&gt;Plan du site&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7247" href="#"&gt;Accessibilité : non/partiellement/totalement conforme&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7248" href="#"&gt;Mentions légales&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7249" href="#"&gt;Données personnelles&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7250" href="#"&gt;Gestion des cookies&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div class="fr-footer__bottom-copy"&gt;
+                &lt;p&gt;Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous &lt;a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"&gt;licence etalab-2.0&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+                </div>
+            </section>
+        </div>
+        <h3>Pied de page avec logos partenaires</h3>
+        <div class="fr-mb-6v">
+            <footer class="fr-footer" role="contentinfo" id="footer-7252">
+                <div class="fr-container">
+                    <div class="fr-footer__body">
+                        <div class="fr-footer__brand fr-enlarge-link">
+                            <a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)">
+                                <p class="fr-logo">
+                                    Intitulé
+                                    <br>officiel
+                                </p>
+                            </a>
+                        </div>
+                        <div class="fr-footer__content">
+                            <p class="fr-footer__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliqu</p>
+                            <ul class="fr-footer__content-list">
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7253" class="fr-footer__content-link" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7254" class="fr-footer__content-link" href="https://gouvernement.fr">gouvernement.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7255" class="fr-footer__content-link" href="https://service-public.fr">service-public.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7256" class="fr-footer__content-link" href="https://data.gouv.fr">data.gouv.fr</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fr-footer__partners">
+                        <h2 class="fr-footer__partners-title">Nos partenaires</h2>
+                        <div class="fr-footer__partners-logos">
+                            <div class="fr-footer__partners-main">
+                                <a id="footer__partners-link-7257" class="fr-footer__partners-link" href="">
+                                    <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                    <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                </a>
+                            </div>
+                            <div class="fr-footer__partners-sub">
+                                <ul>
+                                    <li>
+                                        <a id="footer__subpartners-link-7258" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__subpartners-link-7259" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.1x1.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__subpartners-link-7260" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.9x16.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-footer__bottom">
+                        <ul class="fr-footer__bottom-list">
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7261" href="#">Plan du site</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7262" href="#">Accessibilité : non/partiellement/totalement conforme</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7263" href="#">Mentions légales</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7264" href="#">Données personnelles</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7265" href="#">Gestion des cookies</a>
+                            </li>
+                        </ul>
+                        <div class="fr-footer__bottom-copy">
+                            <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">licence etalab-2.0</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="fr-mb-12v">
+            <section class="fr-accordion">
+                <h3 class="fr-accordion__title">
+                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-7280">Extrait de code</button>
+                </h3>
+                <div class="fr-collapse" id="snippet-7280">
+                    <pre class=" language-html"><code>&lt;footer class="fr-footer" role="contentinfo" id="footer-7266"&gt;
+    &lt;div class="fr-container"&gt;
+        &lt;div class="fr-footer__body"&gt;
+            &lt;div class="fr-footer__brand fr-enlarge-link"&gt;
+                &lt;a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)"&gt;
+                    &lt;p class="fr-logo"&gt;
+                        Intitulé
+                        &lt;br&gt;officiel
+                    &lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="fr-footer__content"&gt;
+                &lt;p class="fr-footer__content-desc"&gt;Lorem [...] elit ut.&lt;/p&gt;
+                &lt;ul class="fr-footer__content-list"&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7267" class="fr-footer__content-link" href="https://legifrance.gouv.fr"&gt;legifrance.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7268" class="fr-footer__content-link" href="https://gouvernement.fr"&gt;gouvernement.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7269" class="fr-footer__content-link" href="https://service-public.fr"&gt;service-public.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7270" class="fr-footer__content-link" href="https://data.gouv.fr"&gt;data.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__partners"&gt;
+            &lt;h2 class="fr-footer__partners-title"&gt;Nos partenaires&lt;/h2&gt;
+            &lt;div class="fr-footer__partners-logos"&gt;
+                &lt;div class="fr-footer__partners-main"&gt;
+                    &lt;a id="footer__partners-link-7271" class="fr-footer__partners-link" href=""&gt;
+                        &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                        &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-footer__partners-sub"&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7272" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7273" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.1x1.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7274" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.9x16.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__bottom"&gt;
+            &lt;ul class="fr-footer__bottom-list"&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7275" href="#"&gt;Plan du site&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7276" href="#"&gt;Accessibilité : non/partiellement/totalement conforme&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7277" href="#"&gt;Mentions légales&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7278" href="#"&gt;Données personnelles&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7279" href="#"&gt;Gestion des cookies&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div class="fr-footer__bottom-copy"&gt;
+                &lt;p&gt;Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous &lt;a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"&gt;licence etalab-2.0&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+                </div>
+            </section>
+        </div>
+        <h3>Pied de page avec logo partenaire primaire uniquement</h3>
+        <div class="fr-mb-6v">
+            <footer class="fr-footer" role="contentinfo" id="footer-7281">
+                <div class="fr-container">
+                    <div class="fr-footer__body">
+                        <div class="fr-footer__brand fr-enlarge-link">
+                            <a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)">
+                                <p class="fr-logo">
+                                    Intitulé
+                                    <br>officiel
+                                </p>
+                            </a>
+                        </div>
+                        <div class="fr-footer__content">
+                            <p class="fr-footer__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliqu</p>
+                            <ul class="fr-footer__content-list">
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7282" class="fr-footer__content-link" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7283" class="fr-footer__content-link" href="https://gouvernement.fr">gouvernement.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7284" class="fr-footer__content-link" href="https://service-public.fr">service-public.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7285" class="fr-footer__content-link" href="https://data.gouv.fr">data.gouv.fr</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fr-footer__partners">
+                        <h2 class="fr-footer__partners-title">Notre partenaire</h2>
+                        <div class="fr-footer__partners-logos">
+                            <div class="fr-footer__partners-main">
+                                <a id="footer__partners-link-7286" class="fr-footer__partners-link" href="">
+                                    <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                    <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-footer__bottom">
+                        <ul class="fr-footer__bottom-list">
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7287" href="#">Plan du site</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7288" href="#">Accessibilité : non/partiellement/totalement conforme</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7289" href="#">Mentions légales</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7290" href="#">Données personnelles</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7291" href="#">Gestion des cookies</a>
+                            </li>
+                        </ul>
+                        <div class="fr-footer__bottom-copy">
+                            <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">licence etalab-2.0</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="fr-mb-12v">
+            <section class="fr-accordion">
+                <h3 class="fr-accordion__title">
+                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-7303">Extrait de code</button>
+                </h3>
+                <div class="fr-collapse" id="snippet-7303">
+                    <pre class=" language-html"><code>&lt;footer class="fr-footer" role="contentinfo" id="footer-7292"&gt;
+    &lt;div class="fr-container"&gt;
+        &lt;div class="fr-footer__body"&gt;
+            &lt;div class="fr-footer__brand fr-enlarge-link"&gt;
+                &lt;a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)"&gt;
+                    &lt;p class="fr-logo"&gt;
+                        Intitulé
+                        &lt;br&gt;officiel
+                    &lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="fr-footer__content"&gt;
+                &lt;p class="fr-footer__content-desc"&gt;Lorem [...] elit ut.&lt;/p&gt;
+                &lt;ul class="fr-footer__content-list"&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7293" class="fr-footer__content-link" href="https://legifrance.gouv.fr"&gt;legifrance.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7294" class="fr-footer__content-link" href="https://gouvernement.fr"&gt;gouvernement.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7295" class="fr-footer__content-link" href="https://service-public.fr"&gt;service-public.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7296" class="fr-footer__content-link" href="https://data.gouv.fr"&gt;data.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__partners"&gt;
+            &lt;h2 class="fr-footer__partners-title"&gt;Notre partenaire&lt;/h2&gt;
+            &lt;div class="fr-footer__partners-logos"&gt;
+                &lt;div class="fr-footer__partners-main"&gt;
+                    &lt;a id="footer__partners-link-7297" class="fr-footer__partners-link" href=""&gt;
+                        &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                        &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__bottom"&gt;
+            &lt;ul class="fr-footer__bottom-list"&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7298" href="#"&gt;Plan du site&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7299" href="#"&gt;Accessibilité : non/partiellement/totalement conforme&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7300" href="#"&gt;Mentions légales&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7301" href="#"&gt;Données personnelles&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7302" href="#"&gt;Gestion des cookies&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div class="fr-footer__bottom-copy"&gt;
+                &lt;p&gt;Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous &lt;a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"&gt;licence etalab-2.0&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+                </div>
+            </section>
+        </div>
+        <h3>Pied de page avec logos partenaires secondaires uniquement</h3>
+        <div class="fr-mb-6v">
+            <footer class="fr-footer" role="contentinfo" id="footer-7304">
+                <div class="fr-container">
+                    <div class="fr-footer__body">
+                        <div class="fr-footer__brand fr-enlarge-link">
+                            <a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)">
+                                <p class="fr-logo">
+                                    Intitulé
+                                    <br>officiel
+                                </p>
+                            </a>
+                        </div>
+                        <div class="fr-footer__content">
+                            <p class="fr-footer__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliqu</p>
+                            <ul class="fr-footer__content-list">
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7305" class="fr-footer__content-link" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7306" class="fr-footer__content-link" href="https://gouvernement.fr">gouvernement.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7307" class="fr-footer__content-link" href="https://service-public.fr">service-public.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7308" class="fr-footer__content-link" href="https://data.gouv.fr">data.gouv.fr</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fr-footer__partners">
+                        <h2 class="fr-footer__partners-title">Nos partenaires</h2>
+                        <div class="fr-footer__partners-logos">
+                            <div class="fr-footer__partners-sub">
+                                <ul>
+                                    <li>
+                                        <a id="footer__subpartners-link-7310" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__subpartners-link-7311" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.1x1.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__subpartners-link-7312" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.9x16.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-footer__bottom">
+                        <ul class="fr-footer__bottom-list">
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7313" href="#">Plan du site</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7314" href="#">Accessibilité : non/partiellement/totalement conforme</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7315" href="#">Mentions légales</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7316" href="#">Données personnelles</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7317" href="#">Gestion des cookies</a>
+                            </li>
+                        </ul>
+                        <div class="fr-footer__bottom-copy">
+                            <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">licence etalab-2.0</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="fr-mb-12v">
+            <section class="fr-accordion">
+                <h3 class="fr-accordion__title">
+                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-7332">Extrait de code</button>
+                </h3>
+                <div class="fr-collapse" id="snippet-7332">
+                    <pre class=" language-html"><code>&lt;footer class="fr-footer" role="contentinfo" id="footer-7318"&gt;
+    &lt;div class="fr-container"&gt;
+        &lt;div class="fr-footer__body"&gt;
+            &lt;div class="fr-footer__brand fr-enlarge-link"&gt;
+                &lt;a id="footer-operator" href="/" title="Retour à l’accueil du site - Nom de l’entité (ministère, secrétariat d‘état, gouvernement)"&gt;
+                    &lt;p class="fr-logo"&gt;
+                        Intitulé
+                        &lt;br&gt;officiel
+                    &lt;/p&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="fr-footer__content"&gt;
+                &lt;p class="fr-footer__content-desc"&gt;Lorem [...] elit ut.&lt;/p&gt;
+                &lt;ul class="fr-footer__content-list"&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7319" class="fr-footer__content-link" href="https://legifrance.gouv.fr"&gt;legifrance.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7320" class="fr-footer__content-link" href="https://gouvernement.fr"&gt;gouvernement.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7321" class="fr-footer__content-link" href="https://service-public.fr"&gt;service-public.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7322" class="fr-footer__content-link" href="https://data.gouv.fr"&gt;data.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__partners"&gt;
+            &lt;h2 class="fr-footer__partners-title"&gt;Nos partenaires&lt;/h2&gt;
+            &lt;div class="fr-footer__partners-logos"&gt;
+                &lt;div class="fr-footer__partners-sub"&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7324" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7325" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.1x1.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7326" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.9x16.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__bottom"&gt;
+            &lt;ul class="fr-footer__bottom-list"&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7327" href="#"&gt;Plan du site&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7328" href="#"&gt;Accessibilité : non/partiellement/totalement conforme&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7329" href="#"&gt;Mentions légales&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7330" href="#"&gt;Données personnelles&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7331" href="#"&gt;Gestion des cookies&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div class="fr-footer__bottom-copy"&gt;
+                &lt;p&gt;Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous &lt;a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"&gt;licence etalab-2.0&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+                </div>
+            </section>
+        </div>
+        <h3>Pied de page complet</h3>
+        <div class="fr-mb-6v">
+            <footer class="fr-footer" role="contentinfo" id="footer-7333">
+                <div class="fr-footer__top">
+                    <div class="fr-container">
+                        <div class="fr-grid-row fr-grid-row--start fr-grid-row--gutters">
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7334" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7335" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7336" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7337" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7338" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7339" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7340" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7341" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7342" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7343" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7344" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7345" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7346" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7347" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7348" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7349" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7350" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7351" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7352" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7353" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7354" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7355" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7356" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7357" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7358" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7359" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7360" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7361" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7362" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7363" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="fr-col-12 fr-col-sm-3 fr-col-md-2">
+                                <h3 class="fr-footer__top-cat">Nom de la catégorie</h3>
+                                <ul class="fr-footer__top-list">
+                                    <li>
+                                        <a id="footer__top-link-7364" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7365" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7366" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7367" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7368" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__top-link-7369" class="fr-footer__top-link" href="../">Lien de navigation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fr-container">
+                    <div class="fr-footer__body">
+                        <div class="fr-footer__brand fr-enlarge-link">
+                            <p class="fr-logo">
+                                République
+                                <br>Française
+                            </p>
+                            <a id="footer-brand" class="fr-footer__brand-link" href="/" title="Retour à l’accueil du site - [À MODIFIER - texte alternatif de l’image : nom de l&#39;opérateur ou du site serviciel] - République Française">
+                                <img class="fr-footer__logo" style="max-width:10rem;" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                            </a>
+                        </div>
+                        <div class="fr-footer__content">
+                            <p class="fr-footer__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing, incididunt, ut labore et dolore magna aliqua. Vitae sapien pellentesque habitant morbi tristique senectus et. Diam maecenas sed enim ut. Accumsan lacus vel facilisis volutpat est. Ut aliqu</p>
+                            <ul class="fr-footer__content-list">
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7370" class="fr-footer__content-link" href="https://legifrance.gouv.fr">legifrance.gouv.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7371" class="fr-footer__content-link" href="https://gouvernement.fr">gouvernement.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7372" class="fr-footer__content-link" href="https://service-public.fr">service-public.fr</a>
+                                </li>
+                                <li class="fr-footer__content-item">
+                                    <a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7373" class="fr-footer__content-link" href="https://data.gouv.fr">data.gouv.fr</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fr-footer__partners">
+                        <h2 class="fr-footer__partners-title">Nos partenaires</h2>
+                        <div class="fr-footer__partners-logos">
+                            <div class="fr-footer__partners-main">
+                                <a id="footer__partners-link-7374" class="fr-footer__partners-link" href="">
+                                    <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                    <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                </a>
+                            </div>
+                            <div class="fr-footer__partners-sub">
+                                <ul>
+                                    <li>
+                                        <a id="footer__subpartners-link-7375" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__subpartners-link-7376" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.1x1.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a id="footer__subpartners-link-7377" class="fr-footer__partners-link" href="">
+                                            <img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.9x16.png" alt="[À MODIFIER - texte alternatif de l’image]" />
+                                            <!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image -->
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr-footer__bottom">
+                        <ul class="fr-footer__bottom-list">
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7378" href="#">Plan du site</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7379" href="#">Accessibilité : non/partiellement/totalement conforme</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7380" href="#">Mentions légales</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7381" href="#">Données personnelles</a>
+                            </li>
+                            <li class="fr-footer__bottom-item">
+                                <a class="fr-footer__bottom-link" id="footer__bottom-link-7382" href="#">Gestion des cookies</a>
+                            </li>
+                        </ul>
+                        <div class="fr-footer__bottom-copy">
+                            <p>Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre">licence etalab-2.0</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="fr-mb-12v">
+            <section class="fr-accordion">
+                <h3 class="fr-accordion__title">
+                    <button class="fr-accordion__btn" aria-expanded="false" aria-controls="snippet-7433">Extrait de code</button>
+                </h3>
+                <div class="fr-collapse" id="snippet-7433">
+                    <pre class=" language-html"><code>&lt;footer class="fr-footer" role="contentinfo" id="footer-7383"&gt;
+    &lt;div class="fr-footer__top"&gt;
+        &lt;div class="fr-container"&gt;
+            &lt;div class="fr-grid-row fr-grid-row--start fr-grid-row--gutters"&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7384" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7385" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7386" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7387" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7388" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7389" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7390" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7391" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7392" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7393" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7394" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7395" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7396" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7397" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7398" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7399" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7400" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7401" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7402" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7403" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7404" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7405" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7406" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7407" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7408" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7409" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7410" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7411" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7412" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7413" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-col-12 fr-col-sm-3 fr-col-md-2"&gt;
+                    &lt;h3 class="fr-footer__top-cat"&gt;Nom de la catégorie&lt;/h3&gt;
+                    &lt;ul class="fr-footer__top-list"&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7414" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7415" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7416" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7417" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7418" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__top-link-7419" class="fr-footer__top-link" href="../"&gt;Lien de navigation&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="fr-container"&gt;
+        &lt;div class="fr-footer__body"&gt;
+            &lt;div class="fr-footer__brand fr-enlarge-link"&gt;
+                &lt;p class="fr-logo"&gt;
+                    République
+                    &lt;br&gt;Française
+                &lt;/p&gt;
+                &lt;a id="footer-brand" class="fr-footer__brand-link" href="/" title="Retour à l’accueil du site - [À MODIFIER - texte alternatif de l’image : nom de l&amp;#39;opérateur ou du site serviciel] - République Française"&gt;
+                    &lt;img class="fr-footer__logo" style="max-width:10rem;" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                    &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                &lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="fr-footer__content"&gt;
+                &lt;p class="fr-footer__content-desc"&gt;Lorem [...] elit ut.&lt;/p&gt;
+                &lt;ul class="fr-footer__content-list"&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7420" class="fr-footer__content-link" href="https://legifrance.gouv.fr"&gt;legifrance.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7421" class="fr-footer__content-link" href="https://gouvernement.fr"&gt;gouvernement.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7422" class="fr-footer__content-link" href="https://service-public.fr"&gt;service-public.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class="fr-footer__content-item"&gt;
+                        &lt;a target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre" id="footer__content-link-7423" class="fr-footer__content-link" href="https://data.gouv.fr"&gt;data.gouv.fr&lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__partners"&gt;
+            &lt;h2 class="fr-footer__partners-title"&gt;Nos partenaires&lt;/h2&gt;
+            &lt;div class="fr-footer__partners-logos"&gt;
+                &lt;div class="fr-footer__partners-main"&gt;
+                    &lt;a id="footer__partners-link-7424" class="fr-footer__partners-link" href=""&gt;
+                        &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                        &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class="fr-footer__partners-sub"&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7425" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.16x9.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7426" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.1x1.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li&gt;
+                            &lt;a id="footer__subpartners-link-7427" class="fr-footer__partners-link" href=""&gt;
+                                &lt;img class="fr-footer__logo" style="height: 5.625rem" src="../../../example/img/placeholder.9x16.png" alt="[À MODIFIER - texte alternatif de l’image]" /&gt;
+                                &lt;!-- L’alternative de l’image (attribut alt) doit impérativement être renseignée et reprendre le texte visible dans l’image --&gt;
+                            &lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="fr-footer__bottom"&gt;
+            &lt;ul class="fr-footer__bottom-list"&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7428" href="#"&gt;Plan du site&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7429" href="#"&gt;Accessibilité : non/partiellement/totalement conforme&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7430" href="#"&gt;Mentions légales&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7431" href="#"&gt;Données personnelles&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="fr-footer__bottom-item"&gt;
+                    &lt;a class="fr-footer__bottom-link" id="footer__bottom-link-7432" href="#"&gt;Gestion des cookies&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+            &lt;div class="fr-footer__bottom-copy"&gt;
+                &lt;p&gt;Sauf mention explicite de propriété intellectuelle détenue par des tiers, les contenus de ce site sont proposés sous &lt;a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noopener external" title="[À MODIFIER - Intitulé] - nouvelle fenêtre"&gt;licence etalab-2.0&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+                </div>
+            </section>
+        </div>
+    </div>
+    <button class="fr-display-button fr-background-default--grey fr-btn fr-btn--lg fr-icon-theme-fill fr-btn--secondary" aria-controls="fr-theme-modal" data-fr-opened="false" style="z-index: 1600" id="button-7434">
+        Label bouton
+    </button>
+    <dialog id="fr-theme-modal" class="fr-modal" aria-labelledby="fr-theme-modal-title">
+        <div class="fr-container fr-container--fluid fr-container-md">
+            <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
+                    <div class="fr-modal__body">
+                        <div class="fr-modal__header">
+                            <button class="fr-btn--close fr-btn" aria-controls="fr-theme-modal" id="button-7435" title="Fermer">
+                                Fermer
+                            </button>
+                        </div>
+                        <div class="fr-modal__content">
+                            <h1 id="fr-theme-modal-title" class="fr-modal__title">
+                                Paramètres d’affichage
+                            </h1>
+                            <div id="fr-display" class="fr-display">
+                                <fieldset class="fr-fieldset" id="display-fieldset">
+                                    <legend class="fr-fieldset__legend--regular fr-fieldset__legend" id="display-fieldset-legend">
+                                        Choisissez un thème pour personnaliser l’apparence du site.
+                                    </legend>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="light" type="radio" id="fr-radios-theme-light" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-light">
+                                                Thème clair
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/sun.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="dark" type="radio" id="fr-radios-theme-dark" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-dark">
+                                                Thème sombre
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/environment/moon.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fr-fieldset__element">
+                                        <div class="fr-radio-group fr-radio-rich">
+                                            <input value="system" type="radio" id="fr-radios-theme-system" name="fr-radios-theme">
+                                            <label class="fr-label" for="fr-radios-theme-system">
+                                                Système
+                                                <span class="fr-hint-text">Utilise les paramètres système</span>
+                                            </label>
+                                            <div class="fr-radio-rich__pictogram">
+                                                <svg aria-hidden="true" class="fr-artwork" viewBox="0 0 80 80" width="80px" height="80px">
+                                                    <use class="fr-artwork-decorative" href="../../../dist/artwork/pictograms/system/system.svg#artwork-decorative"></use>
+                                                    <use class="fr-artwork-minor" href="../../../dist/artwork/pictograms/system/system.svg#artwork-minor"></use>
+                                                    <use class="fr-artwork-major" href="../../../dist/artwork/pictograms/system/system.svg#artwork-major"></use>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <script type="module" src="../../../dist/core/core.module.js"></script>
+    <script type="module" src="../../../dist/scheme/scheme.module.js"></script>
+    <script type="module" src="../../../dist/component/accordion/accordion.module.js"></script>
+    <script type="module" src="../../../dist/component/modal/modal.module.js"></script>
+    <script type="module" src="../../../dist/component/display/display.module.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/legacy/legacy.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/core/core.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/accordion/accordion.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/modal/modal.nomodule.js"></script>
+    <script type="text/javascript" nomodule src="../../../dist/component/display/display.nomodule.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+</body>
+
+</html>

@@ -25,6 +25,8 @@ x-superset-volumes:
   - ./assets:/app/superset/static/assets/local
   - ./dsfr/dist/fonts/:/app/superset/static/assets/dsfr/fonts
   - ./dsfr/dist/favicon/:/app/superset/static/assets/dsfr/favicon/
+  - ./dsfr/dist/dsfr.module.min.js:/app/superset/static/assets/dsfr/dsfr.module.min.js
+  - ./dsfr/dist/dsfr.nomodule.min.js:/app/superset/static/assets/dsfr/dsfr.nomodule.min.js
   - ./dsfr/dist/dsfr.min.css:/app/superset/static/assets/dsfr/dsfr.min.css
   - ./dsfr/dist/utility/utility.min.css:/app/superset/static/assets/dsfr/utility/utility.min.css
   - ./dsfr/dist/icons/:/app/superset/static/assets/dsfr/icons
@@ -33,7 +35,6 @@ x-superset-volumes:
   - ./superset/templates/superset/public_welcome.html:/app/superset/templates/superset/public_welcome.html
   - ./superset/templates/superset/base.html:/app/superset/templates/superset/base.html
   - ./superset/templates/superset/basic.html:/app/superset/templates/superset/basic.html
-  - ./superset/templates/tail_js_custom_extra.html:/app/superset/templates/tail_js_custom_extra.html
   - ./superset/templates/tail_js_custom_extra.html:/app/superset/templates/superset/tail_js_custom_extra.html
 
 version: "3.7"

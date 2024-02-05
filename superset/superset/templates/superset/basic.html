@@ -116,6 +116,8 @@
         {{ js_bundle(entry) }}
       {% endif %}
       {% include "tail_js_custom_extra.html" %}
+      <script type="module" href="/static/assets/dsfr/dsfr.module.min.js"></script>
+      <script type="text/javascript" nomodule href="/static/assets/dsfr/dsfr.nomodule.min.js"></script>
     {% endblock %}
   </body>
 </html>

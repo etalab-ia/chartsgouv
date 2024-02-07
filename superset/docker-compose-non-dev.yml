@@ -31,11 +31,13 @@ x-superset-volumes:
   - ./dsfr/dist/utility/utility.min.css:/app/superset/static/assets/dsfr/utility/utility.min.css
   - ./dsfr/dist/icons/:/app/superset/static/assets/dsfr/icons
   - ./dsfr/dist/artwork/pictograms/:/app/superset/static/assets/dsfr/pictograms
-  - ./theme.5fb6aaa7430ffb2cbd6c.entry.css:/app/superset/static/assets/theme.5fb6aaa7430ffb2cbd6c.entry.css
   - ./superset/templates/superset/public_welcome.html:/app/superset/templates/superset/public_welcome.html
   - ./superset/templates/superset/base.html:/app/superset/templates/superset/base.html
   - ./superset/templates/superset/basic.html:/app/superset/templates/superset/basic.html
-  - ./superset/templates/tail_js_custom_extra.html:/app/superset/templates/superset/tail_js_custom_extra.html
+  - ./superset/templates/tail_js_custom_extra.html:/app/superset/templates/tail_js_custom_extra.html
+  - ./theme.5fb6aaa7430ffb2cbd6c.entry.css:/app/superset/static/assets/theme.5fb6aaa7430ffb2cbd6c.entry.css
+  - ./dsfr/dist/dsfr.module.min.js:/app/superset/static/assets/dsfr.module.min.js:ro
+  - ./dsfr/dist/dsfr.nomodule.min.js:/app/superset/static/assets/dsfr.nomodule.min.js:ro
 
 version: "3.7"
 services:

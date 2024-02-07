@@ -85,8 +85,8 @@
       <div id="app" data-bootstrap="{{ bootstrap_data }}">
         <img src="{{ assets_prefix }}/static/assets/images/loading.gif" style="width: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%)">
       </div>
-      <script type="module" href="/static/assets/dsfr/dsfr.module.min.js"></script>
-      <script type="text/javascript" nomodule href="/static/assets/dsfr/dsfr.nomodule.min.js"></script>
+      <script type="module" src="/static/assets/dsfr.module.min.js"></script>
+      <script type="text/javascript" nomodule src="/static/assets/dsfr.nomodule.min.js"></script>
     {% endblock %}
 
     <!-- Modal for misc messages / alerts  -->
@@ -116,8 +116,8 @@
         {{ js_bundle(entry) }}
       {% endif %}
       {% include "tail_js_custom_extra.html" %}
-      <script type="module" href="/static/assets/dsfr/dsfr.module.min.js"></script>
-      <script type="text/javascript" nomodule href="/static/assets/dsfr/dsfr.nomodule.min.js"></script>
     {% endblock %}
+    <script type="module" href="/static/assets/dsfr/dsfr.module.min.js"></script>
+    <script type="text/javascript" nomodule href="/static/assets/dsfr/dsfr.nomodule.min.js"></script>
   </body>
 </html>

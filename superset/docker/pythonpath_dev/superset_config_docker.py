@@ -17,7 +17,7 @@ LANGUAGES = {
 # A CHANGER
 # Par exemple avec la commande :
 # openssl rand -base64 42
-#SECRET_KEY = "lyAMM5kaf6pfKC7PlN22R7SYzok2ipoSFs99z33hI/2zTRF/JPPS9uPx"
+SECRET_KEY = ""
 
 # https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md
 FEATURE_FLAGS = {

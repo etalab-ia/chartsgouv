@@ -23,9 +23,17 @@ unzip dsfr-v1.11.1.zip -d dsfr
 Cloner le repo ChartsGouv, seule la branche principale est nécessaire.
 Le dépôt contient:
 - une version modifiée de `docker-compose-non-dev.yml` avec des points de montage supplémentaire (assets supplémentaires, DSFR, templates,
-- une version modifiée des templates `superset/templates/superset/{base,basic}.html` pour inclure le DSFR globalement
-- un fichier `superset/templates/tail_js_custom_extra.html` pour corriger l'affichage des liens dans la navigation
-- un fichier `assets/css/superset/public_welcom.html` pour démontrer la capacité de personnaliser la page d'accueil
+- une version modifiée des templates `superset/templates/superset/{base,basic}.html` pour inclure le DSFR globalement (css et js),
+- un fichier `assets/css/tail_css_custom_extra.css` pour corriger l'affichage de certains liens,
+- un fichier `assets/images/app_icon.png`, à remplacer par l'image de votre choix pour l'icône de l'application dans le header,
+- un fichier `superset/templates/superset/public_welcome.html`, optionnel pour démontrer la capacité de personnaliser la page d'accueil
+- un fichier `superset/templates/tail_js_custom_extra.html`, optionnel pour démontrer la capacité d'injecter un script globalement sur toutes les pages
+- un fichier `docker/requirements-local.txt`, où on peut ajouter des paquets Python supplémentaires, ![par exemple nécessaires pour certains drivers](https://superset.apache.org/docs/databases/installing-database-drivers) comme `duckdb-engine`,
+- le fichier de configuration `docker/pythonpath_dev/superset_config_docker.py` qui inclut notamment: 
+  - la ![variable de configuration de thème](https://preset.io/blog/theming-superset-progress-update/) `THEME_OVERRIDES` pour faire la transposition DSFR => design system de Superset,
+  - ![les variables de configuration des couleurs des charts](https://preset.io/blog/customizing-chart-colors-with-superset-and-preset/) `EXTRA_CATEGORICAL_COLOR_SCHEMES` pour définir une nouvelle palette de couleurs avec ![les couleurs illustratives du DSFR](https://gouvernementfr.github.io/dsfr-chart/#colors) pour les graphiques à variables catégorielles,
+  - `EXTRA_SEQUENTIAL_COLOR_SCHEMES` pour définir des dégradés de couleur pour les graphiques à variables continues (e.g. plugin Carte de Pays).
+- les autres fichiers (`docker/docker-entrypoint-initdb.d/examples-init.sh`, `docker/pythonpath_dev/superset_config.py`, `docker/{.env-non-dev,docker-bootstrap.sh,docker-init.sh}` sont les fichiers originaux du dépot principal non modifié, ils viennent de la version 3.0.0 et sont stables dans le temps.
 
 ```bash
 git clone --single-branch https://github.com/etalab-ia/chartsgouv

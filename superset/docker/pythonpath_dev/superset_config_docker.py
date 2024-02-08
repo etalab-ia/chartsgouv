@@ -11,7 +11,8 @@ LANGUAGES = {
 # A CHANGER
 # Par exemple avec la commande :
 # openssl rand -base64 42
-SECRET_KEY = "lyAMM5kaf6pfKC7PlN22R7SYzok2ipoSFs99z33hI/2zTRF/JPPS9uPx"
+# ou definir la variable d'environnement SUPERSET_SECRET_KEY
+#SECRET_KEY = ""
 
 FEATURE_FLAGS = {
     "TAGGING_SYSTEM": True,

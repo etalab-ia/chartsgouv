@@ -66,23 +66,17 @@ Le dépôt contient:
 
 Le CSS compilé, le JS compilé, la police Marianne, les icônes, les favicons et les pictogrammes sont montés comme volumes dans les containers dans le chemin `/app/superset/static/assets/dsfr`.
 
-Voir cet extrait du fichier `docker-compose-non-dev.yml`.
+### `docker-compose-non-dev.yml`
 
-```yaml
-...
-x-superset-volumes:
-  &superset-volumes # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
-  ...
-  - ./dsfr/dist/fonts/:/app/superset/static/assets/dsfr/fonts
-  - ./dsfr/dist/fonts/:/app/superset/static/assets/dsfr/fonts
-  - ./dsfr/dist/favicon/:/app/superset/static/assets/dsfr/favicon/
-  - ./dsfr/dist/dsfr.module.min.js:/app/superset/static/assets/dsfr/dsfr.module.min.js
-  - ./dsfr/dist/dsfr.nomodule.min.js:/app/superset/static/assets/dsfr/dsfr.nomodule.min.js
-  - ./dsfr/dist/dsfr.min.css:/app/superset/static/assets/dsfr/dsfr.min.css
-  - ./dsfr/dist/utility/utility.min.css:/app/superset/static/assets/dsfr/utility/utility.min.css
-  - ./dsfr/dist/icons/:/app/superset/static/assets/dsfr/icons
-  - ./dsfr/dist/artwork/pictograms/:/app/superset/static/assets/dsfr/pictograms
-  ...
+```bash
+diff docker-compose-non-dev.yml.superset docker-compose-non-dev.yml
+24a25,30
+>   - ./assets:/app/superset/static/assets/local
+>   - ./templates_overrides:/app/superset/templates_overrides/
+>   - ./dsfr/dist/:/app/superset/static/assets/dsfr/
+>   - ./dsfr-chart/Charts/:/app/superset/static/assets/dsfr-chart/
+>   - ./dsfr/tool/example/img/:/app/superset/static/assets/dsfr/img/
+>
 ```
 
 Les templates Flask-App-Builder, sur quoi Superset est fondé, `superset/templates/superset/base.html` et `superset/templates/superset/basic.html` sont également montés individuellement commes volumes dans les containers pour **remplacer** les templates originaux. Toutes les pages et SPA (Single-Page-Application React) dérivent de ces templates de base et sont très stables dans le temps.
@@ -122,9 +116,89 @@ Voici le diff entre les templates `superset/templates/superset/basic.html` de ce
 ```bash
 ```
 
+### `tail_js_custom_extra.html`
 
 ```bash
-docker exec superset_app pybabel compile -d superset/translations
+diff templates/tail_js_custom_extra.html templates_overrides/tail_js_custom_extra.html
+25a26,30
+>
+> <script>
+> window.addEventListener('DOMContentLoaded', function() {
+> });
+> </script>
+```
+
+### `basic.html`
+
+```bash
+diff templates/superset/basic.html templates_overrides/superset/basic.html
+70c70,91
+<     {{ css_bundle("theme") }} {% if entry %} {{ css_bundle(entry) }} {% endif %}
+---
+>     {{ css_bundle("theme") }}
+>     <link
+>       rel="stylesheet"
+>       type="text/css"
+>       href="{{ assets_prefix }}/static/assets/dsfr/dsfr.min.css"
+>     />
+>     <link
+>       rel="stylesheet"
+>       type="text/css"
+>       href="{{ assets_prefix }}/static/assets/dsfr/utility/utility.min.css"
+>     />
+>     <link
+>       rel="stylesheet"
+>       type="text/css"
+>       href="{{ assets_prefix }}/static/assets/local/css/tail_css_custom_extra.css"
+>     />
+>     <link
+>       rel="stylesheet"
+>       type="text/css"
+>       href="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.css"
+>     />
+>     {% if entry %} {{ css_bundle(entry) }} {% endif %}
+131c152,166
+<     "tail_js_custom_extra.html" %} {% endblock %}
+---
+>     "tail_js_custom_extra.html" %}
+>     <script
+>       type="module"
+>       src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
+>     </script>
+>     <script
+>       type="text/javascript"
+>       nomodule
+>       src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
+>     </script>
+>     <script
+>       defer
+>         src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js"
+>     ></script>
+>     {% endblock %}
+```
+
+### `docker/docker-bootstrap.sh`
+
+```bash
+diff docker-bootstrap.sh docker/docker-bootstrap.sh
+38c38,53
+< #
+---
+> for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do
+>     sed \
+>       -e "s/#20a7c9/#000091/g" \
+>       -e "s/#45bed6/#000091/g" \
+>       -e "s/#1985a0/#000091/g" \
+>       "$theme_filename" > temp.css && mv temp.css "$theme_filename"
+> done
+> pybabel compile -d superset/translations || true
+> cp /app/superset/templates_overrides/superset/base.html /app/superset/templates/superset/base.html
+> cp /app/superset/templates_overrides/superset/basic.html /app/superset/templates/superset/basic.html
+> cp /app/superset/templates_overrides/superset/spa.html /app/superset/templates/superset/spa.html
+> cp /app/superset/templates_overrides/superset/public_welcome.html /app/superset/templates/superset/public_welcome.html
+> cp /app/superset/templates_overrides/tail_js_custom_extra.html /app/superset/templates/tail_js_custom_extra.html
+> cp /app/superset/static/assets/local/404.html /app/superset/static/assets/404.html
+> cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.html
 ```
 
 #### Nginx
@@ -170,14 +244,6 @@ server {
 ```bash
 sudo ln -s /etc/nginx-sites-available/superset /etc/nginx/sites-enabled/superset 
 sudo nginx -s reload
-```
-
-### theme.xxx.css
-
-```bash
-docker exec -w /app/superset/static/assets superset_app sh -c '
-theme_filename=$(find . -name "theme*.css");
-sed -i -e "s/#20a7c9/#000091/g" -e "s/#45bed6/#000091/g" -e "s/#1985a0/#000091/g" "$theme_filename";'
 ```
 
 #### Couleurs

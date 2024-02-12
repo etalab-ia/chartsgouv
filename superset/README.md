@@ -102,10 +102,23 @@ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templa
 ```bash
 curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/tail_js_custom_extra.html | diff - templates_overrides/tail_js_custom_extra.html
 25a26,30
->
 > <script>
 > window.addEventListener('DOMContentLoaded', function() {
 > });
+> </script>
+> </script>
+> <script
+>   type="module"
+>   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
+> </script>
+> <script
+>   type="text/javascript"
+>   nomodule
+>   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
+> </script>
+> <script
+>   defer
+>     src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js">
 > </script>
 ```
 
@@ -134,20 +147,6 @@ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templa
 >       type="text/css"
 >       href="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.css"
 >     />
-45a66,78
->   <script
->     type="module"
->     src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
->   </script>
->   <script
->     type="text/javascript"
->     nomodule
->     src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
->   </script>
->   <script
->     defer
->       src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js">
->   </script>
 ```
 
 ### `basic.html`
@@ -180,43 +179,6 @@ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templa
 >     />
 >     {% if entry %} {{ css_bundle(entry) }} {% endif %}
 131c152,166
-<     "tail_js_custom_extra.html" %} {% endblock %}
----
->     "tail_js_custom_extra.html" %}
->     <script
->       type="module"
->       src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
->     </script>
->     <script
->       type="text/javascript"
->       nomodule
->       src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
->     </script>
->     <script
->       defer
->         src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js">
->     </script>
->     {% endblock %}
-```
-
-### `spa.html`
-
-```bash
-curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/spa.html | diff - templates_overrides/superset/spa.html
-26a27,39
->   <script
->     type="module"
->     src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
->   </script>
->   <script
->     type="text/javascript"
->     nomodule
->     src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
->   </script>
->   <script
->     defer
->       src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js">
->   </script>
 ```
 
 ### `docker/docker-bootstrap.sh`

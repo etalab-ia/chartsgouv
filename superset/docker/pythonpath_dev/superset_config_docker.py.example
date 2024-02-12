@@ -47,6 +47,14 @@ FEATURE_FLAGS = {
 PUBLIC_ROLE_LIKE = "Gamma"
 
 
+# A dictionary of items that gets merged into the Jinja context for
+# SQL Lab. The existing context gets updated with this dictionary,
+# meaning values for existing keys get overwritten by the content of this
+# dictionary. Exposing functionality through JINJA_CONTEXT_ADDONS has security
+# implications as it opens a window for a user to execute untrusted code.
+# It's important to make sure that the objects exposed (as well as objects attached
+# to those objects) are harmless. We recommend only exposing simple/pure functions that
+# return native types.
 JINJA_CONTEXT_ADDONS = {
     'my_crazy_macro': lambda x: x*2,
     'foo': 1,
@@ -59,9 +67,6 @@ DSFR_COLORS = {
     "grey-1000-50": "#fff",
     "grey-1000-50-hover": "#f6f6f6",
     "grey-1000-50-active": "#ededed",
-    "grey-975-75": "#f6f6f6",
-    "grey-975-75-hover": "#dfdfdf",
-    "grey-975-75-active": "#cfcfcf",
     "grey-950-100": "#eee",
     "grey-950-100-hover": "#d2d2d2",
     "grey-950-100-active": "#c1c1c1",
@@ -74,8 +79,6 @@ DSFR_COLORS = {
     "grey-1000-100-hover": "#f6f6f6",
     "grey-1000-100-active": "#ededed",
     "grey-975-100": "#f6f6f6",
-    "grey-975-100-hover": "#dfdfdf",
-    "grey-975-100-active": "#cfcfcf",
     "grey-975-125": "#f6f6f6",
     "grey-975-125-hover": "#dfdfdf",
     "grey-975-125-active": "#cfcfcf",
@@ -1033,13 +1036,3 @@ PERMISSION_INSTRUCTIONS_LINK = ""
 # in whatever way.
 # example: FLASK_APP_MUTATOR = lambda x: x.before_request = f
 FLASK_APP_MUTATOR = None
-
-# A dictionary of items that gets merged into the Jinja context for
-# SQL Lab. The existing context gets updated with this dictionary,
-# meaning values for existing keys get overwritten by the content of this
-# dictionary. Exposing functionality through JINJA_CONTEXT_ADDONS has security
-# implications as it opens a window for a user to execute untrusted code.
-# It's important to make sure that the objects exposed (as well as objects attached
-# to those objects) are harmless. We recommend only exposing simple/pure functions that
-# return native types.
-JINJA_CONTEXT_ADDONS: dict[str, Callable[..., Any]] = {}

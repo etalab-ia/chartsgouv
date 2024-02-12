@@ -24,17 +24,4 @@
 {% block tail_js %}
   {{ js_bundle(entry) }}
   {% include "tail_js_custom_extra.html" %}
-  <script
-    type="module"
-    src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
-  </script>
-  <script
-    type="text/javascript"
-    nomodule
-    src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
-  </script>
-  <script
-    defer
-      src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js"
-  ></script>
 {% endblock %}

@@ -53,10 +53,11 @@
       <link rel="stylesheet" type="text/css" href="{{ assets_prefix }}/static/appbuilder/select2/select2.css">
       <link rel="stylesheet" type="text/css" href="{{ assets_prefix }}/static/appbuilder/select2/select2-bootstrap-theme.css">
 
+      {{ css_bundle("theme") }}
       <link rel="stylesheet" href="/static/assets/dsfr/dsfr.min.css">
       <link rel="stylesheet" href="/static/assets/dsfr/utility/utility.min.css">
       <link rel="stylesheet" href="/static/assets/local/css/tail_css_custom_extra.css">
-      {{ css_bundle("theme") }}
+      <link rel="stylesheet" href="/static/assets/dsfr-chart/dsfr-chart.css">
 
       {% if entry %}
         {{ css_bundle(entry) }}
@@ -85,8 +86,6 @@
       <div id="app" data-bootstrap="{{ bootstrap_data }}">
         <img src="{{ assets_prefix }}/static/assets/images/loading.gif" style="width: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%)">
       </div>
-      <script type="module" src="/static/assets/dsfr.module.min.js"></script>
-      <script type="text/javascript" nomodule src="/static/assets/dsfr.nomodule.min.js"></script>
     {% endblock %}
 
     <!-- Modal for misc messages / alerts  -->
@@ -116,8 +115,9 @@
         {{ js_bundle(entry) }}
       {% endif %}
       {% include "tail_js_custom_extra.html" %}
+      <script type="module" src="/static/assets/dsfr/dsfr.module.min.js"></script>
+      <script type="text/javascript" nomodule src="/static/assets/dsfr/dsfr.nomodule.min.js"></script>
+      <script defer src="/static/assets/dsfr-chart/dsfr-chart.umd.js"></script>
     {% endblock %}
-    <script type="module" href="/static/assets/dsfr/dsfr.module.min.js"></script>
-    <script type="text/javascript" nomodule href="/static/assets/dsfr/dsfr.nomodule.min.js"></script>
   </body>
 </html>

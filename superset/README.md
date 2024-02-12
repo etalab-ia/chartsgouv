@@ -6,6 +6,8 @@
 ```bash
 wget https://github.com/GouvernementFR/dsfr/releases/download/v1.11.1/dsfr-v1.11.1.zip
 unzip dsfr-v1.11.1.zip -d dsfr
+wget https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip
+unzip dsfr-chart-1.0.0.zip dsfr-chart
 git clone --single-branch https://github.com/etalab-ia/chartsgouv
 cd superset/
 TAG=3.0.0 docker compose -f docker-compose-non-dev.yml up -d
@@ -168,6 +170,14 @@ server {
 ```bash
 sudo ln -s /etc/nginx-sites-available/superset /etc/nginx/sites-enabled/superset 
 sudo nginx -s reload
+```
+
+### theme.xxx.css
+
+```bash
+docker exec -w /app/superset/static/assets superset_app sh -c '
+theme_filename=$(find . -name "theme*.css");
+sed -i -e "s/#20a7c9/#000091/g" -e "s/#45bed6/#000091/g" -e "s/#1985a0/#000091/g" "$theme_filename";'
 ```
 
 #### Couleurs

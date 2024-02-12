@@ -30,10 +30,11 @@
       href="{{ "" if favicon.href.startswith("http") else assets_prefix }}{{favicon.href}}"
     >
   {% endfor %}
+  {{ css_bundle("theme") }}
   <link rel="stylesheet" href="/static/assets/dsfr/dsfr.min.css">
   <link rel="stylesheet" href="/static/assets/dsfr/utility/utility.min.css">
   <link rel="stylesheet" href="/static/assets/local/css/tail_css_custom_extra.css">
-  {{ css_bundle("theme") }}
+  <link rel="stylesheet" href="/static/assets/dsfr-chart/dsfr-chart.css">
 {% endblock %}
 
 {% block head_js %}
@@ -46,6 +47,7 @@
   {{ js_bundle("preamble") }}
   {{ js_bundle('menu') }}
   {% include "tail_js_custom_extra.html" %}
-  <script type="module" src="/static/assets/dsfr.module.min.js"></script>
-  <script type="text/javascript" nomodule src="/static/assets/dsfr.nomodule.min.js"></script>
+  <script type="module" src="/static/assets/dsfr/dsfr.module.min.js"></script>
+  <script type="text/javascript" nomodule src="/static/assets/dsfr/dsfr.nomodule.min.js"></script>
+  <script defer src="/static/assets/dsfr-chart/dsfr-chart.umd.js"></script>
 {% endblock %}

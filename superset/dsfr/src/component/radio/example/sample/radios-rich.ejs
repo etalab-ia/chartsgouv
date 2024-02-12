@@ -1,8 +1,0 @@
-<%
-  const radios = locals.radios || {}
-  const radio = locals.radio || {};
-  radio.rich = true;
-  radio.pictogram = radio.pictogram !== false ? radio.pictogram || {name: 'city-hall'} : radio.pictogram;
-%>
-
-<%- include('radios', { radios: radios, radio: radio }); %>

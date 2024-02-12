@@ -1,6 +1,0 @@
-#{ns(content-media)} {
-  &__caption {
-    @include text-style(md);
-    @include nest-link(md, null);
-  }
-}

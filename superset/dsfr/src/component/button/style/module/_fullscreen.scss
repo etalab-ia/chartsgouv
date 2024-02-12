@@ -1,8 +1,0 @@
-////
-/// Button Module - Fullscreen
-/// @group button
-////
-
-#{ns(btn--fullscreen)} {
-  @include nest-btn(sm, right, fullscreen-line, null, false);
-}

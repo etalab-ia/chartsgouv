@@ -1,8 +1,0 @@
-////
-/// Button Module - Tooltip
-/// @group button
-////
-
-#{ns(btn--tooltip)} {
-  @include nest-btn(sm, only, question-line, null, false);
-}

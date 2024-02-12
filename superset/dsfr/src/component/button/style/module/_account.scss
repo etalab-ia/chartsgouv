@@ -1,8 +1,0 @@
-////
-/// Button Module - Account
-/// @group button
-////
-
-#{ns(btn--account)} {
-  @include nest-btn(sm, left, account-circle-fill, null, false);
-}

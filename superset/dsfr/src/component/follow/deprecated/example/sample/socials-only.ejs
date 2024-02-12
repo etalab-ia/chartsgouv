@@ -1,8 +1,0 @@
-
-<%
-let data = {};
-data = JSON.parse(include('./data.ejs'));
-data.newsletter = undefined;
-%>
-
-<%- include('../../template/ejs/follow.ejs', {follow: data}); %>

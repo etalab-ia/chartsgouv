@@ -2,7 +2,9 @@
 > Son objectif principal est de faciliter l'identification des sites gouvernementaux par les citoyens. [Voir les conditions](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/perimetre-d-application).
 
 Déploiement Docker d'Apache Superset.
+
 Editer `docker/pythonpath_dev/superset_config_docker.py` pour l'adapter à vos besoins (e.g. changer l'icône principale).
+
 Voir `docker/pythonpath_dev/superset_config_docker.example.py` pour d'autres configurations optionnelles non liées directement au thème (macros Jinja, feature flags, cache, ...).
 
 ### tldr;
@@ -184,7 +186,7 @@ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templa
 ### `docker/docker-bootstrap.sh`
 
 ```bash
-diff docker-bootstrap.sh docker/docker-bootstrap.sh
+curl -s https://raw.githubusercontent.com/apache/superset/master/docker/docker-bootstrap.sh | diff - docker/docker-bootstrap.sh
 38c38,53
 < #
 ---

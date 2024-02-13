@@ -6,9 +6,9 @@ LANGUAGES = {
     "fr": {"flag": "fr", "name": "French"},
 }
 
-FAVICONS = [{"href": "/static/assets/dsfr/favicon/favicon.svg"}]
-LOGO_TOOLTIP = "Superset ChartsGouv"
-APP_NAME = "Superset ChartsGouv"
+FAVICONS = [{"href": "/static/assets/local/images/favicon.svg"}]
+LOGO_TOOLTIP = "Superset"
+APP_NAME = "Superset"
 
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"
@@ -327,3 +327,59 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         ]
 ]
 EXTRA_SEQUENTIAL_COLOR_SCHEMES[0]["isDefault"] = True
+
+# Do you want Talisman enabled?
+TALISMAN_ENABLED = False
+
+# If you want Talisman, how do you want it configured??
+TALISMAN_CONFIG = {
+    "content_security_policy": {
+        "default-src": ["'self'"],
+        "img-src": ["'self'", "data:"],
+        "worker-src": ["'self'", "blob:"],
+        "connect-src": [
+            "'self'",
+            "https://api.mapbox.com",
+            "https://events.mapbox.com",
+        ],
+        "object-src": "'none'",
+        "style-src": ["'self'", "'unsafe-inline'"],
+        "script-src": ["'self'", "'unsafe-eval'"],
+    },
+    "content_security_policy_nonce_in": ["script-src"],
+    "force_https": False,
+}
+
+# Sanitizes the HTML content used in markdowns to allow its rendering in a safe manner.
+# Disabling this option is not recommended for security reasons. If you wish to allow
+# valid safe elements that are not included in the default sanitization schema, use the
+# HTML_SANITIZATION_SCHEMA_EXTENSIONS configuration.
+HTML_SANITIZATION = False
+
+# Use this configuration to extend the HTML sanitization schema.
+# By default we use the GitHub schema defined in
+# https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/schema.js
+# For example, the following configuration would allow the rendering of the
+# style attribute for div elements and the ftp protocol in hrefs:
+HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
+  "ancestors": {
+    "tbody": ["table"],
+	"td": ["table"],
+	"th": ["table"],
+	"thead": ["table"],
+	"tfoot": ["table"],
+	"tr": ["table"]
+  },
+  "tagNames": ["button", "svg", "use", "span"],
+  "attributes": {
+    "div": ["style"],
+    "button": ["class", "id", "aria-desribedby"],
+    "*": ["style","className"],
+	"svg": ["viewBox"],
+	"use": ["href"],
+  },
+  "strip": ["script"],
+  "protocols": {
+    "href": ["ftp"],
+  }
+}

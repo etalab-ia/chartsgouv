@@ -23,10 +23,10 @@ x-superset-volumes:
   - ./docker:/app/docker
   - superset_home:/app/superset_home
   - ./assets:/app/superset/static/assets/local
-  - ./templates_overrides:/app/superset/templates_overrides/
-  - ./dsfr/dist/:/app/superset/static/assets/dsfr/
-  - ./dsfr-chart/Charts/:/app/superset/static/assets/dsfr-chart/
-  - ./dsfr/tool/example/img/:/app/superset/static/assets/dsfr/img/
+  - ./templates_overrides:/app/superset/templates_overrides
+  - ./dsfr/dist:/app/superset/static/assets/dsfr
+  - ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
+ #- ./dsfr/tool/example/img/:/app/superset/static/assets/dsfr/img/
 
 
 version: "3.7"

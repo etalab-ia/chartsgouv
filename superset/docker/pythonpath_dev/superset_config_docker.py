@@ -13,6 +13,7 @@ APP_NAME = "Superset ChartsGouv"
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"
 
+
 DSFR_COLORS = {
   "sun": {
     "grey-1000-50": "#fff",

@@ -343,7 +343,7 @@ cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.ht
 | info      | light1 | ![superset](https://via.placeholder.com/20/B3DEFE/000000?text=+) | `#B3DEFE` | ![dsfr](https://via.placeholder.com/20/0063cb/000000?text=+) | `#0063cb` |
 | info      | light2 | ![superset](https://via.placeholder.com/20/EFF8FE/000000?text=+) | `#EFF8FE` | ![dsfr](https://via.placeholder.com/20/e8edff/000000?text=+) | `#e8edff` |
 
-#### Nginx
+### Nginx
 
 Fichier `/etc/nginx/sites-available/superset`:
 ```
@@ -388,7 +388,7 @@ sudo ln -s /etc/nginx-sites-available/superset /etc/nginx/sites-enabled/superset
 sudo nginx -s reload
 ```
 
-#### Captures d'écran
+### Captures d'écran
 
 | Description | Image |
 | --- | --- |

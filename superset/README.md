@@ -20,7 +20,7 @@
 - [composants DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants) :control_knobs: dans les zones de texte (optionnel, nécessite d'adapter `HTML_SANITIZATION_SCHEMA_EXTENSIONS`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
 - [DSFR charts](https://gouvernementfr.github.io/dsfr-chart/) :chart_with_upwards_trend: (optionnel, necéssite d'adapter `TALISMAN_CONFIG`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
 
-Editer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) pour l'adapter à vos besoins (e.g. rajouter des [feature flags](https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md)), ou remplacer des fichiers de ce repo montés dans le container, par exemple:
+Editer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) pour l'adapter à vos besoins (e.g. rajouter des [feature flags](https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md)), ou remplacer des fichiers de ce dépôt montés dans le container, par exemple:
 - [app_icon.png](assets/images/app_icon.png) pour modifier l'icone dans l'en-tete,
 - [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css) pour rajouter des règles CSS globales,
 - [tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html) pour rajouter des scripts JS globaux,
@@ -43,7 +43,7 @@ Pour l'inclure à votre installation actuelle, regarder:
 - les points de montage additionnels dans [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L25),
 - et le script [docker/docker-dsfr.sh](docker/docker-dsfr.sh).
 
-Pour une nouvelle installation, ne pas oublier de générer une `SUPERSET_SECRET_KEY` et de la sauvegarder, et suivre le snippet ci-dessous pour télécharger le DSFR, cloner ce repo et démarrer le déploiement Docker en local.
+Pour une nouvelle installation, ne pas oublier de générer une `SUPERSET_SECRET_KEY` et de la sauvegarder, et suivre le snippet ci-dessous pour télécharger le DSFR, cloner ce dépôt et démarrer le déploiement Docker en local.
 
 ```bash
 # Definir une SUPERSET_SECRET_KEY et la sauvegarder !
@@ -85,7 +85,7 @@ unzip dsfr-chart-1.0.0.zip dsfr-chart
 #   - ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
 ```
 
-Cloner le repo ChartsGouv, seule la branche principale est nécessaire.
+Cloner le dépôt ChartsGouv, seule la branche principale est nécessaire.
 
 ```bash
 git clone --single-branch https://github.com/numerique-gouv/chartsgouv

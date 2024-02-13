@@ -1,7 +1,9 @@
 > AVERTISSEMENT : Ce système de conception est uniquement destiné à être utilisé pour les sites web officiels des services publics français.
 > Son objectif principal est de faciliter l'identification des sites gouvernementaux par les citoyens. [Voir les conditions](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/perimetre-d-application).
 
-[![Voir la vidéo](/images/demo_graphes_echarts.png)](https://www.youtube.com/watch?v=0o1JbSbwoM8 "Regarder sur YouTube")
+<a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
+    <img src="/images/demo_graphes_echarts.png" width="750" alt="Regarder sur YouTube">
+</a>
 
 Déploiement Docker d'Apache Superset.
 - police Marianne :fr: (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))

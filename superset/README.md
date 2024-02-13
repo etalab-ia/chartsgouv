@@ -2,12 +2,12 @@
 > Son objectif principal est de faciliter l'identification des sites gouvernementaux par les citoyens. [Voir les conditions](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/perimetre-d-application).
 
 Déploiement Docker d'Apache Superset.
-- police Marianne :fountain_pen: (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))
+- police Marianne :fr: (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))
 - version française :fr: (voir [docker/docker-dsfr.sh](docker/docker-dsfr.sh#L11))
 - transposition des couleurs DSFR :art: (voir `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L148))
 - palettes de couleurs pour les graphiques :art:  (voir `EXTRA_CATEGORICAL_COLOR_SCHEMES` et `EXTRA_SEQUENTIAL_COLOR_SCHEMES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L235))
 - pages d'erreurs :x: [404.html](assets/404.html) et [500.html](assets/500.html) du [DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/modeles/page-d-erreurs)
-- [composants DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants) dans les zones de texte :control_knobs: (optionnel, nécessite d'adapter `HTML_SANITIZATION_SCHEMA_EXTENSIONS`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
+- [composants DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants) :control_knobs: dans les zones de texte (optionnel, nécessite d'adapter `HTML_SANITIZATION_SCHEMA_EXTENSIONS`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
 - [DSFR charts](https://gouvernementfr.github.io/dsfr-chart/) :chart_with_upwards_trend: (optionnel, necéssite d'adapter `TALISMAN_CONFIG`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
 
 Editer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) pour l'adapter à vos besoins (e.g. rajouter des [feature flags](https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md)), ou remplacer des fichiers de ce repo montés dans le container, par exemple:
@@ -99,7 +99,7 @@ echo "$SUPERSET_SECRET_KEY" > .secret_key
 
 Tous les fichiers nécessaires sont présents dans ce répertoire, il n'y a pas besoin d'avoir le dépôt principal avec les sources complètes de Superset.
 
-On utilise les images officielles d'Apache Superset (en l'occurence depuis le registre [apachesuperset.docker.scarf.sf](docker-compose-non-dev.yml#L17), voir [les précautions pour scarf](https://superset.apache.org/docs/frequently-asked-questions/#does-superset-collect-any-telemetry-data) ou utiliser un autre registre) avec un fichier modifié ([voir plus bas](#docker-compose-non-dev.yml)) du `docker-compose-non-dev.yml` adapté pour la production:
+On utilise les images officielles d'Apache Superset (en l'occurence depuis le registre [apachesuperset.docker.scarf.sf](docker-compose-non-dev.yml#L17), voir [les précautions pour scarf](https://superset.apache.org/docs/frequently-asked-questions/#does-superset-collect-any-telemetry-data) ou utiliser un autre registre) avec un fichier modifié ([voir plus bas](#docker-compose-non-devyml)) du `docker-compose-non-dev.yml` adapté pour la production:
 
 ```bash
 TAG=3.1.0 docker compose -f docker-compose-non-dev.yml up -d
@@ -133,12 +133,13 @@ Le dépôt contient:
 - un fichier `docker/requirements-local.txt`, optionnel où on peut ajouter des paquets Python supplémentaires, [par exemple nécessaires pour certains drivers](https://superset.apache.org/docs/databases/installing-database-drivers) comme `duckdb-engine`,
 - les autres fichiers (`docker/docker-entrypoint-initdb.d/examples-init.sh`, `docker/pythonpath_dev/superset_config.py`, `docker/{.env-non-dev,docker-bootstrap.sh,docker-init.sh}` sont les fichiers originaux du dépot principal non modifié, ils viennent de la version 3.1.0 et sont stables dans le temps, sont nécessaires pour le déploiement avec Docker.
 
+Ci-dessous les diff apportées aux fichiers relatifs au déploiement Docker de ce dépot (à droite) comparées aux versions du dépôt principal (à gauche):
 
 ### `docker-compose-non-dev.yml`
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_docker-compose-non-dev.yaml.png)
+![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_docker-compose-non-dev.yml.png)
 
 ```bash
-curl -s https://raw.githubusercontent.com/apache/superset/master/docker-compose-non-dev.yml | diff - docker-compose-non-dev.yml
+$ curl -s https://raw.githubusercontent.com/apache/superset/master/docker-compose-non-dev.yml | diff - docker-compose-non-dev.yml
 24a25,30
 >   - ./assets:/app/superset/static/assets/local
 >   - ./templates_overrides:/app/superset/templates_overrides
@@ -169,7 +170,7 @@ cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.ht
 ![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_docker-bootstrap.sh.png)
 
 ```bash
-curl -s https://raw.githubusercontent.com/apache/superset/master/docker/docker-bootstrap.sh | diff - docker/docker-bootstrap.sh
+$ curl -s https://raw.githubusercontent.com/apache/superset/master/docker/docker-bootstrap.sh | diff - docker/docker-bootstrap.sh
 38c38,39
 < #
 ---
@@ -182,7 +183,7 @@ curl -s https://raw.githubusercontent.com/apache/superset/master/docker/docker-b
 ![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_public_welcome.html.png)
 
 ```bash
-$curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/public_welcome.html | diff - templates_overrides/superset/public_welcome.html
+$ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/public_welcome.html | diff - templates_overrides/superset/public_welcome.html
 22c22
 < <h2><center>Welcome to Apache Superset</center></h2>
 ---

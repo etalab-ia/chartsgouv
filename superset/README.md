@@ -1,6 +1,8 @@
 > AVERTISSEMENT : Ce système de conception est uniquement destiné à être utilisé pour les sites web officiels des services publics français.
 > Son objectif principal est de faciliter l'identification des sites gouvernementaux par les citoyens. [Voir les conditions](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/perimetre-d-application).
 
+[![Voir la vidéo](/images/demo_graphes_echarts.png)](https://www.youtube.com/watch?v=0o1JbSbwoM8 "Regarder sur YouTube")
+
 Déploiement Docker d'Apache Superset.
 - police Marianne :fr: (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))
 - version française :fr: (voir [docker/docker-dsfr.sh](docker/docker-dsfr.sh#L11))
@@ -137,7 +139,7 @@ Ci-dessous les comparaisons des fichiers relatifs au déploiement Docker du dép
 
 ### `docker-compose-non-dev.yml`
 
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_docker-compose-non-dev.yml.png)
+![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_docker-compose-non-dev.yml.png)
 
 ```bash
 $ curl -s https://raw.githubusercontent.com/apache/superset/master/docker-compose-non-dev.yml | diff - docker-compose-non-dev.yml
@@ -151,7 +153,7 @@ $ curl -s https://raw.githubusercontent.com/apache/superset/master/docker-compos
 
 ### `docker-bootstrap.sh`
 
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_docker-bootstrap.sh.png)
+![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_docker-bootstrap.sh.png)
 
 ```bash
 $ curl -s https://raw.githubusercontent.com/apache/superset/master/docker/docker-bootstrap.sh | diff - docker/docker-bootstrap.sh
@@ -164,7 +166,7 @@ $ curl -s https://raw.githubusercontent.com/apache/superset/master/docker/docker
 
 ### `public_welcome.html`
 
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_public_welcome.html.png)
+![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_public_welcome.html.png)
 
 ```bash
 $ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/public_welcome.html | diff - templates_overrides/superset/public_welcome.html
@@ -216,7 +218,7 @@ cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.ht
 ```
 
 ### `base.html`
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_base.html.png)
+![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_base.html.png)
 
 ```bash
 curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/base.html | diff - templates_overrides/superset/base.html
@@ -247,7 +249,7 @@ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templa
 
 ### `basic.html`
 
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_basic.html.png)
+![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_basic.html.png)
 
 ```bash
 curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/basic.html | diff - templates_overrides/superset/basic.html
@@ -378,3 +380,15 @@ server {
 sudo ln -s /etc/nginx-sites-available/superset /etc/nginx/sites-enabled/superset 
 sudo nginx -s reload
 ```
+
+#### Captures d'écran
+
+
+| Description | Image |
+| --- | --- |
+|Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/demo_sill.png)|
+|Palettes de couleurs :art:|![demo_graphes_echarts](/images/demo_graphes_echarts.png)|
+|Composants DSFR :control_knobs:|![demo_dsfr1](/images/demo_dsfr1.png)]
+|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/demo_dsfr_chart1.png)|
+|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/demo_dsfr_chart2.png)|
+|Page d'erreur 404 :x:|![error404](/images/error404.png)|

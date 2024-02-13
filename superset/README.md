@@ -131,7 +131,7 @@ Le dépôt contient:
 - un fichier `assets/css/tail_css_custom_extra.css` pour corriger l'affichage de certains liens et corriger l'application de la police Marianne globalement,
 - un fichier `superset/templates/superset/public_welcome.html`, optionnel pour démontrer la capacité de personnaliser la page d'accueil,
 - un fichier `docker/requirements-local.txt`, optionnel où on peut ajouter des paquets Python supplémentaires, [par exemple nécessaires pour certains drivers](https://superset.apache.org/docs/databases/installing-database-drivers) comme `duckdb-engine`,
-- les autres fichiers (`docker/docker-entrypoint-initdb.d/examples-init.sh`, `docker/pythonpath_dev/superset_config.py`, `docker/{.env-non-dev,docker-init.sh}` sont les fichiers originaux du dépot principal non modifiés, ils viennent de la version 3.1.0 et sont stables dans le temps, sont nécessaires pour le déploiement avec Docker.
+- les autres fichiers (`docker/docker-entrypoint-initdb.d/examples-init.sh`, `docker/pythonpath_dev/superset_config.py`, `docker/{.env-non-dev,docker-init.sh}`) sont les fichiers originaux du dépot principal non modifiés, ils viennent de la version 3.1.0 et sont stables dans le temps, sont nécessaires pour le déploiement avec Docker.
 
 Ci-dessous les comparaisons des fichiers relatifs au déploiement Docker du dépôt principal (à gauche) avec les diff apportées par ce dépôt (à droite):
 
@@ -149,7 +149,7 @@ $ curl -s https://raw.githubusercontent.com/apache/superset/master/docker-compos
 ```
 
 
-### `docker-bootstrap.html`
+### `docker-bootstrap.sh`
 
 ![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_docker-bootstrap.sh.png)
 
@@ -176,7 +176,7 @@ $ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/temp
 
 Les fichiers supplémentaires:
 
-### `docker/docker-dsfr.sh`
+### `docker-dsfr.sh`
 
 ```bash
 for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do
@@ -198,10 +198,6 @@ cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.ht
 ### `tail_js_custom_extra.html`
 
 ```html
-<script>
-window.addEventListener('DOMContentLoaded', function() {
-});
-</script>
 <script
   type="module"
   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">

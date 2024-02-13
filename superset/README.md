@@ -2,21 +2,21 @@
 > Son objectif principal est de faciliter l'identification des sites gouvernementaux par les citoyens. [Voir les conditions](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/perimetre-d-application).
 
 Déploiement Docker d'Apache Superset.
-- police Marianne (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.html](assets/css/tail_css_extra_custom.html) et les [templates overrides](templates_overrides/superset))
-- version française (voir [docker/docker-dsfr.sh](docker/docker-dsfr.sh#L11))
-- transposition des couleurs DSFR (voir `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L148))
-- palettes de couleurs pour les graphiques  (voir `EXTRA_CATEGORICAL_COLOR_SCHEMES` et `EXTRA_SEQUENTIAL_COLOR_SCHEMES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L235))
-- pages d'erreurs [404.html](assets/404.html) et [500.html](assets/500.html) du [DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/modeles/page-d-erreurs)
-- [composants DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants) dans les zones de texte (optionnel, nécessite d'adapter `HTML_SANITIZATION_SCHEMA_EXTENSIONS`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
-- [DSFR charts](https://gouvernementfr.github.io/dsfr-chart/) (optionnel, necéssite d'adapter `TALISMAN_CONFIG`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
+- police Marianne :fountain_pen: (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))
+- version française :fr: (voir [docker/docker-dsfr.sh](docker/docker-dsfr.sh#L11))
+- transposition des couleurs DSFR :art: (voir `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L148))
+- palettes de couleurs pour les graphiques :art:  (voir `EXTRA_CATEGORICAL_COLOR_SCHEMES` et `EXTRA_SEQUENTIAL_COLOR_SCHEMES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L235))
+- pages d'erreurs :x: [404.html](assets/404.html) et [500.html](assets/500.html) du [DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/modeles/page-d-erreurs)
+- [composants DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants) dans les zones de texte :control_knobs: (optionnel, nécessite d'adapter `HTML_SANITIZATION_SCHEMA_EXTENSIONS`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
+- [DSFR charts](https://gouvernementfr.github.io/dsfr-chart/) :chart_with_upwards_trend: (optionnel, necéssite d'adapter `TALISMAN_CONFIG`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
 
 Editer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) pour l'adapter à vos besoins (e.g. rajouter des [feature flags](https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md)), ou remplacer des fichiers de ce repo montés dans le container, par exemple:
-- [app_icon.png](assets/img/app_icon.png) pour modifier l'icone dans l'en-tete,
+- [app_icon.png](assets/images/app_icon.png) pour modifier l'icone dans l'en-tete,
 - [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css) pour rajouter des règles CSS globales,
 - [tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html) pour rajouter des scripts JS globaux,
 - [public_welcome.html](templates_overrides/superset/public_welcome.html) pour personnaliser la page d'accueil,
-- [base.html](templates_overrides/superset/base.html) pour ajouter ou non (commenter/décommenter) l'entièreté du DSFR/DSFR-Chart,
-- [basic.html](templates_overrides/superset/basic.html) pour ajouter ou non (commenter/décommenter) l'entièreté du DSFR/DSFR-Chart,
+- [base.html](templates_overrides/superset/base.html#L49) pour ajouter ou non (commenter/décommenter) l'entièreté du DSFR/DSFR-Chart,
+- [basic.html](templates_overrides/superset/basic.html#L86) pour ajouter ou non (commenter/décommenter) l'entièreté du DSFR/DSFR-Chart,
 - [404.html](assets/404.html) pour [ajouter un formulaire de contact](https://github.com/qleroy/chartsgouv/blob/refactor-300/superset/assets/404.html#L29),
 - [500.html](assets/500.html) pour [ajouter un formulaire de contact](https://github.com/qleroy/chartsgouv/blob/refactor-300/superset/assets/500.html#L22).
 
@@ -24,7 +24,7 @@ Voir [docker/pythonpath_dev/superset_config_docker.example.py](docker/pythonpath
 
 Voir [docker/pythonpath_dev/superset_config_docker.unsecure.py](docker/pythonpath_dev/superset_config_docker.unsecure.py#L330) pour une version provisoire (13/02/2024) d'une configuration non securisée mais fonctionnelle pour inclure les composants DSFR dans les zones de Texte et les DSFR-Chart avec le plugin [Handlebars](https://handlebarsjs.com).
 
-### tldr;
+### TL;DR
 
 Ce dépôt contient des éléments de configuration pour Superset, ce n'est pas un fork de Superset et ce n'est pas lié à une version particulière de Superset.
 

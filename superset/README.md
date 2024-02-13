@@ -78,7 +78,7 @@ unzip dsfr-chart-1.0.0.zip dsfr-chart
 Cloner le repo ChartsGouv, seule la branche principale est nécessaire.
 
 ```bash
-git clone --single-branch https://github.com/etalab-ia/chartsgouv
+git clone --single-branch https://github.com/numerique-gouv/chartsgouv
 ```
 
 Se déplacer dans le répertoire `superset/`:

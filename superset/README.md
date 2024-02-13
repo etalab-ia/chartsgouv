@@ -114,13 +114,13 @@ Si le déploiement est sur un serveur distant, un exemple de fichier de configur
 ### Détails
 
 Le dépôt contient:
-- la spécification pour un déploiement Docker en production [docker-compose-non-dev.yml](docker-compose-non-dev.yml) avec des points de montage supplémentaire (assets supplémentaires, DSFR, templates overrides):
+- la spécification pour un déploiement Docker en production [docker-compose-non-dev.yml](docker-compose-non-dev.yml) avec des points de montage supplémentaires (assets supplémentaires, DSFR, templates overrides):
   - `./assets:/app/superset/static/assets/local` pour inclure [app_icon.png](assets/images/app_icon.png) et [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css), les pages d'erreur [404.html](assets/404.html) et [500.html](assets/500.html),
   - `./templates_overrides:/app/superset/templates_overrides` pour remplacer les templates [public_welcome.html](templates_overrides/superset/public_welcome.html), [base.html](templates_overrides/superset/base.html), [basic.html](templates_overrides/superset/basic.html) et [tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html),
-  - `./dsfr/dist:/app/superset/static/assets/dsfr` pour inclure [la police Marianne](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/typographie), [CSS et JS](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/developpeurs/prise-en-main), [icônes](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icone) et [pictogrammes](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/pictogramme) du DSFR
-  - `./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart` pour inclure [CSS et JS supplémentaires](https://github.com/GouvernementFR/dsfr-chart?tab=readme-ov-file#configuration-de-votre-projet) pour les DSFR-Chart
-- le script [docker/docker-dsfr.sh](docker/docker-dsfr.sh) pour remplacer certaines teintes de bleu spécifiques aux pages génériques FAB par le bleu france, compiler les fichiers de traduction FAB, déplacer individuellement les templates et pages 404 et 500 à l'emplacement approprié pour que le remplacement soit effectif,
-- le script [docker/docker-bootstrap.sh](docker/docker-bootstrap.sh) modifié pour sourcer [docker/docker-dsfr.sh](docker/docker-dsfr.sh),
+  - `./dsfr/dist:/app/superset/static/assets/dsfr` pour inclure [la police Marianne](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/typographie), [CSS et JS](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/developpeurs/prise-en-main), [icônes](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icone) et [pictogrammes](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/pictogramme) du DSFR,
+  - `./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart` pour inclure [CSS et JS supplémentaires](https://github.com/GouvernementFR/dsfr-chart?tab=readme-ov-file#configuration-de-votre-projet) pour les DSFR-Chart,
+- le script [docker/docker-dsfr.sh](docker/docker-dsfr.sh) pour remplacer certaines teintes de bleu spécifiques aux pages génériques FAB par le bleu France, compiler les fichiers de traduction FAB, déplacer individuellement les templates et pages 404 et 500 à l'emplacement approprié pour que le remplacement soit effectif,
+- le script [docker/docker-bootstrap.sh](docker/docker-bootstrap.sh#L38) modifié pour sourcer [docker/docker-dsfr.sh](docker/docker-dsfr.sh),
 - le fichier de configuration [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) qui inclut notamment: 
   - la [variable de configuration de thème](https://preset.io/blog/theming-superset-progress-update/) `THEME_OVERRIDES` pour faire la transposition design system de Superset => DSFR (voir le tableau de transposition des couleurs [plus bas](#couleurs)),
   - [les variables de configuration des couleurs des charts](https://preset.io/blog/customizing-chart-colors-with-superset-and-preset/) `EXTRA_CATEGORICAL_COLOR_SCHEMES` pour définir une nouvelle palette de couleurs avec [les couleurs illustratives du DSFR](https://gouvernementfr.github.io/dsfr-chart/#colors) pour les graphiques à variables catégorielles,
@@ -131,11 +131,12 @@ Le dépôt contient:
 - un fichier `assets/css/tail_css_custom_extra.css` pour corriger l'affichage de certains liens et corriger l'application de la police Marianne globalement,
 - un fichier `superset/templates/superset/public_welcome.html`, optionnel pour démontrer la capacité de personnaliser la page d'accueil,
 - un fichier `docker/requirements-local.txt`, optionnel où on peut ajouter des paquets Python supplémentaires, [par exemple nécessaires pour certains drivers](https://superset.apache.org/docs/databases/installing-database-drivers) comme `duckdb-engine`,
-- les autres fichiers (`docker/docker-entrypoint-initdb.d/examples-init.sh`, `docker/pythonpath_dev/superset_config.py`, `docker/{.env-non-dev,docker-bootstrap.sh,docker-init.sh}` sont les fichiers originaux du dépot principal non modifié, ils viennent de la version 3.1.0 et sont stables dans le temps, sont nécessaires pour le déploiement avec Docker.
+- les autres fichiers (`docker/docker-entrypoint-initdb.d/examples-init.sh`, `docker/pythonpath_dev/superset_config.py`, `docker/{.env-non-dev,docker-init.sh}` sont les fichiers originaux du dépot principal non modifiés, ils viennent de la version 3.1.0 et sont stables dans le temps, sont nécessaires pour le déploiement avec Docker.
 
-Ci-dessous les diff apportées aux fichiers relatifs au déploiement Docker de ce dépot (à droite) comparées aux versions du dépôt principal (à gauche):
+Ci-dessous les comparaisons des fichiers relatifs au déploiement Docker du dépôt principal (à gauche) avec les diff apportées par ce dépôt (à droite):
 
 ### `docker-compose-non-dev.yml`
+
 ![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_docker-compose-non-dev.yml.png)
 
 ```bash
@@ -147,26 +148,9 @@ $ curl -s https://raw.githubusercontent.com/apache/superset/master/docker-compos
 >  #- ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
 ```
 
-### `docker/docker-dsfr.sh`
-
-```bash
-for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do
-    sed \
-      -e "s/#20a7c9/#000091/g" \
-      -e "s/#45bed6/#000091/g" \
-      -e "s/#1985a0/#000091/g" \
-      "$theme_filename" > temp.css && mv temp.css "$theme_filename"
-done
-
-pybabel compile -d superset/translations || true
-
-cp /app/superset/templates_overrides/superset/{base,basic,public_welcome}.html /app/superset/templates/superset/
-cp /app/superset/templates_overrides/tail_js_custom_extra.html /app/superset/templates/tail_js_custom_extra.html
-cp /app/superset/static/assets/local/404.html /app/superset/static/assets/404.html
-cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.html
-```
 
 ### `docker-bootstrap.html`
+
 ![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/img/screenshot_docker-bootstrap.sh.png)
 
 ```bash
@@ -190,10 +174,30 @@ $ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/temp
 > <h2><center>Bienvenue sur Apache Superset</center></h2>
 ```
 
-### `tail_js_custom_extra.html`
+Les fichiers supplémentaires:
+
+### `docker/docker-dsfr.sh`
 
 ```bash
-$ cat templates_overrides/tail_js_custom_extra.html
+for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do
+    sed \
+      -e "s/#20a7c9/#000091/g" \
+      -e "s/#45bed6/#000091/g" \
+      -e "s/#1985a0/#000091/g" \
+      "$theme_filename" > temp.css && mv temp.css "$theme_filename"
+done
+
+pybabel compile -d superset/translations || true
+
+cp /app/superset/templates_overrides/superset/{base,basic,public_welcome}.html /app/superset/templates/superset/
+cp /app/superset/templates_overrides/tail_js_custom_extra.html /app/superset/templates/tail_js_custom_extra.html
+cp /app/superset/static/assets/local/404.html /app/superset/static/assets/404.html
+cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.html
+```
+
+### `tail_js_custom_extra.html`
+
+```html
 <script>
 window.addEventListener('DOMContentLoaded', function() {
 });

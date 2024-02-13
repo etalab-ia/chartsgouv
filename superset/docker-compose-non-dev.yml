@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-x-superset-image: &superset-image apachesuperset.docker.scarf.sh/apache/superset:${TAG:-latest-dev}
+x-superset-image: &superset-image apachesuperset.docker.scarf.sh/apache/superset:${TAG:-latest}
 x-superset-depends-on: &superset-depends-on
   - db
   - redis
@@ -23,8 +23,10 @@ x-superset-volumes:
   - ./docker:/app/docker
   - superset_home:/app/superset_home
   - ./assets:/app/superset/static/assets/local
-  - ./theme.5fb6aaa7430ffb2cbd6c.entry.css:/app/superset/static/assets/theme.5fb6aaa7430ffb2cbd6c.entry.css
-  - ./superset/templates/superset/public_welcome.html:/app/superset/templates/superset/public_welcome.html
+  - ./templates_overrides:/app/superset/templates_overrides
+  - ./dsfr/dist:/app/superset/static/assets/dsfr
+ #- ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
+
 
 version: "3.7"
 services:

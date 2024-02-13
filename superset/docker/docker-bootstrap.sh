@@ -35,6 +35,15 @@ else
   echo "Skipping local overrides"
 fi
 
+source docker/docker-dsfr.sh
+
+# playwright is an optional package - run only if it is installed
+#
+if command -v playwright > /dev/null 2>&1; then
+  playwright install-deps
+  playwright install chromium
+fi
+
 case "${1}" in
   worker)
     echo "Starting Celery worker..."

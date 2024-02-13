@@ -6,6 +6,11 @@
     <img src="/images/demo_graphes_echarts.png" width="750" alt="Regarder sur YouTube">
 </a>
 
+## Parcourir les dashboards d'exemples
+- [Dashboard SILL](http://chartsgouv2.lab.sspcloud.fr/superset/dashboard/sill/)
+- [Graphes Apache Echarts avec couleurs DSFR](http://chartsgouv2.lab.sspcloud.fr/superset/dashboard/demo-echarts/)
+- [Composants DSFR et DSFR charts](http://chartsgouv2.lab.sspcloud.fr/superset/dashboard/demo-dsfr/?standalone=2)
+
 ## Déploiement Docker d'Apache Superset
 - police Marianne :fr: (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))
 - version française :fr: (voir [docker/docker-dsfr.sh](docker/docker-dsfr.sh#L11))

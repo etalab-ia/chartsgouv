@@ -245,6 +245,31 @@ $ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/temp
 131c152,166
 ```
 
+### `tail_js_custom_extra.html`
+
+![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_tail_js_custom_extra.html.png)
+
+```bash
+$ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/tail_js_custom_extra.html | diff - templates_overrides/tail_js_custom_extra.html
+25a26,41
+>
+> <script
+>   type="module"
+>   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
+> </script>
+> <script
+>   type="text/javascript"
+>   nomodule
+>   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
+> </script>
+> <!--
+> <script
+>   defer
+>     src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js">
+> </script>
+> -->
+```
+
 Les fichiers supplémentaires:
 
 ### `docker-dsfr.sh`
@@ -266,24 +291,25 @@ cp /app/superset/static/assets/local/404.html /app/superset/static/assets/404.ht
 cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.html
 ```
 
-### `tail_js_custom_extra.html`
+### `tail_css_custom_extra.css`
 
-```html
-<script
-  type="module"
-  src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
-</script>
-<script
-  type="text/javascript"
-  nomodule
-  src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
-</script>
-<!--
-<script
-  defer
-    src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js">
-</script>
--->
+```css
+a {
+  background-image: none !important;
+}
+
+[href] {
+  background-image: none !important;
+}
+
+body {
+  font-family: Marianne !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: Marianne !important;
+}
 ```
 
 ### Couleurs

@@ -6,6 +6,6 @@
 
 ### Accès rapides
 - :art: [Thème ChartsGouv](./superset/)
-- :sparkles: [Découvrir le projet](https://etalab-ia.github.io/chartsgouv/blog)
-- :framed_picture: [Galerie de cas d'usage](https://etalab-ia.github.io/chartsgouv/showcase)
-- :books: [Documentation](https://etalab-ia.github.io/chartsgouv/) (WIP 🚧)
+- :sparkles: [Découvrir le projet](https://numerique-gouv.github.io/chartsgouv/blog)
+- :framed_picture: [Galerie de cas d'usage](https://numerique-gouv.github.io/chartsgouv/showcase)
+- :books: [Documentation](https://numerique-gouv.github.io/chartsgouv/) (WIP 🚧)

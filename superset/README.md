@@ -6,7 +6,7 @@
     <img src="/images/demo_graphes_echarts.png" width="750" alt="Regarder sur YouTube">
 </a>
 
-## Parcourir les dashboards d'exemples
+## Parcourir les dashboards d'exemple
 - [Dashboard SILL](http://chartsgouv2.lab.sspcloud.fr/superset/dashboard/sill/)
 - [Graphes Apache Echarts avec couleurs DSFR](http://chartsgouv2.lab.sspcloud.fr/superset/dashboard/demo-echarts/)
 - [Composants DSFR et DSFR charts](http://chartsgouv2.lab.sspcloud.fr/superset/dashboard/demo-dsfr/?standalone=2)
@@ -54,7 +54,7 @@ wget https://github.com/GouvernementFR/dsfr/releases/download/v1.11.1/dsfr-v1.11
 unzip dsfr-v1.11.1.zip -d dsfr
 # Optionnel: Télécharger DSFR-chart (en beta)
 # wget https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip
-# unzip dsfr-chart-1.0.0.zip dsfr-chart
+# unzip dsfr-chart-1.0.0.zip -d dsfr-chart
 git clone --single-branch https://github.com/numerique-gouv/chartsgouv
 cd superset/
 TAG=3.1.0 docker compose -f docker-compose-non-dev.yml up -d
@@ -97,7 +97,7 @@ Se déplacer dans le répertoire `superset/`:
 cd superset/
 ```
 
-Générer une [clé sécrète](https://superset.apache.org/docs/installation/configuring-superset/#specifying-a-secret_key) et la sauvegarder en sécurité:
+Générer une [clé secrète](https://superset.apache.org/docs/installation/configuring-superset/#specifying-a-secret_key) et la sauvegarder en sécurité:
 
 ```bash
 export SUPERSET_SECRET_KEY="$(openssl rand -base64 42)"
@@ -300,7 +300,7 @@ cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.ht
 | primary   | light3 | ![superset](https://via.placeholder.com/20/D2EDF4/000000?text=+) | `#D2EDF4` | ![dsfr](https://via.placeholder.com/20/e3e3fd/000000?text=+) | `#e3e3fd` |
 | primary   | light4 | ![superset](https://via.placeholder.com/20/E9F6F9/000000?text=+) | `#E9F6F9` | ![dsfr](https://via.placeholder.com/20/ececfe/000000?text=+) | `#ececfe` |
 | primary   | light5 | ![superset](https://via.placeholder.com/20/F3F8FA/000000?text=+) | `#F3F8FA` | ![dsfr](https://via.placeholder.com/20/f5f5fe/000000?text=+) | `#f5f5fe` |
-| secondary | base   | ![superset](https://via.placeholder.com/20/444E7C/000000?text=+) | `#444E7C` | ![dsfr](https://via.placeholder.com/20/F1493/000000?text=+)  | `FF1493`  |
+| secondary | base   | ![superset](https://via.placeholder.com/20/444E7C/000000?text=+) | `#444E7C` | ![dsfr](https://via.placeholder.com/20/000091/000000?text=+)  | `#000091`  |
 | secondary | dark1  | ![superset](https://via.placeholder.com/20/363E63/000000?text=+) | `#363E63` | ![dsfr](https://via.placeholder.com/20/000/000000?text=+)    | `#000`    |
 | secondary | dark2  | ![superset](https://via.placeholder.com/20/282E4A/000000?text=+) | `#282E4A` | ![dsfr](https://via.placeholder.com/20/000091/000000?text=+) | `#000091` |
 | secondary | dark3  | ![superset](https://via.placeholder.com/20/1B1F31/000000?text=+) | `#1B1F31` | ![dsfr](https://via.placeholder.com/20/000091/000000?text=+) | `#000091` |
@@ -394,7 +394,7 @@ sudo nginx -s reload
 | --- | --- |
 |Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/demo_sill.png)|
 |Palettes de couleurs :art:|![demo_graphes_echarts](/images/demo_graphes_echarts.png)|
-|Composants DSFR :control_knobs:|![demo_dsfr1](/images/demo_dsfr1.png)]
+|Composants DSFR :control_knobs:|![demo_dsfr1](/images/demo_dsfr1.png)|
 |DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/demo_dsfr_chart1.png)|
 |DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/demo_dsfr_chart2.png)|
 |Page d'erreur 404 :x:|![error404](/images/error404.png)|

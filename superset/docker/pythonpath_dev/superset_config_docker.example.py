@@ -5,7 +5,6 @@ from datetime import datetime
 
 from superset.superset_typing import CacheConfig
 from superset.key_value.types import JsonKeyValueCodec
-from flask import g
 
 
 BABEL_DEFAULT_LOCALE = "fr"
@@ -15,32 +14,30 @@ LANGUAGES = {
 }
 
 # Send user to a link where they can report bugs
-BUG_REPORT_URL = "https://github.com/etalab-ia/chartsgouv/issues"
+BUG_REPORT_URL = "https://github.com/numerique-gouv/chartsgouv/issues"
 BUG_REPORT_TEXT = "Signaler un bug"
 BUG_REPORT_ICON = "fr-icon-github-fill"  # Recommended size: 16x16
 
 # Send user to a link where they can read more about Superset
-DOCUMENTATION_URL = "https://etalab-ia.github.io/chartsgouv/blog/"
+DOCUMENTATION_URL = "https://numerique-gouv.github.io/chartsgouv/blog/"
 DOCUMENTATION_TEXT = "Documentation ChartsGouv"
 DOCUMENTATION_ICON = "fr-icon-question-answer-fill"  # Recommended size: 16x16
 
-FAVICONS = [{"href": "/static/assets/local/images/favicon.svg"}]
-LOGO_TOOLTIP = "Superset"
-APP_NAME = "Superset"
+FAVICONS = [{"href": "/static/assets/dsfr/favicon/favicon.svg"}]
+LOGO_TOOLTIP = "Superset ChartsGouv"
+APP_NAME = "Superset ChartsGouv"
 
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"
 
 # https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md
 FEATURE_FLAGS = {
-    "FEATURE_CHART_PLUGINS_EXPERIMENTAL": True,
     "TAGGING_SYSTEM": True,
     "DYNAMIC_PLUGINS": True,
     "DRILL_BY": True,
     "ENABLE_TEMPLATE_PROCESSING": True,
     "EMBEDDED_SUPERSET": True,
     "DASHBOARD_RBAC": True,
-    "ALERT_REPORTS": True,
 }
 
 # https://github.com/apache/superset/blob/master/RESOURCES/STANDARD_ROLES.md
@@ -59,7 +56,6 @@ JINJA_CONTEXT_ADDONS = {
     'my_crazy_macro': lambda x: x*2,
     'foo': 1,
     'current_date': datetime.now().strftime("%d-%m-%Y"),
-    'g': g,
 }
 
 DSFR_COLORS = {
@@ -745,60 +741,58 @@ THEME_OVERRIDES = {
             "light5": DSFR_COLORS["sun"]["blue-france-975-75"],
         },
         "secondary": {
-            "base": "FF1493", #Rose neon
-            "dark1": DSFR_COLORS["sun"]["grey-0-1000"], #000000 dans les sub menu par exemple Requetes sauvegardes Historiques des requetes Consultes, il faut que cela ressorte mais cest du texte
-            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"], # pas utilise pour l'instant, les boutons Actions Poubelle etc
-            "dark3": DSFR_COLORS["sun"]["blue-france-sun-113-625"], # au hover de View Dataset uniquement dans le add dataset panel
-            "light1": DSFR_COLORS["sun"]["blue-france-sun-113-625"], # pas utilise pour l'instant
-            "light2": DSFR_COLORS["sun"]["blue-france-sun-113-625"], # par exemple le titre dans la modale Preview Saved Query
-            "light3": DSFR_COLORS["sun"]["blue-france-sun-113-625"], # par exemple la bordure du TAPEZ "EFFACER" POUR CONFIRMER
-            #"light4": DSFR_COLORS["sun"]["blue-france-850-200"], #cacafb le background dans les sub menu par exemple Requetes sauvegardes Historiques des requetes Consultes, il faut que cela ressorte mais cest du texte
-            "light4": DSFR_COLORS["sun"]["blue-france-925-125"], #e3e3fd,
-            #"light4": "grey-975-75",
-            "light5": DSFR_COLORS["sun"]["blue-france-925-125"], # le background de TableCollection et le background des petites pills sur les SubMenu Requetes sauvegardees consultees etc
+            "base": DSFR_COLORS["sun"]["blue-france-sun-113-625"], 
+            "dark1": DSFR_COLORS["sun"]["grey-0-1000"], 
+            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
+            "dark3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
+            "light1": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
+            "light2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
+            "light3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
+            "light4": DSFR_COLORS["sun"]["blue-france-925-125"],
+            "light5": DSFR_COLORS["sun"]["blue-france-925-125"],
         },
         "grayscale": {
-            "base": DSFR_COLORS["sun"]["grey-425-625"],# pas mal de sous-titres Recherche, Proprietaire, ..., les boutons '...' ou caret-down, les boutons Actions Poubelle etc
-            "dark1": DSFR_COLORS["sun"]["grey-200-850"], # sous-menu SQL> Parametres>, les titres des graphs, le text hover des menus Dashboards Charts..., apparemment pas mal dans les plugins React
-            "dark2": DSFR_COLORS["sun"]["grey-50-1000"], # utilise dans des plugins react, dans certains titres h4 comme DatabaseModal, le background des Tooltips (superset-ui-chart-controls/src/components/Tooltip.tsx
+            "base": DSFR_COLORS["sun"]["grey-425-625"],
+            "dark1": DSFR_COLORS["sun"]["grey-200-850"],
+            "dark2": DSFR_COLORS["sun"]["grey-50-1000"],
             "light1": DSFR_COLORS["sun"]["grey-625-425"],
-            "light2": DSFR_COLORS["sun"]["grey-925-125"], #e5e5e5
-            "light3": DSFR_COLORS["sun"]["grey-950-100"], #eeeeee
-            "light4": DSFR_COLORS["sun"]["grey-975-75"], #f6f6f6
-            "light5": DSFR_COLORS["sun"]["grey-1000-50"], #ffffff
+            "light2": DSFR_COLORS["sun"]["grey-925-125"],
+            "light3": DSFR_COLORS["sun"]["grey-950-100"],
+            "light4": DSFR_COLORS["sun"]["grey-975-75"],
+            "light5": DSFR_COLORS["sun"]["grey-1000-50"],
         },
         "error": {
-            "base": DSFR_COLORS["sun"]["error-425-625"], #ce0500
+            "base": DSFR_COLORS["sun"]["error-425-625"],
             "dark1": DSFR_COLORS["sun"]["error-425-625"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"], #000000, 
+            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
             "light1": DSFR_COLORS["sun"]["error-425-625"], 
             "light2": DSFR_COLORS["sun"]["error-950-100"],
         },
         "warning": {
-            "base": DSFR_COLORS["sun"]["warning-425-625"], #b34000
+            "base": DSFR_COLORS["sun"]["warning-425-625"],
             "dark1": DSFR_COLORS["sun"]["warning-425-625"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"], #000000, 
+            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
             "light1": DSFR_COLORS["sun"]["warning-425-625"],
             "light2": DSFR_COLORS["sun"]["warning-950-100"],
         },
         "alert": {
             "base": DSFR_COLORS["sun"]["green-tilleul-verveine-925-125"],
             "dark1": DSFR_COLORS["sun"]["green-tilleul-verveine-925-125"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"], #000000, 
+            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
             "light1": DSFR_COLORS["sun"]["green-tilleul-verveine-925-125"],
             "light2": DSFR_COLORS["sun"]["green-tilleul-verveine-975-75"],
         },
         "success": {
             "base": DSFR_COLORS["sun"]["success-425-625"],
             "dark1": DSFR_COLORS["sun"]["success-425-625"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"], #000000, 
+            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
             "light1": DSFR_COLORS["sun"]["success-425-625"],
             "light2": DSFR_COLORS["sun"]["success-950-100"],
         },
         "info": {
             "base": DSFR_COLORS["sun"]["info-425-625"],
             "dark1": DSFR_COLORS["sun"]["info-425-625"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"], #000000, 
+            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
             "light1": DSFR_COLORS["sun"]["info-425-625"],
             "light2": DSFR_COLORS["sun"]["info-950-100"],
         },
@@ -918,7 +912,7 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES[0]["isDefault"] = True
 
 # Do you want Talisman enabled?
 
-TALISMAN_ENABLED = False
+TALISMAN_ENABLED = True
 
 # If you want Talisman, how do you want it configured??
 

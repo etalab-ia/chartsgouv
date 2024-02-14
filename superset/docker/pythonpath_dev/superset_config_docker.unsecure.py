@@ -163,7 +163,7 @@ THEME_OVERRIDES = {
             "light5": DSFR_COLORS["sun"]["blue-france-975-75"],
         },
         "secondary": {
-            "base": "FF1493", #Rose neon
+            "base": DSFR_COLORS["sun"]["blue-france-sun-113-625"], 
             "dark1": DSFR_COLORS["sun"]["grey-0-1000"], 
             "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"], 
             "dark3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
@@ -284,7 +284,7 @@ EXTRA_CATEGORICAL_COLOR_SCHEMES = [
         ],
     },
 ]
-
+3
 def make_description(color_name):
     try:
         cut_index = color_name.index("sun")

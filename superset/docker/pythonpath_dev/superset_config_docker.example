@@ -63,6 +63,9 @@ DSFR_COLORS = {
     "grey-1000-50": "#fff",
     "grey-1000-50-hover": "#f6f6f6",
     "grey-1000-50-active": "#ededed",
+    "grey-975-75": "#f6f6f6",
+    "grey-975-75-hover": "#dfdfdf",
+    "grey-975-75-active": "#cfcfcf",
     "grey-950-100": "#eee",
     "grey-950-100-hover": "#d2d2d2",
     "grey-950-100-active": "#c1c1c1",
@@ -75,6 +78,8 @@ DSFR_COLORS = {
     "grey-1000-100-hover": "#f6f6f6",
     "grey-1000-100-active": "#ededed",
     "grey-975-100": "#f6f6f6",
+    "grey-975-100-hover": "#dfdfdf",
+    "grey-975-100-active": "#cfcfcf",
     "grey-975-125": "#f6f6f6",
     "grey-975-125-hover": "#dfdfdf",
     "grey-975-125-active": "#cfcfcf",
@@ -1010,12 +1015,6 @@ EXPLORE_FORM_DATA_CACHE_CONFIG: CacheConfig = {
     # How should entries be serialized/deserialized?
     "CODEC": JsonKeyValueCodec(),
 }
-
-# Define a list of usernames to be excluded from all dropdown lists of users
-# Owners, filters for created_by, etc.
-# The users can also be excluded by overriding the get_exclude_users_from_lists method
-# in security manager
-EXCLUDE_USERS_FROM_LISTS: list[str] | None = None
 
 # The link to a page containing common errors and their resolutions
 # It will be appended at the bottom of sql_lab errors.

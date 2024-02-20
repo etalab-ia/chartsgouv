@@ -6,7 +6,7 @@ LANGUAGES = {
     "fr": {"flag": "fr", "name": "French"},
 }
 
-FAVICONS = [{"href": "/static/assets/local/images/favicon.svg"}]
+FAVICONS = [{"href": "/static/assets/dsfr/favicon/favicon.svg"}]
 LOGO_TOOLTIP = "Superset"
 APP_NAME = "Superset"
 
@@ -302,8 +302,8 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         "label": make_description(colorname),
         "isDefault": False,
         "colors": [
-            DSFR_COLORS["sun"][colorname],
             DSFR_COLORS["sun"]["grey-950-100"], 
+            DSFR_COLORS["sun"][colorname],
         ],
     }
     for colorname in [

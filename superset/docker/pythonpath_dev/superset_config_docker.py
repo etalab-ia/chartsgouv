@@ -13,7 +13,6 @@ APP_NAME = "Superset ChartsGouv"
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"
 
-
 DSFR_COLORS = {
   "sun": {
     "grey-1000-50": "#fff",
@@ -303,8 +302,8 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         "label": make_description(colorname),
         "isDefault": False,
         "colors": [
-            DSFR_COLORS["sun"][colorname],
             DSFR_COLORS["sun"]["grey-950-100"], 
+            DSFR_COLORS["sun"][colorname],
         ],
     }
     for colorname in [

@@ -4,7 +4,6 @@ from datetime import timedelta
 from datetime import datetime
 
 from superset.superset_typing import CacheConfig
-from superset.key_value.types import JsonKeyValueCodec
 
 
 BABEL_DEFAULT_LOCALE = "fr"
@@ -889,8 +888,8 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         "label": make_description(colorname),
         "isDefault": False,
         "colors": [
-            DSFR_COLORS["sun"][colorname],
             DSFR_COLORS["sun"]["grey-950-100"], 
+            DSFR_COLORS["sun"][colorname],
         ],
     }
     for colorname in [
@@ -994,9 +993,6 @@ FILTER_STATE_CACHE_CONFIG: CacheConfig = {
     "CACHE_DEFAULT_TIMEOUT": int(timedelta(days=90).total_seconds()),
     # Should the timeout be reset when retrieving a cached value?
     "REFRESH_TIMEOUT_ON_RETRIEVAL": True,
-    # The following parameter only applies to `MetastoreCache`:
-    # How should entries be serialized/deserialized?
-    "CODEC": JsonKeyValueCodec(),
 }
 
 # Cache for explore form data state. `CACHE_TYPE` defaults to `SupersetMetastoreCache`
@@ -1011,9 +1007,6 @@ EXPLORE_FORM_DATA_CACHE_CONFIG: CacheConfig = {
     "CACHE_DEFAULT_TIMEOUT": int(timedelta(days=7).total_seconds()),
     # Should the timeout be reset when retrieving a cached value?
     "REFRESH_TIMEOUT_ON_RETRIEVAL": True,
-    # The following parameter only applies to `MetastoreCache`:
-    # How should entries be serialized/deserialized?
-    "CODEC": JsonKeyValueCodec(),
 }
 
 # The link to a page containing common errors and their resolutions

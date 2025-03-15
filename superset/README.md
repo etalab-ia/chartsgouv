@@ -77,7 +77,7 @@ unzip dsfr-v1.11.1.zip -d dsfr
 Optionnel: Télécharger [DSFR-chart](https://github.com/GouvernementFR/dsfr-chart) (fichiers compilés), ici la version v1.0.0 datée du 29/11/2023. Ces fichiers seront montés dans le container Superset sur le chemin `/app/superset/static/assets/dsfr-chart`.
 ```bash
 wget https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip
-unzip dsfr-chart-1.0.0.zip dsfr-chart
+unzip dsfr-chart-1.0.0.zip -d dsfr-chart
 # Le dossier dsfr-chart/Charts est monté dans le container superset_app:/app/superset/static/assets/dsfr-chart
 # voir docker-compose-non-dev.yml
 # x-superset-volumes:

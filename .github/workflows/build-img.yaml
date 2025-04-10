@@ -27,9 +27,9 @@ jobs:
       - name: Set version variable
         run: |
           echo "SUPERSET_REPO=apache/superset" >> $GITHUB_ENV
-          echo "SUPERSET_VERSION=4.1.1" >> $GITHUB_ENV
-          echo "DSFR_VERSION=1.13.0" >> $GITHUB_ENV
-          echo "DSFR_CHART_VERSION=1.0.0" >> $GITHUB_ENV
+          echo "SUPERSET_VERSION=4.1.2" >> $GITHUB_ENV
+          echo "DSFR_VERSION=1.13.1" >> $GITHUB_ENV
+          echo "DSFR_CHART_VERSION=2.0.3" >> $GITHUB_ENV
 
       - name: Build Docker image
         run: docker build -f Dockerfile --build-arg TAG_DSFR=${{ env.DSFR_VERSION }} --build-arg TAG_DSFR_CHART=${{ env.DSFR_CHART_VERSION }} --build-arg SUPERSET_VERSION=${{ env.SUPERSET_VERSION }} -t $IMAGE_NAME:${{ env.SUPERSET_VERSION }}-${{ env.DSFR_VERSION }}-${{ env.DSFR_CHART_VERSION }} .

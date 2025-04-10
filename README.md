@@ -5,7 +5,4 @@
 </a>
 
 ### Accès rapides
-- :art: [Thème ChartsGouv](./superset/)
-- :sparkles: [Découvrir le projet](https://etalab-ia.github.io/chartsgouv/blog/)
-- :framed_picture: [Galerie de cas d'usage](https://etalab-ia.github.io/chartsgouv/showcase)
-- :books: [Documentation](https://etalab-ia.github.io/chartsgouv/) (WIP 🚧)
+- :art: [Thème DSFR](./superset/)

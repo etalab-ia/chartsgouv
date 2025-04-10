@@ -2,7 +2,8 @@
 
 
 ### Contexte
-Ce projet est né d'un constat simple: il existe une multitude d'outils propriétaires au sein de l'État, ce qui complique la montée en compétence des agents, empêche la revaloration de leurs compétences auprès d'autres administrations et rend difficile la mutualisation des connaissances.
+Ce projet est né d'un constat simple: il existe une multitude d'outils propriétaires au sein de l'État, ce qui complique la montée en compétence des agents, empêche la revaloration de leurs compétences auprès d'autres administrations et rend difficile la mutualisation des connaissances.  
+
 Ce projet a été inité par l'intermédiaire du [programme 10%](https://www.10pourcent.etalab.gouv.fr/), programme interministériel co-porté par la DINUM et l'INSEE. Il a permis à plusieurs agents de différentes administrations de collaborer sur leurs problématiques communes.
   
 ## Description

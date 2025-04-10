@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - img-chartsgouv
 
 env:
   REGISTRY: ghcr.io

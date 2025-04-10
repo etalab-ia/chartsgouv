@@ -35,7 +35,7 @@ RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/release
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
 # Download DSFR Chart dynamically
-RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/releases/download/v${TAG_DSFR_CHART}/dsfr-chart-${TAG_DSFR_CHART}.zip"
+RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/releases/download/v${TAG_DSFR_CHART}/dsfr-chart-v${TAG_DSFR_CHART}.zip"
 RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import custom Superset templates

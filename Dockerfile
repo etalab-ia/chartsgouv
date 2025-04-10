@@ -55,7 +55,7 @@ WORKDIR /app
 
 # Copy DSFR assets from dsfr_image stage
 COPY --from=dsfr_image /app/dsfr-base/dist /app/superset/static/assets/dsfr
-COPY --from=dsfr_image /app/dsfr-chart/Charts /app/superset/static/assets/dsfr-chart
+COPY --from=dsfr_image /app/dsfr-chart/ /app/superset/static/assets/dsfr-chart
 COPY --from=dsfr_image /app/superset-custom/assets  /app/superset/static/assets/local
 
 # Override Superset templates

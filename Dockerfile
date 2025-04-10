@@ -40,7 +40,6 @@ RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import custom Superset templates
 COPY superset-custom ./superset-custom/
-COPY superset_config.py ./superset_config.py
 
 RUN ls -la /app
 
@@ -74,5 +73,5 @@ RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
         -e "s/#1985a0/#000091/g" {} \;
 
 # Copy Superset config override
-COPY --from=dsfr_image --chown=superset /app/superset_config.py /app/superset_config.py
+COPY --from=dsfr_image --chown=superset /app/superset-custom/superset_config.py /app/superset_config.py
 ENV SUPERSET_CONFIG_PATH /app/superset_config.py

@@ -39,7 +39,7 @@ RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/releases
 RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import custom Superset templates
-COPY superset-custom ./superset-custom/
+COPY superset-dsfr ./superset-dsfr/
 
 RUN ls -la /app
 
@@ -56,15 +56,15 @@ WORKDIR /app
 # Copy DSFR assets from dsfr_image stage
 COPY --from=dsfr_image /app/dsfr-base/dist /app/superset/static/assets/dsfr
 COPY --from=dsfr_image /app/dsfr-chart/ /app/superset/static/assets/dsfr-chart
-COPY --from=dsfr_image /app/superset-custom/assets  /app/superset/static/assets/local
+COPY --from=dsfr_image /app/superset-dsfr/assets  /app/superset/static/assets/local
 
 # Override Superset templates
-COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/base.html      /app/superset/templates/superset/
-COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/basic.html     /app/superset/templates/superset/
-COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/public_welcome.html    /app/superset/templates/superset/
-COPY --from=dsfr_image /app/superset-custom/templates_overrides/tail_js_custom_extra.html   /app/superset/templates/tail_js_custom_extra.html
-COPY --from=dsfr_image /app/superset-custom/assets/404.html     /app/superset/static/assets/404.html
-COPY --from=dsfr_image /app/superset-custom/assets/500.html     /app/superset/static/assets/500.html
+COPY --from=dsfr_image /app/superset-dsfr/templates_overrides/superset/base.html      /app/superset/templates/superset/
+COPY --from=dsfr_image /app/superset-dsfr/templates_overrides/superset/basic.html     /app/superset/templates/superset/
+COPY --from=dsfr_image /app/superset-dsfr/templates_overrides/superset/public_welcome.html    /app/superset/templates/superset/
+COPY --from=dsfr_image /app/superset-dsfr/templates_overrides/tail_js_custom_extra.html   /app/superset/templates/tail_js_custom_extra.html
+COPY --from=dsfr_image /app/superset-dsfr/assets/404.html     /app/superset/static/assets/404.html
+COPY --from=dsfr_image /app/superset-dsfr/assets/500.html     /app/superset/static/assets/500.html
 
 # Update CSS Colors
 RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
@@ -73,5 +73,5 @@ RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
         -e "s/#1985a0/#000091/g" {} \;
 
 # Copy Superset config override
-COPY --from=dsfr_image --chown=superset /app/superset-custom/superset_config.py /app/superset_config.py
+COPY --from=dsfr_image --chown=superset /app/superset-dsfr/superset_config.py /app/superset_config.py
 ENV SUPERSET_CONFIG_PATH /app/superset_config.py

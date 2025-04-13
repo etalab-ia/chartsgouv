@@ -4,7 +4,7 @@ ARG SUPERSET_VERSION=4.1.1
 ARG REPO_OWNER=GouvernementFR
 ARG REPO_NAME=dsfr
 ARG TAG_DSFR=1.13.0
-ARG TAG_DSFR_CHART=1.0.0
+ARG TAG_DSFR_CHART=2.0.3
 
 
 # ------------------------------------------

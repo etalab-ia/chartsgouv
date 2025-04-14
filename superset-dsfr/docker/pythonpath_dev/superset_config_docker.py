@@ -1,4 +1,4 @@
-import os
+# /app/docker/pythonpath/superset_config_docker.py
 
 BABEL_DEFAULT_LOCALE = "fr"
 
@@ -6,44 +6,12 @@ LANGUAGES = {
     "fr": {"flag": "fr", "name": "French"},
 }
 
-# Override cette valeur
-SECRET_KEY = "lghbdGKL2g3dm9d8HlGl"
-
-DATABASE_DIALECT = "postgresql+psycopg2"
-DATABASE_USER = os.getenv("DB_USER")
-DATABASE_PASSWORD = os.getenv("DB_PASS")
-DATABASE_HOST = os.getenv("DB_HOST")
-DATABASE_PORT = os.getenv("DB_PORT")
-DATABASE_DB = os.getenv("DB_NAME")
-
-SQLALCHEMY_DATABASE_URI = (
-    f"{DATABASE_DIALECT}://"
-    f"{DATABASE_USER}:{DATABASE_PASSWORD}@"
-    f"{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_DB}"
-)
-
-FEATURE_FLAGS = {
-    "DASHBOARD_RBAC": True,
-    "ENABLE_TEMPLATE_PROCESSING": True,
-    "TAGGING_SYSTEM": True,
-    "DRILL_BY": True,
-    "DRILL_TO_DETAIL": True,
-    "DYNAMIC_PLUGINS": True,
-}
-
-# PUBLIC_ROLE_LIKE = "Gamma"
-
-FAVICONS = [{"href": "/static/assets/local/images/favicon.svg"}]
-LOGO_TOOLTIP = "Superset"
-APP_NAME = "Superset"
+FAVICONS = [{"href": "/static/assets/dsfr/favicon/favicon.svg"}]
+LOGO_TOOLTIP = "Superset ChartsGouv"
+APP_NAME = "Superset ChartsGouv"
 
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"
-
-# JS -- very permissive, not for production
-TALISMAN_CONFIG = {
-    "content_security_policy": False
-}
 
 DSFR_COLORS = {
   "sun": {
@@ -195,9 +163,9 @@ THEME_OVERRIDES = {
             "light5": DSFR_COLORS["sun"]["blue-france-975-75"],
         },
         "secondary": {
-            "base": "FF1493",
-            "dark1": DSFR_COLORS["sun"]["grey-0-1000"],
-            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
+            "base": DSFR_COLORS["sun"]["blue-france-sun-113-625"], 
+            "dark1": DSFR_COLORS["sun"]["grey-0-1000"], 
+            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"], 
             "dark3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "light1": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "light2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
@@ -219,7 +187,7 @@ THEME_OVERRIDES = {
             "base": DSFR_COLORS["sun"]["error-425-625"],
             "dark1": DSFR_COLORS["sun"]["error-425-625"],
             "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
-            "light1": DSFR_COLORS["sun"]["error-425-625"],
+            "light1": DSFR_COLORS["sun"]["error-425-625"], 
             "light2": DSFR_COLORS["sun"]["error-950-100"],
         },
         "warning": {
@@ -317,7 +285,6 @@ EXTRA_CATEGORICAL_COLOR_SCHEMES = [
     },
 ]
 
-
 def make_description(color_name):
     try:
         cut_index = color_name.index("sun")
@@ -325,7 +292,6 @@ def make_description(color_name):
         return formatted_color_name.title()
     except ValueError:
         return color_name.title().replace('-', ' ')
-
 
 # EXTRA_SEQUENTIAL_COLOR_SCHEMES is used for adding custom sequential color schemes
 EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
@@ -336,8 +302,8 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         "label": make_description(colorname),
         "isDefault": False,
         "colors": [
+            DSFR_COLORS["sun"]["grey-950-100"], 
             DSFR_COLORS["sun"][colorname],
-            DSFR_COLORS["sun"]["grey-950-100"],
         ],
     }
     for colorname in [
@@ -361,22 +327,3 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         ]
 ]
 EXTRA_SEQUENTIAL_COLOR_SCHEMES[0]["isDefault"] = True
-
-HTML_SANITIZATION = False
-
-# Use this configuration to extend the HTML sanitization schema.
-# By default we use the GitHub schema defined in
-# https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/schema.js
-# For example, the following configuration would allow the rendering of the
-# style attribute for div elements and the ftp protocol in hrefs:
-# HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
-#   "attributes": {
-#     "div": ["style"],
-#   },
-#   "protocols": {
-#     "href": ["ftp"],
-#   }
-# }
-FAB_ADD_SECURITY_API = True
-
-SUPERSET_DASHBOARD_POSITION_DATA_LIMIT = 6553500

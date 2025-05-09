@@ -1,0 +1,156 @@
+name: Translate and Convert PO Files
+
+on:
+  push:
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+" # Correspond aux tags de la forme nombre.nombre.nombre
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip --no-cache-dir
+          pip install babel --no-cache-dir
+
+          # Install Node.js via NVM
+          echo "Installing NVM..."
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+          # Install specific Node version
+          nvm install 20
+          nvm use 20
+
+          echo "Node.js version: $(node --version)"
+          echo "npm version: $(npm --version)"
+
+          # Install po2json globally
+          npm install -g po2json
+
+          # Find po2json path without using 'npm bin'
+          echo "Finding po2json path..."
+          PO2JSON_PATH=$(find $NVM_DIR/versions/node -name po2json -type f -executable | grep -v node_modules | head -1)
+          echo "po2json path: $PO2JSON_PATH"
+
+          if [ -z "$PO2JSON_PATH" ]; then
+            echo "WARNING: Cannot find po2json executable. Using npx instead."
+          fi
+
+      - name: Compile PO files Superset
+        run: |
+          echo "PYBABEL"
+          pybabel compile --statistics -d translations/superset/translations || true
+          ls translations/superset/translations/fr/LC_MESSAGES
+          echo "PYBABEL DONE"
+
+      - name: Compile PO files FAB
+        run: |
+          echo "PYBABEL"
+          pybabel compile --statistics -d translations/fab/translations || true
+          ls translations/fab/translations/fr/LC_MESSAGES
+          echo "PYBABEL DONE"
+
+      - name: Convert PO to JSON
+        run: |
+          # Load NVM and Node environment
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+          nvm use 20
+
+          # Find po2json path
+          PO2JSON_PATH=$(find $NVM_DIR/versions/node -name po2json -type f -executable | grep -v node_modules | head -1)
+
+          # Process superset translations
+          mkdir -p translations/superset/translations/fr/LC_MESSAGES
+          for file in $(find ./translations//superset/translations -name "*.po");
+          do
+            dirname=$(dirname "$file")
+            basename=$(basename "$file" .po)
+            output_file="$dirname/$basename.json"
+            echo "Converting $file to $output_file"
+
+            if [ -n "$PO2JSON_PATH" ]; then
+              "$PO2JSON_PATH" "$file" "$output_file" --format=jed1.x --domain=superset || echo "Error converting $file"
+            else
+              npx po2json "$file" "$output_file" --format=jed1.x --domain=superset || echo "Error converting $file"
+            fi
+          done
+
+          # Process fab translations
+          mkdir -p translations/fab/translations/fr/LC_MESSAGES
+          for file in $(find ./translations/fab/translations -name "*.po");
+          do
+            dirname=$(dirname "$file")
+            basename=$(basename "$file" .po)
+            output_file="$dirname/$basename.json"
+            echo "Converting $file to $output_file"
+
+            if [ -n "$PO2JSON_PATH" ]; then
+              "$PO2JSON_PATH" "$file" "$output_file" --format=jed1.x --domain=fab || echo "Error converting $file"
+            else
+              npx po2json "$file" "$output_file" --format=jed1.x --domain=fab || echo "Error converting $file"
+            fi
+          done
+
+      - name: Create ZIP file
+        run: |
+          # Create a directory with a clean structure for the zip
+          mkdir -p release/translations/fab/translations/fr/LC_MESSAGES
+          mkdir -p release/translations/superset/translations/fr/LC_MESSAGES
+
+          # Copy the files
+          cp translations/fab/translations/fr/LC_MESSAGES/messages.mo release/fab/translations/fr/LC_MESSAGES/
+          cp translations/fab/translations/fr/LC_MESSAGES/messages.json release/fab/translations/fr/LC_MESSAGES/
+          cp translations/superset/translations/fr/LC_MESSAGES/messages.mo release/superset/translations/fr/LC_MESSAGES/
+          cp translations/superset/translations/fr/LC_MESSAGES/messages.json release/superset/translations/fr/LC_MESSAGES/
+
+          # Create the zip
+          cd release
+          VERSION="${{ github.ref_name }}"
+          zip -r "../superset-fr-translations-${VERSION}.zip" .
+          cd ..
+
+          echo "Created ZIP file: superset-fr-translations-${VERSION}.zip"
+          ls -la superset-fr-translations-*.zip
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset - ZIP file
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./superset-fr-translations-${{ github.ref_name }}.zip
+          asset_name: superset-fr-translations-${{ github.ref_name }}.zip
+          asset_content_type: application/zip
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: translation-files
+          path: |
+            superset-fr-translations-${{ github.ref_name }}.zip

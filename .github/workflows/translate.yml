@@ -114,10 +114,10 @@ jobs:
           mkdir -p release/translations/superset/translations/fr/LC_MESSAGES
 
           # Copy the files
-          cp translations/fab/translations/fr/LC_MESSAGES/messages.mo release/fab/translations/fr/LC_MESSAGES/
-          cp translations/fab/translations/fr/LC_MESSAGES/messages.json release/fab/translations/fr/LC_MESSAGES/
-          cp translations/superset/translations/fr/LC_MESSAGES/messages.mo release/superset/translations/fr/LC_MESSAGES/
-          cp translations/superset/translations/fr/LC_MESSAGES/messages.json release/superset/translations/fr/LC_MESSAGES/
+          cp translations/fab/translations/fr/LC_MESSAGES/messages.mo release/translations/fab/translations/fr/LC_MESSAGES/
+          cp translations/fab/translations/fr/LC_MESSAGES/messages.json release/translations/fab/translations/fr/LC_MESSAGES/
+          cp translations/superset/translations/fr/LC_MESSAGES/messages.mo release/translations/superset/translations/fr/LC_MESSAGES/
+          cp translations/superset/translations/fr/LC_MESSAGES/messages.json release/translations/superset/translations/fr/LC_MESSAGES/
 
           # Create the zip
           cd release

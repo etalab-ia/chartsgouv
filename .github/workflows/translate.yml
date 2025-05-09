@@ -116,7 +116,6 @@ jobs:
           done
 
       - name: Create ZIP file
-        if: steps.check_tag.outputs.valid_version == 'true'
         run: |
           if [[ "${GITHUB_REF#refs/tags/}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             # Create a directory with a clean structure for the zip

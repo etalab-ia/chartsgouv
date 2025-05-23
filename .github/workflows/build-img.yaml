@@ -35,4 +35,5 @@ jobs:
         run: docker build -f Dockerfile --build-arg TAG_DSFR=${{ env.DSFR_VERSION }} --build-arg TAG_DSFR_CHART=${{ env.DSFR_CHART_VERSION }} --build-arg SUPERSET_VERSION=${{ env.SUPERSET_VERSION }} -t $IMAGE_NAME:${{ env.SUPERSET_VERSION }}-${{ env.DSFR_VERSION }}-${{ env.DSFR_CHART_VERSION }} .
 
       - name: Push Docker image
+        if: github.ref == 'refs/heads/main'
         run: docker push $IMAGE_NAME:${{ env.SUPERSET_VERSION }}-${{ env.DSFR_VERSION }}-${{ env.DSFR_CHART_VERSION }}

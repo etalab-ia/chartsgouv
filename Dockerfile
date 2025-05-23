@@ -39,7 +39,7 @@ RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/releases
 RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import custom Superset templates
-COPY superset-dsfr ./superset-dsfr/
+COPY superset ./superset-dsfr/
 
 RUN ls -la /app
 

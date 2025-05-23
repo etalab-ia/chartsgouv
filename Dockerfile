@@ -68,6 +68,7 @@ COPY --from=dsfr_image /app/superset-dsfr/assets/500.html     /app/superset/stat
 
 # Override Superset french traduction
 COPY --from=dsfr_image /app/superset-dsfr/translations/fr/LC_MESSAGES/messages.po    /app/superset/translations/fr/LC_MESSAGES/messages.po
+RUN pybabel compile -d /app/superset/translations | true;
 
 # Update CSS Colors
 RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \

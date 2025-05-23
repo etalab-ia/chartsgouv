@@ -79,4 +79,4 @@ RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
 COPY --from=dsfr_image /app/superset-dsfr/requirements.txt /app
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-USER root
+USER superset

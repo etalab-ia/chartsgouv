@@ -74,3 +74,9 @@ RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
         -e "s/#20a7c9/#000091/g" \
         -e "s/#45bed6/#000091/g" \
         -e "s/#1985a0/#000091/g" {} \;
+
+# Install dependencies
+COPY --from=dsfr_image /app/superset-dsfr/requirements.txt /app
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+USER root

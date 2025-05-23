@@ -74,7 +74,3 @@ RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
         -e "s/#20a7c9/#000091/g" \
         -e "s/#45bed6/#000091/g" \
         -e "s/#1985a0/#000091/g" {} \;
-
-# Copy Superset config override
-COPY --from=dsfr_image --chown=superset /app/superset-dsfr/superset_config.py /app/superset_config.py
-ENV SUPERSET_CONFIG_PATH /app/superset_config.py

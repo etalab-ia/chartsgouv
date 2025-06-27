@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/etalab-ia/chartsgouv/compare/v1.1.0...v1.2.0) (2025-06-27)
+
+### Improvements
+
+* **ci:** using archive refs from dsfr-chart repo ([3cfe021](https://github.com/etalab-ia/chartsgouv/commit/3cfe021820f1dbdf8634f03bb9a5dea576668f56))
+
 ## [1.1.0](https://github.com/etalab-ia/chartsgouv/compare/v1.0.0...v1.1.0) (2025-06-27)
 
 ### Bug Fixes

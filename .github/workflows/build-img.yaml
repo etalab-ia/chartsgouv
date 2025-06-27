@@ -8,9 +8,9 @@ on:
       - dev
 
 env:
-  SUPERSET_VERSION: ${{ vars.DSFR_VERSION }} 
+  SUPERSET_VERSION: ${{ vars.SUPERSET_VERSION }} 
   DSFR_VERSION: ${{ vars.DSFR_VERSION }} 
-  DSFR_CHART_VERSION: ${{ vars.DSFR_VERSION }} 
+  DSFR_CHART_VERSION: ${{ vars.DSFR_CHART_VERSION }} 
 
 jobs:
   build-and-push:

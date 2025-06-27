@@ -31,8 +31,8 @@ jobs:
           echo "DSFR_VERSION=1.13.1" >> $GITHUB_ENV
           echo "DSFR_CHART_VERSION=2.0.3" >> $GITHUB_ENV
 
-          # Determine if we are on img-chartsgouv and append '-test' to the tag
-          if [[ "${GITHUB_REF}" == "refs/heads/img-chartsgouv" ]]; then
+          # Determine if we are on pre-release and append '-test' to the tag
+          if [[ "${GITHUB_REF}" == "refs/heads/pre-release" ]]; then
             echo "IMAGE_NAME=ghcr.io/${{ github.repository }}-test" >> $GITHUB_ENV
           else
             echo "IMAGE_NAME=ghcr.io/${{ github.repository }}" >> $GITHUB_ENV
@@ -46,5 +46,5 @@ jobs:
           -t $IMAGE_NAME:${{ env.SUPERSET_VERSION }}-${{ env.DSFR_VERSION }}-${{ env.DSFR_CHART_VERSION }} .
 
       - name: Push Docker image
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/img-chartsgouv'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/pre-release'
         run: docker push $IMAGE_NAME:${{ env.SUPERSET_VERSION }}-${{ env.DSFR_VERSION }}-${{ env.DSFR_CHART_VERSION }}

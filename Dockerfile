@@ -10,7 +10,7 @@ ARG TAG_DSFR_CHART=2.0.3
 # ------------------------------------------
 # Stage 1: Download DSFR
 # ------------------------------------------
-FROM ubuntu:25.10 AS dsfr_image
+FROM ubuntu:24.04 AS dsfr_image
 
 # Getting back ARG values
 ARG REPO_OWNER

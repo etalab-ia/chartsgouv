@@ -40,6 +40,7 @@ RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import custom Superset templates
 COPY superset ./superset-dsfr/
+COPY translations ./translations/
 
 RUN ls -la /app
 
@@ -67,7 +68,7 @@ COPY --from=dsfr_image /app/superset-dsfr/assets/404.html     /app/superset/stat
 COPY --from=dsfr_image /app/superset-dsfr/assets/500.html     /app/superset/static/assets/500.html
 
 # Override Superset french traduction
-COPY --from=dsfr_image /app/superset-dsfr/translations/fr/LC_MESSAGES/messages.po    /app/superset/translations/fr/LC_MESSAGES/messages.po
+COPY --from=dsfr_image /app/translations/superset/translations/fr/LC_MESSAGES/messages.po    /app/superset/translations/fr/LC_MESSAGES/messages.po
 RUN pybabel compile -d /app/superset/translations | true;
 
 # Update CSS Colors

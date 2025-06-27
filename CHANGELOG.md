@@ -1,3 +1,15 @@
+## [1.1.0](https://github.com/etalab-ia/chartsgouv/compare/v1.0.0...v1.1.0) (2025-06-27)
+
+### Bug Fixes
+
+* **ci:** building using the right translation file ([7a158bd](https://github.com/etalab-ia/chartsgouv/commit/7a158bdb4ed8ed203f0eb7f8bbbd0a90853d7bd8))
+* **ci:** downgrade ubuntu image version to resolve cert issue ([25c81ba](https://github.com/etalab-ia/chartsgouv/commit/25c81baef513301f6d6c62e6b63fab723c495edc))
+* **ci:** update env var name ([e1ba65b](https://github.com/etalab-ia/chartsgouv/commit/e1ba65bb4651dbc368a362740e36b00d4ea8d66f))
+
+### Improvements
+
+* **ci:** using github vars instead of hardcoded values in build img workflow ([76b4756](https://github.com/etalab-ia/chartsgouv/commit/76b4756f96564ea8503adf739494227e0a383916))
+
 ## 1.0.0 (2025-06-21)
 
 ### Features

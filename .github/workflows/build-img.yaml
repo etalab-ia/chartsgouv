@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - main
-      - img-chartsgouv
+      - pre-release
+      - dev
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ghcr.io/${{ github.repository }}
+  SUPERSET_VERSION: ${{ vars.SUPERSET_VERSION }} 
+  DSFR_VERSION: ${{ vars.DSFR_VERSION }} 
+  DSFR_CHART_VERSION: ${{ vars.DSFR_CHART_VERSION }} 
 
 jobs:
   build-and-push:
@@ -26,13 +28,20 @@ jobs:
 
       - name: Set version variable
         run: |
-          echo "SUPERSET_REPO=apache/superset" >> $GITHUB_ENV
-          echo "SUPERSET_VERSION=4.1.2" >> $GITHUB_ENV
-          echo "DSFR_VERSION=1.13.1" >> $GITHUB_ENV
-          echo "DSFR_CHART_VERSION=2.0.3" >> $GITHUB_ENV
+          # Determine if we are on pre-release and append '-test' to the tag
+          if [[ "${GITHUB_REF}" == "refs/heads/pre-release" ]]; then
+            echo "IMAGE_NAME=ghcr.io/${{ github.repository }}-test" >> $GITHUB_ENV
+          else
+            echo "IMAGE_NAME=ghcr.io/${{ github.repository }}" >> $GITHUB_ENV
+          fi
 
       - name: Build Docker image
-        run: docker build -f Dockerfile --build-arg TAG_DSFR=${{ env.DSFR_VERSION }} --build-arg TAG_DSFR_CHART=${{ env.DSFR_CHART_VERSION }} --build-arg SUPERSET_VERSION=${{ env.SUPERSET_VERSION }} -t $IMAGE_NAME:${{ env.SUPERSET_VERSION }}-${{ env.DSFR_VERSION }}-${{ env.DSFR_CHART_VERSION }} .
+        run: docker build -f Dockerfile 
+          --build-arg TAG_DSFR=$DSFR_VERSION 
+          --build-arg TAG_DSFR_CHART=$DSFR_CHART_VERSION 
+          --build-arg SUPERSET_VERSION=$SUPERSET_VERSION 
+          -t $IMAGE_NAME:$SUPERSET_VERSION-$DSFR_VERSION-$DSFR_CHART_VERSION .
 
       - name: Push Docker image
-        run: docker push $IMAGE_NAME:${{ env.SUPERSET_VERSION }}-${{ env.DSFR_VERSION }}-${{ env.DSFR_CHART_VERSION }}
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/pre-release'
+        run: docker push $IMAGE_NAME:$SUPERSET_VERSION-$DSFR_VERSION-$DSFR_CHART_VERSION

@@ -10,7 +10,7 @@ ARG TAG_DSFR_CHART=2.0.3
 # ------------------------------------------
 # Stage 1: Download DSFR
 # ------------------------------------------
-FROM ubuntu:20.04 AS dsfr_image
+FROM ubuntu:24.04 AS dsfr_image
 
 # Getting back ARG values
 ARG REPO_OWNER
@@ -35,11 +35,12 @@ RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/release
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
 # Download DSFR Chart dynamically
-RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/releases/download/v${TAG_DSFR_CHART}/dsfr-chart-v${TAG_DSFR_CHART}.zip"
+RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/archive/refs/tags/v${TAG_DSFR_CHART}.zip"
 RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import custom Superset templates
-COPY superset-dsfr ./superset-dsfr/
+COPY superset ./superset-dsfr/
+COPY translations ./translations/
 
 RUN ls -la /app
 
@@ -66,12 +67,18 @@ COPY --from=dsfr_image /app/superset-dsfr/templates_overrides/tail_js_custom_ext
 COPY --from=dsfr_image /app/superset-dsfr/assets/404.html     /app/superset/static/assets/404.html
 COPY --from=dsfr_image /app/superset-dsfr/assets/500.html     /app/superset/static/assets/500.html
 
+# Override Superset french traduction
+COPY --from=dsfr_image /app/translations/superset/translations/fr/LC_MESSAGES/messages.po    /app/superset/translations/fr/LC_MESSAGES/messages.po
+RUN pybabel compile -d /app/superset/translations | true;
+
 # Update CSS Colors
 RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
         -e "s/#20a7c9/#000091/g" \
         -e "s/#45bed6/#000091/g" \
         -e "s/#1985a0/#000091/g" {} \;
 
-# Copy Superset config override
-COPY --from=dsfr_image --chown=superset /app/superset-dsfr/superset_config.py /app/superset_config.py
-ENV SUPERSET_CONFIG_PATH /app/superset_config.py
+# Install dependencies
+COPY --from=dsfr_image /app/superset-dsfr/requirements.txt /app
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+USER superset

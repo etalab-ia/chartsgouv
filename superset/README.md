@@ -6,11 +6,6 @@
     <img src="/images/demo_graphes_echarts.png" width="750" alt="Regarder sur YouTube">
 </a>
 
-## Parcourir les dashboards d'exemple
-- [Dashboard SILL](http://chartsgouv.lab.sspcloud.fr/superset/dashboard/sill/)
-- [Graphes Apache Echarts avec couleurs DSFR](http://chartsgouv.lab.sspcloud.fr/superset/dashboard/demo-echarts/)
-- [Composants DSFR et DSFR charts](http://chartsgouv.lab.sspcloud.fr/superset/dashboard/demo-dsfr/?standalone=2)
-
 ## Déploiement Docker d'Apache Superset
 - police Marianne :fr: (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))
 - version française :fr: (voir [docker/docker-dsfr.sh](docker/docker-dsfr.sh#L11))
@@ -24,9 +19,8 @@ Editer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/s
 - [app_icon.png](assets/images/app_icon.png) pour modifier l'icone dans l'en-tete,
 - [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css) pour rajouter des règles CSS globales,
 - [tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html) pour rajouter des scripts JS globaux,
+- [head_custom_extra.html](templates_overrides/head_custom_extra.html),
 - [public_welcome.html](templates_overrides/superset/public_welcome.html) pour personnaliser la page d'accueil,
-- [base.html](templates_overrides/superset/base.html#L49) pour ajouter ou non (commenter/décommenter) l'entièreté du DSFR/DSFR-Chart,
-- [basic.html](templates_overrides/superset/basic.html#L86) pour ajouter ou non (commenter/décommenter) l'entièreté du DSFR/DSFR-Chart,
 - [404.html](assets/404.html) pour [ajouter un formulaire de contact](https://github.com/qleroy/chartsgouv/blob/refactor-300/superset/assets/404.html#L29),
 - [500.html](assets/500.html) pour [ajouter un formulaire de contact](https://github.com/qleroy/chartsgouv/blob/refactor-300/superset/assets/500.html#L22).
 
@@ -55,9 +49,9 @@ unzip dsfr-v1.11.1.zip -d dsfr
 # Optionnel: Télécharger DSFR-chart (en beta)
 # wget https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip
 # unzip dsfr-chart-1.0.0.zip -d dsfr-chart
-git clone --single-branch https://github.com/numerique-gouv/chartsgouv
+git clone --single-branch https://github.com/etalab-ia/chartsgouv
 cd superset/
-TAG=3.1.0 docker compose -f docker-compose-non-dev.yml up -d
+TAG=5.0.0 docker compose -f docker-compose-image-tag.yml up -d
 # Se rendre sur localhost:8088 avec identifiants admin/admin
 ```
 
@@ -68,7 +62,7 @@ Télécharger le [DSFR](https://github.com/GouvernementFR/dsfr) (fichiers compil
 wget https://github.com/GouvernementFR/dsfr/releases/download/v1.11.1/dsfr-v1.11.1.zip
 unzip dsfr-v1.11.1.zip -d dsfr
 # Le dossier dsfr/dist est monté dans le container superset_app:/app/superset/static/assets/dsfr
-# voir docker-compose-non-dev.yml
+# voir docker-compose-image-tag.yml
 # x-superset-volumes:
 #   &superset-volumes
 #   - ./dsfr/dist:/app/superset/static/assets/dsfr
@@ -79,7 +73,7 @@ Optionnel: Télécharger [DSFR-chart](https://github.com/GouvernementFR/dsfr-cha
 wget https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip
 unzip dsfr-chart-1.0.0.zip -d dsfr-chart
 # Le dossier dsfr-chart/Charts est monté dans le container superset_app:/app/superset/static/assets/dsfr-chart
-# voir docker-compose-non-dev.yml
+# voir docker-compose-image-tag.yml
 # x-superset-volumes:
 #   &superset-volumes
 #   - ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
@@ -88,7 +82,7 @@ unzip dsfr-chart-1.0.0.zip -d dsfr-chart
 Cloner le dépôt ChartsGouv, seule la branche principale est nécessaire.
 
 ```bash
-git clone --single-branch https://github.com/numerique-gouv/chartsgouv
+git clone --single-branch https://github.com/etalab-ia/chartsgouv
 ```
 
 Se déplacer dans le répertoire `superset/`:
@@ -109,10 +103,10 @@ echo "$SUPERSET_SECRET_KEY" > .secret_key
 
 Tous les fichiers nécessaires sont présents dans ce répertoire, il n'y a pas besoin d'avoir le dépôt principal avec les sources complètes de Superset.
 
-On utilise les images officielles d'Apache Superset (en l'occurence depuis le registre [apachesuperset.docker.scarf.sf](docker-compose-non-dev.yml#L17), voir [les précautions pour scarf](https://superset.apache.org/docs/frequently-asked-questions/#does-superset-collect-any-telemetry-data) ou utiliser un autre registre) avec un fichier modifié ([voir plus bas](#docker-compose-non-devyml)) du `docker-compose-non-dev.yml` adapté pour la production:
+On utilise les images officielles d'Apache Superset (en l'occurence depuis le registre [apachesuperset.docker.scarf.sf](docker-compose-non-dev.yml#L17), voir [les précautions pour scarf](https://superset.apache.org/docs/frequently-asked-questions/#does-superset-collect-any-telemetry-data) ou utiliser un autre registre) avec un fichier modifié ([voir plus bas](#docker-compose-image-tag.yml)) du `docker-compose-image-tag.yml` adapté pour la production:
 
 ```bash
-TAG=3.1.0 docker compose -f docker-compose-non-dev.yml up -d
+TAG=5.0.0 docker compose -f docker-compose-image-tag.yml up -d
 ```
 
 Se rendre sur http://localhost:8088 et rentrer les identifiants :
@@ -124,7 +118,7 @@ Si le déploiement est sur un serveur distant, un exemple de fichier de configur
 ## Détails
 
 Le dépôt contient:
-- la spécification pour un déploiement Docker en production [docker-compose-non-dev.yml](docker-compose-non-dev.yml) avec des points de montage supplémentaires (assets supplémentaires, DSFR, templates overrides):
+- la spécification pour un déploiement Docker [docker-compose-image-tag.yml](docker-compose-image-tag.yml) avec des points de montage supplémentaires (assets supplémentaires, DSFR, templates overrides):
   - `./assets:/app/superset/static/assets/local` pour inclure [app_icon.png](assets/images/app_icon.png) et [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css), les pages d'erreur [404.html](assets/404.html) et [500.html](assets/500.html),
   - `./templates_overrides:/app/superset/templates_overrides` pour remplacer les templates [public_welcome.html](templates_overrides/superset/public_welcome.html), [base.html](templates_overrides/superset/base.html), [basic.html](templates_overrides/superset/basic.html) et [tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html),
   - `./dsfr/dist:/app/superset/static/assets/dsfr` pour inclure [la police Marianne](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/typographie), [CSS et JS](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/developpeurs/prise-en-main), [icônes](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icone) et [pictogrammes](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/pictogramme) du DSFR,
@@ -135,139 +129,89 @@ Le dépôt contient:
   - la [variable de configuration de thème](https://preset.io/blog/theming-superset-progress-update/) `THEME_OVERRIDES` pour faire la transposition design system de Superset => DSFR (voir le tableau de transposition des couleurs [plus bas](#couleurs)),
   - [les variables de configuration des couleurs des charts](https://preset.io/blog/customizing-chart-colors-with-superset-and-preset/) `EXTRA_CATEGORICAL_COLOR_SCHEMES` pour définir une nouvelle palette de couleurs avec [les couleurs illustratives du DSFR](https://gouvernementfr.github.io/dsfr-chart/#colors) pour les graphiques à variables catégorielles,
   - `EXTRA_SEQUENTIAL_COLOR_SCHEMES` pour définir des dégradés de couleur pour les graphiques à variables continues (e.g. plugin Carte de Pays),
-- un fichier [superset/templates/tail_js_custom_extra.html](superset/templates/tail_js_custom_extra.html), pour inclure globalement les modules JS du DSFR,
+- un fichier [superset/templates_overrides/tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html), pour inclure globalement les modules JS du DSFR,
+- un fichier [superset/templates_overrides/tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html), pour inclure globalement les modules JS du DSFR,
 - un fichier [assets/images/app_icon.png](assets/images/app_icon.png), à remplacer par l'image de votre choix pour l'icône de l'application dans l'en-tête,
-- une version modifiée des templates `superset/templates/superset/{base,basic}.html` pour inclure le DSFR globalement (css et js),
 - un fichier `assets/css/tail_css_custom_extra.css` pour corriger l'affichage de certains liens et corriger l'application de la police Marianne globalement,
-- un fichier `superset/templates/superset/public_welcome.html`, optionnel pour démontrer la capacité de personnaliser la page d'accueil,
-- un fichier `docker/requirements-local.txt`, optionnel où on peut ajouter des paquets Python supplémentaires, [par exemple nécessaires pour certains drivers](https://superset.apache.org/docs/databases/installing-database-drivers) comme `duckdb-engine`,
-- les autres fichiers (`docker/docker-entrypoint-initdb.d/examples-init.sh`, `docker/pythonpath_dev/superset_config.py`, `docker/{.env-non-dev,docker-init.sh}`) sont les fichiers originaux du dépot principal non modifiés, ils viennent de la version 3.1.0 et sont stables dans le temps, sont nécessaires pour le déploiement avec Docker.
+- un fichier `templates_overrides/superset/public_welcome.html`, optionnel pour démontrer la capacité de personnaliser la page d'accueil,
+- un fichier `docker/requirements-local.txt`, optionnel où on peut ajouter des paquets Python supplémentaires, [par exemple nécessaires pour les drivers](https://superset.apache.org/docs/databases/installing-database-drivers) comme `duckdb-engine`.
 
-Ci-dessous les comparaisons des fichiers relatifs au déploiement Docker du dépôt principal (à gauche) avec les diff apportées par ce dépôt (à droite):
+### `docker-compose-image-tag.yml`
 
-### `docker-compose-non-dev.yml`
 
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_docker-compose-non-dev.yml.png)
-
-```bash
-$ curl -s https://raw.githubusercontent.com/apache/superset/master/docker-compose-non-dev.yml | diff - docker-compose-non-dev.yml
-24a25,30
->   - ./assets:/app/superset/static/assets/local
->   - ./templates_overrides:/app/superset/templates_overrides
->   - ./dsfr/dist:/app/superset/static/assets/dsfr
->  #- ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
+```diff
+ -superset-volumes:
+  &superset-volumes # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
+  - ./docker:/app/docker
+  - superset_home:/app/superset_home
++  - ./assets:/app/superset/static/assets/local
++  - ./templates_overrides:/app/superset/templates_overrides
++  - ./dsfr/dist:/app/superset/static/assets/dsfr
++  #- ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
 ```
 
 ### `docker-bootstrap.sh`
 
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_docker-bootstrap.sh.png)
+```diff
+fi
 
-```bash
-$ curl -s https://raw.githubusercontent.com/apache/superset/master/docker/docker-bootstrap.sh | diff - docker/docker-bootstrap.sh
-38c38,39
-< #
----
-> source docker/docker-dsfr.sh
->
++ source docker/docker-dsfr.sh
+
+case "${1}" in
 ```
 
 ### `public_welcome.html`
 
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_public_welcome.html.png)
-
-```bash
-$ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/public_welcome.html | diff - templates_overrides/superset/public_welcome.html
-22c22
-< <h2><center>Welcome to Apache Superset</center></h2>
----
-> <h2><center>Bienvenue sur Apache Superset</center></h2>
+```diff
+- < <h2><center>Welcome to Apache Superset</center></h2>
++ <h2><center>Bienvenue sur Apache Superset</center></h2>
 ```
 
-### `base.html`
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_base.html.png)
+### `head_custom_extra.html`
 
-```bash
-$ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/base.html | diff - templates_overrides/superset/base.html
-33a34,53
->     <link
->       rel="stylesheet"
->       type="text/css"
->       href="{{ assets_prefix }}/static/assets/dsfr/dsfr.min.css"
->     />
->     <link
->       rel="stylesheet"
->       type="text/css"
->       href="{{ assets_prefix }}/static/assets/dsfr/utility/utility.min.css"
->     />
->     <link
->       rel="stylesheet"
->       type="text/css"
->       href="{{ assets_prefix }}/static/assets/local/css/tail_css_custom_extra.css"
->     />
->     <!--
->     <link
->       rel="stylesheet"
->       type="text/css"
->       href="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.css"
->     />
->     -->
-```
-
-### `basic.html`
-
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_basic.html.png)
-
-```bash
-$ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/superset/basic.html | diff - templates_overrides/superset/basic.html
-70c70,91
->     <link
->       rel="stylesheet"
->       type="text/css"
->       href="{{ assets_prefix }}/static/assets/dsfr/dsfr.min.css"
->     />
->     <link
->       rel="stylesheet"
->       type="text/css"
->       href="{{ assets_prefix }}/static/assets/dsfr/utility/utility.min.css"
->     />
->     <link
->       rel="stylesheet"
->       type="text/css"
->       href="{{ assets_prefix }}/static/assets/local/css/tail_css_custom_extra.css"
->     />
->     <!--
->     <link
->       rel="stylesheet"
->       type="text/css"
->       href="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.css"
->     />
->     -->
-131c152,166
+```diff
++ <link
++     rel="stylesheet"
++     type="text/css"
++     href="{{ assets_prefix }}/static/assets/dsfr/dsfr.min.css"
++ />
++ <link
++     rel="stylesheet"
++     type="text/css"
++     href="{{ assets_prefix }}/static/assets/dsfr/utility/utility.min.css"
++ />
++ <link
++     rel="stylesheet"
++     type="text/css"
++     href="{{ assets_prefix }}/static/assets/local/css/tail_css_custom_extra.css"
++ />
++ <!--
++ <link
++     rel="stylesheet"
++     type="text/css"
++     href="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.css"
++ />
++ -->
 ```
 
 ### `tail_js_custom_extra.html`
 
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_tail_js_custom_extra.html.png)
-
-```bash
-$ curl -s https://raw.githubusercontent.com/apache/superset/master/superset/templates/tail_js_custom_extra.html | diff - templates_overrides/tail_js_custom_extra.html
-25a26,41
->
-> <script
->   type="module"
->   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
-> </script>
-> <script
->   type="text/javascript"
->   nomodule
->   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
-> </script>
-> <!--
-> <script
->   defer
->     src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js">
-> </script>
-> -->
+```diff
++ <script
++   type="module"
++   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
++ </script>
++ <script
++   type="text/javascript"
++   nomodule
++   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
++ </script>
++ <!--
++ <script
++   defer
++     src="{{ assets_prefix }}/static/assets/dsfr-chart/dsfr-chart.umd.js">
++ </script>
++ -->
 ```
 
 Les fichiers supplémentaires:

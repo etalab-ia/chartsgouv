@@ -29,7 +29,7 @@ x-superset-volumes:
   - ./assets:/app/superset/static/assets/local
   - ./templates_overrides:/app/superset/templates_overrides
   - ./dsfr/dist:/app/superset/static/assets/dsfr
-  #- ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
+  - ./dsfr-chart/dsfr-chart/dist/DSFRChart:/app/superset/static/assets/dsfr-chart
 
 services:
   redis:

@@ -179,16 +179,15 @@ DSFR_CHART_COLORS = {
         "dsfr-chart-colors-15": "#E16834",
         "dsfr-chart-colors-default": "#5C68E5",
         "dsfr-chart-colors-neutral": "#808080",
-    }
+    },
 }
-https://www.systeme-de-design.gouv.fr/version-courante/fr/premiers-pas/perimetre-d-application
 
 
 # THEME_OVERRIDES is used for adding custom theme to superset
 # pour le theme par default voir superset-frontend/packages/superset-ui-core/src/style/index.tsx
 # https://preset.io/blog/theming-superset-progress-update/
 # [SIP-82] Improving Superset Theming https://github.com/apache/superset/issues/20159
-# https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/couleurs-palette
+# https://www.systeme-de-design.gouv.fr/version-courante/fr/fondamentaux/couleurs--palette
 THEME_OVERRIDES = {
     "borderRadius": 5,
     "colors": {
@@ -454,38 +453,40 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
             DSFR_CHART_COLORS["moon"]["dsfr-chart-colors-13"],
             DSFR_CHART_COLORS["moon"]["dsfr-chart-colors-15"],
         ],
-    }
+    },
 ]
-EXTRA_SEQUENTIAL_COLOR_SCHEMES.extend([
-    {
-        "id": colorname,
-        "description": make_description(colorname),
-        "isDiverging": True,
-        "label": make_description(colorname),
-        "isDefault": False,
-        "colors": [
-            DSFR_COLORS["sun"]["grey-950-100"],
-            DSFR_COLORS["sun"][colorname],
-        ],
-    }
-    for colorname in [
-        "green-bourgeon-sun-425-moon-759",
-        "blue-ecume-sun-247-moon-675",
-        "purple-glycine-sun-319-moon-630",
-        "pink-macaron-sun-406-moon-833",
-        "yellow-tournesol-sun-407-moon-922",
-        "orange-terre-battue-sun-370-moon-672",
-        "brown-cafe-creme-sun-383-moon-885",
-        "beige-gris-galet-sun-407-moon-821",
-        "green-emeraude-sun-425-moon-753",
-        "blue-cumulus-sun-368-moon-732",
-        "pink-tuile-sun-425-moon-750",
-        "yellow-moutarde-sun-348-moon-860",
-        "brown-caramel-sun-425-moon-901",
-        "green-menthe-sun-373-moon-652",
-        "brown-opera-sun-395-moon-820",
-        "green-archipel-sun-391-moon-716",
-        "green-tilleul-verveine-sun-418-moon-817",
+EXTRA_SEQUENTIAL_COLOR_SCHEMES.extend(
+    [
+        {
+            "id": colorname,
+            "description": make_description(colorname),
+            "isDiverging": True,
+            "label": make_description(colorname),
+            "isDefault": False,
+            "colors": [
+                DSFR_COLORS["sun"]["grey-950-100"],
+                DSFR_COLORS["sun"][colorname],
+            ],
+        }
+        for colorname in [
+            "green-bourgeon-sun-425-moon-759",
+            "blue-ecume-sun-247-moon-675",
+            "purple-glycine-sun-319-moon-630",
+            "pink-macaron-sun-406-moon-833",
+            "yellow-tournesol-sun-407-moon-922",
+            "orange-terre-battue-sun-370-moon-672",
+            "brown-cafe-creme-sun-383-moon-885",
+            "beige-gris-galet-sun-407-moon-821",
+            "green-emeraude-sun-425-moon-753",
+            "blue-cumulus-sun-368-moon-732",
+            "pink-tuile-sun-425-moon-750",
+            "yellow-moutarde-sun-348-moon-860",
+            "brown-caramel-sun-425-moon-901",
+            "green-menthe-sun-373-moon-652",
+            "brown-opera-sun-395-moon-820",
+            "green-archipel-sun-391-moon-716",
+            "green-tilleul-verveine-sun-418-moon-817",
+        ]
     ]
-])
+)
 EXTRA_SEQUENTIAL_COLOR_SCHEMES[0]["isDefault"] = True

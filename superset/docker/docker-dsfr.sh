@@ -10,7 +10,7 @@ done
 
 pybabel compile -d superset/translations || true
 
-cp /app/superset/templates_overrides/superset/{base,basic,public_welcome}.html /app/superset/templates/superset/
+cp /app/superset/templates_overrides/superset/public_welcome.html /app/superset/templates/superset/
 cp /app/superset/templates_overrides/tail_js_custom_extra.html /app/superset/templates/tail_js_custom_extra.html
 cp /app/superset/static/assets/local/404.html /app/superset/static/assets/404.html
 cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.html

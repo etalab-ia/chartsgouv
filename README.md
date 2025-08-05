@@ -31,3 +31,6 @@ Pour la consulter, rendez-vous sur [ce site](https://snum.gitlab-pages.din.devel
 > Certains éléments de cette documentation sont propres à l'environnement du MTE.  
 > 
 Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section "A propos" du site
+
+## License
+This project is distributed under the EUPL v1.2 license — see the LICENSE file for more details.

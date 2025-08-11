@@ -157,12 +157,12 @@ msgid "% calculation"
 msgstr "% calcul"
 
 #, python-format
-msgid "% of parent"
-msgstr "% du parent"
+msgid "%% of parent"
+msgstr "%% du parent"
 
 #, python-format
-msgid "% of total"
-msgstr "% du total"
+msgid "%% of total"
+msgstr "%% du total"
 
 #, python-format
 msgid "%(dialect)s cannot be used as a data source for security reasons."

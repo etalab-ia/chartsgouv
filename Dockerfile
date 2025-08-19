@@ -54,6 +54,9 @@ FROM ${SUPERSET_REPO}:${SUPERSET_VERSION} AS chartsgouv_img
 USER root
 WORKDIR /app
 
+# Copy base + dsfr config
+COPY --from=dsfr_image /app/superset-dsfr/docker/pythonpath_dev/superset_config_docker.py /app/pythonpath/superset_config.py
+
 # Copy DSFR assets from dsfr_image stage
 COPY --from=dsfr_image /app/dsfr-base/dist /app/superset/static/assets/dsfr
 COPY --from=dsfr_image /app/dsfr-chart/ /app/superset/static/assets/dsfr-chart

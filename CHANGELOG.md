@@ -1,3 +1,16 @@
+## [1.3.0](https://github.com/etalab-ia/chartsgouv/compare/v1.2.0...v1.3.0) (2025-08-20)
+
+### Bug Fixes
+
+* **img:** update Dockerfile ([4ba1c16](https://github.com/etalab-ia/chartsgouv/commit/4ba1c166b52f3cf0e57b31cc19cc1efa2d7a9887))
+* **traduction:** merging backend and frontend traduction into a single file ([0977321](https://github.com/etalab-ia/chartsgouv/commit/09773214ae6a87cabfa72d0641e5b0b59c45f2ff))
+* **traduction:** mise à jour du fichier po et du dockerfile ([b5a7a46](https://github.com/etalab-ia/chartsgouv/commit/b5a7a46f87b616e08a08b5a730ca56bf304aa35d))
+* **traduction:** update Dockerfile ([87299c0](https://github.com/etalab-ia/chartsgouv/commit/87299c0a0c9261e8a744e5fc15176f8a50a094af))
+
+### Improvements
+
+* **docker:** update default app name to ChartsGouv ([796b02c](https://github.com/etalab-ia/chartsgouv/commit/796b02c3916c5c2df018003b3d58c888a4c5d339))
+
 ## [1.2.0](https://github.com/etalab-ia/chartsgouv/compare/v1.1.0...v1.2.0) (2025-06-27)
 
 ### Improvements

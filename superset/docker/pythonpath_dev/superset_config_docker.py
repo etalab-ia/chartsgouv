@@ -3,12 +3,13 @@
 BABEL_DEFAULT_LOCALE = "fr"
 
 LANGUAGES = {
-    "fr": {"flag": "fr", "name": "French"},
+    "fr": {"flag": "fr", "name": "Français"},
+    "en": {"flag": "us", "name": "English"},
 }
 
 FAVICONS = [{"href": "/static/assets/dsfr/favicon/favicon.svg"}]
-LOGO_TOOLTIP = "Superset ChartsGouv"
-APP_NAME = "Superset ChartsGouv"
+LOGO_TOOLTIP = "ChartsGouv"
+APP_NAME = "ChartsGouv"
 
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"

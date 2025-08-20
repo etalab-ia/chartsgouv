@@ -7,7 +7,7 @@
             "@semantic-release/commit-analyzer", {
                 "preset": "conventionalcommits",
                 "releaseRules": [
-                    {"type": "improve", "release": "minor"},
+                    {"type": "improve", "release": "patch"},
                     {"type": "release", "release": "major"}
                 ]
             }

@@ -45,7 +45,31 @@ COPY translations ./translations/
 RUN ls -la /app
 
 # ------------------------------------------
-# Stage 2: Build chartsgouv Image
+# Stage 2: Build frontend translations
+# ------------------------------------------
+FROM node:24-bookworm-slim AS frontend_translations
+
+WORKDIR /app
+
+# Copy translation files
+COPY translations /app/translations
+
+# Install dependencies
+RUN npm install -g po2json
+
+# Convert PO to JSON for Superset and FAB
+RUN set -eux; \
+    # Superset translations
+    find ./translations/superset/translations -name "*.po" | while read file; do \
+        dirname=$(dirname "$file"); \
+        basename=$(basename "$file" .po); \
+        output_file="$dirname/$basename.json"; \
+        echo "Converting $file -> $output_file"; \
+        po2json "$file" "$output_file" --format=jed1.x --domain=superset || echo "Error converting $file"; \
+    done;
+
+# ------------------------------------------
+# Stage 3: Build chartsgouv Image
 # ------------------------------------------
 ARG SUPERSET_VERSION
 ARG SUPERSET_REPO
@@ -70,11 +94,6 @@ COPY --from=dsfr_image /app/superset-dsfr/templates_overrides/tail_js_custom_ext
 COPY --from=dsfr_image /app/superset-dsfr/assets/404.html     /app/superset/static/assets/404.html
 COPY --from=dsfr_image /app/superset-dsfr/assets/500.html     /app/superset/static/assets/500.html
 
-# Override Superset french traduction
-COPY --from=dsfr_image /app/translations/ /app/superset/translations/
-RUN pybabel compile -d /app/superset/translations; \
-    rm -f /app/superset/translations/*/*/*.po; \
-    rm -f /app/superset/translations/*/*/*.json;
 
 # Update CSS Colors
 RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
@@ -82,7 +101,21 @@ RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
         -e "s/#45bed6/#000091/g" \
         -e "s/#1985a0/#000091/g" {} \;
 
-# Install dependencies
+
+# Override Superset french traduction
+# 1️⃣ Copy backend translations (PO files)
+COPY translations/superset/translations /app/translations_mo
+
+# 2️⃣ Compile backend translations to MO files
+RUN pybabel compile --statistics -d /app/translations_mo
+
+# 3️⃣ Merge compiled backend MO files into Superset translations folder
+RUN cp -r /app/translations_mo/* /app/superset/translations/
+
+# 4️⃣ Copy frontend translations
+COPY --from=frontend_translations /app/translations/superset/translations /app/superset/translations
+
+# Install additional dependencies
 COPY --from=dsfr_image /app/superset-dsfr/requirements.txt /app
 RUN pip install --no-cache-dir -r /app/requirements.txt
 

@@ -79,8 +79,8 @@ USER root
 WORKDIR /app
 
 # Copy base + dsfr config
-ENV SUPERSET_CONFIG_PATH=/app/pythonpath/superset_config_base_dsfr.py
-COPY --from=dsfr_image /app/superset-dsfr/docker/pythonpath_dev/superset_config_docker.py /app/pythonpath/superset_config_base_dsfr.py
+COPY --from=dsfr_image --chown=superset /app/superset-dsfr/docker/pythonpath_dev/superset_config_docker.py /app/config_dsfr/superset_config_dsfr_defaut.py
+ENV SUPERSET_CONFIG_PATH=/app/config_dsfr/superset_config_dsfr_defaut.py
 
 # Copy DSFR assets from dsfr_image stage
 COPY --from=dsfr_image /app/dsfr-base/dist /app/superset/static/assets/dsfr

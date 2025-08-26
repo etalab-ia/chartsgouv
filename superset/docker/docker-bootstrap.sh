@@ -35,7 +35,6 @@ else
   echo "Skipping local overrides"
 fi
 
-source docker/docker-dsfr.sh
 
 # playwright is an optional package - run only if it is installed
 #

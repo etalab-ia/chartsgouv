@@ -22,6 +22,7 @@
 #
 import logging
 import os
+from importlib.resources import files
 
 from celery.schedules import crontab
 from flask_caching.backends.filesystemcache import FileSystemCache
@@ -41,7 +42,19 @@ EXAMPLES_HOST = os.getenv("EXAMPLES_HOST")
 EXAMPLES_PORT = os.getenv("EXAMPLES_PORT")
 EXAMPLES_DB = os.getenv("EXAMPLES_DB")
 
+BASE_DIR = str(files("superset"))
+if "SUPERSET_HOME" in os.environ:
+    DATA_DIR = os.environ["SUPERSET_HOME"]
+else:
+    DATA_DIR = os.path.expanduser("~/.superset")
+
 # The SQLAlchemy connection string.
+# SQLALCHEMY_DATABASE_URI = (
+#     f"""sqlite:///{os.path.join(DATA_DIR, "superset.db")}?check_same_thread=false"""
+# )
+# SQLALCHEMY_EXAMPLES_URI = (
+#     "sqlite:///" + os.path.join(DATA_DIR, "examples.db") + "?check_same_thread=false"
+# )
 SQLALCHEMY_DATABASE_URI = (
     f"{DATABASE_DIALECT}://"
     f"{DATABASE_USER}:{DATABASE_PASSWORD}@"

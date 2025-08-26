@@ -1,18 +1,3 @@
-# /app/docker/pythonpath/superset_config_docker.py
-
-BABEL_DEFAULT_LOCALE = "fr"
-
-LANGUAGES = {
-    "fr": {"flag": "fr", "name": "French"},
-}
-
-FAVICONS = [{"href": "/static/assets/dsfr/favicon/favicon.svg"}]
-LOGO_TOOLTIP = "Superset"
-APP_NAME = "Superset"
-
-# Specify the App icon
-APP_ICON = "/static/assets/local/images/app_icon.png"
-
 DSFR_COLORS = {
   "sun": {
     "grey-1000-50": "#fff",
@@ -163,9 +148,9 @@ THEME_OVERRIDES = {
             "light5": DSFR_COLORS["sun"]["blue-france-975-75"],
         },
         "secondary": {
-            "base": DSFR_COLORS["sun"]["blue-france-sun-113-625"], 
-            "dark1": DSFR_COLORS["sun"]["grey-0-1000"], 
-            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"], 
+            "base": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
+            "dark1": DSFR_COLORS["sun"]["grey-0-1000"],
+            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "dark3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "light1": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "light2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
@@ -187,7 +172,7 @@ THEME_OVERRIDES = {
             "base": DSFR_COLORS["sun"]["error-425-625"],
             "dark1": DSFR_COLORS["sun"]["error-425-625"],
             "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
-            "light1": DSFR_COLORS["sun"]["error-425-625"], 
+            "light1": DSFR_COLORS["sun"]["error-425-625"],
             "light2": DSFR_COLORS["sun"]["error-950-100"],
         },
         "warning": {
@@ -284,7 +269,8 @@ EXTRA_CATEGORICAL_COLOR_SCHEMES = [
         ],
     },
 ]
-3
+
+
 def make_description(color_name):
     try:
         cut_index = color_name.index("sun")
@@ -292,6 +278,7 @@ def make_description(color_name):
         return formatted_color_name.title()
     except ValueError:
         return color_name.title().replace('-', ' ')
+
 
 # EXTRA_SEQUENTIAL_COLOR_SCHEMES is used for adding custom sequential color schemes
 EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
@@ -302,7 +289,7 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         "label": make_description(colorname),
         "isDefault": False,
         "colors": [
-            DSFR_COLORS["sun"]["grey-950-100"], 
+            DSFR_COLORS["sun"]["grey-950-100"],
             DSFR_COLORS["sun"][colorname],
         ],
     }
@@ -327,59 +314,3 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         ]
 ]
 EXTRA_SEQUENTIAL_COLOR_SCHEMES[0]["isDefault"] = True
-
-# Do you want Talisman enabled?
-TALISMAN_ENABLED = False
-
-# If you want Talisman, how do you want it configured??
-TALISMAN_CONFIG = {
-    "content_security_policy": {
-        "default-src": ["'self'"],
-        "img-src": ["'self'", "data:"],
-        "worker-src": ["'self'", "blob:"],
-        "connect-src": [
-            "'self'",
-            "https://api.mapbox.com",
-            "https://events.mapbox.com",
-        ],
-        "object-src": "'none'",
-        "style-src": ["'self'", "'unsafe-inline'"],
-        "script-src": ["'self'", "'unsafe-eval'"],
-    },
-    "content_security_policy_nonce_in": ["script-src"],
-    "force_https": False,
-}
-
-# Sanitizes the HTML content used in markdowns to allow its rendering in a safe manner.
-# Disabling this option is not recommended for security reasons. If you wish to allow
-# valid safe elements that are not included in the default sanitization schema, use the
-# HTML_SANITIZATION_SCHEMA_EXTENSIONS configuration.
-HTML_SANITIZATION = False
-
-# Use this configuration to extend the HTML sanitization schema.
-# By default we use the GitHub schema defined in
-# https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/schema.js
-# For example, the following configuration would allow the rendering of the
-# style attribute for div elements and the ftp protocol in hrefs:
-HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
-  "ancestors": {
-    "tbody": ["table"],
-	"td": ["table"],
-	"th": ["table"],
-	"thead": ["table"],
-	"tfoot": ["table"],
-	"tr": ["table"]
-  },
-  "tagNames": ["button", "svg", "use", "span"],
-  "attributes": {
-    "div": ["style"],
-    "button": ["class", "id", "aria-desribedby"],
-    "*": ["style","className"],
-	"svg": ["viewBox"],
-	"use": ["href"],
-  },
-  "strip": ["script"],
-  "protocols": {
-    "href": ["ftp"],
-  }
-}

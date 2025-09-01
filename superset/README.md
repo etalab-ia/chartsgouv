@@ -5,15 +5,19 @@ Cette documentation présente tous les éléments personnalisables d'Apache Supe
 
 # Table des matières
 
-- [La configuration](#la-configuration)
-  - [via fichiers python](#configuration-via-fichiers-python)
-  - [via variables d'environnement](#configuration-via-variables-d'environnement)
-- [Le thème](#le-thème)
-  - Les templates
-  - Les schémas de couleurs et les couleurs 
-- [OIDC](#oidc)
-- [La traduction](#la-traduction)
-- [Les plugins](#les-plugins)
+- [Table des matières](#table-des-matières)
+  - [La configuration](#la-configuration)
+      - [Configuration via fichiers python](#configuration-via-fichiers-python)
+      - [Configuration via variables d'environnement](#configuration-via-variables-denvironnement)
+  - [Le thème](#le-thème)
+    - [`public_welcome.html`](#public_welcomehtml)
+    - [`base.html`](#basehtml)
+    - [`basic.html`](#basichtml)
+    - [`tail_js_custom_extra.html`](#tail_js_custom_extrahtml)
+    - [`tail_css_custom_extra.css`](#tail_css_custom_extracss)
+  - [OIDC](#oidc)
+  - [La traduction](#la-traduction)
+  - [Les plugins](#les-plugins)
 
 ## La configuration
 Il  est possible de configurer une instance Superset via les fichiers python de configuration disponibles dans `docker/pythonpath_dev` ou via le fichier `.env` pour les déploiements Docker.
@@ -74,7 +78,7 @@ Pour plus d'éléments de configuration, vous pouvez consulter le [fichier de co
 
 Le fichier `docker/.env` contient certaines variables d'environnement. Ce fichier est exclusivement utilisé pour les déploiements Docker.  
 Les informations de l'utilisateur admin peuvent être modifiées dans le fichier `docker/docker-init.sh`.
-
+Il est également possible d'ajouter des packages python en les ajoutants dans le fichier `docker/requirements-locaux.txt`.
 
 ## Le thème
 

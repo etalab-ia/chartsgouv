@@ -1,24 +1,89 @@
-## Personnaliser ChartsGouv
+## Personnaliser Apache Superset
 > Ce dépôt contient des éléments de configuration pour Superset, ce n'est pas un fork de Superset et ce n'est pas lié à une version particulière de Superset.
 
-Cette partie présente tous les éléments personnalisables d'Apache Superset. L'intérêt est que tout s'intègre sans réaliser de fork d'Apache Superset.
+Cette documentation présente tous les éléments personnalisables d'Apache Superset, intégrés par défaut dans ChartsGouv.
 
-## [La configuration](#configuration)
-Voir [docker/pythonpath_dev/superset_config_docker.example.py](docker/pythonpath_dev/superset_config_docker.example.py) pour d'autres configurations optionnelles non liées directement au thème (macros Jinja, feature flags, cache, ...).
+# Table des matières
 
-Voir [docker/pythonpath_dev/superset_config_docker.unsecure.py](docker/pythonpath_dev/superset_config_docker.unsecure.py#L330) pour une version provisoire (13/02/2024) d'une configuration non securisée mais fonctionnelle pour inclure les composants DSFR dans les zones de Texte et les DSFR-Chart avec le plugin [Handlebars](https://handlebarsjs.com).
+- [La configuration](#la-configuration)
+  - [via fichiers python](#configuration-via-fichiers-python)
+  - [via variables d'environnement](#configuration-via-variables-d'environnement)
+- [Le thème](#le-thème)
+  - Les templates
+  - Les schémas de couleurs et les couleurs 
+- [OIDC](#oidc)
+- [La traduction](#la-traduction)
+- [Les plugins](#les-plugins)
+
+## La configuration
+Il  est possible de configurer une instance Superset via les fichiers python de configuration disponibles dans `docker/pythonpath_dev` ou via le fichier `.env` pour les déploiements Docker.
+Certains éléments sont configurables exclusivement par les fichiers python et d'autres par les variables d'environnement.  
+> Pour les configurations non-sensibles, nous recommandons d'utiliser les fichiers python.
+
+#### Configuration via fichiers python
+
+Le backend d'Apache Superset se base sur le framework Flask. Il existe donc un certains nombre de paramètres de configuration qui peuvent être customisés.  
+Une configuration par défaut est disponible dans `docker/pythonpath_dev`.  
+Ci-dessous le descriptif de chacun des fichiers. L'organisation de ces fichiers est arbitraire.
+
+- `superset_config.py`  
+
+Ce fichier est le seul à laisser tel qu'il est. Il permet l'importation de tous les autres éléments de configuration.
+
+- `superset_config_docker.py`
+
+Vous pouvez configurer certains éléments globaux de votre application comme son `APP_NAME`, `APP_ICON`, les langues utilisés, les formats des nombres ...   
+Il sert également de fichier d'agrégation des autres éléments de configuration.
+
+- `config_options/cache_config.py`  
+
+Les paramètres globlaux de gestion du cache.
+
+- `config_options/feature_flags.py`  
+
+Les feature flags sont des fonctionnalités globales qui peuvent être activées ou désactivées.
+
+- `config_options/html_sanitization.py`
+
+Cette partie de la configuration d'autoriser/refuser l'ajout de HTML/CSS depuis les graphiques qui le permettent.  
+Si des balises HTML ne sont pas autorisées, elles sont automatiquement retirées du rendu.
+
+- `config_options/jinja_context_addons.py`  
+
+A compléter
+
+- `config_options/talisman.py`  
+
+A compléter
+
+- `config_options/theme.py`
+
+Ce fichier de configuration inclut notamment: 
+  - la [variable de configuration de thème](https://preset.io/blog/theming-superset-progress-update/) `THEME_OVERRIDES` pour faire la transposition design system de Superset vers le DSFR (voir le tableau de transposition des couleurs [plus bas](#couleurs)),
+  - [les variables de configuration des couleurs des charts](https://preset.io/blog/customizing-chart-colors-with-superset-and-preset/) `EXTRA_CATEGORICAL_COLOR_SCHEMES` pour définir une nouvelle palette de couleurs avec [les couleurs illustratives du DSFR](https://gouvernementfr.github.io/dsfr-chart/#colors) pour les graphiques à variables catégorielles,
+  - `EXTRA_SEQUENTIAL_COLOR_SCHEMES` pour définir des dégradés de couleur pour les graphiques à variables continues (e.g. plugin Carte de Pays)
+
+D'autres schémas peuvent être ajoutés.
+- `config_options/user_model.py` & `config_options/security_manager.py`  
+
+Ces deux fichiers de configuration permettent gérer le modèle des utilisateurs pour leur ajouter des propriétés qui peuvent par la suite être exploitées.
+
+Pour plus d'éléments de configuration, vous pouvez consulter le [fichier de config](https://github.com/apache/superset/blob/master/superset/config.py) du repo officiel de Superset.
+
+#### Configuration via variables d'environnement
+
+Le fichier `docker/.env` contient certaines variables d'environnement. Ce fichier est exclusivement utilisé pour les déploiements Docker.  
+Les informations de l'utilisateur admin peuvent être modifiées dans le fichier `docker/docker-init.sh`.
 
 
-## [Le thème](#theme)
-- police Marianne :fr: (voir [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))
-- version française :fr: (voir [docker/docker-dsfr.sh](docker/docker-dsfr.sh#L11))
-- transposition des couleurs DSFR :art: (voir `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L148))
-- palettes de couleurs pour les graphiques :art:  (voir `EXTRA_CATEGORICAL_COLOR_SCHEMES` et `EXTRA_SEQUENTIAL_COLOR_SCHEMES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L235))
-- pages d'erreurs :x: [404.html](assets/404.html) et [500.html](assets/500.html) du [DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/modeles/page-d-erreurs)
-- [composants DSFR](https://www.systeme-de-design.gouv.fr/elements-d-interface/composants) :control_knobs: dans les zones de texte (optionnel, nécessite d'adapter `HTML_SANITIZATION_SCHEMA_EXTENSIONS`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
-- [DSFR charts](https://gouvernementfr.github.io/dsfr-chart/) :chart_with_upwards_trend: (optionnel, necéssite d'adapter `TALISMAN_CONFIG`) => développement futur de plugins spécifiques par la communauté pour fiabiliser la solution actuelle
+## Le thème
 
-Editer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) pour l'adapter à vos besoins (e.g. rajouter des [feature flags](https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md)), ou remplacer des fichiers de ce dépôt montés dans le container, par exemple:
+Tous les éléments visuels du frontend peuvent être customisés tels que les templates, les assets et/ou la couleur (via la configuration).  
+A compléter
+
+1. Les templates  
+
+Les templates suivants sont présents et éditables:
 - [app_icon.png](assets/images/app_icon.png) pour modifier l'icone dans l'en-tete,
 - [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css) pour rajouter des règles CSS globales,
 - [tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html) pour rajouter des scripts JS globaux,
@@ -27,6 +92,9 @@ Editer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/s
 - [basic.html](templates_overrides/superset/basic.html#L86) pour ajouter ou non (commenter/décommenter) l'entièreté du DSFR/DSFR-Chart,
 - [404.html](assets/404.html) pour [ajouter un formulaire de contact](https://github.com/qleroy/chartsgouv/blob/refactor-300/superset/assets/404.html#L29),
 - [500.html](assets/500.html) pour [ajouter un formulaire de contact](https://github.com/qleroy/chartsgouv/blob/refactor-300/superset/assets/500.html#L22).
+
+
+Ci-dessous les différences entre les templates officiels de Superset (à gauche) et ceux de ChartsGouv (à droite) par défaut.
 
 ### `public_welcome.html`
 
@@ -148,7 +216,12 @@ h1, h2, h3, h4, h5, h6,
 }
 ```
 
-### Couleurs
+2. Les couleurs
+
+Les couleurs et les schéma de couleurs peuvent être personnalisés.  
+Voir la section concernant le fichier de configuration `config_options/theme.py`.
+
+Par défaut, les couleurs embarquées sont les suivantes:
 
 | Couleur   | Teinte | Superset                                                         | hex       | DSFR                                                         | hex       |
 | --------- | ------ | ---------------------------------------------------------------- | --------- | ------------------------------------------------------------ | --------- |
@@ -211,145 +284,9 @@ Documentation à venir.
 
 ## [La traduction](#traduction)
 Le fichier qui contient toutes les traductions est disponible dans `translations/`.  
-Les traductions sont compilées en .mo et .json lors du build de l'image
+Les traductions sont compilées en .mo et .json lors du build de l'image.  
+Toutes les suggestions d'améliorations de la traduction sont les bienvenues.
 
 ## [Les plugins](#plugins)
 
-
-
-## Déploiement Docker d'Apache Superset
-
-
-
-## TL;DR
-
-Ce dépôt contient des éléments de configuration pour Superset, ce n'est pas un fork de Superset et ce n'est pas lié à une version particulière de Superset.
-
-Pour l'inclure à votre installation actuelle, regarder:
-- `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L148),
-- les points de montage additionnels dans [docker-compose-non-dev.yml](docker-compose-non-dev.yml#L25),
-- et le script [docker/docker-dsfr.sh](docker/docker-dsfr.sh).
-
-Pour une nouvelle installation, ne pas oublier de générer une `SUPERSET_SECRET_KEY` et de la sauvegarder, et suivre le snippet ci-dessous pour télécharger le DSFR, cloner ce dépôt et démarrer le déploiement Docker en local.
-
-
-
-
-Cloner le dépôt ChartsGouv, seule la branche principale est nécessaire.
-
-```bash
-git clone --single-branch https://github.com/numerique-gouv/chartsgouv
-```
-
-Se déplacer dans le répertoire `superset/`:
-
-```bash
-cd superset/
-```
-
-Générer une [clé secrète](https://superset.apache.org/docs/installation/configuring-superset/#specifying-a-secret_key) et la sauvegarder en sécurité:
-
-```bash
-export SUPERSET_SECRET_KEY="$(openssl rand -base64 42)"
-echo "$SUPERSET_SECRET_KEY" > .secret_key
-# Aussi possible de définir la variable SECRET_KEY dans docker/pythonpath_dev/superset_config_docker.py
-# Attention, c'est bien SUPERSET_SECRET_KEY comme variable d'environnement,
-# et SECRET_KEY comme variable python dans superset_config_docker.py
-```
-
-Tous les fichiers nécessaires sont présents dans ce répertoire, il n'y a pas besoin d'avoir le dépôt principal avec les sources complètes de Superset.
-
-On utilise les images officielles d'Apache Superset (en l'occurence depuis le registre [apachesuperset.docker.scarf.sf](docker-compose-non-dev.yml#L17), voir [les précautions pour scarf](https://superset.apache.org/docs/frequently-asked-questions/#does-superset-collect-any-telemetry-data) ou utiliser un autre registre) avec un fichier modifié ([voir plus bas](#docker-compose-non-devyml)) du `docker-compose-non-dev.yml` adapté pour la production:
-
-```bash
-TAG=3.1.0 docker compose -f docker-compose-non-dev.yml up -d
-```
-
-Se rendre sur http://localhost:8088 et rentrer les identifiants :
-- nom d'utilisateur : admin
-- mot de passe : admin
-
-Si le déploiement est sur un serveur distant, un exemple de fichier de configuration Nginx agissant en reverse-proxy est donné [plus bas](#nginx).
-
-## Détails
-
-Le dépôt contient:
-- la spécification pour un déploiement Docker en production [docker-compose-non-dev.yml](docker-compose-non-dev.yml) avec des points de montage supplémentaires (assets supplémentaires, DSFR, templates overrides):
-  - `./assets:/app/superset/static/assets/local` pour inclure [app_icon.png](assets/images/app_icon.png) et [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css), les pages d'erreur [404.html](assets/404.html) et [500.html](assets/500.html),
-  - `./templates_overrides:/app/superset/templates_overrides` pour remplacer les templates [public_welcome.html](templates_overrides/superset/public_welcome.html), [base.html](templates_overrides/superset/base.html), [basic.html](templates_overrides/superset/basic.html) et [tail_js_custom_extra.html](templates_overrides/tail_js_custom_extra.html),
-  - `./dsfr/dist:/app/superset/static/assets/dsfr` pour inclure [la police Marianne](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-de-l-identite-de-l-etat/typographie), [CSS et JS](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/developpeurs/prise-en-main), [icônes](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/icone) et [pictogrammes](https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-techniques/pictogramme) du DSFR,
-  - `./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart` pour inclure [CSS et JS supplémentaires](https://github.com/GouvernementFR/dsfr-chart?tab=readme-ov-file#configuration-de-votre-projet) pour les DSFR-Chart,
-- le script [docker/docker-dsfr.sh](docker/docker-dsfr.sh) pour remplacer certaines teintes de bleu spécifiques aux pages génériques FAB par le bleu France, compiler les fichiers de traduction FAB, déplacer individuellement les templates et pages 404 et 500 à l'emplacement approprié pour que le remplacement soit effectif,
-- le script [docker/docker-bootstrap.sh](docker/docker-bootstrap.sh#L38) modifié pour sourcer [docker/docker-dsfr.sh](docker/docker-dsfr.sh),
-- le fichier de configuration [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) qui inclut notamment: 
-  - la [variable de configuration de thème](https://preset.io/blog/theming-superset-progress-update/) `THEME_OVERRIDES` pour faire la transposition design system de Superset => DSFR (voir le tableau de transposition des couleurs [plus bas](#couleurs)),
-  - [les variables de configuration des couleurs des charts](https://preset.io/blog/customizing-chart-colors-with-superset-and-preset/) `EXTRA_CATEGORICAL_COLOR_SCHEMES` pour définir une nouvelle palette de couleurs avec [les couleurs illustratives du DSFR](https://gouvernementfr.github.io/dsfr-chart/#colors) pour les graphiques à variables catégorielles,
-  - `EXTRA_SEQUENTIAL_COLOR_SCHEMES` pour définir des dégradés de couleur pour les graphiques à variables continues (e.g. plugin Carte de Pays),
-- un fichier [superset/templates/tail_js_custom_extra.html](superset/templates/tail_js_custom_extra.html), pour inclure globalement les modules JS du DSFR,
-- un fichier [assets/images/app_icon.png](assets/images/app_icon.png), à remplacer par l'image de votre choix pour l'icône de l'application dans l'en-tête,
-- une version modifiée des templates `superset/templates/superset/{base,basic}.html` pour inclure le DSFR globalement (css et js),
-- un fichier `assets/css/tail_css_custom_extra.css` pour corriger l'affichage de certains liens et corriger l'application de la police Marianne globalement,
-- un fichier `superset/templates/superset/public_welcome.html`, optionnel pour démontrer la capacité de personnaliser la page d'accueil,
-- un fichier `docker/requirements-local.txt`, optionnel où on peut ajouter des paquets Python supplémentaires, [par exemple nécessaires pour certains drivers](https://superset.apache.org/docs/databases/installing-database-drivers) comme `duckdb-engine`,
-- les autres fichiers (`docker/docker-entrypoint-initdb.d/examples-init.sh`, `docker/pythonpath_dev/superset_config.py`, `docker/{.env-non-dev,docker-init.sh}`) sont les fichiers originaux du dépot principal non modifiés, ils viennent de la version 3.1.0 et sont stables dans le temps, sont nécessaires pour le déploiement avec Docker.
-
-Ci-dessous les comparaisons des fichiers relatifs au déploiement Docker du dépôt principal (à gauche) avec les diff apportées par ce dépôt (à droite):
-
-
-
-
-### Nginx
-
-Fichier `/etc/nginx/sites-available/superset`:
-```
-server {
-  index index.html index.htm;
-  access_log /var/log/nginx/mondomaine.fr_access.log;
-  error_log /var/log/nginx/mondomaine.fr_error.log;
-  server_name mondomaine.fr www.mondomaine.fr;
-  location / {
-    proxy_pass http://localhost:8088;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header Host $host;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    # WebSocket support
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    #proxy_set_header Connection "upgrade";
-    proxy_set_header Connection $http_connection;
-  }
-
-  listen 443 ssl;
-  ssl_certificate /etc/letsencrypt/live/mondomaine.fr/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/mondomaine.fr/privkey.pem;
-  include /etc/letsencrypt/options-ssl-nginx.conf;
-  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-}
-
-server {
-  if ($host = mondomaine.fr) {
-    return 301 https://$host$request_uri;
-  }
-
-  listen 80;
-  listen [::]:80;
-  server_name mondomaine.fr;
-  return 404;
-}
-```
-
-```bash
-sudo ln -s /etc/nginx-sites-available/superset /etc/nginx/sites-enabled/superset 
-sudo nginx -s reload
-```
-
-### Captures d'écran
-
-| Description | Image |
-| --- | --- |
-|Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/demo_sill.png)|
-|Palettes de couleurs :art:|![demo_graphes_echarts](/images/demo_graphes_echarts.png)|
-|Composants DSFR :control_knobs:|![demo_dsfr1](/images/demo_dsfr1.png)|
-|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/demo_dsfr_chart1.png)|
-|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/demo_dsfr_chart2.png)|
-|Page d'erreur 404 :x:|![error404](/images/error404.png)|
+Documentation a venir. En attente de l'implémenter de la nouvelle architecture des plugins.

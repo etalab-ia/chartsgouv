@@ -34,13 +34,14 @@ Le fichier values.yaml mis à disposition est un exemple très minimal. Tous les
 
 Si vous utilisez votre propre instance PostgreSQL, compléter également la section suivante:
 ```yaml
-connections:
-    # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
-    db_host: "{{ .Release.Name }}-postgresql"
-    db_port: "5432"
-    db_user: superset
-    db_pass: superset
-    db_name: superset
+supersetNode:
+    connections:
+        # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
+        db_host: "{{ .Release.Name }}-postgresql"
+        db_port: "5432"
+        db_user: superset
+        db_pass: superset
+        db_name: superset
 ## Set to false if bringing your own PostgreSQL.
 postgresql:
   enabled: false

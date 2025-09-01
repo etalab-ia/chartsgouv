@@ -48,6 +48,7 @@ SUPERSET_LOAD_EXAMPLES=yes
 POSTGRES_USER=superset
 POSTGRES_PASSWORD=superset
 ```
+La valeur de `SUPERSET_SECRET_KEY` peut être générée avec la commande `openssl rand -base64 42`
 
 Depuis la racine du projet:
 - Démarrer les services

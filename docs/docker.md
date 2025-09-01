@@ -11,11 +11,11 @@
 1. Les images mises à disposition  
 
 Plusieurs images prêtent à l'emploi se situent [ici](https://github.com/etalab-ia/chartsgouv/pkgs/container/chartsgouv).  
-Le tag des images est le suivant: `version_superset-version_dsfr-version_dsfr_chart`
+Le tag des images se lit de la façon suivante: `chartsgouv:version_superset-version_dsfr-version_dsfr_chart`
 
 2. Personnaliser une image  
 
-Tous les éléments de personnalisations se situent dans le dossier [`chartsgouv/superset`](https://github.com/etalab-ia/chartsgouv/tree/main/superset).
+Tous les éléments de personnalisations se situent dans le dossier [`chartsgouv/superset`](https://github.com/etalab-ia/chartsgouv/tree/main/superset). Vous pouvez vous référer à la documentation pour customiser tous les éléments.
 
 Une fois les modifications effectuées, il faudra build votre image:
 ```bash
@@ -42,6 +42,8 @@ Les variables d'environnements de votre application peuvent être configurées d
 ```bash
 # A secret key that will be used for securely signing the session cookie and can be used for any other security related needs by extensions or your application
 SUPERSET_SECRET_KEY=TEST_NON_DEV_SECRET
+# false pour enlever certains tags "development"
+DEV_MODE=true
 # Charger les données d'exemples
 SUPERSET_LOAD_EXAMPLES=yes
 # Connection à la base de données
@@ -59,6 +61,16 @@ docker compose -f superset/docker-compose-image-tag.yml up -d
 Une fois les services lancés, se rendre sur http://localhost:8088 et rentrer les identifiants :  
 nom d'utilisateur : `admin`  
 mot de passe : `admin`  
+Ces identifiants peuvent être modifiés via le fichier `superset/docker/docker-init.sh`
+```bash
+# Remplacer username et password
+superset fab create-admin \
+              --username admin \
+              --firstname Superset \
+              --lastname Admin \
+              --email admin@superset.com \
+              --password $ADMIN_PASSWORD
+```
 
 - Pour arrêter les services
 ```bash

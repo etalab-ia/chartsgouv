@@ -40,7 +40,6 @@ RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import custom Superset templates
 COPY superset ./superset-dsfr/
-COPY translations ./translations/
 
 RUN ls -la /app
 
@@ -52,7 +51,7 @@ FROM node:24-bookworm-slim AS frontend_translations
 WORKDIR /app
 
 # Copy translation files
-COPY translations /app/translations
+COPY superset/translations /app/translations
 
 # Install dependencies
 RUN npm install -g po2json
@@ -60,7 +59,7 @@ RUN npm install -g po2json
 # Convert PO to JSON for Superset and FAB
 RUN set -eux; \
     # Superset translations
-    find ./translations/superset/translations -name "*.po" | while read file; do \
+    find ./translations -name "*.po" | while read file; do \
         dirname=$(dirname "$file"); \
         basename=$(basename "$file" .po); \
         output_file="$dirname/$basename.json"; \
@@ -104,7 +103,7 @@ RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
 
 # Override Superset french traduction
 # 1️⃣ Copy backend translations (PO files)
-COPY translations/superset/translations /app/translations_mo
+COPY --from=dsfr_image /app/superset-dsfr/translations /app/translations_mo
 
 # 2️⃣ Compile backend translations to MO files
 RUN pybabel compile --statistics -d /app/translations_mo
@@ -113,7 +112,7 @@ RUN pybabel compile --statistics -d /app/translations_mo
 RUN cp -r /app/translations_mo/* /app/superset/translations/
 
 # 4️⃣ Copy frontend translations
-COPY --from=frontend_translations /app/translations/superset/translations /app/superset/translations
+COPY --from=frontend_translations /app/translations /app/superset/translations
 
 # Install additional dependencies
 COPY --from=dsfr_image /app/superset-dsfr/requirements.txt /app

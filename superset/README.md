@@ -26,32 +26,6 @@ Editer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/s
 - [404.html](assets/404.html) pour [ajouter un formulaire de contact](https://github.com/qleroy/chartsgouv/blob/refactor-300/superset/assets/404.html#L29),
 - [500.html](assets/500.html) pour [ajouter un formulaire de contact](https://github.com/qleroy/chartsgouv/blob/refactor-300/superset/assets/500.html#L22).
 
-### `docker-compose-non-dev.yml`
-
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_docker-compose-non-dev.yml.png)
-
-```bash
-$ curl -s https://raw.githubusercontent.com/apache/superset/master/docker-compose-non-dev.yml | diff - docker-compose-non-dev.yml
-24a25,30
->   - ./assets:/app/superset/static/assets/local
->   - ./templates_overrides:/app/superset/templates_overrides
->   - ./dsfr/dist:/app/superset/static/assets/dsfr
->  #- ./dsfr-chart/Charts:/app/superset/static/assets/dsfr-chart
-```
-
-### `docker-bootstrap.sh`
-
-![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_docker-bootstrap.sh.png)
-
-```bash
-$ curl -s https://raw.githubusercontent.com/apache/superset/master/docker/docker-bootstrap.sh | diff - docker/docker-bootstrap.sh
-38c38,39
-< #
----
-> source docker/docker-dsfr.sh
->
-```
-
 ### `public_welcome.html`
 
 ![Capture d'écran lisible du diff entre le fichier du dépôt principal et sa version modifiée de ce dépôt](/images/screenshot_public_welcome.html.png)
@@ -316,28 +290,6 @@ Le dépôt contient:
 
 Ci-dessous les comparaisons des fichiers relatifs au déploiement Docker du dépôt principal (à gauche) avec les diff apportées par ce dépôt (à droite):
 
-
-
-Les fichiers supplémentaires:
-
-### `docker-dsfr.sh`
-
-```bash
-for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do
-    sed \
-      -e "s/#20a7c9/#000091/g" \
-      -e "s/#45bed6/#000091/g" \
-      -e "s/#1985a0/#000091/g" \
-      "$theme_filename" > temp.css && mv temp.css "$theme_filename"
-done
-
-pybabel compile -d superset/translations || true
-
-cp /app/superset/templates_overrides/superset/{base,basic,public_welcome}.html /app/superset/templates/superset/
-cp /app/superset/templates_overrides/tail_js_custom_extra.html /app/superset/templates/tail_js_custom_extra.html
-cp /app/superset/static/assets/local/404.html /app/superset/static/assets/404.html
-cp /app/superset/static/assets/local/500.html /app/superset/static/assets/500.html
-```
 
 
 

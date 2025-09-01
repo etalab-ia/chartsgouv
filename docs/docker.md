@@ -5,55 +5,60 @@
 
 [[_TOC_]]
 
+> Tous les éléments de personnalisations se situent dans le dossier `chartsgouv/superset`. Il n'y a pas besoin du repo officiel de apache Superset.
+
+## L'image de ChartsGouv
+1. Les images mises à disposition  
+
+Plusieurs images prêtent à l'emploi se situent [ici](https://github.com/etalab-ia/chartsgouv/pkgs/container/chartsgouv).  
+Le tag des images est le suivant: `version_superset-version_dsfr-version_dsfr_chart`
+
+2. Personnaliser une image  
+
+Tous les éléments de personnalisations se situent dans le dossier [`chartsgouv/superset`](https://github.com/etalab-ia/chartsgouv/tree/main/superset).
+
+Une fois les modifications effectuées, il faudra build votre image:
+```bash
+# Lancez la commande depuis la racine du projet
+docker build -t nom_image:votre_tag .
+```
+Vous pouvez ensuite l'utiliser dans un déploiement avec Docker compose.
+
 ## [Lancement avec Docker](#lancement-avec-docker)
 
 L'exécution directe de l'image via une commande Docker n'est pas possible compte tenu de la façon dont la configuration se charge dans Superset.
 
 ## [Lancement avec Docker Compose](#lancement-avec-docker-compose)
 
-Spécifiez l'image que vous souhaitez utiliser dans `docker-compose-image-tag.yml` :
+Spécifiez l'image que vous souhaitez utiliser dans `superset/docker-compose-image-tag.yml` :
 ```yaml
 x-superset-image: &superset-image nom_image:tag
 ```
-Des images prêtent à l'emploi sont disponibles [sur ce repo](https://github.com/etalab-ia/chartsgouv/pkgs/container/chartsgouv).  
-Démarrez les services avec :
+Vous pouvez utiliser l'image que vous venez de build ou celles mises à votre disposition.  
+
+- Configurer l'application  
+
+Les variables d'environnements de votre application peuvent être configurées dans le fichier [.env](https://github.com/etalab-ia/chartsgouv/blob/main/superset/docker/.env).  
+```bash
+# A secret key that will be used for securely signing the session cookie and can be used for any other security related needs by extensions or your application
+SUPERSET_SECRET_KEY=TEST_NON_DEV_SECRET
+# Charger les données d'exemples
+SUPERSET_LOAD_EXAMPLES=yes
+# Connection à la base de données
+POSTGRES_USER=superset
+POSTGRES_PASSWORD=superset
+```
+
+Depuis la racine du projet:
+- Démarrer les services
 ```bash
 # Lancez la commande depuis la racine du projet
 docker compose -f superset/docker-compose-image-tag.yml up -d
 ```
 
-Pour arrêter les services :
+- Pour arrêter les services
 ```bash
 # Lancez la commande depuis la racine du projet
 docker compose -f superset/docker-compose-image-tag.yml down
 ```
 Des volumes seront créés sur votre machine locale. Pensez à les supprimer si vous ne les utilisez plus.
-
-## [Personnalisation de la configuration](#personnalisation-de-la-configuration)
-
-- Les variables d'environnement
-- La configuration  
-Vous pouvez modifier tous les éléments dans `docker/pythonpath_dev` pour modifier la configuration qui sera appliquée à votre instance de ChartsGouv.
-Toutes les variables configurations peuvent être trouvée sur le repo officiel de superset: [configuration](https://github.com/apache/superset/blob/main/superset/config.py).  
-
-Une fois vos modifications effectuées:
-```env
-# dans le fichier .env, inversé les chemins de dossiers
-PYTHONPATH=/app/docker/pythonpath_dev:/app/pythonpath
-```
-Vous pouvez démarrer vos services.
-
-## [Autres personnalisations (assets, templates, traductions ...)](#autres-personnalisations)
-
-Pour des personnalisations avancées, modifiez les fichiers dans `superset/` puis reconstruisez l'image Docker à partir du `Dockerfile`. Utilisez ensuite cette image personnalisée avec les instructions précédentes.  
-Pour construire une nouvelle image Docker :
-
-```bash
-# Lancez la commande depuis la racine du projet
-docker build -t nom_image:tag .
-```
-Modifiez l'image utilisée dans `docker-compose-image-tag.yml` :
-```yaml
-x-superset-image: &superset-image nom_image:tag
-```
-Vous pouvez démarrer démarrer vos services.

@@ -1,4 +1,6 @@
 ## Personnaliser ChartsGouv
+> Ce dépôt contient des éléments de configuration pour Superset, ce n'est pas un fork de Superset et ce n'est pas lié à une version particulière de Superset.
+
 Cette partie présente tous les éléments personnalisables d'Apache Superset. L'intérêt est que tout s'intègre sans réaliser de fork d'Apache Superset.
 
 ## [La configuration](#configuration)
@@ -204,10 +206,13 @@ h1, h2, h3, h4, h5, h6,
 | info      | light2 | ![superset](https://dummyimage.com/20/EFF8FE/000?text=+) | `#EFF8FE` | ![dsfr](https://dummyimage.com/20/e8edff/000?text=+) | `#e8edff` |
 
 
-
-
 ## [OIDC](#oidc)
+Documentation à venir.
+
 ## [La traduction](#traduction)
+Le fichier qui contient toutes les traductions est disponible dans `translations/`.  
+Les traductions sont compilées en .mo et .json lors du build de l'image
+
 ## [Les plugins](#plugins)
 
 

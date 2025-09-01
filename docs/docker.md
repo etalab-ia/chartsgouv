@@ -66,7 +66,7 @@ Des volumes seront créés sur votre machine locale. Pensez à les supprimer si 
 
 
 ### Nginx
-A compléter.
+Si le déploiement est sur un serveur distant, un exemple de fichier de configuration Nginx agissant en reverse-proxy est donné [plus bas](#nginx).
 
 Fichier `/etc/nginx/sites-available/superset`:
 ```

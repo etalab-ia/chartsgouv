@@ -26,14 +26,9 @@ Ce projet a été inité par l'intermédiaire du [programme 10%](https://www.10p
 
 Ce projet est une extension du projet Superset. Il vise à compléter cet outil en y intégrant la couche DSFR de l'État. Il a aussi vocation à expérimenter des fonctionnalités spécifiques propres aux besoins des administrations et aux utilisateurs francophones de cet outils.
 
-
-### Démonstration
-<a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
-    <img src="./images/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
-</a>
-
 ### Accès rapides
-- :art: [Thème DSFR](./superset/)
+- :art: [Personnalisation](./superset/)
+- [Deploiement avec Docker](./docs/docker.md)
 
 ### Installation
 Un guide d'installation est disponible ici: [./INSTALLATION.md](./INSTALLATION.md)

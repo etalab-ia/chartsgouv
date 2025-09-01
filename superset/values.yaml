@@ -1,0 +1,71 @@
+# Configuration minimale
+
+# Exemple avec un host SSPCloud
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  # Modifier le host de déploiement
+  hosts:
+    - app_name.lab.incubateur.finances.rie.gouv.fr
+
+# Préciser l'image à utiliser lors du déploiement
+image:
+  repository: ghcr.io/etalab-ia/chartsgouv
+  tag: 4.1.2-1.13.1-2.0.3
+  pullPolicy: IfNotPresent
+
+# Ajout de la configuration
+extraVolumes:
+  - name: superset-dsfr-custom-config
+    configMap:
+      name: superset-dsfr-custom-config
+
+extraVolumeMounts:
+  - name: superset-dsfr-custom-config
+    mountPath: /app/pythonpath/custom_config
+
+init:
+  # Charger des données et tableaux de bord de démo
+  loadExamples: false
+  # Créer un admin
+  createAdmin: true
+  adminUser:
+    username: admin
+    firstname: Superset
+    lastname: Admin
+    email: admin@superset.com
+    password: admin
+extraSecretEnv:
+  SUPERSET_SECRET_KEY: 'Your secret key'
+supersetNode:
+  replicas:
+    enabled: true
+    replicaCount: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+  connections:
+    # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
+    db_host: "{{ .Release.Name }}-postgresql"
+    db_port: "5432"
+    db_user: superset
+    db_pass: superset
+    db_name: superset
+## Set to false if bringing your own PostgreSQL.
+postgresql:
+  enabled: true
+# Superset Celery worker configuration
+supersetWorker:
+  replicas:
+    enabled: true
+    replicaCount: 1
+  autoscaling:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+  # -- Sets the [pod disruption budget](https://kubernetes.io/docs/tasks/run-application/configure-pdb/) for supersetWorker pods

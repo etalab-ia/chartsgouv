@@ -29,12 +29,10 @@ Ce projet est une extension du projet Superset. Il vise à compléter cet outil 
 ### Accès rapides
 - :art: [Personnalisation](./superset/)
 - [Deploiement avec Docker](./docs/docker.md)
-
-### Installation
-Un guide d'installation est disponible ici: [./INSTALLATION.md](./INSTALLATION.md)
+- [Deploiement avec Helm](./docs/helm.md)
 
 ### Prise en main
-Une documentation française a été rédigée par le MTE.  
+Une documentation en français d'Apache Superset a été rédigée par le MTE.  
 Pour la consulter, rendez-vous sur [ce site](https://snum.gitlab-pages.din.developpement-durable.gouv.fr/ds/gd3ia/offre-dataviz-documentation/).  
 > [!NOTE]  
 > Certains éléments de cette documentation sont propres à l'environnement du MTE.  

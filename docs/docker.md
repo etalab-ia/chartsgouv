@@ -61,7 +61,7 @@ docker compose -f superset/docker-compose-image-tag.yml up -d
 Une fois les services lancés, se rendre sur http://localhost:8088 et rentrer les identifiants :  
 nom d'utilisateur : `admin`  
 mot de passe : `admin`  
-Ces identifiants peuvent être modifiés via le fichier `superset/docker/docker-init.sh`
+Ces identifiants peuvent être modifiés via le fichier `superset/docker/docker-init.sh`.
 ```bash
 # Remplacer username et password
 superset fab create-admin \
@@ -70,6 +70,16 @@ superset fab create-admin \
               --lastname Admin \
               --email admin@superset.com \
               --password $ADMIN_PASSWORD
+```
+> les fichiers de scripts sont montés dans l'image. Vous avez la possibilité de créer manuellement un utilisateur administratreur.
+```bash
+# Exécuter cette commande depuis le container. Remplacer username et password
+docker exec -it superset_app sh -c "superset fab create-admin \
+              --username user \
+              --firstname Superset \
+              --lastname Admin \
+              --email user@superset.com \
+              --password user"
 ```
 
 - Pour arrêter les services

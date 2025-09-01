@@ -67,7 +67,7 @@ Des volumes seront créés sur votre machine locale. Pensez à les supprimer si 
 
 ### Nginx
 A compléter.
-  
+
 Fichier `/etc/nginx/sites-available/superset`:
 ```
 server {
@@ -104,4 +104,9 @@ server {
   server_name mondomaine.fr;
   return 404;
 }
+```
+
+```bash
+sudo ln -s /etc/nginx-sites-available/superset /etc/nginx/sites-enabled/superset 
+sudo nginx -s reload
 ```

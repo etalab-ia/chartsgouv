@@ -1,12 +1,14 @@
 # 🚀 Déploiement de ChartsGouv avec Helm
 
 Prérequis:
-- Environnement k8s
+- Kubernetes
 - Helm
 
 ## Image par défaut
 
 En cours de rédaction
+
+Pour monter la configuration dans votre environnement k8s,
 
 
 Pour déployer l'application:

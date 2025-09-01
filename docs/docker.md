@@ -56,6 +56,9 @@ Depuis la racine du projet:
 # Lancez la commande depuis la racine du projet
 docker compose -f superset/docker-compose-image-tag.yml up -d
 ```
+Une fois les services lancés, se rendre sur http://localhost:8088 et rentrer les identifiants :  
+nom d'utilisateur : `admin`  
+mot de passe : `admin`  
 
 - Pour arrêter les services
 ```bash

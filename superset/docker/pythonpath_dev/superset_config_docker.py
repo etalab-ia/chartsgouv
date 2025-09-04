@@ -490,3 +490,15 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES.extend(
     ]
 )
 EXTRA_SEQUENTIAL_COLOR_SCHEMES[0]["isDefault"] = True
+
+
+DECKGL_BASE_MAP = [
+    ["tile://https://c.tile.openstreetmap.org/{z}/{x}/{y}.png", "OpenStreetMap"],
+]
+
+ENABLE_CORS = True
+CORS_OPTIONS = {
+    "origins": [
+        "https://c.tile.openstreetmap.org",
+    ]
+}

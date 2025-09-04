@@ -20,8 +20,18 @@ Tous les éléments de personnalisations se situent dans le dossier [`chartsgouv
 Une fois les modifications effectuées, il faudra build votre image:
 ```bash
 # Lancez la commande depuis la racine du projet
-docker build -t nom_image:votre_tag .
+docker build \
+  --build-arg SUPERSET_VERSION=4.1.1 \
+  --build-arg USE_DSFR=true \
+  --build-arg TAG_DSFR=1.13.0 \
+  --build-arg TAG_DSFR_CHART=2.0.3 \
+  -t nom_image:votre_tag .
 ```
+`SUPERSET_VERSION`: la version officielle d'Apache Superset à utiliser.  
+`USE_DSFR`: pour implémenter le dsfr. Télécharge le dsfr, dsfr-chart et applique la charte de l'Etat.  
+`TAG_DSFR`: la version officielle du dsfr à utiliser.  
+`TAG_DSFR_CHART`: la version officielle du dsfr-chart à utiliser.  
+
 Vous pouvez ensuite l'utiliser dans un déploiement avec Docker compose.
 
 ## [Lancement avec Docker](#lancement-avec-docker)

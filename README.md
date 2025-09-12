@@ -36,7 +36,7 @@ Superset DSFR est une extension de l'outil de datavisualisation Apache Superset.
 ├── .github/ # CI github
 ├── guides  # Guides de déploiement et cas d'usages
 ├── images # images de démonstration du repo
-├── superset-dsfr # Contient tous les éléments de personnalisation de Superset
+├── superset-dsfr/ # Contient tous les éléments de personnalisation de Superset
 ├── CHANGELOG.md
 ├── Dockerfile
 ├── LICENCE

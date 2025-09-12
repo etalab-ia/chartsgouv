@@ -20,8 +20,9 @@ Superset DSFR est une extension de l'outil de datavisualisation Apache Superset.
 </a>
 
 ## Démonstration images
+[Ajouter les images]
 
-## Parcourir les dashboards d'exemple
+## Instances de démonstration
 - [Dashboard SILL](http://chartsgouv.lab.sspcloud.fr/superset/dashboard/sill/)
 - [Graphes Apache Echarts avec couleurs DSFR](http://chartsgouv.lab.sspcloud.fr/superset/dashboard/demo-echarts/)
 - [Composants DSFR et DSFR charts](http://chartsgouv.lab.sspcloud.fr/superset/dashboard/demo-dsfr/?standalone=2)

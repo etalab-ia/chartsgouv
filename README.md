@@ -10,6 +10,10 @@
 - En quoi consiste le thème DSFR
 - (optionnel) Lien vers le salon Tchap
 
+# Thème DSFR pour Apache Superset
+
+Superset DSFR est une extension de l'outil de datavisualisation Apache Superset. Elle contient tous les éléments de permettant d'appliquer la charte graphique de l'Etat sur ses tableaux de bord !
+
 
 
 # <img src="./images/logo.png" width="30"> ChartsGouv : L'outil de visualisation de données de l'État  

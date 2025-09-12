@@ -1,3 +1,17 @@
+[ACTUALISER LA DOC]
+- Modifier le wording
+- Lien vers la vidéo
+- Captures d'écran
+- Liens vers les dashboards de démo
+- structure du répo
+- Lien vers la doc du MTE (=doc de prise en main de Superset)
+- Lien vers nos guides
+- Liens vers les répo de la communaté + évènements BlueHat
+- En quoi consiste le thème DSFR
+- (optionnel) Lien vers le salon Tchap
+
+
+
 # <img src="./images/logo.png" width="30"> ChartsGouv : L'outil de visualisation de données de l'État  
 
 

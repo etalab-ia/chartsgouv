@@ -12,7 +12,11 @@
 
 # <img src="./images/logo.png" width="30"> Thème DSFR pour Apache Superset
 
-Superset DSFR est une extension de l'outil de datavisualisation Apache Superset. Elle contient tous les éléments de permettant d'appliquer la charte graphique de l'Etat sur ses tableaux de bord !
+Superset DSFR est une extension de l'outil de datavisualisation Apache Superset !  
+Ce projet contient tous les éléments éléments essentiels pour personnaliser Apache Superset en prennant comme cas d'usage l'application du DSFR et plus encore !
+
+> AVERTISSEMENT : Ce système de conception est uniquement destiné à être utilisé pour les sites web officiels des services publics français.
+> Son objectif principal est de faciliter l'identification des sites gouvernementaux par les citoyens. [Voir les conditions](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/perimetre-d-application).
 
 ## Démonstration vidéo 
 <a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
@@ -52,12 +56,6 @@ Pour la consulter, rendez-vous sur [ce site](https://snum.gitlab-pages.din.devel
 > Certains éléments de cette documentation sont propres à l'environnement du MTE.  
 > 
 Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section "A propos" du site
-
-> AVERTISSEMENT : Ce système de conception est uniquement destiné à être utilisé pour les sites web officiels des services publics français.
-> Son objectif principal est de faciliter l'identification des sites gouvernementaux par les citoyens. [Voir les conditions](https://www.systeme-de-design.gouv.fr/utilisation-et-organisation/perimetre-d-application).
-
-> [!IMPORTANT]  
-> Ce projet n'est pas un fork du repo officiel de Superset.  
 
 ## Les projets Apache Superset au sein de l'Etat
 [Ajouter les projets]

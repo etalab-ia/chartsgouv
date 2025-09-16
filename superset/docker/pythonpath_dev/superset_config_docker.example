@@ -1022,3 +1022,14 @@ PERMISSION_INSTRUCTIONS_LINK = ""
 # in whatever way.
 # example: FLASK_APP_MUTATOR = lambda x: x.before_request = f
 FLASK_APP_MUTATOR = None
+
+DECKGL_BASE_MAP = [
+    ["tile://https://c.tile.openstreetmap.org/{z}/{x}/{y}.png", "OpenStreetMap"],
+]
+
+ENABLE_CORS = True
+CORS_OPTIONS = {
+    "origins": [
+        "https://c.tile.openstreetmap.org",
+    ]
+}

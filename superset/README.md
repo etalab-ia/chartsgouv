@@ -142,6 +142,8 @@ Inclut notamment :
 - `EXTRA_CATEGORICAL_COLOR_SCHEMES` : définit une palette de couleurs illustratives DSFR pour les graphiques catégoriels,
 - `EXTRA_SEQUENTIAL_COLOR_SCHEMES` : définit des dégradés de couleurs pour les graphiques continus (ex : carte de pays).
 
+Les extraits suivants présentent, sous forme de diffs, les modifications à appliquer dans les principaux fichiers du projet afin d’activer le thème et de charger les ressources associées.
+
 ### `docker-compose-image-tag.yml`
 
 ```diff

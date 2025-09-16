@@ -37,6 +37,8 @@ Pour l'inclure à votre installation actuelle, regarder:
 Pour une nouvelle installation, ne pas oublier de générer une `SUPERSET_SECRET_KEY` et de la sauvegarder, et suivre le snippet ci-dessous pour télécharger le DSFR, cloner ce dépôt et démarrer le déploiement Docker en local.
 
 ```bash
+git clone https://github.com/etalab-ia/chartsgouv
+cd superset/
 # Definir une SUPERSET_SECRET_KEY, et la sauvegarder !
 export SUPERSET_SECRET_KEY="$(openssl rand -base64 42)"
 echo "$SUPERSET_SECRET_KEY" > .secret_key
@@ -46,8 +48,6 @@ unzip dsfr-v1.14.0.zip -d dsfr
 # Optionnel: Télécharger DSFR-chart (en beta)
 # wget https://github.com/GouvernementFR/dsfr-chart/releases/download/v2.0.4/dsfr-chart-v2.0.4.zip
 # unzip dsfr-chart-v2.0.4.zip -d dsfr-chart
-git clone https://github.com/etalab-ia/chartsgouv
-cd superset/
 TAG=5.0.0 docker compose -f docker-compose-image-tag.yml up -d
 # Se rendre sur localhost:8088 avec identifiants admin/admin
 ```

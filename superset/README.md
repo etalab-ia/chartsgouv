@@ -112,30 +112,27 @@ Se rendre sur http://localhost:8088 et rentrer les identifiants :
 
 ## Détails
 
-Ce dépôt fournit une configuration complète pour déployer Apache Superset avec une intégration poussée du Design Système de l'État (DSFR), à l’aide de Docker. Il comprend :
+Ce guide fournit une configuration complète pour déployer Apache Superset avec une intégration poussée du Design Système de l'État (DSFR), à l’aide de Docker. Il comprend :
 
 ### 📦 Fichier docker-compose-image-tag.yml
 Ce fichier permet de déployer Superset avec des volumes personnalisés pour intégrer des ressources spécifiques (icône, CSS, pages d’erreur) :
 
-Inclut :
-- `images/app_icon.png` : icône de l'application (modifiable),
-- `css/tail_css_custom_extra.css` : correctifs CSS pour les liens et la police Marianne,
-- `404.html`, `500.html` : pages d’erreur personnalisées,
-- `./dsfr/`: ressources DSFR (police Marianne, fichiers CSS/JS, icônes et pictogrammes),
-- `./dsfr-chart/`: extensions DSFR chart (fichiers CSS/JS).
-
-Pour personnaliser :
-- `public_welcome.html` : page d’accueil (optionnelle),
-- `head_custom_extra.html`, `tail_js_custom_extra.html` : pour charger globalement les ressources DSFR (CSS & JS).
+- `assets/images/app_icon.png` : icône de l'application, visible dans le coin supérieur gauche (modifiable),
+- `assets/css/tail_css_custom_extra.css` : correctifs CSS pour les liens et la police Marianne,
+- `assets/404.html`, `assets/500.html` : pages d’erreur du DSFR,
+- `dsfr/`: ressources DSFR (police Marianne, fichiers CSS/JS, icônes et pictogrammes),
+- `dsfr-chart/`: extensions DSFR chart (fichiers CSS/JS).
+- `templates_overrides/superset/public_welcome.html` : page d’accueil (modifiable),
+- `templates_overrides/head_custom_extra.html`, `templates_overrides/tail_js_custom_extra.html` : pour charger globalement les ressources DSFR (CSS & JS).
 
 ### 🛠 Scripts Docker
 
 - `docker/docker-dsfr.sh`: Remplacer certaines couleurs bleues par le bleu France, déplacer les fichiers personnalisés (templates, erreurs) dans les répertoires attendus par Superset (`/app/superset/templates/` et `/app/superset/static/assets/`).
-- `docker/docker-bootstrap.sh` : Script de démarrage modifié pour sourcer automatiquement docker-dsfr.sh.
+- `docker/docker-bootstrap.sh` : Script de démarrage pour sourcer automatiquement docker-dsfr.sh.
 
 ### ⚙️ Configuration Superset `docker/pythonpath_dev/superset_config_docker.py`
 
-Inclut notamment :
+Inclut:
 - `THEME_OVERRIDES` : permet la transposition du thème Superset vers le DSFR (voir les correspondances de couleurs),
 - `EXTRA_CATEGORICAL_COLOR_SCHEMES` : définit une palette de couleurs illustratives DSFR pour les graphiques catégoriels,
 - `EXTRA_SEQUENTIAL_COLOR_SCHEMES` : définit des dégradés de couleurs pour les graphiques continus (ex : carte de pays).

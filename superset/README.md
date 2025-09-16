@@ -6,6 +6,9 @@
     <img src="/images/demo_graphes_echarts.png" width="750" alt="Regarder sur YouTube">
 </a>
 
+## Introduction
+Ce guide présente l’intégration d’un thème **DSFR (Design Système de l’État)** dans **Apache Superset**. Il décrit les principaux éléments configurables afin d’adapter l’interface aux standards graphiques de l’administration. Un exemple de déploiement avec Docker est également fourni **à titre illustratif pour faciliter la prise en main**. Cet exemple n’a cependant **pas vocation à couvrir l’ensemble des bonnes pratiques de sécurité ou de configuration nécessaires pour une mise en production** : il doit être considéré comme une démonstration technique et non comme un modèle d’infrastructure prêt à l’emploi.
+
 ## Déploiement Docker d'Apache Superset
 - :fr: police Marianne (voir [docker-compose-image-tag.yml](docker-compose-image-tag.yml#L27) et [tail_css_extra_custom.css](assets/css/tail_css_extra_custom.css) et les [templates overrides](templates_overrides/superset))
 - :art: transposition des couleurs DSFR (voir `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L148))

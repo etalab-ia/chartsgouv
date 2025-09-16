@@ -88,14 +88,10 @@ Se déplacer dans le répertoire `superset/`:
 cd superset/
 ```
 
-Générer une [clé secrète](https://superset.apache.org/docs/installation/configuring-superset/#specifying-a-secret_key) et la sauvegarder en sécurité:
+Générer une [clé secrète](https://superset.apache.org/docs/installation/configuring-superset/#specifying-a-secret_key) et la sauvegarder dans `docker/.env-local`. Pour rappel, un déploiement en production nécessite des ajustements supplémentaires qui ne sont pas l'objet de ce guide.
 
 ```bash
-export SUPERSET_SECRET_KEY="$(openssl rand -base64 42)"
-echo "$SUPERSET_SECRET_KEY" > .secret_key
-# Aussi possible de définir la variable SECRET_KEY dans docker/pythonpath_dev/superset_config_docker.py
-# Attention, c'est bien SUPERSET_SECRET_KEY comme variable d'environnement,
-# et SECRET_KEY comme variable python dans superset_config_docker.py
+echo SUPERSET_SECRET_KEY="$(openssl rand -base64 42)" > docker/.env-local
 ```
 
 Tous les fichiers nécessaires sont présents dans ce répertoire, il n'y a pas besoin d'avoir le dépôt principal avec les sources complètes de Superset.

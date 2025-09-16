@@ -37,7 +37,7 @@ Pour l'inclure à votre installation actuelle, regarder:
 - les points de montage additionnels dans [docker-compose-image-tag.yml](docker-compose-image-tag.yml#L25) pour inclure le DSFR,
 - et le script [docker/docker-dsfr.sh](docker/docker-dsfr.sh).
 
-Pour une nouvelle installation, ne pas oublier de générer une `SUPERSET_SECRET_KEY` et de la sauvegarder, et suivre le snippet ci-dessous pour télécharger le DSFR, cloner ce dépôt et démarrer le déploiement Docker en local.
+Pour une nouvelle installation suivre le snippet ci-dessous pour télécharger le DSFR, cloner ce dépôt et démarrer le déploiement Docker en local.
 
 ```bash
 git clone https://github.com/etalab-ia/chartsgouv

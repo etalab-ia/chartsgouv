@@ -25,11 +25,13 @@
 
 ## TL;DR
 
-Ce dépôt contient des éléments de configuration pour Superset, ce n'est pas un fork de Superset et ce n'est pas lié à une version particulière de Superset.
+Ce guide contient des éléments de configuration pour Superset, ce n'est pas un fork de Superset et ce n'est pas lié à une version particulière de Superset.
 
 Pour l'inclure à votre installation actuelle, regarder:
 - `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L148),
-- les points de montage additionnels dans [docker-compose-image-tag.yml](docker-compose-image-tag.yml#L25),
+- `EXTRA_CATEGORICAL_COLOR_SCHEMES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L278),
+- `EXTRA_SEQUENTIAL_COLOR_SCHEMES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L410),
+- les points de montage additionnels dans [docker-compose-image-tag.yml](docker-compose-image-tag.yml#L25) pour inclure le DSFR,
 - et le script [docker/docker-dsfr.sh](docker/docker-dsfr.sh).
 
 Pour une nouvelle installation, ne pas oublier de générer une `SUPERSET_SECRET_KEY` et de la sauvegarder, et suivre le snippet ci-dessous pour télécharger le DSFR, cloner ce dépôt et démarrer le déploiement Docker en local.

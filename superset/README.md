@@ -38,7 +38,7 @@ Pour une nouvelle installation, ne pas oublier de générer une `SUPERSET_SECRET
 
 ```bash
 git clone https://github.com/etalab-ia/chartsgouv
-cd superset/
+cd chartsgouv/superset/
 # Definir une SUPERSET_SECRET_KEY, et la sauvegarder !
 export SUPERSET_SECRET_KEY="$(openssl rand -base64 42)"
 echo "$SUPERSET_SECRET_KEY" > .secret_key
@@ -80,6 +80,7 @@ Cloner le dépôt ChartsGouv:
 
 ```bash
 git clone https://github.com/etalab-ia/chartsgouv
+cd chartsgouv/
 ```
 
 Se déplacer dans le répertoire `superset/`:

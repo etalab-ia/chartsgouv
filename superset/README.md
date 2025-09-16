@@ -132,7 +132,7 @@ Pour personnaliser :
 
 ### 🛠 Scripts Docker
 
-- `docker/docker-dsfr.sh`: Remplacer certaines couleurs bleues par le bleu France, déplacer les fichiers personnalisés (templates, erreurs) dans les répertoires attendus par Superset.
+- `docker/docker-dsfr.sh`: Remplacer certaines couleurs bleues par le bleu France, déplacer les fichiers personnalisés (templates, erreurs) dans les répertoires attendus par Superset (`/app/superset/templates/` et `/app/superset/static/assets/`).
 - `docker/docker-bootstrap.sh` : Script de démarrage modifié pour sourcer automatiquement docker-dsfr.sh.
 
 ### ⚙️ Configuration Superset `docker/pythonpath_dev/superset_config_docker.py`

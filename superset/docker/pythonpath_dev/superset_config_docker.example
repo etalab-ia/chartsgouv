@@ -803,7 +803,7 @@ THEME_OVERRIDES = {
     },
     "typography": {
         "families": {
-            "sansSerif": "Marianne, Inter, Helvetice, Arial",
+            "sansSerif": "Marianne, Inter, Helvetica, Arial",
             "serif": "Marianne, Georgia, Times New Roman, Times, serif",
             "monospace": "Marianne, Fira Code, Courier New, monospace",
         },

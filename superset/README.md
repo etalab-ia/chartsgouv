@@ -110,8 +110,6 @@ Se rendre sur http://localhost:8088 et rentrer les identifiants :
 - nom d'utilisateur : admin
 - mot de passe : admin
 
-Si le déploiement est sur un serveur distant, un exemple de fichier de configuration Nginx agissant en reverse-proxy est donné [plus bas](#nginx).
-
 ## Détails
 
 Ce dépôt fournit une configuration complète pour déployer Apache Superset avec une intégration poussée du Design Système de l'État (DSFR), à l’aide de Docker. Il comprend :
@@ -277,51 +275,6 @@ case "${1}" in
 | info      | dark2  | ![superset](https://dummyimage.com/20/315E7E/000?text=+) | `#315E7E` | ![dsfr](https://dummyimage.com/20/000/000?text=+)    | `#000`    |
 | info      | light1 | ![superset](https://dummyimage.com/20/B3DEFE/000?text=+) | `#B3DEFE` | ![dsfr](https://dummyimage.com/20/0063cb/000?text=+) | `#0063cb` |
 | info      | light2 | ![superset](https://dummyimage.com/20/EFF8FE/000?text=+) | `#EFF8FE` | ![dsfr](https://dummyimage.com/20/e8edff/000?text=+) | `#e8edff` |
-
-### Nginx
-
-Fichier `/etc/nginx/sites-available/superset`:
-```
-server {
-  index index.html index.htm;
-  access_log /var/log/nginx/mondomaine.fr_access.log;
-  error_log /var/log/nginx/mondomaine.fr_error.log;
-  server_name mondomaine.fr www.mondomaine.fr;
-  location / {
-    proxy_pass http://localhost:8088;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header Host $host;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    # WebSocket support
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    #proxy_set_header Connection "upgrade";
-    proxy_set_header Connection $http_connection;
-  }
-
-  listen 443 ssl;
-  ssl_certificate /etc/letsencrypt/live/mondomaine.fr/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/mondomaine.fr/privkey.pem;
-  include /etc/letsencrypt/options-ssl-nginx.conf;
-  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-}
-
-server {
-  if ($host = mondomaine.fr) {
-    return 301 https://$host$request_uri;
-  }
-
-  listen 80;
-  listen [::]:80;
-  server_name mondomaine.fr;
-  return 404;
-}
-```
-
-```bash
-sudo ln -s /etc/nginx/sites-available/superset /etc/nginx/sites-enabled/superset 
-sudo nginx -s reload
-```
 
 ### Captures d'écran
 

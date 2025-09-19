@@ -6,10 +6,12 @@
     <img src="/images/demo_graphes_echarts.png" width="750" alt="Regarder sur YouTube">
 </a>
 
+
+# Thème Superset DSFR
+
 ## Introduction
 Ce guide présente l’intégration d’un thème **DSFR (Design Système de l’État)** dans **Apache Superset**. Il décrit les principaux éléments configurables afin d’adapter l’interface aux standards graphiques de l’administration. C'est un exemple de déploiement avec Docker fourni **à titre illustratif pour faciliter la prise en main**. Cet exemple n’a cependant **pas vocation à couvrir l’ensemble des bonnes pratiques de sécurité ou de configuration nécessaires pour une mise en production** : il doit être considéré comme une démonstration technique et non comme un modèle d’infrastructure prêt à l’emploi. D'autres exemples sont données dans [docs/installation/](https://github.com/etalab-ia/chartsgouv/blob/main/docs/installation) (🚧).
 
-## Thème Superset DSFR
 - :fr: police Marianne (voir [docker-compose-image-tag.yml](docker-compose-image-tag.yml#L27) et [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css) et les [templates overrides](templates_overrides/superset))
 - :art: transposition des couleurs DSFR (voir `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L92))
 - :art: palettes de couleurs catégorielles et séquentielles pour les graphiques (voir `EXTRA_CATEGORICAL_COLOR_SCHEMES` et `EXTRA_SEQUENTIAL_COLOR_SCHEMES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L279))

@@ -19,23 +19,29 @@
 
 {#
   This file may be overridden in your custom deployment.
-  It will be included in every view in superset and is a
-  good place to include your custom frontend code, such as
-  scripts to initialize google analytics, intercom, segment, etc.
+  It will be included in the head block in every view in superset and is a
+  good place to include your custom link, meta, style or script elements.
 #}
 
-<script
-  type="module"
-  src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
-</script>
-<script
-  type="text/javascript"
-  nomodule
-  src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
-</script>
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ assets_prefix }}/static/assets/dsfr/dsfr.min.css"
+/>
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ assets_prefix }}/static/assets/dsfr/utility/utility.min.css"
+/>
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ assets_prefix }}/static/assets/local/css/tail_css_custom_extra.css"
+/>
 <!--
-<script
-  defer
-    src="{{ assets_prefix }}/static/assets/dsfr-chart/DSFRChart.umd.js">
-</script>
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ assets_prefix }}/static/assets/dsfr-chart/DSFRChart.css"
+/>
 -->

@@ -32,7 +32,10 @@ Ce guide présente l’intégration d’un thème **DSFR (Design Système de l�
 
 ## TL;DR
 
-Ce guide contient des éléments de configuration pour Superset, ce n'est pas un fork de Superset et ce n'est pas lié à une version particulière de Superset.
+Ce dépôt fournit des éléments de configuration pour intégrer le **thème DSFR** dans **Apache Superset**.
+👉 **Ce n’est pas un fork de Superset** et **il n’est pas lié à une version spécifique** de Superset.
+
+### Intégrer le thème à une installation existante
 
 Pour l'inclure à votre installation actuelle, regarder:
 - `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L192),
@@ -41,18 +44,28 @@ Pour l'inclure à votre installation actuelle, regarder:
 - les points de montage additionnels dans [docker-compose-image-tag.yml](docker-compose-image-tag.yml#L25) pour inclure le DSFR,
 - et le script [docker/docker-dsfr.sh](docker/docker-dsfr.sh).
 
+### Nouvelle installation (exemple rapide en local)
+
 Pour une nouvelle installation suivre le snippet ci-dessous pour télécharger le DSFR, cloner ce dépôt et démarrer le déploiement Docker en local.
 
 ```bash
+# Cloner le dépôt
 git clone https://github.com/etalab-ia/chartsgouv
 cd chartsgouv/superset/
-# Definir une SUPERSET_SECRET_KEY, et la sauvegarder dans docker/.env-local
+
+# Définir une clé secrète Superset et l’enregistrer dans docker/.env-local
 echo SUPERSET_SECRET_KEY="$(openssl rand -base64 42)" > docker/.env-local
-# Télécharger le DSFR
+
+# Télécharger et extraire le DSFR
 wget https://github.com/GouvernementFR/dsfr/releases/download/v1.14.0/dsfr-v1.14.0.zip
 unzip dsfr-v1.14.0.zip -d dsfr
+
+# Lancer Superset avec Docker (ici version 5.0.0)
 TAG=5.0.0 docker compose -f docker-compose-image-tag.yml up -d
-# Se rendre sur localhost:8088 avec identifiants admin/admin
+
+# Accéder à l’interface
+# → http://localhost:8088
+# Identifiants par défaut : admin / admin
 ```
 
 ## Pas à pas

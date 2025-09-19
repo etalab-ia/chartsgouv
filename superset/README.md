@@ -12,6 +12,7 @@
 ## Introduction
 Ce guide présente l’intégration d’un thème **DSFR (Design Système de l’État)** dans **Apache Superset**. Il décrit les principaux éléments configurables afin d’adapter l’interface aux standards graphiques de l’administration. C'est un exemple de déploiement avec Docker fourni **à titre illustratif pour faciliter la prise en main**. Cet exemple n’a cependant **pas vocation à couvrir l’ensemble des bonnes pratiques de sécurité ou de configuration nécessaires pour une mise en production** : il doit être considéré comme une démonstration technique et non comme un modèle d’infrastructure prêt à l’emploi. D'autres exemples sont données dans [docs/installation/](https://github.com/etalab-ia/chartsgouv/blob/main/docs/installation) (🚧).
 
+## Principales personnalisations disponibles
 - :fr: police Marianne (voir [docker-compose-image-tag.yml](docker-compose-image-tag.yml#L27) et [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css) et les [templates overrides](templates_overrides/superset))
 - :art: transposition des couleurs DSFR (voir `THEME_OVERRIDES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L92))
 - :art: palettes de couleurs catégorielles et séquentielles pour les graphiques (voir `EXTRA_CATEGORICAL_COLOR_SCHEMES` et `EXTRA_SEQUENTIAL_COLOR_SCHEMES` dans [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py#L279))
@@ -19,6 +20,7 @@ Ce guide présente l’intégration d’un thème **DSFR (Design Système de l�
 - :control_knobs: [composants DSFR](https://www.systeme-de-design.gouv.fr/version-courante/fr/composants) dans les zones de texte (optionnel, nécessite d'adapter `HTML_SANITIZATION_SCHEMA_EXTENSIONS`) => développement futur d'extensions spécifiques par la communauté pour fiabiliser la solution actuelle
 - :chart_with_upwards_trend: [DSFR charts](https://gouvernementfr.github.io/dsfr-chart/) (optionnel, necéssite d'adapter `TALISMAN_CONFIG`) => développement futur d'extensions spécifiques par la communauté pour fiabiliser la solution actuelle.
 
+## Adapter la configuration à vos besoins
 Éditer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) pour l'adapter à vos besoins (e.g. rajouter des [feature flags](https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md)), ou remplacer des fichiers de ce dépôt montés dans le container, par exemple:
 - [app_icon.png](assets/images/app_icon.png) pour modifier l'icone dans l'en-tête,
 - [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css) pour rajouter des règles CSS globales,

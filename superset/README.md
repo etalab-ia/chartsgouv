@@ -20,7 +20,9 @@ Ce guide présente l’intégration d’un thème **DSFR (Design Système de l�
 - :control_knobs: [composants DSFR](https://www.systeme-de-design.gouv.fr/version-courante/fr/composants) dans les zones de texte (optionnel, nécessite d'adapter `HTML_SANITIZATION_SCHEMA_EXTENSIONS`) => développement futur d'extensions spécifiques par la communauté pour fiabiliser la solution actuelle
 - :chart_with_upwards_trend: [DSFR charts](https://gouvernementfr.github.io/dsfr-chart/) (optionnel, necéssite d'adapter `TALISMAN_CONFIG`) => développement futur d'extensions spécifiques par la communauté pour fiabiliser la solution actuelle.
 
+
 ## Adapter la configuration à vos besoins
+
 Éditer [docker/pythonpath_dev/superset_config_docker.py](docker/pythonpath_dev/superset_config_docker.py) pour l'adapter à vos besoins (e.g. rajouter des [feature flags](https://github.com/apache/superset/blob/master/RESOURCES/FEATURE_FLAGS.md)), ou remplacer des fichiers de ce dépôt montés dans le container, par exemple:
 - [app_icon.png](assets/images/app_icon.png) pour modifier l'icone dans l'en-tête,
 - [tail_css_custom_extra.css](assets/css/tail_css_custom_extra.css) pour rajouter des règles CSS globales,
@@ -74,6 +76,7 @@ Télécharger le [DSFR](https://github.com/GouvernementFR/dsfr) (fichiers compil
 ```bash
 wget https://github.com/GouvernementFR/dsfr/releases/download/v1.14.0/dsfr-v1.14.0.zip
 unzip dsfr-v1.14.0.zip -d dsfr
+
 # Le dossier dsfr/dist peut être monté dans le container superset_app:/app/superset/static/assets/dsfr
 ```
 
@@ -81,6 +84,7 @@ Optionnel: Télécharger [DSFR-chart](https://github.com/GouvernementFR/dsfr-cha
 ```bash
 wget https://github.com/GouvernementFR/dsfr-chart/releases/download/v2.0.4/dsfr-chart-v2.0.4.zip
 unzip dsfr-chart-v2.0.4.zip -d dsfr-chart
+
 # Le dossier dsfr-chart/Charts peut être monté dans le container superset_app:/app/superset/static/assets/dsfr-chart
 ```
 
@@ -105,7 +109,9 @@ echo SUPERSET_SECRET_KEY="$(openssl rand -base64 42)" > docker/.env-local
 
 Tous les fichiers nécessaires sont présents dans ce répertoire, il n'y a pas besoin d'avoir le dépôt principal avec les sources complètes de Superset.
 
+
 On utilise les images officielles d'Apache Superset (depuis le registre [apachesuperset.docker.scarf.sf](docker-compose-image-tag.yml#L24), voir [les précautions pour scarf](https://superset.apache.org/docs/frequently-asked-questions/#does-superset-collect-any-telemetry-data) ou utiliser un autre registre) avec un fichier modifié ([voir plus bas](#docker-compose-image-tag.yml)) du `docker-compose-image-tag.yml` pour ajouter des points de montage:
+
 
 ```bash
 TAG=5.0.0 docker compose -f docker-compose-image-tag.yml up -d
@@ -130,6 +136,7 @@ Ce fichier permet de déployer Superset avec des volumes personnalisés pour int
 - 🏠 `templates_overrides/superset/public_welcome.html` : page d’accueil (modifiable),
 - 🧩 `templates_overrides/head_custom_extra.html`, `templates_overrides/tail_js_custom_extra.html` : pour charger globalement les ressources DSFR (CSS & JS).
 
+
 ### 🛠 Scripts Docker
 
 - `docker/docker-dsfr.sh`: Remplacer certaines couleurs bleues par le bleu France, déplacer les fichiers personnalisés (templates, erreurs) dans les répertoires attendus par Superset (`/app/superset/templates/` et `/app/superset/static/assets/`).
@@ -141,6 +148,7 @@ Inclut:
 - 🇫🇷 `THEME_OVERRIDES` : permet la transposition du thème Superset vers le DSFR (voir les correspondances de couleurs),
 - 🎨 `EXTRA_CATEGORICAL_COLOR_SCHEMES` : définit une palette de couleurs illustratives DSFR pour les graphiques catégoriels,
 - 🎨 `EXTRA_SEQUENTIAL_COLOR_SCHEMES` : définit des dégradés de couleurs pour les graphiques continus (ex : carte de pays).
+
 
 Les extraits suivants présentent, sous forme de diffs, les modifications à appliquer dans les principaux fichiers du projet afin d’activer le thème et de charger les ressources associées.
 
@@ -177,7 +185,9 @@ Les extraits suivants présentent, sous forme de diffs, les modifications à app
 + />
 ```
 
-### `tail_js_custom_extra.html`
+
+```diff
+fi
 
 ```diff
 + <script

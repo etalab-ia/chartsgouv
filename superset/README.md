@@ -157,23 +157,6 @@ Les extraits suivants présentent, sous forme de diffs, les modifications à app
 +  #- ./dsfr-chart/dsfr-chart/dist/DSFRChart:/app/superset/static/assets/dsfr-chart
 ```
 
-### `docker-bootstrap.sh`
-
-```diff
-fi
-
-+ source docker/docker-dsfr.sh
-
-case "${1}" in
-```
-
-### `public_welcome.html`
-
-```diff
-- <h2><center>Welcome to Apache Superset</center></h2>
-+ <h2><center>Bienvenue sur Apache Superset</center></h2>
-```
-
 ### `head_custom_extra.html`
 
 ```diff

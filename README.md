@@ -28,12 +28,12 @@ Cette version “Superset DSFR” est développée dans une logique **open-sourc
 
 | Description | Image |
 | --- | --- |
-|Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/demo_sill.png)|
-|Palettes de couleurs :art:|![demo_graphes_echarts](/images/demo_graphes_echarts.png)|
-|Composants DSFR :control_knobs:|![demo_dsfr1](/images/demo_dsfr1.png)|
-|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/demo_dsfr_chart1.png)|
-|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/demo_dsfr_chart2.png)|
-|Page d'erreur 404 :x:|![error404](/images/error404.png)|
+|Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/screenshots/demo_sill.png)|
+|Palettes de couleurs :art:|![demo_graphes_echarts](/images/screenshots/demo_graphes_echarts.png)|
+|Composants DSFR :control_knobs:|![demo_dsfr1](/images/screenshots/demo_dsfr1.png)|
+|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/screenshots/demo_dsfr_chart1.png)|
+|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/screenshots/demo_dsfr_chart2.png)|
+|Page d'erreur 404 :x:|![error404](/images/screenshots/error404.png)|
 
 ---
 

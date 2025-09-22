@@ -52,5 +52,19 @@ Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section
 ### Accès rapides
 - :art: [Thème DSFR](./superset/)
 
+## FAQ – Superset DSFR
+
+**Qu’est-ce que Superset DSFR ?**  
+C’est une distribution d’Apache Superset adaptée à l’administration française, avec un thème DSFR et une configuration prête à l’emploi.
+
+**Puis-je installer Superset DSFR dans mon ministère / collectivité ?**  
+Oui, via Docker ou Helm, en suivant les guides d’installation.
+
+**Est-ce compatible avec la version officielle d’Apache Superset ?**  
+Oui, ChartsGouv étend Superset sans en modifier le cœur.
+
+**Pourquoi utiliser le DSFR dans Superset ?**  
+Pour garantir une cohérence visuelle et d’accessibilité dans toutes les interfaces numériques de l’État.
+
 ## License
 This project is distributed under the EUPL v1.2 license — see the LICENSE file for more details.

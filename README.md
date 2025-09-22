@@ -39,19 +39,18 @@ Ce projet est une extension du projet Superset. Il vise à compléter cet outil 
 |DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/demo_dsfr_chart2.png)|
 |Page d'erreur 404 :x:|![error404](/images/error404.png)|
 
-### Accès rapides
-- :art: [Thème DSFR](./superset/)
+# Liens communauté et écosystème
 
-### Installation
-Un guide d'installation est disponible ici: [./INSTALLATION.md](./INSTALLATION.md)
+- [Shillelagh-GristAPI](https://github.com/qleroy/shillelagh-gristapi) – connecter Grist et Superset.  
+- [Documentation MTE](https://snum.gitlab-pages.din.developpement-durable.gouv.fr) – usages et guides ministériels.  
 
-### Prise en main
-Une documentation française a été rédigée par le MTE.  
-Pour la consulter, rendez-vous sur [ce site](https://snum.gitlab-pages.din.developpement-durable.gouv.fr/ds/gd3ia/offre-dataviz-documentation/).  
 > [!NOTE]  
 > Certains éléments de cette documentation sont propres à l'environnement du MTE.  
 > 
 Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section "A propos" du site
+
+### Accès rapides
+- :art: [Thème DSFR](./superset/)
 
 ## License
 This project is distributed under the EUPL v1.2 license — see the LICENSE file for more details.

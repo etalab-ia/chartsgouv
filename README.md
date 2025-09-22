@@ -1,6 +1,5 @@
 # <img src="./images/logo.png" width="30"> ChartsGouv : L'outil de visualisation de données de l'État  
 
-
 --
 
 ## Résumé
@@ -16,19 +15,14 @@ Elle vise à fournir un **Superset DSFR** prêt à l’emploi pour les administr
 Cette version “Superset DSFR” est développée dans une logique **open-source et souveraine**, sous licence **EUPL v1.2**.
 
 ---  
-## Description
-> [!IMPORTANT]  
-> Ce projet n'est pas un fork du repo officiel de Superset.  
 
-Ce projet est une extension du projet Superset. Il vise à compléter cet outil en y intégrant la couche DSFR de l'État. Il a aussi vocation à expérimenter des fonctionnalités spécifiques propres aux besoins des administrations et aux utilisateurs francophones de cet outils.
+## Vidéo d'exemple
 
-
-### Démonstration
 <a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
     <img src="./images/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
 </a>
 
-### Captures d'écran
+## Captures d’écran : Superset DSFR en action
 
 | Description | Image |
 | --- | --- |

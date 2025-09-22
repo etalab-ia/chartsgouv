@@ -1,6 +1,6 @@
 # <img src="./images/logo.png" width="30"> ChartsGouv : L'outil de visualisation de données de l'État  
 
---
+---;
 
 ## Résumé
 
@@ -14,13 +14,15 @@ Elle vise à fournir un **Superset DSFR** prêt à l’emploi pour les administr
 
 Cette version “Superset DSFR” est développée dans une logique **open-source et souveraine**, sous licence **EUPL v1.2**.
 
----  
+---;
 
 ## Vidéo d'exemple
 
 <a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
     <img src="./images/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
 </a>
+
+---;
 
 ## Captures d’écran : Superset DSFR en action
 
@@ -33,15 +35,20 @@ Cette version “Superset DSFR” est développée dans une logique **open-sourc
 |DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/demo_dsfr_chart2.png)|
 |Page d'erreur 404 :x:|![error404](/images/error404.png)|
 
+---;
+
 # Liens communauté et écosystème
 
-- [Shillelagh-GristAPI](https://github.com/qleroy/shillelagh-gristapi) – connecter Grist et Superset.  
+- [shillelagh-gristapi](https://github.com/qleroy/shillelagh-gristapi) – connecter Grist et Superset.  
+- [django-superset-integration](https://github.com/B-Alica/django-superset-integration) - intégration Django et Superset.
 - [Documentation MTE](https://snum.gitlab-pages.din.developpement-durable.gouv.fr) – usages et guides ministériels.  
 
 > [!NOTE]  
 > Certains éléments de cette documentation sont propres à l'environnement du MTE.  
 > 
 Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section "A propos" du site
+
+---;
 
 ### Accès rapides
 - :art: [Thème DSFR](./superset/)
@@ -59,6 +66,8 @@ Oui, ChartsGouv étend Superset sans en modifier le cœur.
 
 **Pourquoi utiliser le DSFR dans Superset ?**  
 Pour garantir une cohérence visuelle et d’accessibilité dans toutes les interfaces numériques de l’État.
+
+---;
 
 ## License
 This project is distributed under the EUPL v1.2 license — see the LICENSE file for more details.

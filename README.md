@@ -1,11 +1,21 @@
 # <img src="./images/logo.png" width="30"> ChartsGouv : L'outil de visualisation de données de l'État  
 
 
-### Contexte
-Ce projet est né d'un constat simple: il existe une multitude d'outils propriétaires au sein de l'État, ce qui complique la montée en compétence des agents, empêche la revaloration de leurs compétences auprès d'autres administrations et rend difficile la mutualisation des connaissances.  
+--
 
-Ce projet a été inité par l'intermédiaire du [programme 10%](https://www.10pourcent.etalab.gouv.fr/), programme interministériel co-porté par la DINUM et l'INSEE. Il a permis à plusieurs agents de différentes administrations de collaborer sur leurs problématiques communes.
-  
+## Résumé
+
+**ChartsGouv** est une distribution d’[Apache Superset](https://superset.apache.org/) intégrant le **thème DSFR** (Design Système de l’État Français).  
+Elle vise à fournir un **Superset DSFR** prêt à l’emploi pour les administrations publiques, avec :
+
+- une identité visuelle conforme au **DSFR**,  
+- une accessibilité renforcée,  
+- des guides et extensions adaptées à l’usage dans la sphère publique,  
+- des tableaux de bord mutualisables et reproductibles.  
+
+Cette version “Superset DSFR” est développée dans une logique **open-source et souveraine**, sous licence **EUPL v1.2**.
+
+---  
 ## Description
 > [!IMPORTANT]  
 > Ce projet n'est pas un fork du repo officiel de Superset.  

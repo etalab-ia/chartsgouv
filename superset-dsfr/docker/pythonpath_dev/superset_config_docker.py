@@ -12,7 +12,7 @@ LOGO_TOOLTIP = "ChartsGouv"
 APP_NAME = "ChartsGouv"
 
 # Specify the App icon
-APP_ICON = "/static/assets/local/images/app_icon.png"
+APP_ICON = "/static/assets/local/images/app_icon_avec_titre_horizontal.png"
 
 DSFR_COLORS = {
     "sun": {

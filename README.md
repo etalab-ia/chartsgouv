@@ -15,14 +15,11 @@ Ce projet est une extension du projet Superset. Il vise à compléter cet outil 
 
 ### Démonstration
 <a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
-    <img src="./images/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
+    <img src="./images/screenshots/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
 </a>
 
 ### Accès rapides
-- :art: [Thème DSFR](./superset/)
-
-### Installation
-Un guide d'installation est disponible ici: [./INSTALLATION.md](./INSTALLATION.md)
+- :art: [Thème DSFR](./superset-dsfr/)
 
 ### Prise en main
 Une documentation française a été rédigée par le MTE.  
@@ -31,6 +28,17 @@ Pour la consulter, rendez-vous sur [ce site](https://snum.gitlab-pages.din.devel
 > Certains éléments de cette documentation sont propres à l'environnement du MTE.  
 > 
 Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section "A propos" du site
+
+### Captures d'écran
+
+| Description | Image |
+| --- | --- |
+|Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/screenshots/demo_sill.png)|
+|Palettes de couleurs :art:|![demo_graphes_echarts](/images/screenshots/demo_graphes_echarts.png)|
+|Composants DSFR :control_knobs:|![demo_dsfr1](/images/screenshots/demo_dsfr1.png)|
+|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/screenshots/demo_dsfr_chart1.png)|
+|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/screenshots/demo_dsfr_chart2.png)|
+|Page d'erreur 404 :x:|![error404](/images/screenshots/error404.png)|
 
 ## License
 This project is distributed under the EUPL v1.2 license — see the LICENSE file for more details.

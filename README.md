@@ -43,11 +43,10 @@ Cette version “Superset DSFR” est développée dans une logique **open-sourc
 
 | Description | Image |
 | --- | --- |
-|Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/screenshots/demo_sill.png)|
-|Palettes de couleurs :art:|![demo_graphes_echarts](/images/screenshots/demo_graphes_echarts.png)|
-|Composants DSFR :control_knobs:|![demo_dsfr1](/images/screenshots/demo_dsfr1.png)|
-|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/screenshots/demo_dsfr_chart1.png)|
-|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/screenshots/demo_dsfr_chart2.png)|
+|Police Marianne :fr:, Couleurs :art:|![sill](/images/screenshots/sill.png)|
+|Palettes de couleurs :art:|![dsfr1](/images/screenshots/dsfr1.png)|
+|Palettes de couleurs :art:|![dsfr1](/images/screenshots/dsfr2.png)|
+|Composants DSFR :control_knobs:|![dsfr2](/images/screenshots/composants_dsfr.png)|
 |Page d'erreur 404 :x:|![error404](/images/screenshots/error404.png)|
 
 ---

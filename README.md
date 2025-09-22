@@ -17,7 +17,8 @@ Cette version “Superset DSFR” est développée dans une logique **open-sourc
 ---
 
 ## Accès rapides
-- :art: [Thème DSFR](./superset/)
+- :art: [Thème DSFR](./superset-dsfr/)
+- :green_book: [Documentation](./docs/)
 
 ---
 

@@ -1,36 +1,73 @@
 # <img src="./images/logo.png" width="30"> ChartsGouv : L'outil de visualisation de données de l'État  
 
+---;
 
-### Contexte
-Ce projet est né d'un constat simple: il existe une multitude d'outils propriétaires au sein de l'État, ce qui complique la montée en compétence des agents, empêche la revaloration de leurs compétences auprès d'autres administrations et rend difficile la mutualisation des connaissances.  
+## Résumé
 
-Ce projet a été inité par l'intermédiaire du [programme 10%](https://www.10pourcent.etalab.gouv.fr/), programme interministériel co-porté par la DINUM et l'INSEE. Il a permis à plusieurs agents de différentes administrations de collaborer sur leurs problématiques communes.
-  
-## Description
-> [!IMPORTANT]  
-> Ce projet n'est pas un fork du repo officiel de Superset.  
+**ChartsGouv** est une distribution d’[Apache Superset](https://superset.apache.org/) intégrant le **thème DSFR** (Design Système de l’État Français).  
+Elle vise à fournir un **Superset DSFR** prêt à l’emploi pour les administrations publiques, avec :
 
-Ce projet est une extension du projet Superset. Il vise à compléter cet outil en y intégrant la couche DSFR de l'État. Il a aussi vocation à expérimenter des fonctionnalités spécifiques propres aux besoins des administrations et aux utilisateurs francophones de cet outils.
+- une identité visuelle conforme au **DSFR**,  
+- une accessibilité renforcée,  
+- des guides et extensions adaptées à l’usage dans la sphère publique,  
+- des tableaux de bord mutualisables et reproductibles.  
 
+Cette version “Superset DSFR” est développée dans une logique **open-source et souveraine**, sous licence **EUPL v1.2**.
 
-### Démonstration
+---;
+
+## Vidéo d'exemple
+
 <a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
-    <img src="./images/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
+    <img src="./images/screenshots/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
 </a>
 
-### Accès rapides
-- :art: [Thème DSFR](./superset/)
+---;
 
-### Installation
-Un guide d'installation est disponible ici: [./INSTALLATION.md](./INSTALLATION.md)
+## Captures d’écran : Superset DSFR en action
 
-### Prise en main
-Une documentation française a été rédigée par le MTE.  
-Pour la consulter, rendez-vous sur [ce site](https://snum.gitlab-pages.din.developpement-durable.gouv.fr/ds/gd3ia/offre-dataviz-documentation/).  
+| Description | Image |
+| --- | --- |
+|Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/demo_sill.png)|
+|Palettes de couleurs :art:|![demo_graphes_echarts](/images/demo_graphes_echarts.png)|
+|Composants DSFR :control_knobs:|![demo_dsfr1](/images/demo_dsfr1.png)|
+|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/demo_dsfr_chart1.png)|
+|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/demo_dsfr_chart2.png)|
+|Page d'erreur 404 :x:|![error404](/images/error404.png)|
+
+---;
+
+# Liens communauté et écosystème
+
+- [shillelagh-gristapi](https://github.com/qleroy/shillelagh-gristapi) – connecter Grist et Superset.  
+- [django-superset-integration](https://github.com/B-Alica/django-superset-integration) - intégration Django et Superset.
+- [Documentation MTE](https://snum.gitlab-pages.din.developpement-durable.gouv.fr) – usages et guides ministériels.  
+
 > [!NOTE]  
 > Certains éléments de cette documentation sont propres à l'environnement du MTE.  
 > 
 Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section "A propos" du site
+
+---;
+
+### Accès rapides
+- :art: [Thème DSFR](./superset/)
+
+## FAQ – Superset DSFR
+
+**Qu’est-ce que Superset DSFR ?**  
+C’est une distribution d’Apache Superset adaptée à l’administration française, avec un thème DSFR et une configuration prête à l’emploi.
+
+**Puis-je installer Superset DSFR dans mon ministère / collectivité ?**  
+Oui, via Docker ou Helm, en suivant les guides d’installation.
+
+**Est-ce compatible avec la version officielle d’Apache Superset ?**  
+Oui, ChartsGouv étend Superset sans en modifier le cœur.
+
+**Pourquoi utiliser le DSFR dans Superset ?**  
+Pour garantir une cohérence visuelle et d’accessibilité dans toutes les interfaces numériques de l’État.
+
+---;
 
 ## License
 This project is distributed under the EUPL v1.2 license — see the LICENSE file for more details.

@@ -1,12 +1,6 @@
 > AVERTISSEMENT : Ce système de conception est uniquement destiné à être utilisé pour les sites web officiels des services publics français.
 > Son objectif principal est de faciliter l'identification des sites gouvernementaux par les citoyens. [Voir les conditions](https://www.systeme-de-design.gouv.fr/version-courante/fr/premiers-pas/perimetre-d-application).
 
-## Cliquer pour voir le résultat en vidéo
-<a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
-    <img src="/images/demo_graphes_echarts.png" width="750" alt="Regarder sur YouTube">
-</a>
-
-
 # Thème Superset DSFR
 
 ## Introduction
@@ -185,22 +179,6 @@ Les extraits suivants présentent, sous forme de diffs, les modifications à app
 + />
 ```
 
-
-```diff
-fi
-
-```diff
-+ <script
-+   type="module"
-+   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.module.min.js">
-+ </script>
-+ <script
-+   type="text/javascript"
-+   nomodule
-+   src="{{ assets_prefix }}/static/assets/dsfr/dsfr.nomodule.min.js">
-+ </script>
-```
-
 ### Couleurs
 
 | Couleur   | Teinte | Superset                                                         | hex       | DSFR                                                         | hex       |
@@ -256,4 +234,5 @@ fi
 | info      | dark1  | ![superset](https://dummyimage.com/20/4D8CBE/000?text=+) | `#4D8CBE` | ![dsfr](https://dummyimage.com/20/0063cb/000?text=+) | `#0063cb` |
 | info      | dark2  | ![superset](https://dummyimage.com/20/315E7E/000?text=+) | `#315E7E` | ![dsfr](https://dummyimage.com/20/000/000?text=+)    | `#000`    |
 | info      | light1 | ![superset](https://dummyimage.com/20/B3DEFE/000?text=+) | `#B3DEFE` | ![dsfr](https://dummyimage.com/20/0063cb/000?text=+) | `#0063cb` |
+| info      | light2 | ![superset](https://dummyimage.com/20/EFF8FE/000?text=+) | `#EFF8FE` | ![dsfr](https://dummyimage.com/20/e8edff/000?text=+) | `#e8edff` |
 | info      | light2 | ![superset](https://dummyimage.com/20/EFF8FE/000?text=+) | `#EFF8FE` | ![dsfr](https://dummyimage.com/20/e8edff/000?text=+) | `#e8edff` |

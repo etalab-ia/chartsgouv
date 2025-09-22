@@ -19,7 +19,7 @@ Cette version “Superset DSFR” est développée dans une logique **open-sourc
 ## Vidéo d'exemple
 
 <a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
-    <img src="./images/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
+    <img src="./images/screenshots/demo_graphes_echarts.png" width="350" alt="Regarder sur YouTube">
 </a>
 
 ---;

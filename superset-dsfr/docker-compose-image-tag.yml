@@ -26,6 +26,7 @@ x-superset-volumes:
   &superset-volumes # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
   - ./docker:/app/docker
   - superset_home:/app/superset_home
+  # Comment the following line if you are using your own custom image
   - ./assets:/app/superset/static/assets/local
   - ./templates_overrides:/app/superset/templates_overrides
   - ./dsfr/dist:/app/superset/static/assets/dsfr

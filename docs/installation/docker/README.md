@@ -1,13 +1,13 @@
-# 🚀 Déploiement de Chartsgouv avec Docker
+# 🚀 Déploiement de ChartsGouv avec Docker
 
 > **Important :** ce mode de déploiement est à titre indicatif.
 
 ## Table des matières
-- [🚀 Déploiement de Chartsgouv avec Docker](#-déploiement-de-chartsgouv-avec-docker)
+- [🚀 Déploiement de ChartsGouv avec Docker](#-déploiement-de-chartsgouv-avec-docker)
   - [Table des matières](#table-des-matières)
   - [Pré-requis](#pré-requis)
   - [Construire son image Superset](#construire-son-image-superset)
-  - [Lancement avec Docker Compose](#lancement-avec-docker-compose)
+  - [Lancer les services avec Docker Compose](#lancer-les-services-avec-docker-compose)
 
 ## Pré-requis
 
@@ -33,18 +33,18 @@ docker build \
 `TAG_DSFR`: la version officielle du dsfr à utiliser.  
 `TAG_DSFR_CHART`: la version officielle du dsfr-chart à utiliser.
 
-## Lancement avec Docker Compose
+## Lancer les services avec Docker Compose
 
-1. Configurer le fichier Docker compose
+1. Configurer le fichier Docker Compose
 
 Spécifiez l'image que vous souhaitez utiliser dans [superset-dsfr/docker-compose-image-tag.yml](../../../superset-dsfr/docker-compose-image-tag.yml#L24): :
 ```yaml
 x-superset-image: &superset-image custom_superset:custom_tag
 ```
 
-Vous pouvez utiliser les images officielles de Superset, l'image que vous venez de build ou celles mises à votre disposition.
+Vous pouvez utiliser les images officielles de Superset, l'image que vous venez de build ou celles mises à votre disposition (disponible sur le repo [ChartsGouv/superset-dsfr](https://github.com/ChartsGouv/superset-dsfr)).
 
-Quelque soit l'image utilisée, vous avez la possibilité de personnaliser tous les éléments disponibles dans [superset-dsfr](../../../superset-dsfr/) et de les intégrer au déploiement Docker en utilisant les volumes.  
+Quelle que soit l'image utilisée, vous avez la possibilité de personnaliser tous les éléments disponibles dans [superset-dsfr](../../../superset-dsfr/) et de les intégrer au déploiement Docker en utilisant les volumes.  
 
 Si vous ne souhaitez pas associer de volumes, il faudra commenter les lignes suivantes du fichier [superset-dsfr/docker-compose-image-tag.yml](../../../superset-dsfr/docker-compose-image-tag.yml#L29).
 
@@ -62,7 +62,7 @@ x-superset-volumes:
 
 2. Configurer l'application  
 
-Les variables d'environnements de votre application peuvent être configurées dans le fichier [.env](../../../superset-dsfr/docker/.env).  
+Les variables d'environnement de votre application peuvent être configurées dans le fichier [.env](../../../superset-dsfr/docker/.env).  
 ```bash
 # A secret key that will be used for securely signing the session cookie and can be used for any other security related needs by extensions or your application
 SUPERSET_SECRET_KEY=TEST_NON_DEV_SECRET
@@ -76,13 +76,13 @@ POSTGRES_PASSWORD=superset
 # Superset
 SUPERSET_PORT=8088
 ```
-La valeur de `SUPERSET_SECRET_KEY` peut être générée avec la commande `openssl rand -base64 42`. Conserver bien cette clé.
+La valeur de `SUPERSET_SECRET_KEY` peut être générée avec la commande `openssl rand -base64 42`. Conservez bien cette clé.
 
 3. Démarrer les services
 
 Depuis la racine du projet:
 ```bash
-# Lancez la commande depuis la racine du projetnew_admin
+# Lancez la commande depuis la racine du projet
 docker compose -f superset-dsfr/docker-compose-image-tag.yml up -d
 ```
 Une fois les services lancés, se rendre sur http://localhost:8088 et rentrer les identifiants :  

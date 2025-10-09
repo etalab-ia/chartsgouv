@@ -42,7 +42,7 @@ Spécifiez l'image que vous souhaitez utiliser dans [superset-dsfr/docker-compos
 x-superset-image: &superset-image custom_superset:custom_tag
 ```
 
-Vous pouvez utiliser les images officielles de Superset, l'image que vous venez de build ou celles mises à votre disposition (disponible sur le repo [ChartsGouv/superset-dsfr](https://github.com/ChartsGouv/superset-dsfr)).
+Vous pouvez utiliser les images officielles de Superset, l'image que vous venez de build ou celles mises à votre disposition (disponible sur le repo [ChartsGouv/superset-dsfr](https://github.com/etalab-ia/chartsgouv/pkgs/container/chartsgouv)).
 
 Quelle que soit l'image utilisée, vous avez la possibilité de personnaliser tous les éléments disponibles dans [superset-dsfr](../../../superset-dsfr/) et de les intégrer au déploiement Docker en utilisant les volumes.  
 

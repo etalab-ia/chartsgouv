@@ -1,0 +1,65 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  # Exemple host sur SSPCloud (https://datalab.sspcloud.fr/)
+  hosts:
+    - my-own-superset.lab.sspcloud.fr
+
+initImage:
+  repository: apache/superset
+  tag: dockerize
+  pullPolicy: IfNotPresent
+
+# Exemple avec les images mises à disposition (https://github.com/etalab-ia/chartsgouv/pkgs/container/chartsgouv)
+image:
+  repository: ghcr.io/etalab-ia/chartsgouv-test
+  tag: 4.1.3-1.14.0-2.0.4
+  pullPolicy: Always
+
+
+# -- Install additional packages and do any other bootstrap configuration in this script
+# For production clusters it's recommended to build own image with this step done in CI
+# @default -- see `values.yaml`
+bootstrapScript: |
+  #!/bin/bash
+
+  # Exemple d'installation des packages
+  # apt update && apt install -y gcc libpq-dev python3-dev pkg-config
+
+  # if command -v uv > /dev/null 2>&1; then
+  #   uv pip install --no-cache-dir -r psycopg2-binary
+  # else
+  #   pip install --no-cache-dir -r psycopg2-binary
+  # fi;
+
+  if [ ! -f ~/bootstrap ]; then echo "Running Superset with uid {{ .Values.runAsUser }}" > ~/bootstrap; fi
+
+
+init:
+  loadExamples: false
+  createAdmin: true
+  adminUser:
+    username: admin
+    firstname: Superset
+    lastname: Admin
+    email: admin@superset.com
+    password: admin
+
+extraSecretEnv:
+  # Dans votre terminal > openssl rand -base64 42
+  SUPERSET_SECRET_KEY: 'your_secret_key'
+  # A partir de la 6.0, plus besoin de MapBox !
+  MAPBOX_API_KEY: 'your_token'
+supersetNode:
+  connections:
+    # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
+    db_host: "{{ .Release.Name }}-postgresql"
+    db_port: "5432"
+    db_user: superset
+    db_pass: superset
+    db_name: superset
+
+## Set to false if bringing your own PostgreSQL.
+postgresql:
+  enabled: true
+

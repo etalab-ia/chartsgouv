@@ -29,7 +29,7 @@ Les principaux outils sont: git, docker, docker-compose, python
 - Implémentation
 
 La première étape pour contribuer consiste à réaliser un [fork](https://docs.github.com/fr/pull-requests/collaborating-with-pull-requests/working-with-forks/about-forks) du repo. Vous pouvez ensuite cloner votre fork avec la commande `git clone`.  
-Depuis votre fork, nous vous recommandons de créer des branches pour implémenter vos fonctionnalités avec la commande `git branch -b branchename main`.  
+Depuis votre fork, nous vous recommandons de créer des branches pour implémenter vos fonctionnalités avec la commande `git branch -b branche_name main`.  
 Si votre branche main venait à être désynchronisée avec la branche main du repo ChartsGouv, vous devez la resynchroniser avant de créer de nouvelle branche. Pour ce faire, les commandes suivantes vous seront utiles:
 ```bash
 git add alias upstream https://github.com/etalab-ia/chartsgouv.git
@@ -48,6 +48,7 @@ Une fois l'implémentation réalisée et votre code push sur votre fork, vous po
 - Réaliser une Pull Request
 
 Depuis la page des [pull request](https://github.com/etalab-ia/chartsgouv/pulls), vous pouvez en créer une nouvelle qui prend comme origine la branche de votre fork.  
+> **Important**  
 Le titre de la PR doit suivre les [conventional commits](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13#types). Vos commits intermédiaires doivent être simples et explicites.  
 La PR doit toujours se faire sur la branche `pre-release` du repo.
 

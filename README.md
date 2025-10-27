@@ -16,6 +16,21 @@ Cette version “Superset DSFR” est développée dans une logique **open-sourc
 
 ---
 
+## Accès rapides
+- :art: [Thème DSFR](./superset-dsfr/)
+- :green_book: [Documentation](./docs/)
+
+---
+
+## Liens communauté et écosystème
+
+- [shillelagh-gristapi](https://github.com/qleroy/shillelagh-gristapi) – connecter Grist et Superset.  
+- [django-superset-integration](https://github.com/B-Alica/django-superset-integration) - intégration Django et Superset.
+- [Documentation MTE](https://snum.gitlab-pages.din.developpement-durable.gouv.fr) – usages et guides ministériels.  Note: certains éléments de cette documentation sont propres à l'environnement du MTE. Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section "A propos" du site.
+
+---
+
+
 ## Vidéo d'exemple
 
 <a href="https://www.youtube.com/watch?v=0o1JbSbwoM8" title="Regarder sur YouTube">
@@ -28,30 +43,13 @@ Cette version “Superset DSFR” est développée dans une logique **open-sourc
 
 | Description | Image |
 | --- | --- |
-|Police Marianne :fr:, Couleurs :art:|![demo_sill](/images/screenshots/demo_sill.png)|
-|Palettes de couleurs :art:|![demo_graphes_echarts](/images/screenshots/demo_graphes_echarts.png)|
-|Composants DSFR :control_knobs:|![demo_dsfr1](/images/screenshots/demo_dsfr1.png)|
-|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart1.png](/images/screenshots/demo_dsfr_chart1.png)|
-|DSFR Charts :chart_with_upwards_trend:|![demo_dsfr_chart2.png](/images/screenshots/demo_dsfr_chart2.png)|
+|Police Marianne :fr:, Couleurs :art:|![sill](/images/screenshots/sill.png)|
+|Palettes de couleurs :art:|![dsfr1](/images/screenshots/dsfr1.png)|
+|Palettes de couleurs :art:|![dsfr1](/images/screenshots/dsfr2.png)|
+|Composants DSFR :control_knobs:|![dsfr2](/images/screenshots/composants_dsfr.png)|
 |Page d'erreur 404 :x:|![error404](/images/screenshots/error404.png)|
 
 ---
-
-# Liens communauté et écosystème
-
-- [shillelagh-gristapi](https://github.com/qleroy/shillelagh-gristapi) – connecter Grist et Superset.  
-- [django-superset-integration](https://github.com/B-Alica/django-superset-integration) - intégration Django et Superset.
-- [Documentation MTE](https://snum.gitlab-pages.din.developpement-durable.gouv.fr) – usages et guides ministériels.  
-
-> [!NOTE]  
-> Certains éléments de cette documentation sont propres à l'environnement du MTE.  
-> 
-Si vous souhaitez y contribuer, vous pouvez trouver des contacts dans la section "A propos" du site
-
----
-
-### Accès rapides
-- :art: [Thème DSFR](./superset/)
 
 ## FAQ – Superset DSFR
 

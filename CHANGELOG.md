@@ -1,3 +1,19 @@
+## [1.4.0](https://github.com/etalab-ia/chartsgouv/compare/v1.3.0...v1.4.0) (2025-10-27)
+
+### Features
+
+* **superset-dsfr:** update config py file to include more base default options ([#93](https://github.com/etalab-ia/chartsgouv/issues/93)) ([4dc4af4](https://github.com/etalab-ia/chartsgouv/commit/4dc4af41cc9fe351993aca47bdddcdd6761ad7c1))
+
+### Bug Fixes
+
+* **build:** update Dockerfile ([#90](https://github.com/etalab-ia/chartsgouv/issues/90)) ([2667766](https://github.com/etalab-ia/chartsgouv/commit/26677661d7278ba8aa8609c94295c7dcc8dba804))
+
+### Documentation
+
+* add doc to contribute ([#94](https://github.com/etalab-ia/chartsgouv/issues/94)) ([73ce1e3](https://github.com/etalab-ia/chartsgouv/commit/73ce1e3fb07f689b0eb10783de08c383d885ab1c))
+* add docker deployment doc ([#91](https://github.com/etalab-ia/chartsgouv/issues/91)) ([b2814a9](https://github.com/etalab-ia/chartsgouv/commit/b2814a9e4375bd2418e7310da5d20cf91259035b))
+* **installation:** add Helm deployment ([#92](https://github.com/etalab-ia/chartsgouv/issues/92)) ([a446fa1](https://github.com/etalab-ia/chartsgouv/commit/a446fa1d2b38d152ed39547752c9f4368c33d739))
+
 ## [1.3.0](https://github.com/etalab-ia/chartsgouv/compare/v1.2.0...v1.3.0) (2025-08-20)
 
 ### Bug Fixes

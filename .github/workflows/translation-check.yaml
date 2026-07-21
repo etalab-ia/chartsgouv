@@ -1,0 +1,38 @@
+name: Translate Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: |
+          pip install babel==2.18.0
+
+      - name: Check translations exist
+        run: |
+          echo "Scanning for .po files..."
+          find . -name "*.po" -type f
+
+      - name: Compile translations (pybabel)
+        run: |
+          # Compile all .po files found in the project
+          find . -name "*.po" -type f | while read file; do
+            dir=$(dirname "$file")
+            echo "Compiling $file"
+            pybabel compile -d "$dir" --statistics
+          done

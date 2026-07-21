@@ -1,9 +1,14 @@
+.PHONY: lint-all lint-helm lint-py lint-dockerfile lint-shell
+
+# =================
+# Variables
+# =================
+# Helm
 TMP_DIR = /tmp/superset-chart
 HELM_REPO_URL = http://apache.github.io/superset/
 HELM_CHART    = superset/superset
 VALUES_FILE   = docs/installation/helm/values.yaml
 
-.PHONY: lint-all lint-helm lint-py lint-dockerfile lint-shell
 
 # =================
 # Linting

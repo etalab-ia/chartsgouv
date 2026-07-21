@@ -62,3 +62,10 @@ docker-build-without-dsfr:
 		--build-arg TAG_DSFR_CHART=$(DSFR_CHART_VERSION) \
 		--build-arg USE_DSFR=false \
 		-t chartsgouv:$(SUPERSET_VERSION)-no-dsfr .
+
+# =================
+# Cleanup
+# =================
+
+clean-docker-images:
+	docker rmi chartsgouv:$(SUPERSET_VERSION)-dsfr-$(DSFR_VERSION)-chart-$(DSFR_CHART_VERSION) chartsgouv:$(SUPERSET_VERSION)-no-dsfr 2>/dev/null || true

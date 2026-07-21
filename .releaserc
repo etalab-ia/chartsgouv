@@ -18,10 +18,10 @@
                         {"type": "fix", "section": "Bug Fixes"},
                         {"type": "chore", "hidden": false, "section": "Autres"},
                         {"type": "docs", "hidden": false, "section": "Documentation"},
-                        {"type": "style", "hidden": true},
+                        {"type": "style", "hidden": false, "section": "Autres"},
                         {"type": "refactor", "hidden": true, "section": "Breaking changes"},
-                        {"type": "perf", "hidden": true},
-                        {"type": "test", "hidden": true}
+                        {"type": "perf", "hidden": false, "section": "Autres"},
+                        {"type": "test", "hidden": false, "section": "Autres"}
                     ]
                 }
             }

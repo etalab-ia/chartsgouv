@@ -1,4 +1,4 @@
-.PHONY: lint-all lint-helm lint-py lint-dockerfile lint-shell
+.PHONY: lint-all lint-helm lint-py lint-dockerfile lint-shell clean-docker-images clean-venv
 
 # =================
 # Variables
@@ -42,6 +42,20 @@ lint-helm:
 lint-all: lint-py lint-dockerfile lint-shell lint-helm check-translation
 
 # =================
+# Checks
+# =================
+
+check-translation:
+	@if [ -d .env-translation ]; then rm -rf .env-translation; fi
+	@echo "Creating virtual environment for translation checks..."
+	python3 -m venv .env-translation
+	@echo "Installing packages..."
+	./.env-translation/bin/pip install --upgrade pip setuptools
+	./.env-translation/bin/pip install babel==2.11.0 --quiet
+	@echo "Compiling translations..."
+	./.env-translation/bin/pybabel compile -d superset-dsfr/translations --statistics
+
+# =================
 # Docker builds
 # =================
 
@@ -69,3 +83,8 @@ docker-build-without-dsfr:
 
 clean-docker-images:
 	docker rmi chartsgouv:$(SUPERSET_VERSION)-dsfr-$(DSFR_VERSION)-chart-$(DSFR_CHART_VERSION) chartsgouv:$(SUPERSET_VERSION)-no-dsfr 2>/dev/null || true
+
+clean-venv:
+	rm -rf .env-translation
+
+clean-all: clean-docker-images clean-venv

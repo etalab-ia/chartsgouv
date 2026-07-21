@@ -3,6 +3,9 @@
 # =================
 # Variables
 # =================
+# Developpement
+ENV_NAME = .env-dev
+
 # Helm
 TMP_DIR = /tmp/superset-chart
 HELM_REPO_URL = http://apache.github.io/superset/
@@ -15,11 +18,23 @@ DSFR_VERSION = 1.14.4
 DSFR_CHART_VERSION = 2.0.3
 
 # =================
+# Development
+# =================
+setup-py-env:
+	@if [ -d $(ENV_NAME) ]; then rm -rf $(ENV_NAME); fi
+	@echo "Creating virtual environment for translation checks..."
+	python3 -m venv $(ENV_NAME)
+	@echo "Installing packages..."
+	./$(ENV_NAME)/bin/pip install -r requirements-dev.txt
+	@echo "Installing pre-commit hooks..."
+	./$(ENV_NAME)/bin/pre-commit install
+
+# =================
 # Linting
 # =================
 
 lint-py:
-	ruff check superset-dsfr/docker/pythonpath_dev/
+	./$(ENV_NAME)/bin/pre-commit run --all-files
 
 lint-dockerfile:
 	docker run --rm -i ghcr.io/hadolint/hadolint < Dockerfile
@@ -46,14 +61,8 @@ lint-all: lint-py lint-dockerfile lint-shell lint-helm check-translation
 # =================
 
 check-translation:
-	@if [ -d .env-translation ]; then rm -rf .env-translation; fi
-	@echo "Creating virtual environment for translation checks..."
-	python3 -m venv .env-translation
-	@echo "Installing packages..."
-	./.env-translation/bin/pip install --upgrade pip setuptools
-	./.env-translation/bin/pip install babel==2.11.0 --quiet
 	@echo "Compiling translations..."
-	./.env-translation/bin/pybabel compile -d superset-dsfr/translations --statistics
+	./$(ENV_NAME)/bin/pybabel compile -d superset-dsfr/translations --statistics
 
 # =================
 # Docker builds
@@ -85,6 +94,6 @@ clean-docker-images:
 	docker rmi chartsgouv:$(SUPERSET_VERSION)-dsfr-$(DSFR_VERSION)-chart-$(DSFR_CHART_VERSION) chartsgouv:$(SUPERSET_VERSION)-no-dsfr 2>/dev/null || true
 
 clean-venv:
-	rm -rf .env-translation
+	rm -rf $(ENV_NAME)
 
 clean-all: clean-docker-images clean-venv

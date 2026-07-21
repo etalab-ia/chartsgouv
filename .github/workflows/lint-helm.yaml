@@ -1,0 +1,27 @@
+name: Lint Helm
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/installation/helm/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/installation/helm/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: azure/setup-helm@v4
+        with:
+          version: latest
+
+      - run: helm repo add superset https://apache.github.io/superset/
+      - run: helm repo update
+
+      - run: helm lint superset/superset -f docs/installation/helm/values.yaml
+      - run: helm template test-release superset/superset -f docs/installation/helm/values.yaml > /dev/null

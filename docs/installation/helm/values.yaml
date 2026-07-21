@@ -62,4 +62,3 @@ supersetNode:
 ## Set to false if bringing your own PostgreSQL.
 postgresql:
   enabled: true
-

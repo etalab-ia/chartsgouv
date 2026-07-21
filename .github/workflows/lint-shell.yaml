@@ -1,0 +1,25 @@
+name: Lint Shell
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'superset-dsfr/docker/docker-init.sh'
+      - 'superset-dsfr/docker/docker-bootstrap.sh'
+      - 'superset-dsfr/docker/docker-dsfr.sh'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'superset-dsfr/docker/docker-init.sh'
+      - 'superset-dsfr/docker/docker-bootstrap.sh'
+      - 'superset-dsfr/docker/docker-dsfr.sh'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - run: shellcheck -x superset-dsfr/docker/docker-init.sh
+      - run: shellcheck -x superset-dsfr/docker/docker-bootstrap.sh
+      - run: shellcheck -x superset-dsfr/docker/docker-dsfr.sh

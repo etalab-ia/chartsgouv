@@ -5,11 +5,7 @@
     "plugins": [
         [
             "@semantic-release/commit-analyzer", {
-                "preset": "conventionalcommits",
-                "releaseRules": [
-                    {"type": "improve", "release": "patch"},
-                    {"type": "release", "release": "major"}
-                ]
+                "preset": "conventionalcommits"
             }
         ],
         [
@@ -20,14 +16,12 @@
                     "types": [
                         {"type": "feat", "section": "Features"},
                         {"type": "fix", "section": "Bug Fixes"},
-                        {"type": "chore", "hidden": true},
+                        {"type": "chore", "hidden": false, "section": "Autres"},
                         {"type": "docs", "hidden": false, "section": "Documentation"},
                         {"type": "style", "hidden": true},
-                        {"type": "refactor", "hidden": true},
+                        {"type": "refactor", "hidden": true, "section": "Breaking changes"},
                         {"type": "perf", "hidden": true},
-                        {"type": "test", "hidden": true},
-                        {"type": "improve", "hidden": false, "section": "Improvements"},
-                        {"type": "release", "hidden": true}
+                        {"type": "test", "hidden": true}
                     ]
                 }
             }

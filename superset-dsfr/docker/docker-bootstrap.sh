@@ -18,6 +18,8 @@
 
 set -eo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Make python interactive
 if [ "$DEV_MODE" == "true" ]; then
     if [ "$(whoami)" = "root" ] && command -v uv > /dev/null 2>&1; then
@@ -47,10 +49,10 @@ if [[ "$DATABASE_DIALECT" == postgres* ]] && [ "$(whoami)" = "root" ] && [ "$1" 
     echo "Installing postgres requirements"
     if command -v uv > /dev/null 2>&1; then
         # Use uv in newer images
-        uv pip install -e .[postgres]
+      uv pip install -e '.[postgres]'
     else
         # Use pip in older images
-        pip install -e .[postgres]
+      pip install -e '.[postgres]'
     fi
 fi
 #
@@ -67,13 +69,14 @@ else
   echo "Skipping local overrides"
 fi
 
-source docker/docker-dsfr.sh
+# shellcheck source=superset-dsfr/docker/docker-dsfr.sh
+source "${SCRIPT_DIR}/docker-dsfr.sh"
 
 case "${1}" in
   worker)
     echo "Starting Celery worker..."
     # setting up only 2 workers by default to contain memory usage in dev environments
-    celery --app=superset.tasks.celery_app:app worker -O fair -l INFO --concurrency=${CELERYD_CONCURRENCY:-2} ${WORKER_LOG_FILE:+--logfile=$WORKER_LOG_FILE}
+    celery --app=superset.tasks.celery_app:app worker -O fair -l INFO --concurrency="${CELERYD_CONCURRENCY:-2}" ${WORKER_LOG_FILE:+--logfile=$WORKER_LOG_FILE}
     ;;
   beat)
     echo "Starting Celery beat..."
@@ -100,7 +103,7 @@ case "${1}" in
         echo "  🔒 Werkzeug debugger disabled (set SUPERSET_DEBUG_ENABLED=true to enable)"
     fi
 
-    flask run -p $PORT --reload $DEBUGGER_FLAG --host=0.0.0.0 --exclude-patterns "*/node_modules/*:*/.venv/*:*/build/*:*/__pycache__/*:*/superset-frontend/*"
+    flask run -p "$PORT" --reload $DEBUGGER_FLAG --host=0.0.0.0 --exclude-patterns "*/node_modules/*:*/.venv/*:*/build/*:*/__pycache__/*:*/superset-frontend/*"
     ;;
   app-gunicorn)
     echo "Starting web app..."
@@ -108,7 +111,7 @@ case "${1}" in
     ;;
   mcp)
     echo "Starting MCP service..."
-    superset mcp run --host 0.0.0.0 --port ${MCP_PORT:-5008} --debug
+    superset mcp run --host 0.0.0.0 --port "${MCP_PORT:-5008}" --debug
     ;;
   *)
     echo "Unknown Operation!!!"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do
+find /app/superset/static/assets -name "theme*.css" -print0 | while IFS= read -r -d '' theme_filename; do
     sed \
       -e "s/#20a7c9/#000091/g" \
       -e "s/#45bed6/#000091/g" \

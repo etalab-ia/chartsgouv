@@ -15,7 +15,7 @@ VALUES_FILE   = docs/installation/helm/values.yaml
 # Docker
 SUPERSET_VERSION = 6.1.0
 DSFR_VERSION = 1.14.4
-DSFR_CHART_VERSION = 2.0.3
+DSFR_CHART_VERSION = 2.1.1
 
 # =================
 # Development

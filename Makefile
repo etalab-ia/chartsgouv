@@ -96,4 +96,16 @@ clean-docker-images:
 clean-venv:
 	rm -rf $(ENV_NAME)
 
-clean-all: clean-docker-images clean-venv
+clean-tmp: ## Nettoie les fichiers temporaires
+	@echo "Nettoyage des fichiers temporaires"
+	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+	find . -type d -name ".pytest_cache" -exec rm -rf {} + 2>/dev/null || true
+	find . -type d -name ".ruff_cache" -exec rm -rf {} + 2>/dev/null || true
+	find . -type d -name ".mypy_cache" -exec rm -rf {} + 2>/dev/null || true
+	find . -type d -name "*.egg-info" -exec rm -rf {} + 2>/dev/null || true
+	find . -type f -name "*.pyc" -delete
+	find . -type f -name "*.pyo" -delete
+	@echo "✓ Nettoyage terminé"
+
+
+clean-all: clean-docker-images clean-venv clean-tmp

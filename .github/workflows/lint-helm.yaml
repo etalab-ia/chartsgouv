@@ -1,6 +1,7 @@
 name: Lint Helm
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -13,6 +14,8 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    env:
+      TMP_DIR: /tmp/superset-chart
     steps:
       - uses: actions/checkout@v4
 
@@ -23,5 +26,13 @@ jobs:
       - run: helm repo add superset https://apache.github.io/superset/
       - run: helm repo update
 
-      - run: helm lint superset/superset -f docs/installation/helm/values.yaml
-      - run: helm template test-release superset/superset -f docs/installation/helm/values.yaml > /dev/null
+      - name: Pull chart and lint
+        run: |
+          rm -rf "$TMP_DIR"
+          mkdir -p "$TMP_DIR"
+          helm pull superset/superset --untar --untardir "$TMP_DIR"
+          helm lint "$TMP_DIR"/superset -f docs/installation/helm/values.yaml
+
+          rm -rf "$TMP_DIR"
+
+      - run: helm template test-release "$TMP_DIR"/superset -f docs/installation/helm/values.yaml > /dev/null

@@ -6,6 +6,8 @@ ARG REPO_NAME=dsfr
 ARG TAG_DSFR=1.13.0
 ARG TAG_DSFR_CHART=2.0.3
 ARG USE_DSFR=true
+ARG WGET_VERSION=1.21.4-1ubuntu4.4
+ARG UNZIP_VERSION=6.0-28ubuntu4.1
 
 
 # ------------------------------------------
@@ -19,6 +21,8 @@ ARG REPO_NAME
 ARG TAG_DSFR
 ARG TAG_DSFR_CHART
 ARG USE_DSFR
+ARG WGET_VERSION
+ARG UNZIP_VERSION
 
 USER root
 
@@ -31,7 +35,7 @@ COPY superset-dsfr ./superset-custom/
 # Download DSFR only if USE_DSFR=true
 RUN if [ "$USE_DSFR" = "true" ]; then \
     # Install dependencies
-        apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists/*; \
+        apt-get update && apt-get install -y wget=${WGET_VERSION} unzip=${UNZIP_VERSION} && rm -rf /var/lib/apt/lists/*; \
         # Debugging: Check if wget/unzip are installed
         command -v unzip && command -v wget; \
         # Download DSFR assets

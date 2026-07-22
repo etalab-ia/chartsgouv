@@ -1,0 +1,25 @@
+name: Lint Python
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'superset-dsfr/docker/pythonpath_dev/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'superset-dsfr/docker/pythonpath_dev/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - run: pip install ruff==0.15.22
+
+      - run: ruff check superset-dsfr/docker/pythonpath_dev/

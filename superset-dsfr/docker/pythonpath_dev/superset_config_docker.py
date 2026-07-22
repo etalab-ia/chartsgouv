@@ -25,29 +25,46 @@ LANGUAGES = {
 # ------------------------
 # Pour plus d'informations: https://github.com/apache/superset/blob/886f52554539318521858fbcf493123c8c4199ef/superset/config.py#L500
 D3_FORMAT = {
-    "decimal": ",",           # - decimal place string (e.g., ".").
-    "thousands": " ",         # - group separator string (e.g., " ").
-    "grouping": [3],          # - array of group sizes (e.g., [3]), cycled as needed.
-    "currency": ["", " €"]     # - currency prefix/suffix strings (e.g., ["$", ""])
+    "decimal": ",",  # - decimal place string (e.g., ".").
+    "thousands": " ",  # - group separator string (e.g., " ").
+    "grouping": [3],  # - array of group sizes (e.g., [3]), cycled as needed.
+    "currency": ["", " €"],  # - currency prefix/suffix strings (e.g., ["$", ""])
 }
 D3_TIME_FORMAT = {
     "dateTime": "%A %e %B %Y à %X",
     "date": "%d/%m/%Y",
     "time": "%H:%M:%S",
     "periods": ["", ""],
-    "days": [
-        "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"
-    ],
+    "days": ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"],
     "shortDays": ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
     "months": [
-        "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août",
-        "Septembre", "Octobre", "Novembre", "Décembre"
+        "Janvier",
+        "Février",
+        "Mars",
+        "Avril",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Août",
+        "Septembre",
+        "Octobre",
+        "Novembre",
+        "Décembre",
     ],
     "shortMonths": [
-        "Jan", "Fév", "Mar", "Avr",
-        "Mai", "Jun", "Jul", "Aoû",
-        "Sep", "Oct", "Nov", "Déc"
-    ]
+        "Jan",
+        "Fév",
+        "Mar",
+        "Avr",
+        "Mai",
+        "Jun",
+        "Jul",
+        "Aoû",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Déc",
+    ],
 }
 
 

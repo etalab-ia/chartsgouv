@@ -1,0 +1,3 @@
+# Packages for local development and testing
+pre-commit==4.6.0
+babel==2.18.0

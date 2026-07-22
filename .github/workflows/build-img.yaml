@@ -8,9 +8,9 @@ on:
       - dev
 
 env:
-  SUPERSET_VERSION: ${{ vars.SUPERSET_VERSION }} 
-  DSFR_VERSION: ${{ vars.DSFR_VERSION }} 
-  DSFR_CHART_VERSION: ${{ vars.DSFR_CHART_VERSION }} 
+  SUPERSET_VERSION: ${{ vars.SUPERSET_VERSION }}
+  DSFR_VERSION: ${{ vars.DSFR_VERSION }}
+  DSFR_CHART_VERSION: ${{ vars.DSFR_CHART_VERSION }}
 
 jobs:
   build-and-push:
@@ -36,10 +36,10 @@ jobs:
           fi
 
       - name: Build Docker image
-        run: docker build -f Dockerfile 
-          --build-arg TAG_DSFR=$DSFR_VERSION 
-          --build-arg TAG_DSFR_CHART=$DSFR_CHART_VERSION 
-          --build-arg SUPERSET_VERSION=$SUPERSET_VERSION 
+        run: docker build -f Dockerfile
+          --build-arg TAG_DSFR=$DSFR_VERSION
+          --build-arg TAG_DSFR_CHART=$DSFR_CHART_VERSION
+          --build-arg SUPERSET_VERSION=$SUPERSET_VERSION
           -t $IMAGE_NAME:$SUPERSET_VERSION-$DSFR_VERSION-$DSFR_CHART_VERSION .
 
       - name: Push Docker image

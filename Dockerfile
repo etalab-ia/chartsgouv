@@ -46,6 +46,8 @@ RUN if [ "$USE_DSFR" = "true" ]; then \
       echo "Skipping DSFR download. Dummy folders dsfr-base/dist dsfr-chart created."; \
     fi
 
+USER user
+
 # ------------------------------------------
 # Stage 2: Build frontend translations
 # ------------------------------------------

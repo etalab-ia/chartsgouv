@@ -14,8 +14,8 @@ VALUES_FILE   = docs/installation/helm/values.yaml
 
 # Docker
 SUPERSET_VERSION = 6.1.0
-DSFR_VERSION = 1.14.4
-DSFR_CHART_VERSION = 2.0.3
+DSFR_VERSION = 1.15.1
+DSFR_CHART_VERSION = 2.1.1
 
 # =================
 # Development
@@ -75,6 +75,7 @@ docker-build-dsfr:
 		--build-arg TAG_DSFR=$(DSFR_VERSION) \
 		--build-arg TAG_DSFR_CHART=$(DSFR_CHART_VERSION) \
 		--build-arg USE_DSFR=true \
+		--no-cache \
 		-t chartsgouv:$(SUPERSET_VERSION)-dsfr-$(DSFR_VERSION)-chart-$(DSFR_CHART_VERSION) .
 
 docker-build-without-dsfr:
@@ -84,6 +85,7 @@ docker-build-without-dsfr:
 		--build-arg TAG_DSFR=$(DSFR_VERSION) \
 		--build-arg TAG_DSFR_CHART=$(DSFR_CHART_VERSION) \
 		--build-arg USE_DSFR=false \
+		--no-cache \
 		-t chartsgouv:$(SUPERSET_VERSION)-no-dsfr .
 
 # =================

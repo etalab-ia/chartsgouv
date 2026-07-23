@@ -6,6 +6,9 @@ ARG REPO_NAME=dsfr
 ARG TAG_DSFR=1.14.4
 ARG TAG_DSFR_CHART=2.1.1
 ARG USE_DSFR=true
+ARG CA_CERTIFICATES_VERSION=20240203
+ARG WGET_VERSION=1.21.4-1ubuntu4.4
+ARG UNZIP_VERSION=6.0-28ubuntu4.1
 
 
 # ------------------------------------------
@@ -19,6 +22,9 @@ ARG REPO_NAME
 ARG TAG_DSFR
 ARG TAG_DSFR_CHART
 ARG USE_DSFR
+ARG CA_CERTIFICATES_VERSION
+ARG WGET_VERSION
+ARG UNZIP_VERSION
 
 USER root
 
@@ -31,13 +37,16 @@ COPY superset-dsfr ./superset-custom/
 # Download DSFR only if USE_DSFR=true
 RUN if [ "$USE_DSFR" = "true" ]; then \
     # Install dependencies
-        apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists/*; \
+        apt-get update && \
+            apt-get install -y --no-install-recommends \
+                ca-certificates=${CA_CERTIFICATES_VERSION} wget=${WGET_VERSION} unzip=${UNZIP_VERSION} && \
+            rm -rf /var/lib/apt/lists/*; \
         # Debugging: Check if wget/unzip are installed
         command -v unzip && command -v wget; \
         # Download DSFR assets
-        wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/v${TAG_DSFR}/${REPO_NAME}-v${TAG_DSFR}.zip" && \
+        wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/v${TAG_DSFR}/${REPO_NAME}-v${TAG_DSFR}.zip" --quiet && \
         unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip && \
-        wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/archive/refs/tags/v${TAG_DSFR_CHART}.zip" && \
+        wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/archive/refs/tags/v${TAG_DSFR_CHART}.zip" --quiet && \
         unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip && \
         echo "DSFR downloaded"; \
     else \
@@ -46,10 +55,14 @@ RUN if [ "$USE_DSFR" = "true" ]; then \
       echo "Skipping DSFR download. Dummy folders dsfr-base/dist dsfr-chart created."; \
     fi
 
+USER user
+
 # ------------------------------------------
 # Stage 2: Build frontend translations
 # ------------------------------------------
 FROM node:24-bookworm-slim AS frontend_translations
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /app
 
@@ -57,12 +70,12 @@ WORKDIR /app
 COPY superset-dsfr/translations /app/translations
 
 # Install dependencies
-RUN npm install -g po2json
+RUN npm install -g po2json@0.4.5
 
 # Convert PO to JSON for Superset and FAB
 RUN set -eux; \
     # Superset translations
-    find ./translations -name "*.po" | while read file; do \
+    find ./translations -name "*.po" | while read file -r; do \
         dirname=$(dirname "$file"); \
         basename=$(basename "$file" .po); \
         output_file="$dirname/$basename.json"; \
@@ -101,21 +114,6 @@ RUN set -eux; \
     echo "Common customizations copied"
 
 # ------------------------------------------
-# Version-specific overrides
-# ------------------------------------------
-RUN set -eux; \
-    major_superset_version="$(echo "$SUPERSET_VERSION" | cut -d. -f1)"; \
-    if [ "$major_superset_version" -lt 6 ]; then \
-        echo "Applying overrides for Superset v<6"; \
-        cp /tmp/superset-custom/templates_overrides/superset/base.html  /app/superset/templates/superset/; \
-        cp /tmp/superset-custom/templates_overrides/superset/basic.html /app/superset/templates/superset/; \
-        cp /tmp/superset-custom/templates_overrides/tail_js_custom_extra.html \
-           /app/superset/templates/tail_js_custom_extra.html; \
-    else \
-        echo "Skipping old overrides (Superset > 6)"; \
-    fi
-
-# ------------------------------------------
 # Optional DSFR integration
 # ------------------------------------------
 RUN set -eux; \
@@ -138,11 +136,11 @@ RUN set -eux; \
 # Copy backend translations (PO files)
 COPY --from=custom_image /app/superset-custom/translations /app/translations_mo
 
-# Compile backend translations to MO files
-RUN pybabel compile --statistics -d /app/translations_mo
-
-# Merge compiled backend MO files into Superset translations folder
-RUN cp -r /app/translations_mo/* /app/superset/translations/
+RUN set -eux; \
+    # Compile backend translations to MO files
+    pybabel compile --statistics -d /app/translations_mo; \
+    # Merge compiled backend MO files into Superset translations folder
+    cp -r /app/translations_mo/* /app/superset/translations/;
 
 # Copy frontend translations
 COPY --from=frontend_translations /app/translations /app/superset/translations

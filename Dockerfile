@@ -1,8 +1,8 @@
 # Define ARGS (Defaults, overridden in GitLab CI)
 ARG SUPERSET_REPO=apache/superset
-ARG SUPERSET_VERSION=4.1.1
-ARG DSFR_VERSION=1.13.0
-ARG DSFR_CHART_VERSION=2.0.3
+ARG SUPERSET_VERSION=6.1.0
+ARG DSFR_VERSION=1.15.0
+ARG DSFR_CHART_VERSION=2.1.1
 ARG USE_DSFR=true
 
 # ------------------------------------------

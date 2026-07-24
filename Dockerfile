@@ -76,6 +76,7 @@ RUN set -eux; \
     cp /tmp/superset-custom/assets/404.html  /app/superset/static/assets/404.html; \
     cp /tmp/superset-custom/assets/500.html  /app/superset/static/assets/500.html; \
     cp /tmp/superset-custom/templates_overrides/superset/public_welcome.html  /app/superset/templates/superset/; \
+    cp /tmp/superset-custom/templates_overrides/head_custom_extra.html  /app/superset/templates/; \
     echo "Common customizations copied"
 
 # ------------------------------------------

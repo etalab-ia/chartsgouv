@@ -236,11 +236,11 @@ msgstr "% calcul"
 
 #, no-python-format
 msgid "% of parent"
-msgstr "% du parent"
+msgstr "% of parent
 
 #, no-python-format
 msgid "% of total"
-msgstr "% du total"
+msgstr "% of total"
 
 #, python-format
 msgid "%(alertType)s \"%(alertName)s\" triggered successfully"

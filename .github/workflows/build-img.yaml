@@ -6,13 +6,13 @@ on:
     paths:
       - 'Dockerfile'
       - '.github/workflows/build-img.yaml'
-      - supersets/**/*
+      - superset-dsfr/**/*
   push:
     branches: [main, images]
     paths:
       - 'Dockerfile'
       - '.github/workflows/build-img.yaml'
-      - supersets/**/*
+      - superset-dsfr/**/*
 
 
 env:

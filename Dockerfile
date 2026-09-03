@@ -24,7 +24,7 @@ WORKDIR /app
 RUN if [ "$USE_DSFR" = "true" ]; then \
     # Install dependencies
         echo "Installing DSFR dependencies"; \
-        npm install --save-exact @gouvfr/dsfr@${DSFR_VERSION} @gouvfr/dsfr-chart@${DSFR_CHART_VERSION}; \
+        npm install @gouvfr/dsfr@${DSFR_VERSION} @gouvfr/dsfr-chart@${DSFR_CHART_VERSION}; \
     else \
         # Create dummy folders to avoid build errors
         echo "USE_DSFR=false, creating empty folders"; \

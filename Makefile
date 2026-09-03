@@ -72,18 +72,20 @@ docker-build-dsfr:
 	@echo "Building Superset with DSFR..."
 	docker build \
 		--build-arg SUPERSET_VERSION=$(SUPERSET_VERSION) \
-		--build-arg TAG_DSFR=$(DSFR_VERSION) \
-		--build-arg TAG_DSFR_CHART=$(DSFR_CHART_VERSION) \
+		--build-arg DSFR_VERSION=$(DSFR_VERSION) \
+		--build-arg DSFR_CHART_VERSION=$(DSFR_CHART_VERSION) \
 		--build-arg USE_DSFR=true \
+		--no-cache \
 		-t chartsgouv:$(SUPERSET_VERSION)-dsfr-$(DSFR_VERSION)-chart-$(DSFR_CHART_VERSION) .
 
 docker-build-without-dsfr:
 	@echo "Building Superset without DSFR..."
 	docker build \
 		--build-arg SUPERSET_VERSION=$(SUPERSET_VERSION) \
-		--build-arg TAG_DSFR=$(DSFR_VERSION) \
-		--build-arg TAG_DSFR_CHART=$(DSFR_CHART_VERSION) \
+		--build-arg DSFR_VERSION=$(DSFR_VERSION) \
+		--build-arg DSFR_CHART_VERSION=$(DSFR_CHART_VERSION) \
 		--build-arg USE_DSFR=false \
+		--no-cache \
 		-t chartsgouv:$(SUPERSET_VERSION)-no-dsfr .
 
 # =================

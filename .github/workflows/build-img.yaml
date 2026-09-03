@@ -65,7 +65,8 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build Docker image
-        run: docker build -f Dockerfile \
+        run: |
+          docker build -f Dockerfile \
           --build-arg SUPERSET_VERSION=${{ steps.version.outputs.version }} \
           -t ${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }}${{ steps.tag.outputs.suffix }}-${{ github.sha }} .
 

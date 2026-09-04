@@ -1,16 +1,28 @@
 name: Build and Push Docker Image
 
 on:
+  workflow_dispatch:
+    inputs:
+      superset_version:
+        description: 'Superset version to build (leave empty to use Dockerfile default)'
+        required: false
+        type: string
+
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/build-img.yaml'
+      - superset-dsfr/**/*
   push:
-    branches:
-      - main
-      - pre-release
-      - dev
+    branches: [main, images]
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/build-img.yaml'
+      - superset-dsfr/**/*
 
 env:
-  SUPERSET_VERSION: ${{ vars.SUPERSET_VERSION }}
-  DSFR_VERSION: ${{ vars.DSFR_VERSION }}
-  DSFR_CHART_VERSION: ${{ vars.DSFR_CHART_VERSION }}
+  IMAGE_NAME: ghcr.io/${{ github.repository }}/apache-superset
 
 jobs:
   build-and-push:
@@ -23,25 +35,43 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
 
+      - name: Get Superset version
+        id: version
+        shell: bash
+        run: |
+          if [ -n "${{ inputs.superset_version }}" ]; then
+            VERSION="${{ inputs.superset_version }}"
+          else
+            VERSION=$(grep -E '^ARG SUPERSET_VERSION=' Dockerfile | cut -d= -f2)
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Superset version: $VERSION"
+
+      - name: Set image tag
+        id: tag
+        shell: bash
+        run: |
+          SUFFIX=""
+
+          if [ "${GITHUB_REF}" != "refs/heads/main" ]; then
+            SUFFIX="-test"
+          fi
+
+          echo "suffix=$SUFFIX" >> "$GITHUB_OUTPUT"
+          echo "Image suffix: $SUFFIX"
+
       - name: Log in to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Set version variable
-        run: |
-          # Determine if we are on pre-release and append '-test' to the tag
-          if [[ "${GITHUB_REF}" == "refs/heads/pre-release" ]]; then
-            echo "IMAGE_NAME=ghcr.io/${{ github.repository }}-test" >> $GITHUB_ENV
-          else
-            echo "IMAGE_NAME=ghcr.io/${{ github.repository }}" >> $GITHUB_ENV
-          fi
-
       - name: Build Docker image
-        run: docker build -f Dockerfile
-          --build-arg TAG_DSFR=$DSFR_VERSION
-          --build-arg TAG_DSFR_CHART=$DSFR_CHART_VERSION
-          --build-arg SUPERSET_VERSION=$SUPERSET_VERSION
-          -t $IMAGE_NAME:$SUPERSET_VERSION-$DSFR_VERSION-$DSFR_CHART_VERSION .
+        run: |
+          docker build -f Dockerfile \
+          --build-arg SUPERSET_VERSION=${{ steps.version.outputs.version }} \
+          -t ${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }}${{ steps.tag.outputs.suffix }}-${{ github.sha }} .
 
       - name: Push Docker image
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/pre-release'
-        run: docker push $IMAGE_NAME:$SUPERSET_VERSION-$DSFR_VERSION-$DSFR_CHART_VERSION
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/images'
+        run: |
+          docker push \
+            ${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }}${{ steps.tag.outputs.suffix }}-${{ github.sha }}

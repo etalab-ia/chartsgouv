@@ -1,8 +1,10 @@
 # Define ARGS (Defaults, overridden in GitLab CI)
 ARG SUPERSET_REPO=apache/superset
 ARG SUPERSET_VERSION=6.1.0
-ARG DSFR_VERSION=1.15.0
-ARG DSFR_CHART_VERSION=2.1.1
+ARG REPO_OWNER=GouvernementFR
+ARG REPO_NAME=dsfr
+ARG TAG_DSFR=1.15.2
+ARG TAG_DSFR_CHART=2.1.1
 ARG USE_DSFR=true
 
 # ------------------------------------------
@@ -59,7 +61,8 @@ FROM ${SUPERSET_REPO}:${SUPERSET_VERSION} AS superset_custom_img
 ARG SUPERSET_VERSION
 ARG USE_DSFR
 
-USER root
+# Root user is 0
+USER 0
 WORKDIR /app
 
 # Copy Superset custom folders
@@ -109,4 +112,5 @@ RUN set -eux; \
         pip install --no-cache-dir -r /tmp/superset-custom/docker/requirements-local.txt; \
     fi
 
-USER superset
+# Superset user is 999
+USER 999

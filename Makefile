@@ -12,11 +12,6 @@ HELM_REPO_URL = http://apache.github.io/superset/
 HELM_CHART    = superset/superset
 VALUES_FILE   = docs/installation/helm/values.yaml
 
-# Docker
-SUPERSET_VERSION = 6.1.0
-DSFR_VERSION = 1.14.4
-DSFR_CHART_VERSION = 2.1.1
-
 # =================
 # Development
 # =================
@@ -71,29 +66,23 @@ check-translation:
 docker-build-dsfr:
 	@echo "Building Superset with DSFR..."
 	docker build \
-		--build-arg SUPERSET_VERSION=$(SUPERSET_VERSION) \
-		--build-arg DSFR_VERSION=$(DSFR_VERSION) \
-		--build-arg DSFR_CHART_VERSION=$(DSFR_CHART_VERSION) \
 		--build-arg USE_DSFR=true \
 		--no-cache \
-		-t chartsgouv:$(SUPERSET_VERSION)-dsfr-$(DSFR_VERSION)-chart-$(DSFR_CHART_VERSION) .
+		-t chartsgouv:dsfr .
 
 docker-build-without-dsfr:
 	@echo "Building Superset without DSFR..."
 	docker build \
-		--build-arg SUPERSET_VERSION=$(SUPERSET_VERSION) \
-		--build-arg DSFR_VERSION=$(DSFR_VERSION) \
-		--build-arg DSFR_CHART_VERSION=$(DSFR_CHART_VERSION) \
 		--build-arg USE_DSFR=false \
 		--no-cache \
-		-t chartsgouv:$(SUPERSET_VERSION)-no-dsfr .
+		-t chartsgouv:no-dsfr .
 
 # =================
 # Cleanup
 # =================
 
 clean-docker-images:
-	docker rmi chartsgouv:$(SUPERSET_VERSION)-dsfr-$(DSFR_VERSION)-chart-$(DSFR_CHART_VERSION) chartsgouv:$(SUPERSET_VERSION)-no-dsfr 2>/dev/null || true
+	docker rmi chartsgouv:dsfr chartsgouv:no-dsfr 2>/dev/null || true
 
 clean-venv:
 	rm -rf $(ENV_NAME)

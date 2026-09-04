@@ -61,7 +61,8 @@ FROM ${SUPERSET_REPO}:${SUPERSET_VERSION} AS superset_custom_img
 ARG SUPERSET_VERSION
 ARG USE_DSFR
 
-USER root
+# Root user is 0
+USER 0
 WORKDIR /app
 
 # Copy Superset custom folders
@@ -111,4 +112,5 @@ RUN set -eux; \
         pip install --no-cache-dir -r /tmp/superset-custom/docker/requirements-local.txt; \
     fi
 
-USER superset
+# Superset user is 999
+USER 999

@@ -1,24 +1,273 @@
 # /app/docker/pythonpath/superset_config_docker.py
-
-# ------------------------
-# Application
-# ------------------------
-# Specify the App icon
-APP_NAME = "ChartsGouv"
-APP_ICON = "/static/assets/local/images/app_icon_avec_titre_horizontal.png"
-LOGO_TOOLTIP = "ChartsGouv"
-
-FAVICONS = [{"href": "/static/assets/dsfr/favicon/favicon.svg"}]
+from typing import Any
+import os
 
 # ------------------------
 # Langues
 # ------------------------
+# Superset v6+: workaround pour s'assurer que la page d'accueil soit en français.
+# En attendant le déploiement du fix
+from superset.translations.utils import get_language_pack  # type: ignore
+
 BABEL_DEFAULT_LOCALE = "fr"
 
 LANGUAGES = {
     "fr": {"flag": "fr", "name": "Français"},
     "en": {"flag": "us", "name": "English"},
 }
+
+
+def bootstrap_overrides(bootstrap_data):
+    bootstrap_data["locale"] = "fr"
+    bootstrap_data["language_pack"] = get_language_pack("fr")
+    return bootstrap_data
+
+
+COMMON_BOOTSTRAP_OVERRIDES_FUNC = bootstrap_overrides
+
+# ------------------------
+# Application - configuration
+# ------------------------
+SUPERSET_DASHBOARD_POSITION_DATA_LIMIT = 6553500
+SQLALCHEMY_ENGINE_OPTIONS = {
+    "pool_size": 10,  # default: 5
+    "max_overflow": 5,  # default: 10
+    "pool_timeout": 60,  # default: 30
+    "pool_recycle": 1800,  # refresh every 30 minutes to avoid stale connections
+}
+
+# ------------------------
+# Thèmes
+# ------------------------
+FAVICONS = [{"href": "/static/assets/local/images/app_icon.png"}]
+
+THEME_DEFAULT = {
+    "token": {
+        "wireframe": False,
+        # Nom de l'application, image et logo
+        "brandAppName": "ChartsGouv",  # Window titles
+        "brandLogoAlt": "ChartsGouv",  # Logo alt text
+        "brandLogoUrl": "/static/assets/local/images/app_icon_avec_titre_horizontal.png",
+        "brandLogoMargin": "18px 0",
+        "brandLogoHref": "/",
+        "brandLogoHeight": "24px",
+        # Couleurs
+        "colorPrimary": "#000091",
+        "colorInfo": "#000091",
+        "colorError": "#ce0500",
+        "colorSuccess": "#18753c",
+        "colorWarning": "#b34000",
+        "colorPrimaryHover": "#1212ff",
+        "colorPrimaryActive": "#2323ff",
+        "colorSuccessHover": "#27a959",
+        "colorSuccessActive": "#2fc368",
+        "colorWarningHover": "#ff6218",
+        "colorWarningActive": "#ff7a55",
+        "colorErrorHover": "#ff2725",
+        "colorErrorActive": "#ff4140",
+        "colorLink": "#000091",
+        "colorLinkHover": "#1212ff",
+        "colorLinkActive": "#2323ff",
+        "colorSuccessText": "#18753c",
+        "colorWarningText": "#ffffff",
+        "colorWarningTextActive": "#ffffff",
+        "colorWarningTextHover": "#ffffff",
+        "colorErrorTextHover": "#ffffff",
+        "colorErrorText": "#ffffff",
+        "colorErrorTextActive": "#ffffff",
+        "colorInfoTextHover": "#ffffff",
+        "colorInfoText": "#ffffff",
+        "colorInfoTextActive": "#ffffff",
+        "colorInfoHover": "#98b4ff",
+        "colorInfoActive": "#b4c7ff",
+        "colorTextBase": "#3a3a3a",
+    },
+    "components": {
+        "Button": {
+            "borderRadius": 0,
+            "borderRadiusSM": 0,
+            "borderRadiusLG": 0,
+            "textTextColor": "rgb(255,255,255)",
+            "textTextActiveColor": "rgb(255,255,255)",
+            "textTextHoverColor": "rgb(255,255,255)",
+            "solidTextColor": "rgb(255,255,255)",
+            "colorText": "rgb(255,255,255)",
+            "colorPrimaryText": "rgb(106,106,244)",
+            "colorPrimaryTextActive": "rgb(255,255,255)",
+            "colorPrimaryTextHover": "rgb(255,255,255)",
+            "colorBgTextActive": "rgb(255,255,255)",
+            "textHoverBg": "rgb(255,255,255)",
+            "colorBgContainerDisabled": "rgb(255,255,255)",
+            "colorBgSolid": "rgb(255,255,255)",
+            "colorBgSolidActive": "rgb(255,255,255)",
+            "colorBgSolidHover": "rgb(255,255,255)",
+            "colorPrimaryBgHover": "rgb(18,18,255)",
+            "colorTextLightSolid": "rgb(255,255,255)",
+            "defaultColor": "rgb(0,0,145)",
+            "algorithm": True,
+            "colorError": "rgb(201,25,30)",
+            "colorErrorActive": "rgb(249,90,92)",
+            "colorErrorHover": "rgb(249,63,66)",
+            "primaryShadow": "",
+            "defaultBg": "rgb(238,238,238)",
+            "defaultBorderColor": "rgb(0,0,145)",
+        },
+        "Tag": {"colorSuccessText": "#ffffff", "borderRadiusSM": 0},
+        "Typography": {
+            "fontFamilyCode": "'Marianne','SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace",
+            "colorText": "rgb(58,58,58)",
+            "algorithm": True,
+            "fontSize": 14,
+            "fontSizeHeading1": 40,
+            "fontSizeHeading2": 32,
+            "fontSizeHeading3": 28,
+            "fontSizeHeading4": 24,
+            "fontSizeHeading5": 22,
+        },
+        "InputNumber": {
+            "activeBg": "rgb(238,238,238)",
+            "activeBorderColor": "rgb(0,0,145)",
+            "addonBg": "rgb(238,238,238)",
+            "handleBorderColor": "rgb(238,238,238)",
+            "handleHoverColor": "rgb(0,0,145)",
+            "hoverBorderColor": "rgb(0,0,145)",
+            "colorBgContainer": "rgb(238,238,238)",
+            "borderRadius": 0,
+            "borderRadiusLG": 0,
+            "borderRadiusSM": 0,
+            "hoverBg": "rgb(238,238,238)",
+            "activeShadow": "",
+            "errorActiveShadow": "",
+            "warningActiveShadow": "",
+            "motionDurationMid": "0s",
+            "motionDurationSlow": "0s",
+            "colorText": "rgb(58,58,58)",
+        },
+        "Select": {
+            "motionDurationSlow": "0.s",
+            "motionDurationMid": "0.s",
+            "borderRadius": 0,
+            "borderRadiusLG": 0,
+            "borderRadiusSM": 0,
+            "borderRadiusXS": 0,
+            "activeBorderColor": "rgb(0,0,145)",
+            "boxShadowSecondary": "",
+            "activeOutlineColor": "rgb(255,255,255)",
+            "hoverBorderColor": "rgb(0,0,145)",
+            "optionSelectedBg": "rgb(238,238,238)",
+            "colorBgBase": "rgb(238,238,238)",
+        },
+        "Dropdown": {
+            "boxShadowPopoverArrow": "",
+            "motionDurationMid": "0s",
+            "boxShadowSecondary": "",
+            "borderRadiusLG": 0,
+            "borderRadiusSM": 0,
+            "borderRadiusXS": 0,
+        },
+        "Menu": {
+            "motionDurationSlow": "0s",
+            "motionDurationMid": "0s",
+            "motionDurationFast": "0s",
+            "boxShadowSecondary": "",
+            "borderRadius": 0,
+            "borderRadiusLG": 0,
+            "itemBorderRadius": 0,
+            "subMenuItemBorderRadius": 0,
+            "itemHoverBg": "rgb(238,238,238)",
+            "subMenuItemBg": "rgb(255,255,255)",
+            "subMenuItemSelectedColor": "rgb(0,0,145)",
+            "itemColor": "rgb(58,58,58)",
+            "colorText": "rgb(58,58,58)",
+            "horizontalItemSelectedBg": "rgb(227,227,253)",
+            "horizontalItemSelectedColor": "rgb(0,0,145)",
+        },
+        "Slider": {
+            "railSize": 8,
+            "handleSize": 16,
+            "borderRadiusXS": 20,
+            "railBg": "rgb(255,255,255)",
+            "railHoverBg": "rgb(255,255,255)",
+            "trackBg": "rgb(0,0,145)",
+            "colorPrimaryBorderHover": "rgb(0,0,145)",
+            "handleActiveColor": "rgb(0,0,145)",
+            "handleColor": "rgb(0,0,145)",
+            "handleLineWidth": 1,
+            "handleLineWidthHover": 1,
+            "handleSizeHover": 16,
+        },
+        "Pagination": {
+            "borderRadius": 0,
+            "borderRadiusLG": 0,
+            "borderRadiusSM": 0,
+            "itemInputBg": "rgb(238,238,238)",
+            "colorBgContainer": "rgba(255,255,255,0)",
+            "controlHeight": 32,
+            "colorBgTextActive": "rgb(255,255,255)",
+            "colorPrimaryBorder": "rgb(0,0,145)",
+            "colorPrimaryHover": "rgb(0,0,145)",
+            "colorBgTextHover": "rgb(58,58,58)",
+        },
+        "Input": {
+            "borderRadius": 0,
+            "borderRadiusLG": 0,
+            "borderRadiusSM": 0,
+            "activeBg": "rgb(238,238,238)",
+            "activeBorderColor": "rgb(0,0,145)",
+            "hoverBorderColor": "rgb(0,0,145)",
+            "hoverBg": "rgb(238,238,238)",
+            "addonBg": "rgb(238,238,238)",
+            "colorText": "rgb(58,58,58)",
+        },
+        "Modal": {
+            "borderRadiusLG": 0,
+            "borderRadiusSM": 0,
+            "colorText": "rgb(22,22,22)",
+            "titleFontSize": 20,
+            "colorIcon": "rgb(0,0,145)",
+            "colorIconHover": "rgb(0,0,145)",
+            "colorBgTextHover": "rgb(238,238,238)",
+        },
+        "Tooltip": {
+            "borderRadius": 0,
+            "borderRadiusXS": 0,
+            "colorTextLightSolid": "rgb(58,58,58)",
+            "colorBgSpotlight": "rgb(255,255,255)",
+        },
+        "Alert": {"borderRadiusLG": 0},
+        "Message": {"borderRadiusLG": 0},
+        "Popover": {"borderRadiusLG": 0, "borderRadiusXS": 0, "fontWeightStrong": 800},
+        "Checkbox": {
+            "borderRadiusSM": 2,
+            "controlInteractiveSize": 18,
+            "colorPrimaryHover": "rgb(0,0,145)",
+        },
+        "Tabs": {
+            "borderRadius": 0,
+            "borderRadiusLG": 0,
+            "inkBarColor": "rgb(0,0,145)",
+            "itemActiveColor": "rgb(0,0,145)",
+            "itemHoverColor": "rgba(58,58,58,0.88)",
+            "cardBg": "rgb(227,227,253)",
+        },
+        "Table": {
+            "headerBg": "rgb(246,246,246)",
+            "borderRadius": 0,
+            "headerBorderRadius": 0,
+        },
+    },
+}
+
+THEME_DARK = {
+    **THEME_DEFAULT,
+    "token": {
+        **THEME_DEFAULT["token"],
+        # Darker selection color for dark mode
+        "colorEditorSelection": "#5c4d1a",
+    },
+    "algorithm": "dark",
+}
+
 
 # ------------------------
 # Number & Datetime format
@@ -67,30 +316,196 @@ D3_TIME_FORMAT = {
     ],
 }
 
+#
+# SMPT - Mail Serveur
+#
+SMTP_HOST = os.environ.get("SUPERSET_SMTP_HOST", "localhost")
+SMTP_STARTTLS = os.environ.get("SUPERSET_SMTP_STARTTLS", True)
+SMTP_SSL = os.environ.get("SUPERSET_SMTP_SSL", False)
+SMTP_USER = os.environ.get("SUPERSET_SMTP_USER", "superset")
+SMTP_PORT = os.environ.get("SUPERSET_SMTP_PORT", 25)
+SMTP_PASSWORD = os.environ.get("SUPERSET_SMTP_PASSWORD", "superset")  # noqa: S105
+SMTP_MAIL_FROM = os.environ.get("SUPERSET_SMTP_MAIL_FROM", "superset@superset.com")
+# If True creates a default SSL context with ssl.Purpose.CLIENT_AUTH using the
+# default system root CA certificates.
+SMTP_SSL_SERVER_AUTH = os.environ.get("SUPERSET_SMTP_SSL_SERVER_AUTH", False)
+
 
 # ------------------------
 # Fonctionnalités complémentaires
 # ------------------------
 # Pour plus d'informations: https://github.com/apache/superset/blob/886f52554539318521858fbcf493123c8c4199ef/superset/config.py#L500
 FEATURE_FLAGS: dict[str, bool] = {
+    # When using a recent version of Druid that supports JOINs turn this on
+    "DRUID_JOINS": False,
+    "DYNAMIC_PLUGINS": False,
     # Authorize jinja templating
     "ENABLE_TEMPLATE_PROCESSING": True,
+    # Allow for javascript controls components
+    # this enables programmers to customize certain charts (like the
+    # geospatial ones) by inputting javascript in controls. This exposes
+    # an XSS security vulnerability
+    "ENABLE_JAVASCRIPT_CONTROLS": True,  # deprecated
+    # When this feature is enabled, nested types in Presto will be
+    # expanded into extra columns and/or arrays. This is experimental,
+    # and doesn't work with all nested types.
+    "PRESTO_EXPAND_DATA": False,
+    # Exposes API endpoint to compute thumbnails
+    "THUMBNAILS": False,
+    # Enables the endpoints to cache and retrieve dashboard screenshots via webdriver.
+    # Requires configuring Celery and a cache using THUMBNAIL_CACHE_CONFIG.
+    "ENABLE_DASHBOARD_SCREENSHOT_ENDPOINTS": False,
+    # Generate screenshots (PDF or JPG) of dashboards using the web driver.
+    # When disabled, screenshots are generated on the fly by the browser.
+    # This feature flag is used by the download feature in the dashboard view.
+    # It is dependent on ENABLE_DASHBOARD_SCREENSHOT_ENDPOINT being enabled.
+    "ENABLE_DASHBOARD_DOWNLOAD_WEBDRIVER_SCREENSHOT": False,
     "TAGGING_SYSTEM": True,
+    "SQLLAB_BACKEND_PERSISTENCE": True,
+    "LISTVIEWS_DEFAULT_CARD_VIEW": False,
+    # When True, this escapes HTML (rather than rendering it) in Markdown components
+    "ESCAPE_MARKDOWN_HTML": False,
+    "DASHBOARD_VIRTUALIZATION": False,
+    # This feature flag is stil in beta and is not recommended for production use.
+    "GLOBAL_ASYNC_QUERIES": False,
     "EMBEDDED_SUPERSET": True,
+    # Enables Alerts and reports new implementation
+    "ALERT_REPORTS": True,
+    "ALERT_REPORT_TABS": True,
+    "ALERT_REPORT_SLACK_V2": False,
     "DASHBOARD_RBAC": True,
+    "ENABLE_ADVANCED_DATA_TYPES": False,
+    # Enabling ALERTS_ATTACH_REPORTS, the system sends email and slack message
+    # with screenshot and link
+    # Disables ALERTS_ATTACH_REPORTS, the system DOES NOT generate screenshot
+    # for report with type 'alert' and sends email and slack message with only link;
+    # for report with type 'report' still send with email and slack message with
+    # screenshot and link
+    "ALERTS_ATTACH_REPORTS": True,
+    # Allow users to export full CSV of table viz type.
+    # This could cause the server to run out of memory or compute.
+    "ALLOW_FULL_CSV_EXPORT": True,
+    "ALLOW_ADHOC_SUBQUERY": False,
+    "USE_ANALOGOUS_COLORS": False,
+    # Apply RLS rules to SQL Lab queries. This requires parsing and manipulating the
+    # query, and might break queries and/or allow users to bypass RLS. Use with care!
+    "RLS_IN_SQLLAB": False,
+    # Try to optimize SQL queries — for now only predicate pushdown is supported.
+    "OPTIMIZE_SQL": False,
+    # When impersonating a user, use the email prefix instead of the username
+    "IMPERSONATE_WITH_EMAIL_PREFIX": False,
+    # Enable caching per impersonation key (e.g username) in a datasource where user
+    # impersonation is enabled
+    "CACHE_IMPERSONATION": False,
+    # Enable caching per user key for Superset cache (not database cache impersonation)
+    "CACHE_QUERY_BY_USER": False,
     # Enable sharing charts with embedding
     "EMBEDDABLE_CHARTS": True,
+    "DRILL_TO_DETAIL": True,  # deprecated
+    "DRILL_BY": True,
+    "DATAPANEL_CLOSED_BY_DEFAULT": False,
+    # The feature is off by default, and currently only supported in Presto and Postgres,  # noqa: E501
+    # and Bigquery.
+    # It also needs to be enabled on a per-database basis, by adding the key/value pair
+    # `cost_estimate_enabled: true` to the database `extra` attribute.
+    "ESTIMATE_QUERY_COST": False,
+    # Allow users to enable ssh tunneling when creating a DB.
+    # Users must check whether the DB engine supports SSH Tunnels
+    # otherwise enabling this flag won't have any effect on the DB.
     "SSH_TUNNELING": False,
+    "AVOID_COLORS_COLLISION": True,
+    # Do not show user info in the menu
+    "MENU_HIDE_USER_INFO": False,
+    # Allows users to add a ``superset://`` DB that can query across databases. This is
+    # an experimental feature with potential security and performance risks, so use with
+    # caution. If the feature is enabled you can also set a limit for how much data is
+    # returned from each database in the ``SUPERSET_META_DB_LIMIT`` configuration value
+    # in this file.
+    "ENABLE_SUPERSET_META_DB": False,
+    # Set to True to replace Selenium with Playwright to execute reports and thumbnails.
+    # Unlike Selenium, Playwright reports support deck.gl visualizations
+    # Enabling this feature flag requires installing "playwright" pip package
+    "PLAYWRIGHT_REPORTS_AND_THUMBNAILS": False,
+    # Set to True to enable experimental chart plugins
+    "CHART_PLUGINS_EXPERIMENTAL": True,
+    # Regardless of database configuration settings, force SQLLAB to run async using Celery  # noqa: E501
+    "SQLLAB_FORCE_RUN_ASYNC": False,
+    # Set to True to to enable factory resent CLI command
+    "ENABLE_FACTORY_RESET_COMMAND": False,
+    # Whether Superset should use Slack avatars for users.
+    # If on, you'll want to add "https://avatars.slack-edge.com" to the list of allowed
+    # domains in your TALISMAN_CONFIG
+    "SLACK_ENABLE_AVATARS": False,
+    # Allow users to optionally specify date formats in email subjects, which will be parsed if enabled. # noqa: E501
+    "DATE_FORMAT_IN_EMAIL_SUBJECT": False,
+    # Allow metrics and columns to be grouped into (potentially nested) folders in the
+    # chart builder
+    "DATASET_FOLDERS": True,
 }
-
 
 # ------------------------
 # HTML Sanitization
 # ------------------------
+THEME_FONT_URL_ALLOWED_DOMAINS: list[str] = [
+    "fonts.googleapis.com",  # Google Fonts API (serves CSS)
+    "fonts.gstatic.com",  # Google Fonts CDN (serves font files)
+    "use.typekit.net",  # Adobe Fonts (serves both CSS and fonts)
+    "use.typekit.com",  # Adobe Fonts alternate (serves both CSS and fonts)
+]
 # Pour plus d'informations: https://github.com/apache/superset/blob/886f52554539318521858fbcf493123c8c4199ef/superset/config.py#L940
-HTML_SANITIZATION = True
-HTML_SANITIZATION_SCHEMA_EXTENSIONS = {}
-
+HTML_SANITIZATION = False
+HTML_SANITIZATION_SCHEMA_EXTENSIONS: dict[str, Any] = {}
+TALISMAN_CONFIG = {
+    "content_security_policy": {
+        "base-uri": ["'self'"],
+        "default-src": ["'self'"],
+        "img-src": [
+            "'self'",
+            "blob:",
+            "data:",
+            "https://apachesuperset.gateway.scarf.sh",
+            "https://static.scarf.sh/",
+            # "https://cdn.brandfolder.io", # Uncomment when SLACK_ENABLE_AVATARS is True  # noqa: E501
+            "ows.terrestris.de",
+            "https://cdn.document360.io",
+        ],
+        "worker-src": ["'self'", "blob:"],
+        "connect-src": [
+            "'self'",
+            "https://api.mapbox.com",
+            "https://events.mapbox.com",
+            "https://tile.openstreetmap.org",
+            "https://tile.osm.ch",
+            "https://basemaps.cartocdn.com",
+            "https://*.basemaps.cartocdn.com",
+            "https://tiles.openfreemap.org",
+            "https://*.maptiler.com",
+            "https://tiles.stadiamaps.com",
+            "https://tiles.versatiles.org",
+            "https://*.protomaps.com",
+            "https://*.maplibre.org",
+        ],
+        "object-src": "'none'",
+        "style-src": [
+            "'self'",
+            "'unsafe-inline'",
+            *[f"https://{d}" for d in THEME_FONT_URL_ALLOWED_DOMAINS],
+        ],
+        "font-src": [
+            "'self'",
+            *[f"https://{d}" for d in THEME_FONT_URL_ALLOWED_DOMAINS],
+        ],
+        "script-src": [
+            "'self'",
+            "'strict-dynamic'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+        ],
+    },
+    "content_security_policy_nonce_in": ["script-src"],
+    "force_https": False,
+    "session_cookie_secure": False,
+}
 
 # ------------------------
 # Couleurs & Palettes
@@ -270,88 +685,6 @@ DSFR_CHART_COLORS = {
 # https://preset.io/blog/theming-superset-progress-update/
 # [SIP-82] Improving Superset Theming https://github.com/apache/superset/issues/20159
 # https://www.systeme-de-design.gouv.fr/version-courante/fr/fondamentaux/couleurs--palette
-THEME_OVERRIDES = {
-    "borderRadius": 5,
-    "colors": {
-        "text": {
-            "label": DSFR_COLORS["sun"]["grey-425-625"],
-            "help": DSFR_COLORS["sun"]["grey-425-625"],
-        },
-        "primary": {
-            "base": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "dark1": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "light1": DSFR_COLORS["sun"]["blue-france-main-525"],
-            "light2": DSFR_COLORS["sun"]["blue-france-850-200"],
-            "light3": DSFR_COLORS["sun"]["blue-france-925-125"],
-            "light4": DSFR_COLORS["sun"]["blue-france-950-100"],
-            "light5": DSFR_COLORS["sun"]["blue-france-975-75"],
-        },
-        "secondary": {
-            "base": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "dark1": DSFR_COLORS["sun"]["grey-0-1000"],
-            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "dark3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "light1": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "light2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "light3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
-            "light4": DSFR_COLORS["sun"]["blue-france-925-125"],
-            "light5": DSFR_COLORS["sun"]["blue-france-925-125"],
-        },
-        "grayscale": {
-            "base": DSFR_COLORS["sun"]["grey-425-625"],
-            "dark1": DSFR_COLORS["sun"]["grey-200-850"],
-            "dark2": DSFR_COLORS["sun"]["grey-50-1000"],
-            "light1": DSFR_COLORS["sun"]["grey-625-425"],
-            "light2": DSFR_COLORS["sun"]["grey-925-125"],
-            "light3": DSFR_COLORS["sun"]["grey-950-100"],
-            "light4": DSFR_COLORS["sun"]["grey-975-75"],
-            "light5": DSFR_COLORS["sun"]["grey-1000-50"],
-        },
-        "error": {
-            "base": DSFR_COLORS["sun"]["error-425-625"],
-            "dark1": DSFR_COLORS["sun"]["error-425-625"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
-            "light1": DSFR_COLORS["sun"]["error-425-625"],
-            "light2": DSFR_COLORS["sun"]["error-950-100"],
-        },
-        "warning": {
-            "base": DSFR_COLORS["sun"]["warning-425-625"],
-            "dark1": DSFR_COLORS["sun"]["warning-425-625"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
-            "light1": DSFR_COLORS["sun"]["warning-425-625"],
-            "light2": DSFR_COLORS["sun"]["warning-950-100"],
-        },
-        "alert": {
-            "base": DSFR_COLORS["sun"]["green-tilleul-verveine-925-125"],
-            "dark1": DSFR_COLORS["sun"]["green-tilleul-verveine-925-125"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
-            "light1": DSFR_COLORS["sun"]["green-tilleul-verveine-925-125"],
-            "light2": DSFR_COLORS["sun"]["green-tilleul-verveine-975-75"],
-        },
-        "success": {
-            "base": DSFR_COLORS["sun"]["success-425-625"],
-            "dark1": DSFR_COLORS["sun"]["success-425-625"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
-            "light1": DSFR_COLORS["sun"]["success-425-625"],
-            "light2": DSFR_COLORS["sun"]["success-950-100"],
-        },
-        "info": {
-            "base": DSFR_COLORS["sun"]["info-425-625"],
-            "dark1": DSFR_COLORS["sun"]["info-425-625"],
-            "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
-            "light1": DSFR_COLORS["sun"]["info-425-625"],
-            "light2": DSFR_COLORS["sun"]["info-950-100"],
-        },
-    },
-    "typography": {
-        "families": {
-            "sansSerif": "Marianne, Inter, Helvetica, Arial",
-            "serif": "Marianne, Georgia, Times New Roman, Times, serif",
-            "monospace": "Marianne, Fira Code, Courier New, monospace",
-        },
-    },
-}
 
 # EXTRA_CATEGORICAL_COLOR_SCHEMES is used for adding custom categorical color schemes
 # see DSFR colors "Couleurs illustratives"

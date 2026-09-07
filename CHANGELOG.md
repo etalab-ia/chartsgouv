@@ -1,3 +1,30 @@
+## [2.0.0](https://github.com/etalab-ia/chartsgouv/compare/v1.4.0...v2.0.0) (2026-09-07)
+
+### ⚠ BREAKING CHANGES
+
+* simplify repo and release strategy (#99)
+
+### Features
+
+* **dsfr/config:** update override config to match v6.1 ([0ddf08b](https://github.com/etalab-ia/chartsgouv/commit/0ddf08b482d4be29f139cd70519a7e2de74c2193))
+* **installation/helm:** update values to match latest superset helm chart ([87cd3e0](https://github.com/etalab-ia/chartsgouv/commit/87cd3e03e7a44ed7fe48be47bd1027d905445afe))
+* simplify repo and release strategy ([#99](https://github.com/etalab-ia/chartsgouv/issues/99)) ([2725792](https://github.com/etalab-ia/chartsgouv/commit/272579275f04e91579f74e80cde5bc88b52394b8))
+
+### Bug Fixes
+
+* **ci:** mise à jour de l'intégration du DSFR ([#105](https://github.com/etalab-ia/chartsgouv/issues/105)) ([e03910e](https://github.com/etalab-ia/chartsgouv/commit/e03910ef42a52567462c904958e064804aef642e))
+* **ci:** update build img workflow ([#103](https://github.com/etalab-ia/chartsgouv/issues/103)) ([c4871ef](https://github.com/etalab-ia/chartsgouv/commit/c4871ef2468dcde1f0266944020fe6127cfb88ff))
+* **lint:** update dockerfile ([#102](https://github.com/etalab-ia/chartsgouv/issues/102)) ([9f50ac9](https://github.com/etalab-ia/chartsgouv/commit/9f50ac9ebf808fe6ae887d574af120c5eb9e9a90))
+* **lint:** update lint helm workflow to fetch Superset chart before linting ([#101](https://github.com/etalab-ia/chartsgouv/issues/101)) ([f618332](https://github.com/etalab-ia/chartsgouv/commit/f618332a3a6425c2e1dda03e9cd1a8e2ad22faec))
+* **lint:** update shell scripts to pass shell check ([#100](https://github.com/etalab-ia/chartsgouv/issues/100)) ([38b64f7](https://github.com/etalab-ia/chartsgouv/commit/38b64f7cc3263553674d7d1ffc78a8ab196e7038))
+
+### Autres
+
+* **ci:** add Dependabot config for daily updates ([b5e1757](https://github.com/etalab-ia/chartsgouv/commit/b5e1757c87f5cfc21c4bdf7aecde9552e8081918))
+* **ci:** Fix package-ecosystem name for GitHub Actions ([c590bef](https://github.com/etalab-ia/chartsgouv/commit/c590bef4f1a37dd79acf84caf6ee56408bf81e75))
+* **deps:** remove uv package eco-system in dependabot ([02b7c32](https://github.com/etalab-ia/chartsgouv/commit/02b7c325056e733af694413d55385ff09c7cc319))
+* **docs:** apply linting ([9a58883](https://github.com/etalab-ia/chartsgouv/commit/9a5888337c0f5fed7e9eb9ec3385b325ac823828))
+
 ## [1.4.0](https://github.com/etalab-ia/chartsgouv/compare/v1.3.0...v1.4.0) (2025-10-27)
 
 ### Features

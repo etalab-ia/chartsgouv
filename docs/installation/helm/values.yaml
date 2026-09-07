@@ -12,9 +12,9 @@ initImage:
 
 # Exemple avec les images mises à disposition (https://github.com/etalab-ia/chartsgouv/pkgs/container/chartsgouv)
 image:
-  repository: ghcr.io/etalab-ia/chartsgouv-test
-  tag: 4.1.3-1.14.0-2.0.4
-  pullPolicy: Always
+  repository: ghcr.io/etalab-ia/chartsgouv/apache-superset
+  tag: 6.1.0-0ddf08b482d4be29f139cd70519a7e2de74c2193
+  pullPolicy: IfNotPresent
 
 
 # -- Install additional packages and do any other bootstrap configuration in this script
@@ -46,19 +46,35 @@ init:
     password: admin
 
 extraSecretEnv:
-  # Dans votre terminal > openssl rand -base64 42
+  # Dans votre terminal > `openssl rand -base64 42`
   SUPERSET_SECRET_KEY: 'your_secret_key'
-  # A partir de la 6.0, plus besoin de MapBox !
-  MAPBOX_API_KEY: 'your_token'
-supersetNode:
-  connections:
-    # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
-    db_host: "{{ .Release.Name }}-postgresql"
-    db_port: "5432"
-    db_user: superset
-    db_pass: superset
-    db_name: superset
 
-## Set to false if bringing your own PostgreSQL.
+# Set to false if bringing your own PostgreSQL
+# and complete database: section.
 postgresql:
   enabled: true
+
+# -- Database connection configuration for the Superset metadata database
+database:
+  # You need to change below configuration incase bringing own PostgresSQL instance and also set postgresql.enabled:false
+  # -- Full database URI (overrides host/port/user/pass/name if set)
+  # Example: "postgresql+psycopg2://user:pass@host:5432/dbname"
+  uri: ~
+  # -- Database driver used when uri is not set (default: postgresql+psycopg2 when unset;
+  # legacy supersetNode.connections.db_type is honored when this is unset)
+  driver: ~
+  # -- Database host (default: {{ .Release.Name }}-postgresql)
+  host: ~
+  # -- Database port (default: 5432 when unset; legacy supersetNode.connections.db_port is honored)
+  port: ~
+  # -- Database user (default: superset, resolved via superset.db.user)
+  user: ~
+  # -- Database password (default: superset, resolved via superset.db.password)
+  # ⚠️ CHANGE THIS for production
+  password: ~
+  # -- Database name (default: superset, resolved via superset.db.name)
+  name: ~
+  # -- Database SSL configuration
+  ssl:
+    enabled: false
+    mode: require

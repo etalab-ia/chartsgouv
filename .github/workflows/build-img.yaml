@@ -22,7 +22,7 @@ on:
       - superset-dsfr/**/*
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository }}/apache-superset
+  IMAGE_NAME: ghcr.io/${{ github.repository }}
 
 jobs:
   build-and-push:

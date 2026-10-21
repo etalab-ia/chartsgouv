@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'translations/**'
+      - 'superset-dsfr/translations/**'
   pull_request:
     branches: [main]
     paths:
-      - 'translations/**'
+      - 'superset-dsfr/translations/**'
 
 jobs:
   test:
@@ -30,13 +30,15 @@ jobs:
       - name: Check translations exist
         run: |
           echo "Scanning for .po files..."
-          find . -name "*.po" -type f
+          ls -1 superset-dsfr/translations/*.po
 
       - name: Compile translations (pybabel)
         run: |
-          # Compile all .po files found in the project
-          find . -name "*.po" -type f | while read file; do
-            dir=$(dirname "$file")
-            echo "Compiling $file"
-            pybabel compile -d "$dir" --statistics
+          # Compile each version-specific .po file
+          for po in superset-dsfr/translations/*.po; do
+            echo "Compiling $po"
+            mkdir -p /tmp/translations-check/fr/LC_MESSAGES
+            cp "$po" /tmp/translations-check/fr/LC_MESSAGES/messages.po
+            pybabel compile -d /tmp/translations-check --statistics
+            rm -rf /tmp/translations-check
           done

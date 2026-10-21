@@ -15,6 +15,7 @@ FROM node:24-bookworm-slim AS frontend_translations
 ARG USE_DSFR
 ARG DSFR_VERSION
 ARG DSFR_CHART_VERSION
+ARG SUPERSET_VERSION
 
 
 ENV DSFR_ACCEPT_LICENSE=1
@@ -39,16 +40,18 @@ COPY superset-dsfr/translations /app/translations
 # Install dependencies
 RUN npm install -g po2json@0.4.5
 
-# Convert PO to JSON for Superset and FAB
+# Convert the PO file matching the Superset version to JSON
 RUN set -eux; \
-    # Superset translations
-    find ./translations -name "*.po" | while read file -r; do \
-        dirname=$(dirname "$file"); \
-        basename=$(basename "$file" .po); \
-        output_file="$dirname/$basename.json"; \
-        echo "Converting $file -> $output_file"; \
-        po2json "$file" "$output_file" --format=jed1.x --domain=superset || echo "Error converting $file"; \
-    done;
+    VER=$(echo "$SUPERSET_VERSION" | cut -d. -f1-3 | tr '.' '_'); \
+    PO_FILE="/app/translations/messages_${VER}.po"; \
+    if [ ! -f "$PO_FILE" ]; then \
+        echo "ERROR: no translation file found for Superset version ${SUPERSET_VERSION}"; \
+        ls -1 /app/translations/; \
+        exit 1; \
+    fi; \
+    echo "Converting $PO_FILE -> /app/out/fr/LC_MESSAGES/messages.json"; \
+    mkdir -p /app/out/fr/LC_MESSAGES; \
+    po2json "$PO_FILE" "/app/out/fr/LC_MESSAGES/messages.json" --format=jed1.x --domain=superset;
 
 # ------------------------------------------
 # Stage 2: Build Superset Custom img
@@ -94,14 +97,22 @@ RUN set -eux; \
     else \
         echo "Skipping DSFR integration"; \
     fi; \
-    # Compile backend translations to MO files
-    cp -r /tmp/superset-custom/translations /app/translations_mo/; \
+    # Compile backend translations to MO files (version-specific .po)
+    VER=$(echo "$SUPERSET_VERSION" | cut -d. -f1-3 | tr '.' '_'); \
+    PO_FILE="/tmp/superset-custom/translations/messages_${VER}.po"; \
+    if [ ! -f "$PO_FILE" ]; then \
+        echo "ERROR: no translation file found for Superset version ${SUPERSET_VERSION}"; \
+        ls -1 /tmp/superset-custom/translations/; \
+        exit 1; \
+    fi; \
+    mkdir -p /app/translations_mo/fr/LC_MESSAGES; \
+    cp "$PO_FILE" /app/translations_mo/fr/LC_MESSAGES/messages.po; \
     pybabel compile --statistics -d /app/translations_mo; \
     # Merge compiled backend MO files into Superset translations folder
     cp -r /app/translations_mo/* /app/superset/translations/;
 
 # Copy frontend translations
-COPY --from=frontend_translations /app/translations /app/superset/translations
+COPY --from=frontend_translations /app/out /app/superset/translations
 
 # Install additional dependencies
 RUN set -eux; \

@@ -57,7 +57,13 @@ lint-all: lint-py lint-dockerfile lint-shell lint-helm check-translation
 
 check-translation:
 	@echo "Compiling translations..."
-	./$(ENV_NAME)/bin/pybabel compile -d superset-dsfr/translations --statistics
+	@for po in superset-dsfr/translations/*.po; do \
+		echo "Checking $$po"; \
+		mkdir -p /tmp/translations-check/fr/LC_MESSAGES; \
+		cp "$$po" /tmp/translations-check/fr/LC_MESSAGES/messages.po; \
+		./$(ENV_NAME)/bin/pybabel compile -d /tmp/translations-check --statistics; \
+		rm -rf /tmp/translations-check; \
+	done
 
 # =================
 # Docker builds

@@ -60,6 +60,8 @@ ARG SUPERSET_VERSION
 ARG SUPERSET_REPO
 FROM ${SUPERSET_REPO}:${SUPERSET_VERSION} AS superset_custom_img
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 # Must repeat ARG here to be able to use it in this stage
 ARG SUPERSET_VERSION
 ARG USE_DSFR

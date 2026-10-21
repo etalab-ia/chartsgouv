@@ -117,7 +117,7 @@ THEME_DEFAULT = {
             "fontFamilyCode": "'Marianne','SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace",
             "colorText": "rgb(58,58,58)",
             "algorithm": True,
-            "fontSize": 14,
+            "fontSize": 16,
             "fontSizeHeading1": 40,
             "fontSizeHeading2": 32,
             "fontSizeHeading3": 28,
@@ -330,6 +330,7 @@ SMTP_MAIL_FROM = os.environ.get("SUPERSET_SMTP_MAIL_FROM", "superset@superset.co
 # default system root CA certificates.
 SMTP_SSL_SERVER_AUTH = os.environ.get("SUPERSET_SMTP_SSL_SERVER_AUTH", False)
 
+PREVENT_UNSAFE_DB_CONNECTIONS = False
 
 # ------------------------
 # Fonctionnalités complémentaires

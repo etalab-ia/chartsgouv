@@ -85,12 +85,11 @@ jobs:
           echo "Image tag: $TAG"
 
       - name: Build and push image
-        if:
         uses: docker/build-push-action@v7
         with:
           context: .
           file: ./Dockerfile
           push: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'release' }}
-          tags: ${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
+          tags: ${{ env.IMAGE_NAME }}:${{ steps.version.outputs.version }}-${{ steps.tag.outputs.tag }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

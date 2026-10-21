@@ -1,3 +1,5 @@
 psycopg2-binary==2.9.13
 openpyxl==3.1.5
 duckdb==1.5.5
+mysqlclient==2.3.0
+trino==0.340.0
